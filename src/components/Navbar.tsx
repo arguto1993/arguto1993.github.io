@@ -81,12 +81,19 @@ export const Navbar: React.FC = () => {
           <button
             onClick={toggleTheme}
             className="p-2 rounded-full hover:bg-[var(--border)] transition-colors"
+            aria-label="Toggle theme"
           >
             {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
           </button>
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="p-2"
+            onTouchEnd={(e) => {
+              e.preventDefault();
+              setIsMobileMenuOpen(!isMobileMenuOpen);
+            }}
+            className="p-2 cursor-pointer"
+            aria-label="Toggle menu"
+            aria-expanded={isMobileMenuOpen}
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -97,10 +104,11 @@ export const Navbar: React.FC = () => {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-[var(--bg)] border-b border-[var(--border)] overflow-hidden"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.2 }}
+            className="md:hidden bg-[var(--bg)] border-b border-[var(--border)]"
           >
             <div className="px-6 py-8 flex flex-col space-y-6">
               {visibleLinks.map((link) => (
@@ -108,7 +116,16 @@ export const Navbar: React.FC = () => {
                   key={link.name}
                   href={link.href}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-lg font-medium hover:accent-text transition-colors relative w-fit group"
+                  onTouchEnd={(e) => {
+                    e.preventDefault();
+                    setIsMobileMenuOpen(false);
+                    // Smooth scroll to the section
+                    const target = document.querySelector(link.href);
+                    if (target) {
+                      target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }}
+                  className="text-lg font-medium hover:accent-text transition-colors relative w-fit group cursor-pointer"
                 >
                   {link.name}
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[var(--accent)] transition-all duration-300 group-hover:w-full" />
