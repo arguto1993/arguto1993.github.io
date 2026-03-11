@@ -1,0 +1,10 @@
+{
+  "home": true,
+  "about": true,
+  "skills": true,
+  "experience": true,
+  "projects": true,
+  "dashboards": false,
+  "education": true,
+  "contact": true
+}
