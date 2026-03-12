@@ -137,7 +137,7 @@
         "Provided detailed marketing strategy for each segment, conducted a quantitative analysis of business impact, feasibility, and ROI to prioritize top 3 action items.",
         "Built looker studio dashboard to enable stakeholder’s self service Exploratory Data Analysis."
       ],
-      "tags": ["Python", "RFM", "K-Means", "Looker Studio", "Clustering"],
+      "tags": ["Python", "RFM", "K-Means Clustering", "Looker Studio"],
       "image": "/images/projects/recommendation_priority_matrix.jpg",
       "link": "https://www.canva.com/design/DAG7UFqzl8s/QjoyGUl5pZ2OvRkNx2PRTQ/view?utm_content=DAG7UFqzl8s&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h42326d28a8e",
       "github": "https://github.com/arguto1993/wine-customer-analysis"
@@ -229,11 +229,11 @@
   ],
   "skills": [
     {
-      "category": "Analysis",
-      "skills": ["Descriptive Statistics", "EDA", "Machine Learning", "Regression", "Classification", "Cohort Analysis", "Customer Segmentation", "K-Means Clustering", "Sentiment Analysis"]
+      "category": "Technical Skills",
+      "skills": ["Descriptive Statistics", "EDA", "Machine Learning", "Regression", "Classification", "Cohort Analysis", "Customer Segmentation", "K-Means Clustering", "Sentiment Analysis", "Project Management"]
     },
     {
-      "category": "Tools",
+      "category": "Tech Stack",
       "skills": ["Python", "SQL", "BigQuery", "ClickHouse", "Airbyte", "Power BI", "Tableau", "Metabase", "Looker Studio", "Google Sheets", "Excel"]
     },
     {

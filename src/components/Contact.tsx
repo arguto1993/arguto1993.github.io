@@ -15,7 +15,7 @@ export const Contact: React.FC = () => {
         >
           <h2 className="text-4xl md:text-5xl font-serif font-bold mb-6">Get In Touch</h2>
           <p className="text-lg opacity-60 max-w-2xl mx-auto">
-            I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
+            Let’s build something bold together—ideas, projects, or partnerships welcome.
           </p>
         </motion.div>
 

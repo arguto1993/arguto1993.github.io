@@ -13,7 +13,9 @@ export const Projects: React.FC = () => {
         className="text-center mb-16"
       >
         <h2 className="text-4xl font-serif font-bold mb-4">Featured Projects</h2>
-        <p className="opacity-60">Solving real-world problems with data and machine learning.</p>
+        <p className="opacity-60">
+          Passion projects give me freedom to show how I drive insights for different business domains.
+        </p>
       </motion.div>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">

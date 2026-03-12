@@ -56,7 +56,7 @@ const SocialLink: React.FC<{ href: string; icon: React.ReactNode; label: string 
     href={href}
     target="_blank"
     rel="noopener noreferrer"
-    className="flex items-center space-x-2 px-6 py-3 rounded-full border border-[var(--border)] hover:accent-border hover:accent-text transition-all duration-300 group"
+    className="flex items-center space-x-2 px-6 py-3 rounded-full border border-[var(--border)] hover:bg-[var(--accent)] transition-all duration-300 group"
   >
     <span className="group-hover:scale-110 transition-transform duration-300">{icon}</span>
     <span className="text-sm font-medium">{label}</span>

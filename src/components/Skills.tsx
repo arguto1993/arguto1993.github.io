@@ -32,7 +32,7 @@ export const Skills: React.FC = () => {
                 {group.skills.map((skill) => (
                   <span
                     key={skill}
-                    className="px-3 py-1 rounded-full bg-[var(--card-bg)] border border-[var(--border)] text-[11px] font-medium hover:accent-border hover:accent-text transition-all cursor-default shadow-sm"
+                    className="px-3 py-1 rounded-full bg-[var(--card-bg)] border border-[var(--border)] text-[11px] font-medium transition-all cursor-default shadow-sm hover:border-[var(--accent)]"
                   >
                     {skill}
                   </span>
