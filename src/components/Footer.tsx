@@ -1,5 +1,5 @@
 import React from 'react';
-import { PERSONAL_INFO, LAST_UPDATED } from '../constants';
+import { PERSONAL_INFO } from '../constants';
 
 export const Footer: React.FC = () => {
   return (
@@ -13,7 +13,7 @@ export const Footer: React.FC = () => {
             © {new Date().getFullYear()} {PERSONAL_INFO.name}
           </p>
           <p className="text-[10px] opacity-30 mt-1 uppercase tracking-tighter">
-            Last Updated: {LAST_UPDATED}
+            Last Updated: {PERSONAL_INFO.lastUpdated}
           </p>
         </div>
 
