@@ -23,3 +23,9 @@ export const DASHBOARDS: Dashboard[] = data.dashboards;
 export const EDUCATION: Education[] = data.education;
 export const SKILLS: SkillGroup[] = data.skills;
 export const CERTIFICATIONS: Certification[] = data.certifications;
+
+export const LAST_UPDATED = new Intl.DateTimeFormat('en-US', {
+  month: 'long',
+  day: 'numeric',
+  year: 'numeric',
+}).format(new Date());
