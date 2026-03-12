@@ -16,7 +16,7 @@
     "medium": "https://medium.com/@arguto",
     "hackerrank": "https://www.hackerrank.com/arguto1993",
     "portfolio": "https://arguto1993.github.io",
-    "resume": "https://drive.google.com/file/d/11B-ZZZGTYGIHf1vIfD4OESmqp5eu89qN/view?usp=sharing"
+    "resume": "https://drive.google.com/file/d/1QcOhb1iERIWCv4zIQZh6XI49lJ9AlegD/view?usp=sharing"
   },
   "experiences": [
     {
@@ -33,7 +33,7 @@
         "Optimize Django ORM queries—achieved 75%+ faster execution time (4x speed increase) for daily automated report generation (cron).",
         "Design & implement scalable end-to-end data solution architecture with PostgreSQL, Airbyte, ClickHouse, BigQuery, & Looker Studio."
       ]
-    },
+    },    
     {
       "title": "Student Development Coordinator Full-Stack Data Analytics",
       "company": "RevoU (Education Technology)",
@@ -64,6 +64,16 @@
       "description": [
         "Curated and refined 5 chapters of “Data Analysis to Solve Business Problems” webinar presentations, ensuring content is engaging, up-to-date, and relevant to industry trends.",
         "Facilitated 15 interactive webinar sessions, provided expert guidance and knowledge sharing to participants from diverse backgrounds."
+      ]
+    },
+    {
+      "title": "Data Annotation Specialist",
+      "company": "Appen (IT Services & Consulting)",
+      "location": "Washington, USA",
+      "period": "Feb 2024",
+      "type": "Part-time, Remote",
+      "description": [
+        "Annotated data to support AI development, ensuring high-quality training data for machine learning models."
       ]
     },
     {
@@ -182,13 +192,6 @@
       "description": "B2B Commerce dashboard analyzing 15k+ buyers and sellers behavior and retention.",
       "image": "https://picsum.photos/seed/dashboard3/800/450",
       "link": "https://public.tableau.com/example-sales"
-    },
-    {
-      "title": "National Statistics Activity Monitor",
-      "platform": "Custom Web App",
-      "description": "Real-time monitoring of census and survey progress across Kalimantan Barat province.",
-      "image": "https://picsum.photos/seed/dashboard4/800/450",
-      "link": "https://bps.go.id/example-stats"
     }
   ],
   "education": [
@@ -240,19 +243,22 @@
   ],
   "certifications": [
     {
-      "name": "Sertifikat Penyelesaian Bootcamp Data Science",
+      "name": "Data Science Bootcamp Certificate of Completion",
       "issuer": "Dicoding Academy",
-      "date": "Feb 2025"
+      "date": "Feb 2025",
+      "link": "https://drive.google.com/file/d/11OpjRYdDOgcxqRDAm8992dZVxGsM1U_Q/view"
     },
     {
       "name": "Full Stack Data Analytics Certificate of Excellence",
       "issuer": "RevoU",
-      "date": "Jun 2024"
+      "date": "Jun 2024",
+      "link": "https://drive.google.com/file/d/1HH5Fw5uRYS4ttVWy1unvJhhsPAcK3Pet/view?usp=sharing"
     },
     {
-      "name": "SQL (Advanced) Certificate",
+      "name": "SQL (Advanced) Certificate of Accomplishment",
       "issuer": "HackerRank",
-      "date": "Feb 2024"
+      "date": "Feb 2024",
+      "link": "https://www.hackerrank.com/certificates/ef7e4694f4ec"
     }
   ]
 }

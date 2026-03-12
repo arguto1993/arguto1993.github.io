@@ -74,6 +74,16 @@ export const Education: React.FC = () => {
                     {cert.date}
                   </span>
                 </div>
+                {cert.link && (
+                  <a
+                    href={cert.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-xs opacity-70 mt-3 transition-colors duration-200 group-hover:text-[var(--accent)]"
+                  >
+                    View credential ↗
+                  </a>
+                )}
               </div>
             ))}
           </div>
