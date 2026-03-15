@@ -54,32 +54,51 @@ Originally generated from [Google AI Studio](https://ai.google.dev/aistudio) and
 ## 📁 Project Structure
 
 ```bash
+├── .env.example
+├── .gitignore
+├── eslint.config.js
 ├── index.html
-├── metadata.json
+├── package-lock.json
 ├── package.json
 ├── README.md
 ├── tsconfig.json
 ├── vite.config.ts
 ├── public/
 │   └── images/
+│       ├── favicon/
+│       │   ├── favicon-16x16-black.png
+│       │   └── favicon-16x16.png
+│       ├── logo/
+│       │   ├── black.png
+│       │   └── white.png
+│       ├── portrait/
+│       │   ├── arguto_portrait_600.webp
+│       │   └── arguto_portrait_color_600.webp
+│       ├── projects/
+│       │   ├── depression_risk_assessment_cover.jpg
+│       │   ├── jkt48_oshibe_sentiment_analysis.jpg
+│       │   ├── recommendation_priority_matrix.jpg
+│       │   ├── video_game_sales_analytics.jpg
+│       │   └── .gitignore
+│       └── skills/  # (currently empty)
 ├── src/
-│   ├── App.tsx
-│   ├── constants.ts
-│   ├── data.json
-│   ├── index.css
-│   ├── main.tsx
-│   ├── sections.json
-│   ├── types.ts
-│   └── components/
-│       ├── About.tsx
-│       ├── Contact.tsx
-│       ├── Dashboards.tsx
-│       ├── Education.tsx
-│       ├── Experience.tsx
-│       ├── Footer.tsx
-│       ├── Hero.tsx
-│       ├── Navbar.tsx
-│       ├── Projects.tsx
-│       ├── Skills.tsx
-│       └── ThemeContext.tsx
+   ├── App.tsx
+   ├── constants.ts
+   ├── data.json
+   ├── index.css
+   ├── main.tsx
+   ├── sections.json
+   ├── types.ts
+   └── components/
+      ├── About.tsx
+      ├── Contact.tsx
+      ├── Dashboards.tsx
+      ├── Education.tsx
+      ├── Experience.tsx
+      ├── Footer.tsx
+      ├── Hero.tsx
+      ├── Navbar.tsx
+      ├── Projects.tsx
+      ├── Skills.tsx
+      └── ThemeContext.tsx
 ```
