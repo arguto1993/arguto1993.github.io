@@ -2,7 +2,9 @@ import { Experience, Project, Dashboard, Education, Certification, SkillGroup } 
 import data from './data.json';
 import sections from './sections.json';
 
-export const SECTION_VISIBILITY = sections;
+export const SECTION_VISIBILITY = Object.fromEntries(
+  Object.entries(sections).map(([key, value]) => [key, value.show])
+);
 
 export const PERSONAL_INFO = {
   ...data.personal,

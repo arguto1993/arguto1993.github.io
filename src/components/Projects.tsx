@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { PROJECTS } from '../constants';
 import { ExternalLink, Github } from 'lucide-react';
+import sections from '../sections.json';
 
 export const Projects: React.FC = () => {
   return (
@@ -12,10 +13,8 @@ export const Projects: React.FC = () => {
         viewport={{ once: true }}
         className="text-center mb-16"
       >
-        <h2 className="text-4xl font-serif font-bold mb-4">Featured Projects</h2>
-        <p className="opacity-60">
-          Passion projects give me freedom to show how I drive insights for different business domains.
-        </p>
+        <h2 className="text-4xl font-serif font-bold mb-4">{sections.projects.title}</h2>
+        <p className="opacity-60">{sections.projects.subtitle}</p>
       </motion.div>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">

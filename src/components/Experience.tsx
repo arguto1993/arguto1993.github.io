@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { EXPERIENCES } from '../constants';
 import { Briefcase } from 'lucide-react';
+import sections from '../sections.json';
 
 export const Experience: React.FC = () => {
   return (
@@ -13,8 +14,8 @@ export const Experience: React.FC = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-serif font-bold mb-4">Professional Experience</h2>
-          <p className="opacity-60">A timeline of my 9+ years journey in data.</p>
+          <h2 className="text-4xl font-serif font-bold mb-4">{sections.experience.title}</h2>
+          <p className="opacity-60">{sections.experience.subtitle}</p>
         </motion.div>
 
         <div className="space-y-12">

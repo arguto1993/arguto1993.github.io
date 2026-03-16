@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { SKILLS } from '../constants';
+import sections from '../sections.json';
 
 export const Skills: React.FC = () => {
   return (
@@ -12,7 +13,7 @@ export const Skills: React.FC = () => {
         transition={{ duration: 0.6 }}
         className="max-w-4xl mx-auto"
       >
-        <h2 className="text-4xl font-serif font-bold mb-12 text-center">Skills</h2>
+        <h2 className="text-4xl font-serif font-bold mb-12 text-center">{sections.skills.title}</h2>
         <div className="grid md:grid-cols-3 gap-12">
           {SKILLS.map((group, i) => (
             <motion.div 

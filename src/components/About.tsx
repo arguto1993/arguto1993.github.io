@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { PERSONAL_INFO } from '../constants';
+import sections from '../sections.json';
 
 const messages = [
-  "Hi there! Welcome to my portfolio.",
+  "Hi! Welcome to my portfolio.",
   "I'm Guto. Nice to meet you.",
   "How can I help you?"
 ];
@@ -75,7 +76,7 @@ export const About: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-4xl font-serif font-bold mb-8">About Me</h2>
+            <h2 className="text-4xl font-serif font-bold mb-8">{sections.about.title}</h2>
             <div className="space-y-6 text-lg opacity-80 leading-relaxed font-light text-justify">
               {PERSONAL_INFO.about.split('\n').map((paragraph, i) => (
                 <p key={i}>
