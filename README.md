@@ -9,8 +9,6 @@
 
 My professional portfolio website built with React and TypeScript.
 
-Originally generated from [Google AI Studio](https://ai.google.dev/aistudio) and heavily customized here.
-
 ## 🚀 Quick Start
 
 **Prerequisites:** Node.js
