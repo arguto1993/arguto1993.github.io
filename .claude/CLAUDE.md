@@ -3,7 +3,7 @@
 
 - End every reply with `Files read: x | Read README: 1/0` (x = total files read, partial or full)
 
-After any refactor, file rename, or structural change — update README.md in the same pass — it's the single source of truth
+- After any refactor, file rename, or structural change — update README.md in the same pass
 
 - All portfolio content goes in `src/data.json` — not scattered across components
 - Whenever `src/data.json` is modified, update `personal.lastUpdated` to today's date (e.g. `"April 12, 2026"`)
