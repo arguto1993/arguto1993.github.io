@@ -1,0 +1,65 @@
+name: Weekly Site Health Check
+
+on:
+  schedule:
+    - cron: '59 23 * * 5'  # Every Friday at 23:59 UTC
+  workflow_dispatch:
+
+jobs:
+  health-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check site health
+        id: check
+        run: |
+          BASE="https://arguto1993.github.io"
+          ISSUES=""
+
+          # Homepage — check HTTP status and pre-rendered content
+          HTTP=$(curl -s -o body.html -w "%{http_code}" "$BASE/")
+          if [ "$HTTP" != "200" ]; then
+            ISSUES="$ISSUES\n• Homepage returned HTTP $HTTP"
+          elif ! grep -q "Argo Wahyu Utomo" body.html; then
+            ISSUES="$ISSUES\n• Homepage loaded but pre-rendered content is missing"
+          fi
+
+          # sitemap.xml
+          SM=$(curl -s -o /dev/null -w "%{http_code}" "$BASE/sitemap.xml")
+          if [ "$SM" != "200" ]; then
+            ISSUES="$ISSUES\n• sitemap.xml returned HTTP $SM"
+          fi
+
+          # robots.txt
+          RB=$(curl -s -o /dev/null -w "%{http_code}" "$BASE/robots.txt")
+          if [ "$RB" != "200" ]; then
+            ISSUES="$ISSUES\n• robots.txt returned HTTP $RB"
+          fi
+
+          if [ -z "$ISSUES" ]; then
+            echo "status=ok" >> $GITHUB_OUTPUT
+          else
+            echo "status=down" >> $GITHUB_OUTPUT
+            echo "issues<<EOF" >> $GITHUB_OUTPUT
+            printf "$ISSUES" >> $GITHUB_OUTPUT
+            echo "" >> $GITHUB_OUTPUT
+            echo "EOF" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Notify — site is healthy
+        if: steps.check.outputs.status == 'ok'
+        run: |
+          curl -s -X POST https://ntfy.sh/${{ secrets.NTFY_TOPIC }} \
+            -H "Title: Portfolio is alive ✓" \
+            -H "Priority: low" \
+            -H "Tags: white_check_mark" \
+            -d "arguto1993.github.io — homepage, sitemap.xml, and robots.txt all OK."
+
+      - name: Notify — site has issues
+        if: steps.check.outputs.status == 'down'
+        run: |
+          curl -s -X POST https://ntfy.sh/${{ secrets.NTFY_TOPIC }} \
+            -H "Title: Portfolio has issues ✗" \
+            -H "Priority: urgent" \
+            -H "Tags: rotating_light" \
+            -d "${{ steps.check.outputs.issues }}"
