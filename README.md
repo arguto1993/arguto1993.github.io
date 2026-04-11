@@ -25,19 +25,15 @@ My professional portfolio website built with React and TypeScript.
    npm run dev
    ```
 
-3. Build for production:
-
-   ```bash
-   npm run build
-   ```
-
-   _(This step is handled automatically when you run the deploy command below. No need to run it manually unless you want to preview the build output.)_
-
-4. Deploy to GitHub Pages:
+3. Deploy to GitHub Pages:
 
    ```bash
    npm run deploy
    ```
+
+   > ⚠️ **Do not delete the `gh-pages` branch.** It holds the built site that GitHub Pages serves.
+   > GitHub Pages settings must point to `gh-pages` branch / `/ (root)`.
+   > Deleting the branch takes the site down.
 
 ## ✨ Features
 
