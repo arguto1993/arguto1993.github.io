@@ -27,7 +27,7 @@ My professional portfolio website built with React and TypeScript.
 
 3. Deploy to GitHub Pages:
 
-   **Automatic (recommended):** push to `master` — the CI workflow builds, deploys, and pings IndexNow automatically.
+   **Automatic:** push to `master` — the CI workflow builds, deploys, and pings IndexNow automatically.
 
    **Manual:**
 

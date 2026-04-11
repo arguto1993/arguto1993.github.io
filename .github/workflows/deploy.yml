@@ -36,12 +36,10 @@ jobs:
         run: |
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git config --global user.name "github-actions[bot]"
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/arguto1993/arguto1993.github.io.git
           npx gh-pages -d dist
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
-          # Requires a Personal Access Token (classic) with repo scope stored as GH_TOKEN secret.
-          # Alternatively, go to Settings → Actions → General → Workflow permissions
-          # and set "Read and write permissions", then use GITHUB_TOKEN instead.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Ping IndexNow
         run: node scripts/ping-indexing.mjs
