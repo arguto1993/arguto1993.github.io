@@ -94,7 +94,7 @@ function portfolioSeoPlugin(): Plugin {
 
       let result = html.replace(
         '<title>Arguto Portfolio</title>',
-        `<title>${personal.name} — ${personal.title} | Portfolio</title>`,
+        `<title>Arguto Portfolio</title>`,
       );
       return result.replace('</head>', `${tags}\n  </head>`);
     },
