@@ -18,7 +18,7 @@ function portfolioSeoPlugin(): Plugin {
         `data engineering, and machine learning. Skilled in Python, SQL, BigQuery, ` +
         `ClickHouse, and BI platforms. Based in ${personal.location}.`;
 
-      const jsonLd = JSON.stringify({
+      const jsonLdPerson = JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'Person',
         name: personal.name,
@@ -40,8 +40,33 @@ function portfolioSeoPlugin(): Plugin {
         },
       });
 
+      const jsonLdWebSite = JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'WebSite',
+        name: `${personal.name} — Portfolio`,
+        url: `${links.portfolio}/`,
+        description,
+        author: { '@type': 'Person', name: personal.name },
+      });
+
+      const sectionIds = ['about', 'experience', 'skills', 'projects', 'education', 'contact'];
+      const jsonLdBreadcrumbs = JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: sectionIds.map((id, i) => ({
+          '@type': 'ListItem',
+          position: i + 1,
+          name: id.charAt(0).toUpperCase() + id.slice(1),
+          item: `${links.portfolio}/#${id}`,
+        })),
+      });
+
+      const verifyTag = personal.googleVerification
+        ? `\n    <meta name="google-site-verification" content="${personal.googleVerification}" />`
+        : '';
+
       const tags = `
-    <!-- Primary SEO -->
+    <!-- Primary SEO -->${verifyTag}
     <meta name="description" content="${description}" />
     <meta name="keywords" content="${allSkills.join(', ')}, ${personal.name}, ${personal.nickname}" />
     <meta name="author" content="${personal.name}" />
@@ -63,9 +88,15 @@ function portfolioSeoPlugin(): Plugin {
     <meta name="twitter:image" content="${links.portfolio}/images/logo/white.png" />
 
     <!-- JSON-LD Structured Data -->
-    <script type="application/ld+json">${jsonLd}</script>`;
+    <script type="application/ld+json">${jsonLdPerson}</script>
+    <script type="application/ld+json">${jsonLdWebSite}</script>
+    <script type="application/ld+json">${jsonLdBreadcrumbs}</script>`;
 
-      return html.replace('</head>', `${tags}\n  </head>`);
+      let result = html.replace(
+        '<title>Arguto Portfolio</title>',
+        `<title>${personal.name} — ${personal.title} | Portfolio</title>`,
+      );
+      return result.replace('</head>', `${tags}\n  </head>`);
     },
   };
 }

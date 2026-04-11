@@ -34,6 +34,47 @@ html = html.replace('<div id="root"></div>', `<div id="root">${staticHTML}</div>
 fs.writeFileSync(indexPath, html, 'utf-8');
 console.log('✓ Pre-rendering complete: portfolio content injected into dist/index.html');
 
+// ── Sitemap generation ───────────────────────────────────────────────────────
+
+const sectionsPath = path.join(rootDir, 'src', 'sections.json');
+const sections = JSON.parse(fs.readFileSync(sectionsPath, 'utf-8'));
+
+const BASE_URL = 'https://arguto1993.github.io';
+
+/** Convert "April 12, 2026" → "2026-04-12" (W3C datetime for <lastmod>) */
+function toW3CDate(humanDate) {
+  const d = new Date(humanDate);
+  if (isNaN(d.getTime())) return new Date().toISOString().split('T')[0];
+  return d.toISOString().split('T')[0];
+}
+
+const lastmod = toW3CDate(data.personal.lastUpdated);
+
+const sitemapUrls = [
+  { loc: `${BASE_URL}/`, priority: '1.0', changefreq: 'monthly' },
+];
+
+// Anchor URLs for visible sections — skip 'home' (it IS the root) and hidden ones
+const SKIP_SECTIONS = new Set(['home', 'dashboards']);
+for (const [id, section] of Object.entries(sections)) {
+  if (SKIP_SECTIONS.has(id) || !section.show) continue;
+  sitemapUrls.push({ loc: `${BASE_URL}/#${id}`, priority: '0.8', changefreq: 'monthly' });
+}
+
+const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${sitemapUrls.map(u => `  <url>
+    <loc>${u.loc}</loc>
+    <lastmod>${lastmod}</lastmod>
+    <changefreq>${u.changefreq}</changefreq>
+    <priority>${u.priority}</priority>
+  </url>`).join('\n')}
+</urlset>`;
+
+const sitemapPath = path.join(rootDir, 'dist', 'sitemap.xml');
+fs.writeFileSync(sitemapPath, sitemapXml, 'utf-8');
+console.log(`✓ Sitemap written: ${sitemapUrls.length} URLs → dist/sitemap.xml`);
+
 // ---------------------------------------------------------------------------
 
 function esc(str = '') {
