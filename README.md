@@ -115,6 +115,9 @@ The admin route is lazy-loaded, marked `noindex`, and the OAuth token is held in
 ├── scripts/
 │   ├── prerender.mjs    # Post-build: injects static HTML + generates dist/sitemap.xml
 │   └── ping-indexing.mjs  # Pings Bing IndexNow after deploy
+├── worker/
+│   ├── oauth.ts         # Cloudflare Worker: GitHub OAuth code-exchange for #/admin
+│   └── wrangler.toml
 ├── public/
 │   ├── robots.txt       # Allows all crawlers; points to sitemap.xml
 │   └── images/
@@ -123,13 +126,19 @@ The admin route is lazy-loaded, marked `noindex`, and the OAuth token is held in
 │       ├── portrait/
 │       └── projects/
 └── src/
-    ├── App.tsx
+    ├── App.tsx          # Routes to AdminApp on #/admin, otherwise the portfolio
     ├── constants.ts
     ├── data.json        # All portfolio content lives here
     ├── sections.json    # Toggle section visibility
     ├── index.css
     ├── main.tsx
     ├── types.ts
+    ├── admin/           # #/admin editor — OAuth + GitHub Contents API
+    │   ├── AdminApp.tsx
+    │   ├── auth.ts
+    │   ├── github.ts
+    │   ├── forms.tsx
+    │   └── types.ts
     └── components/
         ├── About.tsx
         ├── Contact.tsx
