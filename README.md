@@ -47,10 +47,10 @@ My professional portfolio website built with React and TypeScript.
 - Each section can be shown or hidden via `src/sections.json`
 - All content managed in a single `src/data.json` — no code changes needed
 - SEO-ready: meta tags, Open Graph, Twitter Card, and JSON-LD structured data (Person, WebSite, BreadcrumbList) are all auto-generated from `data.json` at build time
-- Pre-rendered static HTML injected at build time so crawlers (Google, AI assistants) can read content without executing JavaScript
+- Pre-rendered static HTML injected at build time so search crawlers (Googlebot, Bingbot) and LLM bots
+  (GPTBot, ClaudeBot, PerplexityBot) can read content without executing JavaScript
 - `robots.txt` and `sitemap.xml` auto-generated at build time
 - CI/CD via GitHub Actions: push to `master` triggers build, deploy, and IndexNow ping
-
 
 ## ⚙️ Customization
 
@@ -72,9 +72,8 @@ auto-deploys via the existing CI workflow.
 **One-time setup:**
 
 1. **Create a GitHub OAuth App** at <https://github.com/settings/developers> with
-   Authorization callback URL `https://arguto1993.github.io/` (and add
-   `http://localhost:3000/` for local dev). Note the **Client ID** and generate a
-   **Client secret**.
+   Authorization callback URL `https://arguto1993.github.io/`. Note the
+   **Client ID** and generate a **Client secret**.
 2. **Deploy the Cloudflare Worker** in `worker/` — it does the OAuth code-exchange
    so the client secret never reaches the browser:
 
@@ -85,8 +84,8 @@ auto-deploys via the existing CI workflow.
    ```
 
    Then in `worker/wrangler.toml` set `GITHUB_CLIENT_ID` and confirm
-   `ALLOWED_ORIGINS` matches your site origins.
-3. **Set Vite env vars** in `.env.local` (see `.env.example`):
+   `ALLOWED_ORIGINS` matches your site origin.
+3. **Set Vite env vars** in `.env.production` (committed; see `.env.example`):
 
    ```env
    VITE_GH_CLIENT_ID=<oauth client id>
@@ -95,9 +94,12 @@ auto-deploys via the existing CI workflow.
 
 **Use it:**
 
-- Go to <https://arguto1993.github.io/#/admin> (or `http://localhost:3000/#/admin`).
+- Go to <https://arguto1993.github.io/#/admin>.
 - Click **Sign in with GitHub** → approve.
 - Edit fields → **Save**. A commit lands on `master`; GitHub Pages redeploys in ~1 min.
+
+> Local dev (`npm run dev`) doesn't run the admin OAuth flow — GitHub OAuth Apps
+> only allow one callback URL. Edit content via the live admin page instead.
 
 The admin route is lazy-loaded, marked `noindex`, and the OAuth token is held in
 `sessionStorage` only. `personal.lastUpdated` is bumped to today on every save.
