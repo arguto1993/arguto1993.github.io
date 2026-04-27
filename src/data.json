@@ -34,7 +34,7 @@
         "Optimize Django ORM queries—achieved 75%+ faster execution time (4x speed increase) for daily automated report generation (cron).",
         "Design & implement scalable end-to-end data solution architecture with PostgreSQL, Airbyte, ClickHouse, BigQuery, & Looker Studio."
       ]
-    },    
+    },
     {
       "title": "Student Development Coordinator Full-Stack Data Analytics",
       "company": "RevoU (Education Technology)",
@@ -138,7 +138,12 @@
         "Provided detailed marketing strategy for each segment, conducted a quantitative analysis of business impact, feasibility, and ROI to prioritize top 3 action items.",
         "Built looker studio dashboard to enable stakeholder’s self service Exploratory Data Analysis."
       ],
-      "tags": ["Python", "RFM", "K-Means Clustering", "Looker Studio"],
+      "tags": [
+        "Python",
+        "RFM",
+        "K-Means Clustering",
+        "Looker Studio"
+      ],
       "image": "/images/projects/recommendation_priority_matrix.jpg",
       "link": "https://www.canva.com/design/DAG7UFqzl8s/QjoyGUl5pZ2OvRkNx2PRTQ/view?utm_content=DAG7UFqzl8s&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h42326d28a8e",
       "github": "https://github.com/arguto1993/wine-customer-analysis"
@@ -152,7 +157,12 @@
         "Led a team of 4 to identify key factors of student depressions based on the provided dataset.",
         "Built a website to demonstrate machine learning capability to predict a person’s depression risk."
       ],
-      "tags": ["Machine Learning", "Python", "Streamlit", "Data Science"],
+      "tags": [
+        "Machine Learning",
+        "Python",
+        "Streamlit",
+        "Data Science"
+      ],
       "image": "/images/projects/depression_risk_assessment_cover.jpg",
       "link": "https://depression-risk-assessment.streamlit.app/",
       "github": "https://github.com/arguto1993/depression-risk-assessment-with-machine-learning"
@@ -166,7 +176,11 @@
         "Conducted deep dive analysis into global video game sales trends.",
         "Identified key growth regions and platform preferences over two decades."
       ],
-      "tags": ["EDA", "Tableau", "Project Management"],
+      "tags": [
+        "EDA",
+        "Tableau",
+        "Project Management"
+      ],
       "image": "/images/projects/video_game_sales_analytics.jpg",
       "link": "https://docs.google.com/presentation/d/19mP0bx_K0UXkc7V5PhYEcRWy8Y9IJkMTNHvg3IE8zD0/edit?usp=sharing",
       "github": ""
@@ -231,15 +245,47 @@
   "skills": [
     {
       "category": "Technical Skills",
-      "skills": ["Descriptive Statistics", "EDA", "Machine Learning", "Regression", "Classification", "Cohort Analysis", "Customer Segmentation", "K-Means Clustering", "Sentiment Analysis", "Project Management"]
+      "skills": [
+        "Descriptive Statistics",
+        "Exploratory Data Analytics",
+        "Machine Learning",
+        "Regression",
+        "Classification",
+        "Cohort Analysis",
+        "Customer Segmentation",
+        "K-Means Clustering",
+        "Sentiment Analysis",
+        "Project Management"
+      ]
     },
     {
       "category": "Tech Stack",
-      "skills": ["Python", "SQL", "BigQuery", "ClickHouse", "Airbyte", "Power BI", "Tableau", "Metabase", "Looker Studio", "Google Sheets", "Excel"]
+      "skills": [
+        "Python",
+        "SQL",
+        "BigQuery",
+        "ClickHouse",
+        "Airbyte",
+        "Power BI",
+        "Tableau",
+        "Metabase",
+        "Looker Studio",
+        "Google Sheets",
+        "Excel"
+      ]
     },
     {
       "category": "Soft Skills",
-      "skills": ["Communication", "Teamwork", "Leadership", "Public Speaking", "Critical Thinking", "Problem Solving", "Attention to Detail", "Adaptability"]
+      "skills": [
+        "Communication",
+        "Teamwork",
+        "Leadership",
+        "Public Speaking",
+        "Critical Thinking",
+        "Problem Solving",
+        "Attention to Detail",
+        "Adaptability"
+      ]
     }
   ],
   "certifications": [
