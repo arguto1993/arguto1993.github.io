@@ -56,11 +56,51 @@ My professional portfolio website built with React and TypeScript.
 
 | What to change | Where |
 | --- | --- |
-| Personal info, experience, skills, projects, education | `src/data.json` |
+| Personal info, experience, skills, projects, education | `src/data.json` (or the admin page — see below) |
 | Section visibility (show/hide) | `src/sections.json` |
 | Images | `public/images/` |
 
 > SEO meta tags, Open Graph, and JSON-LD are all derived from `data.json` automatically — no manual updates needed.
+
+## 🔐 Admin page (`#/admin`)
+
+Edit `src/data.json` from the live site instead of by hand. The admin route signs in
+with GitHub OAuth, loads `data.json` via the GitHub Contents API, lets you edit each
+section in a structured form, and commits the result back to `master` — which then
+auto-deploys via the existing CI workflow.
+
+**One-time setup:**
+
+1. **Create a GitHub OAuth App** at <https://github.com/settings/developers> with
+   Authorization callback URL `https://arguto1993.github.io/` (and add
+   `http://localhost:3000/` for local dev). Note the **Client ID** and generate a
+   **Client secret**.
+2. **Deploy the Cloudflare Worker** in `worker/` — it does the OAuth code-exchange
+   so the client secret never reaches the browser:
+
+   ```bash
+   cd worker
+   wrangler deploy
+   wrangler secret put GITHUB_CLIENT_SECRET   # paste the secret from step 1
+   ```
+
+   Then in `worker/wrangler.toml` set `GITHUB_CLIENT_ID` and confirm
+   `ALLOWED_ORIGINS` matches your site origins.
+3. **Set Vite env vars** in `.env.local` (see `.env.example`):
+
+   ```env
+   VITE_GH_CLIENT_ID=<oauth client id>
+   VITE_OAUTH_WORKER_URL=https://<your-worker>.workers.dev
+   ```
+
+**Use it:**
+
+- Go to <https://arguto1993.github.io/#/admin> (or `http://localhost:3000/#/admin`).
+- Click **Sign in with GitHub** → approve.
+- Edit fields → **Save**. A commit lands on `master`; GitHub Pages redeploys in ~1 min.
+
+The admin route is lazy-loaded, marked `noindex`, and the OAuth token is held in
+`sessionStorage` only. `personal.lastUpdated` is bumped to today on every save.
 
 ## 📁 Project Structure
 

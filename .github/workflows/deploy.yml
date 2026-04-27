@@ -30,7 +30,8 @@ jobs:
       - name: Build
         run: npm run build
         # postbuild (prerender.mjs) runs automatically — generates dist/sitemap.xml
-        # and injects static HTML for crawler visibility
+        # and injects static HTML for crawler visibility.
+        # Admin page (#/admin) env vars come from .env.production (committed).
 
       - name: Deploy to GitHub Pages
         run: |

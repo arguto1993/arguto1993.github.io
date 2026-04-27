@@ -1,0 +1,10 @@
+name = "arguto-portfolio-oauth"
+main = "oauth.ts"
+compatibility_date = "2025-01-01"
+
+[vars]
+GITHUB_CLIENT_ID = "Ov23liyDcji00IGCxbiE"
+ALLOWED_ORIGINS = "https://arguto1993.github.io"
+
+# Set the secret once with:
+#   wrangler secret put GITHUB_CLIENT_SECRET
