@@ -233,7 +233,10 @@
       "degree": "Bachelor of Applied Science (Statistical Computing)",
       "institution": "Sekolah Tinggi Ilmu Statistik",
       "location": "Jakarta, Indonesia",
-      "period": "2012-2016"
+      "period": "2012-2016",
+      "details": [
+        "Thesis: Pengembangan Aplikasi Mobile BPS-Community (BPS-Statistics Employee Portal Android App Development with PHP RESTFul API)"
+      ]
     },
     {
       "degree": "Technical Informatics and Computer Science Education",
@@ -246,8 +249,8 @@
     {
       "category": "Technical Skills",
       "skills": [
+        "Exploratory Data Analysis",
         "Descriptive Statistics",
-        "Exploratory Data Analytics",
         "Machine Learning",
         "Regression",
         "Classification",
@@ -255,6 +258,10 @@
         "Customer Segmentation",
         "K-Means Clustering",
         "Sentiment Analysis",
+        "RFM Scoring Analysis",
+        "Marketing Performance Analysis",
+        "Vibe Coding",
+        "Prompt Engineering",
         "Project Management"
       ]
     },
@@ -283,8 +290,8 @@
         "Public Speaking",
         "Critical Thinking",
         "Problem Solving",
-        "Attention to Detail",
-        "Adaptability"
+        "Adaptability",
+        "Attention to Detail"
       ]
     }
   ],
