@@ -210,31 +210,85 @@ export function ItemList<T>({
 
 type Patch<T> = (next: T) => void;
 
-export function PersonalForm({
+export function HeroForm({
   value,
   onChange,
 }: {
-  value: PortfolioData['personal'];
-  onChange: Patch<PortfolioData['personal']>;
+  value: PortfolioData['hero'];
+  onChange: Patch<PortfolioData['hero']>;
 }) {
-  const set = <K extends keyof PortfolioData['personal']>(
+  const set = <K extends keyof PortfolioData['hero']>(
     k: K,
-    v: PortfolioData['personal'][K],
+    v: PortfolioData['hero'][K],
   ) => onChange({ ...value, [k]: v });
   return (
     <div className="grid gap-4 sm:grid-cols-2">
       <Field label="Name">
         <TextInput value={value.name} onChange={(v) => set('name', v)} />
       </Field>
+      <Field label="Title">
+        <TextInput value={value.title} onChange={(v) => set('title', v)} />
+      </Field>
+    </div>
+  );
+}
+
+export function BrandForm({
+  value,
+  onChange,
+}: {
+  value: PortfolioData['brand'];
+  onChange: Patch<PortfolioData['brand']>;
+}) {
+  const set = <K extends keyof PortfolioData['brand']>(
+    k: K,
+    v: PortfolioData['brand'][K],
+  ) => onChange({ ...value, [k]: v });
+  return (
+    <div className="grid gap-4 sm:grid-cols-2">
       <Field label="Nickname">
         <TextInput value={value.nickname} onChange={(v) => set('nickname', v)} />
       </Field>
       <Field label="Short name">
         <TextInput value={value.shortName} onChange={(v) => set('shortName', v)} />
       </Field>
-      <Field label="Title">
-        <TextInput value={value.title} onChange={(v) => set('title', v)} />
+    </div>
+  );
+}
+
+export function AboutForm({
+  value,
+  onChange,
+}: {
+  value: PortfolioData['about'];
+  onChange: Patch<PortfolioData['about']>;
+}) {
+  return (
+    <div className="grid gap-4">
+      <Field label="About copy (markdown: **bold**, __italic__)">
+        <TextArea
+          value={value.content}
+          onChange={(content) => onChange({ ...value, content })}
+          rows={8}
+        />
       </Field>
+    </div>
+  );
+}
+
+export function ContactForm({
+  value,
+  onChange,
+}: {
+  value: PortfolioData['contact'];
+  onChange: Patch<PortfolioData['contact']>;
+}) {
+  const set = <K extends keyof PortfolioData['contact']>(
+    k: K,
+    v: PortfolioData['contact'][K],
+  ) => onChange({ ...value, [k]: v });
+  return (
+    <div className="grid gap-4 sm:grid-cols-2">
       <Field label="Email">
         <TextInput value={value.email} onChange={(v) => set('email', v)} type="email" />
       </Field>
@@ -244,6 +298,30 @@ export function PersonalForm({
       <Field label="Location">
         <TextInput value={value.location} onChange={(v) => set('location', v)} />
       </Field>
+      {(Object.keys(value) as (keyof PortfolioData['contact'])[])
+        .filter((key) => !['email', 'phone', 'location'].includes(key))
+        .map((key) => (
+          <Field key={key} label={key}>
+            <TextInput value={value[key]} onChange={(next) => set(key, next)} />
+          </Field>
+        ))}
+    </div>
+  );
+}
+
+export function FooterForm({
+  value,
+  onChange,
+}: {
+  value: PortfolioData['footer'];
+  onChange: Patch<PortfolioData['footer']>;
+}) {
+  const set = <K extends keyof PortfolioData['footer']>(
+    k: K,
+    v: PortfolioData['footer'][K],
+  ) => onChange({ ...value, [k]: v });
+  return (
+    <div className="grid gap-4 sm:grid-cols-2">
       <Field label="Last updated (auto on save)">
         <TextInput value={value.lastUpdated} onChange={(v) => set('lastUpdated', v)} />
       </Field>
@@ -253,31 +331,6 @@ export function PersonalForm({
           onChange={(v) => set('googleVerification', v)}
         />
       </Field>
-      <div className="sm:col-span-2">
-        <Field label="About (markdown: **bold**, __italic__)">
-          <TextArea value={value.about} onChange={(v) => set('about', v)} rows={8} />
-        </Field>
-      </div>
-    </div>
-  );
-}
-
-export function LinksForm({
-  value,
-  onChange,
-}: {
-  value: PortfolioData['links'];
-  onChange: Patch<PortfolioData['links']>;
-}) {
-  const set = (k: keyof PortfolioData['links'], v: string) =>
-    onChange({ ...value, [k]: v });
-  return (
-    <div className="grid gap-4 sm:grid-cols-2">
-      {(Object.keys(value) as (keyof PortfolioData['links'])[]).map((k) => (
-        <Field key={k} label={k}>
-          <TextInput value={value[k]} onChange={(v) => set(k, v)} />
-        </Field>
-      ))}
     </div>
   );
 }

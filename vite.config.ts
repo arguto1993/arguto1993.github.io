@@ -10,29 +10,29 @@ function portfolioSeoPlugin(): Plugin {
     name: 'portfolio-seo',
     transformIndexHtml(html) {
       const data = JSON.parse(fs.readFileSync('./src/data.json', 'utf-8'));
-      const { personal, links, skills } = data;
+      const { hero, brand, contact, footer, skills } = data;
 
       const allSkills = skills.flatMap((g: { skills: string[] }) => g.skills);
       const description =
         `Data Professional with 9+ years of cross-sector experience in analytics, ` +
         `data engineering, and machine learning. Skilled in Python, SQL, BigQuery, ` +
-        `ClickHouse, and BI platforms. Based in ${personal.location}.`;
+        `ClickHouse, and BI platforms. Based in ${contact.location}.`;
 
       const jsonLdPerson = JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'Person',
-        name: personal.name,
-        alternateName: personal.nickname,
-        jobTitle: personal.title,
+        name: hero.name,
+        alternateName: brand.nickname,
+        jobTitle: hero.title,
         description: `Data Professional with 9+ years of cross-sector experience turning complex data into strategic business insights.`,
-        url: links.portfolio,
-        email: personal.email,
+        url: contact.portfolio,
+        email: contact.email,
         address: {
           '@type': 'PostalAddress',
-          addressLocality: personal.location.split(',')[0]?.trim(),
+          addressLocality: contact.location.split(',')[0]?.trim(),
           addressCountry: 'ID',
         },
-        sameAs: [links.linkedin, links.github, links.medium, links.hackerrank],
+        sameAs: [contact.linkedin, contact.github, contact.medium, contact.hackerrank],
         knowsAbout: allSkills,
         worksFor: {
           '@type': 'Organization',
@@ -43,10 +43,10 @@ function portfolioSeoPlugin(): Plugin {
       const jsonLdWebSite = JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'WebSite',
-        name: `${personal.name} — Portfolio`,
-        url: `${links.portfolio}/`,
+        name: `${hero.name} — Portfolio`,
+        url: `${contact.portfolio}/`,
         description,
-        author: { '@type': 'Person', name: personal.name },
+        author: { '@type': 'Person', name: hero.name },
       });
 
       const sectionIds = ['about', 'experience', 'skills', 'projects', 'education', 'contact'];
@@ -57,35 +57,35 @@ function portfolioSeoPlugin(): Plugin {
           '@type': 'ListItem',
           position: i + 1,
           name: id.charAt(0).toUpperCase() + id.slice(1),
-          item: `${links.portfolio}/#${id}`,
+          item: `${contact.portfolio}/#${id}`,
         })),
       });
 
-      const verifyTag = personal.googleVerification
-        ? `\n    <meta name="google-site-verification" content="${personal.googleVerification}" />`
+      const verifyTag = footer.googleVerification
+        ? `\n    <meta name="google-site-verification" content="${footer.googleVerification}" />`
         : '';
 
       const tags = `
     <!-- Primary SEO -->${verifyTag}
     <meta name="description" content="${description}" />
-    <meta name="keywords" content="${allSkills.join(', ')}, ${personal.name}, ${personal.nickname}" />
-    <meta name="author" content="${personal.name}" />
-    <link rel="canonical" href="${links.portfolio}/" />
+    <meta name="keywords" content="${allSkills.join(', ')}, ${hero.name}, ${brand.nickname}" />
+    <meta name="author" content="${hero.name}" />
+    <link rel="canonical" href="${contact.portfolio}/" />
 
     <!-- Open Graph / Social -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="${links.portfolio}/" />
-    <meta property="og:title" content="${personal.name} — ${personal.title}" />
+    <meta property="og:url" content="${contact.portfolio}/" />
+    <meta property="og:title" content="${hero.name} — ${hero.title}" />
     <meta property="og:description" content="${description}" />
-    <meta property="og:image" content="${links.portfolio}/images/logo/white.png" />
+    <meta property="og:image" content="${contact.portfolio}/images/logo/white.png" />
     <meta property="og:locale" content="en_US" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:url" content="${links.portfolio}/" />
-    <meta name="twitter:title" content="${personal.name} — ${personal.title}" />
+    <meta name="twitter:url" content="${contact.portfolio}/" />
+    <meta name="twitter:title" content="${hero.name} — ${hero.title}" />
     <meta name="twitter:description" content="${description}" />
-    <meta name="twitter:image" content="${links.portfolio}/images/logo/white.png" />
+    <meta name="twitter:image" content="${contact.portfolio}/images/logo/white.png" />
 
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">${jsonLdPerson}</script>

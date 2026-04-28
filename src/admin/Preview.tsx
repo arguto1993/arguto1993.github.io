@@ -2,8 +2,11 @@ import type { PortfolioData } from './types';
 import { parseInline } from '../inlineMarkdown';
 
 type SectionKey =
-  | 'Personal'
-  | 'Links'
+  | 'Hero'
+  | 'Brand'
+  | 'About'
+  | 'Contact'
+  | 'Footer'
   | 'Experiences'
   | 'Projects'
   | 'Dashboards'
@@ -32,42 +35,36 @@ export default function Preview({
   data: PortfolioData;
 }) {
   switch (section) {
-    case 'Personal': {
-      const p = data.personal;
+    case 'Hero': {
+      const hero = data.hero;
       return (
-        <div className="space-y-3">
-          <div className={card}>
-            <h2 className="text-xl font-bold">{p.name || '(name)'}</h2>
-            <p className="text-sm text-[var(--accent)] mt-1">{p.title}</p>
-            <dl className="mt-3 grid grid-cols-[auto_1fr] gap-x-3 gap-y-1 text-xs text-slate-600 dark:text-slate-400">
-              {p.email && (<><dt>Email</dt><dd>{p.email}</dd></>)}
-              {p.phone && (<><dt>Phone</dt><dd>{p.phone}</dd></>)}
-              {p.location && (<><dt>Location</dt><dd>{p.location}</dd></>)}
-              {p.lastUpdated && (<><dt>Updated</dt><dd>{p.lastUpdated}</dd></>)}
-            </dl>
-            {p.about && (
-              <p className="mt-3 text-sm whitespace-pre-line leading-relaxed">
-                {renderInline(p.about)}
-              </p>
-            )}
-          </div>
-          <div className="rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 py-3">
-            <p className="text-xs uppercase tracking-wide text-slate-400 mb-1">Footer</p>
-            <p className="font-serif font-bold">{p.nickname || '(nickname)'} Portfolio</p>
-            <p className="text-xs text-slate-500">
-              © {new Date().getFullYear()} {p.name}
-            </p>
-            {p.lastUpdated && (
-              <p className="text-[10px] uppercase tracking-tighter text-slate-400 mt-0.5">
-                Last Updated: {p.lastUpdated}
-              </p>
-            )}
-          </div>
+        <div className={card}>
+          <h2 className="text-xl font-bold">{hero.name || '(name)'}</h2>
+          <p className="text-sm text-[var(--accent)] mt-1">{hero.title}</p>
         </div>
       );
     }
-    case 'Links': {
-      const entries = Object.entries(data.links).filter(([, v]) => v);
+    case 'Brand': {
+      const brand = data.brand;
+      return (
+        <div className={card}>
+          <dl className="grid grid-cols-[auto_1fr] gap-x-3 gap-y-1 text-xs text-slate-600 dark:text-slate-400">
+            {brand.nickname && (<><dt>Nickname</dt><dd>{brand.nickname}</dd></>)}
+            {brand.shortName && (<><dt>Short</dt><dd>{brand.shortName}</dd></>)}
+          </dl>
+        </div>
+      );
+    }
+    case 'About':
+      return (
+        <div className={card}>
+          <p className="text-sm whitespace-pre-line leading-relaxed">
+            {renderInline(data.about.content)}
+          </p>
+        </div>
+      );
+    case 'Contact': {
+      const entries = Object.entries(data.contact).filter(([, v]) => v);
       return (
         <div className={card}>
           <ul className="space-y-1 text-sm">
@@ -78,9 +75,30 @@ export default function Preview({
               </li>
             ))}
             {entries.length === 0 && (
-              <li className="text-slate-500">No links configured</li>
+              <li className="text-slate-500">No contact fields configured</li>
             )}
           </ul>
+        </div>
+      );
+    }
+    case 'Footer': {
+      const footer = data.footer;
+      return (
+        <div className="rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 py-3">
+          <p className="font-serif font-bold">{data.brand.nickname || '(nickname)'} Portfolio</p>
+          <p className="text-xs text-slate-500">
+            © {new Date().getFullYear()} {data.hero.name}
+          </p>
+          {footer.lastUpdated && (
+            <p className="text-[10px] uppercase tracking-tighter text-slate-400 mt-0.5">
+              Last Updated: {footer.lastUpdated}
+            </p>
+          )}
+          {footer.googleVerification && (
+            <p className="mt-2 text-xs text-slate-500 break-all">
+              Google verification: {footer.googleVerification}
+            </p>
+          )}
         </div>
       );
     }

@@ -11,20 +11,26 @@ import localData from '../data.json';
 
 const DEV_PREVIEW = import.meta.env.DEV;
 import {
+  AboutForm,
+  BrandForm,
   CertificationsForm,
+  ContactForm,
   DashboardsForm,
   EducationForm,
   ExperiencesForm,
-  LinksForm,
-  PersonalForm,
+  FooterForm,
+  HeroForm,
   ProjectsForm,
   SkillsForm,
 } from './forms';
 import Preview from './Preview';
 
 const SECTIONS = [
-  'Personal',
-  'Links',
+  'Hero',
+  'Brand',
+  'About',
+  'Contact',
+  'Footer',
   'Experiences',
   'Projects',
   'Dashboards',
@@ -47,7 +53,7 @@ export default function AdminApp() {
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [savedAt, setSavedAt] = useState<{ url: string } | null>(null);
-  const [section, setSection] = useState<SectionKey>('Personal');
+  const [section, setSection] = useState<SectionKey>('Hero');
 
   // Inject noindex once for the admin route.
   useEffect(() => {
@@ -104,7 +110,7 @@ export default function AdminApp() {
     const today = formatToday();
     const next: PortfolioData = {
       ...data,
-      personal: { ...data.personal, lastUpdated: today },
+      footer: { ...data.footer, lastUpdated: today },
     };
     try {
       const { commitUrl } = await saveDataFile(
@@ -135,18 +141,39 @@ export default function AdminApp() {
   const body = useMemo(() => {
     if (!data) return null;
     switch (section) {
-      case 'Personal':
+      case 'Hero':
         return (
-          <PersonalForm
-            value={data.personal}
-            onChange={(v) => setData({ ...data, personal: v })}
+          <HeroForm
+            value={data.hero}
+            onChange={(v) => setData({ ...data, hero: v })}
           />
         );
-      case 'Links':
+      case 'Brand':
         return (
-          <LinksForm
-            value={data.links}
-            onChange={(v) => setData({ ...data, links: v })}
+          <BrandForm
+            value={data.brand}
+            onChange={(v) => setData({ ...data, brand: v })}
+          />
+        );
+      case 'About':
+        return (
+          <AboutForm
+            value={data.about}
+            onChange={(v) => setData({ ...data, about: v })}
+          />
+        );
+      case 'Contact':
+        return (
+          <ContactForm
+            value={data.contact}
+            onChange={(v) => setData({ ...data, contact: v })}
+          />
+        );
+      case 'Footer':
+        return (
+          <FooterForm
+            value={data.footer}
+            onChange={(v) => setData({ ...data, footer: v })}
           />
         );
       case 'Experiences':

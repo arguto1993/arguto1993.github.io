@@ -48,7 +48,7 @@ function toW3CDate(humanDate) {
   return d.toISOString().split('T')[0];
 }
 
-const lastmod = toW3CDate(data.personal.lastUpdated);
+const lastmod = toW3CDate(data.footer.lastUpdated);
 
 const sitemapUrls = [
   { loc: `${BASE_URL}/`, priority: '1.0', changefreq: 'monthly' },
@@ -91,7 +91,7 @@ function stripMarkdown(str = '') {
 }
 
 function generateStaticHTML(data) {
-  const { personal, experiences, projects, skills, education, certifications } = data;
+  const { hero, about, contact, experiences, projects, skills, education, certifications } = data;
 
   const experienceHTML = experiences.map(exp => `
     <article>
@@ -133,14 +133,14 @@ function generateStaticHTML(data) {
   return `
 <div id="prerendered" aria-hidden="false">
   <header>
-    <h1>${esc(personal.name)}</h1>
-    <p>${esc(personal.title)}</p>
-    <p>${esc(personal.location)}</p>
+    <h1>${esc(hero.name)}</h1>
+    <p>${esc(hero.title)}</p>
+    <p>${esc(contact.location)}</p>
   </header>
   <main>
     <section id="about">
       <h2>About</h2>
-      <p>${esc(stripMarkdown(personal.about))}</p>
+      <p>${esc(stripMarkdown(about.content))}</p>
     </section>
     <section id="experience">
       <h2>Experience</h2>

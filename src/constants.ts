@@ -7,13 +7,11 @@ export const SECTION_VISIBILITY = Object.fromEntries(
 );
 
 export const PERSONAL_INFO = {
-  ...data.personal,
-  linkedin: data.links.linkedin,
-  github: data.links.github,
-  medium: data.links.medium,
-  hackerrank: data.links.hackerrank,
-  portfolio: data.links.portfolio,
-  resume: data.links.resume,
+  ...data.hero,
+  ...data.brand,
+  about: data.about.content,
+  ...data.contact,
+  ...data.footer,
   logoWhite: "/images/logo/white.png",
   logoBlack: "/images/logo/black.png",
   portrait: "/images/portrait/arguto_portrait_600.webp"

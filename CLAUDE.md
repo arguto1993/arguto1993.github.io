@@ -5,7 +5,7 @@
 - After any refactor, file rename, or structural change — update README.md in the same pass
 
 - All site content goes in `src/data.json` — not scattered across components
-- Whenever `src/data.json` is modified, update `personal.lastUpdated` to today's date (e.g. `"April 12, 2026"`)
+- Whenever `src/data.json` is modified, update `footer.lastUpdated` to today's date (e.g. `"April 12, 2026"`)
 - Section visibility is controlled via `src/sections.json`
 - SEO meta tags, Open Graph, and JSON-LD are auto-generated from `data.json` by the `portfolioSeoPlugin` in `vite.config.ts`
 - don't hardcode any info in `index.html`

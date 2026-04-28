@@ -56,7 +56,7 @@ My professional portfolio website built with React and TypeScript.
 
 | What to change | Where |
 | --- | --- |
-| Personal info, experience, skills, projects, education | `src/data.json` (or the admin page — see below) |
+| Section-aligned profile content and portfolio collections | `src/data.json` (or the admin page — see below) |
 | Section visibility (show/hide) | `src/sections.json` |
 | Images | `public/images/` |
 
@@ -103,7 +103,7 @@ auto-deploys via the existing CI workflow.
 > disabled — commit content via the live admin page.
 
 The admin route is lazy-loaded, marked `noindex`, and the OAuth token is held in
-`sessionStorage` only. `personal.lastUpdated` is bumped to today on every save.
+`sessionStorage` only. `footer.lastUpdated` is bumped to today on every save.
 
 ## 📁 Project Structure
 
@@ -131,7 +131,7 @@ The admin route is lazy-loaded, marked `noindex`, and the OAuth token is held in
 └── src/
     ├── App.tsx          # Routes to AdminApp on #/admin, otherwise the portfolio
     ├── constants.ts
-    ├── data.json        # All portfolio content lives here
+    ├── data.json        # Section-aligned content: hero/brand/about/contact/footer + collections
     ├── sections.json    # Toggle section visibility
     ├── index.css
     ├── main.tsx
