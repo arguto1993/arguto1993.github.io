@@ -1,11 +1,10 @@
 - Consult [README.md](../README.md) when you need project context — structure, features, stack
 - Skip it for small edits where the context isn't needed
-
 - End every reply with `Files read: x | Read README: 1/0` (x = total files read, partial or full)
 
 - After any refactor, file rename, or structural change — update README.md in the same pass
 
-- All portfolio content goes in `src/data.json` — not scattered across components
+- All site content goes in `src/data.json` — not scattered across components
 - Whenever `src/data.json` is modified, update `personal.lastUpdated` to today's date (e.g. `"April 12, 2026"`)
 - Section visibility is controlled via `src/sections.json`
 - SEO meta tags, Open Graph, and JSON-LD are auto-generated from `data.json` by the `portfolioSeoPlugin` in `vite.config.ts`
