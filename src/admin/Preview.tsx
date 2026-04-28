@@ -35,23 +35,34 @@ export default function Preview({
     case 'Personal': {
       const p = data.personal;
       return (
-        <div className={card}>
-          <h2 className="text-xl font-bold">{p.name || '(name)'}</h2>
-          {p.nickname && (
-            <p className="text-sm text-slate-500">aka {p.nickname}</p>
-          )}
-          <p className="text-sm text-[var(--accent)] mt-1">{p.title}</p>
-          <dl className="mt-3 grid grid-cols-[auto_1fr] gap-x-3 gap-y-1 text-xs text-slate-600 dark:text-slate-400">
-            {p.email && (<><dt>Email</dt><dd>{p.email}</dd></>)}
-            {p.phone && (<><dt>Phone</dt><dd>{p.phone}</dd></>)}
-            {p.location && (<><dt>Location</dt><dd>{p.location}</dd></>)}
-            {p.lastUpdated && (<><dt>Updated</dt><dd>{p.lastUpdated}</dd></>)}
-          </dl>
-          {p.about && (
-            <p className="mt-3 text-sm whitespace-pre-line leading-relaxed">
-              {renderInline(p.about)}
+        <div className="space-y-3">
+          <div className={card}>
+            <h2 className="text-xl font-bold">{p.name || '(name)'}</h2>
+            <p className="text-sm text-[var(--accent)] mt-1">{p.title}</p>
+            <dl className="mt-3 grid grid-cols-[auto_1fr] gap-x-3 gap-y-1 text-xs text-slate-600 dark:text-slate-400">
+              {p.email && (<><dt>Email</dt><dd>{p.email}</dd></>)}
+              {p.phone && (<><dt>Phone</dt><dd>{p.phone}</dd></>)}
+              {p.location && (<><dt>Location</dt><dd>{p.location}</dd></>)}
+              {p.lastUpdated && (<><dt>Updated</dt><dd>{p.lastUpdated}</dd></>)}
+            </dl>
+            {p.about && (
+              <p className="mt-3 text-sm whitespace-pre-line leading-relaxed">
+                {renderInline(p.about)}
+              </p>
+            )}
+          </div>
+          <div className="rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 py-3">
+            <p className="text-xs uppercase tracking-wide text-slate-400 mb-1">Footer</p>
+            <p className="font-serif font-bold">{p.nickname || '(nickname)'} Portfolio</p>
+            <p className="text-xs text-slate-500">
+              © {new Date().getFullYear()} {p.name}
             </p>
-          )}
+            {p.lastUpdated && (
+              <p className="text-[10px] uppercase tracking-tighter text-slate-400 mt-0.5">
+                Last Updated: {p.lastUpdated}
+              </p>
+            )}
+          </div>
         </div>
       );
     }
