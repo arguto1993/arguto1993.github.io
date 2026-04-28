@@ -7,6 +7,9 @@ import {
 } from './auth';
 import { actionsRunsUrl, loadDataFile, saveDataFile } from './github';
 import type { PortfolioData } from './types';
+import localData from '../data.json';
+
+const DEV_PREVIEW = import.meta.env.DEV;
 import {
   CertificationsForm,
   DashboardsForm,
@@ -31,9 +34,13 @@ const SECTIONS = [
 type SectionKey = (typeof SECTIONS)[number];
 
 export default function AdminApp() {
-  const [token, setToken] = useState<string | null>(getStoredToken());
-  const [bootstrapping, setBootstrapping] = useState(true);
-  const [data, setData] = useState<PortfolioData | null>(null);
+  const [token, setToken] = useState<string | null>(
+    DEV_PREVIEW ? 'dev-preview' : getStoredToken(),
+  );
+  const [bootstrapping, setBootstrapping] = useState(!DEV_PREVIEW);
+  const [data, setData] = useState<PortfolioData | null>(
+    DEV_PREVIEW ? (localData as PortfolioData) : null,
+  );
   const [sha, setSha] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState(false);
@@ -57,6 +64,7 @@ export default function AdminApp() {
 
   // Handle OAuth callback if ?code= is in the URL on first mount.
   useEffect(() => {
+    if (DEV_PREVIEW) return;
     let cancelled = false;
     (async () => {
       const handled = await handleOAuthCallback();
@@ -71,7 +79,7 @@ export default function AdminApp() {
 
   // Load data.json once we have a token.
   useEffect(() => {
-    if (!token) return;
+    if (DEV_PREVIEW || !token) return;
     setLoading(true);
     setError(null);
     loadDataFile(token)
@@ -84,6 +92,10 @@ export default function AdminApp() {
   }, [token]);
 
   const onSave = async () => {
+    if (DEV_PREVIEW) {
+      setError('Save disabled in local dev preview. Use the live admin page to commit.');
+      return;
+    }
     if (!token || !data || !sha) return;
     setSaving(true);
     setError(null);
@@ -219,19 +231,27 @@ export default function AdminApp() {
             </a>
             <button
               onClick={onSave}
-              disabled={!data || saving || loading}
+              disabled={!data || saving || loading || DEV_PREVIEW}
+              title={DEV_PREVIEW ? 'Save disabled in dev preview' : undefined}
               className="px-4 py-1.5 text-sm rounded-md bg-[var(--accent)] text-white hover:opacity-90 disabled:opacity-50"
             >
               {saving ? 'Saving…' : 'Save'}
             </button>
-            <button
-              onClick={onSignOut}
-              className="px-3 py-1.5 text-sm rounded-md border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800"
-            >
-              Sign out
-            </button>
+            {!DEV_PREVIEW && (
+              <button
+                onClick={onSignOut}
+                className="px-3 py-1.5 text-sm rounded-md border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800"
+              >
+                Sign out
+              </button>
+            )}
           </div>
         </div>
+        {DEV_PREVIEW && (
+          <div className="bg-amber-50 dark:bg-amber-950/40 text-amber-800 dark:text-amber-200 text-sm px-4 py-2 border-t border-amber-200 dark:border-amber-900">
+            Dev preview — OAuth bypassed, edits are local-only and Save is disabled.
+          </div>
+        )}
         {error && (
           <div className="bg-red-50 dark:bg-red-950/40 text-red-700 dark:text-red-300 text-sm px-4 py-2 border-t border-red-200 dark:border-red-900">
             {error}

@@ -98,8 +98,9 @@ auto-deploys via the existing CI workflow.
 - Click **Sign in with GitHub** → approve.
 - Edit fields → **Save**. A commit lands on `master`; GitHub Pages redeploys in ~1 min.
 
-> Local dev (`npm run dev`) doesn't run the admin OAuth flow — GitHub OAuth Apps
-> only allow one callback URL. Edit content via the live admin page instead.
+> Local dev (`npm run dev`) bypasses OAuth: `#/admin` opens directly with
+> `src/data.json` loaded into the form so you can preview the UI. Save is
+> disabled — commit content via the live admin page.
 
 The admin route is lazy-loaded, marked `noindex`, and the OAuth token is held in
 `sessionStorage` only. `personal.lastUpdated` is bumped to today on every save.
