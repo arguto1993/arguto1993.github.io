@@ -1,5 +1,5 @@
-import type { ReactNode } from 'react';
 import type { PortfolioData } from './types';
+import { parseInline } from '../inlineMarkdown';
 
 type SectionKey =
   | 'Personal'
@@ -17,36 +17,11 @@ const tag =
   'inline-block text-xs px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 mr-1 mb-1';
 
 function renderInline(s: string) {
-  // Mirrors the markdown subset used by data.json: **bold**, __italic__.
-  const parts: ReactNode[] = [];
-  let i = 0;
-  let key = 0;
-  while (i < s.length) {
-    const bold = s.indexOf('**', i);
-    const italic = s.indexOf('__', i);
-    const next = [bold, italic].filter((n) => n !== -1).sort((a, b) => a - b)[0];
-    if (next === undefined) {
-      parts.push(s.slice(i));
-      break;
-    }
-    if (next > i) parts.push(s.slice(i, next));
-    const marker = s.slice(next, next + 2);
-    const close = s.indexOf(marker, next + 2);
-    if (close === -1) {
-      parts.push(s.slice(i));
-      break;
-    }
-    const inner = s.slice(next + 2, close);
-    parts.push(
-      marker === '**' ? (
-        <strong key={key++}>{inner}</strong>
-      ) : (
-        <em key={key++}>{inner}</em>
-      ),
-    );
-    i = close + 2;
-  }
-  return parts;
+  return parseInline(s).map((seg, i) => {
+    if (seg.type === 'bold') return <strong key={i}>{seg.value}</strong>;
+    if (seg.type === 'italic') return <em key={i}>{seg.value}</em>;
+    return seg.value;
+  });
 }
 
 export default function Preview({

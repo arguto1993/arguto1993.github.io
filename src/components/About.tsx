@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { PERSONAL_INFO } from '../constants';
 import sections from '../sections.json';
+import { parseInline } from '../inlineMarkdown';
 
 const messages = [
   "Hi! Welcome to my portfolio.",
@@ -80,22 +81,29 @@ export const About: React.FC = () => {
             <div className="space-y-6 text-lg opacity-80 leading-relaxed font-light text-justify">
               {PERSONAL_INFO.about.split('\n').map((paragraph, i) => (
                 <p key={i}>
-                  {paragraph.split(/([*_]{2}.*?[*_]{2})/g).map((segment, j) => {
-                    if (segment.startsWith('**') && segment.endsWith('**')) {
-                      return <strong key={j} className="font-semibold text-[var(--text)] opacity-100">{segment.slice(2, -2)}</strong>;
-                    } else if (segment.startsWith('__') && segment.endsWith('__')) {
-                      const tech = segment.slice(2, -2);
+                  {parseInline(paragraph).map((seg, j) => {
+                    if (seg.type === 'bold') {
+                      return (
+                        <strong
+                          key={j}
+                          className="font-semibold text-[var(--text)] opacity-100"
+                        >
+                          {seg.value}
+                        </strong>
+                      );
+                    }
+                    if (seg.type === 'italic') {
                       return (
                         <span
                           key={j}
                           className="underline decoration-[var(--accent)] decoration-2 underline-offset-2 cursor-help"
-                          title={techTooltips[tech] || tech}
+                          title={techTooltips[seg.value] || seg.value}
                         >
-                          {tech}
+                          {seg.value}
                         </span>
                       );
                     }
-                    return segment;
+                    return seg.value;
                   })}
                 </p>
               ))}
