@@ -20,6 +20,7 @@ import {
   ProjectsForm,
   SkillsForm,
 } from './forms';
+import Preview from './Preview';
 
 const SECTIONS = [
   'Personal',
@@ -272,7 +273,7 @@ export default function AdminApp() {
         )}
       </header>
 
-      <div className="max-w-5xl mx-auto px-4 py-6 grid gap-6 md:grid-cols-[180px_1fr]">
+      <div className="max-w-7xl mx-auto px-4 py-6 grid gap-6 md:grid-cols-[180px_1fr] lg:grid-cols-[180px_minmax(0,1fr)_minmax(0,1fr)]">
         <nav className="md:sticky md:top-24 self-start flex md:flex-col gap-1 overflow-x-auto">
           {SECTIONS.map((s) => (
             <button
@@ -292,6 +293,14 @@ export default function AdminApp() {
           {loading && <p className="text-sm text-slate-500">Loading data.json…</p>}
           {body}
         </main>
+        {data && (
+          <aside className="hidden lg:block lg:sticky lg:top-24 self-start min-w-0 max-h-[calc(100vh-7rem)] overflow-y-auto">
+            <p className="text-xs uppercase tracking-wide text-slate-500 mb-2">
+              Preview · {section}
+            </p>
+            <Preview section={section} data={data} />
+          </aside>
+        )}
       </div>
     </div>
   );
