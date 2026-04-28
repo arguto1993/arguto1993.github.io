@@ -167,11 +167,21 @@ export function ItemList<T>({
         <details
           key={i}
           open={i === 0}
-          className="rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/40"
+          className="group rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/40 [&_summary::-webkit-details-marker]:hidden"
         >
-          <summary className="cursor-pointer select-none px-4 py-2 flex items-center justify-between gap-2">
-            <span className="text-sm font-medium">
-              {itemLabel(item, i) || `Item ${i + 1}`}
+          <summary className="cursor-pointer select-none px-4 py-2 flex items-center justify-between gap-2 list-none hover:bg-slate-100 dark:hover:bg-slate-800/60 rounded-lg">
+            <span className="flex items-center gap-2 min-w-0">
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 20 20"
+                className="w-4 h-4 shrink-0 text-slate-500 dark:text-slate-400 transition-transform group-open:rotate-90"
+                fill="currentColor"
+              >
+                <path d="M7 5l6 5-6 5V5z" />
+              </svg>
+              <span className="text-sm font-medium truncate">
+                {itemLabel(item, i) || `Item ${i + 1}`}
+              </span>
             </span>
             <RowButtons
               index={i}
