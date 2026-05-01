@@ -3,15 +3,15 @@ import { parseInline } from '../inlineMarkdown';
 
 type SectionKey =
   | 'Hero'
-  | 'Brand'
   | 'About'
-  | 'Contact'
+  | 'Skills'
   | 'Experiences'
   | 'Projects'
   | 'Dashboards'
   | 'Education'
-  | 'Skills'
-  | 'Certifications';
+  | 'Certifications'
+  | 'Contact'
+  | 'Brand';
 
 const card =
   'rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4';

@@ -26,15 +26,15 @@ import Preview from './Preview';
 
 const SECTIONS = [
   'Hero',
-  'Brand',
   'About',
+  'Skills',
   'Experiences',
   'Projects',
   'Dashboards',
   'Education',
-  'Skills',
   'Certifications',
   'Contact',
+  'Brand',
 ] as const;
 type SectionKey = (typeof SECTIONS)[number];
 

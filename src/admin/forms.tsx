@@ -31,7 +31,9 @@ export function BrandForm({ value, onChange }: SectionProps<'brand'>) {
         <TextInput value={value.googleVerification} onChange={(v) => set('googleVerification', v)} />
       </Field>
       <Field label="Last updated (auto on save)">
-        <TextInput value={value.lastUpdated} onChange={(v) => set('lastUpdated', v)} />
+        <p className="px-3 py-2 text-sm text-slate-500 dark:text-slate-400 rounded-md border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50">
+          {value.lastUpdated || '—'}
+        </p>
       </Field>
     </div>
   );
