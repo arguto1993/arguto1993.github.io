@@ -11,7 +11,6 @@ export const PERSONAL_INFO = {
   ...data.brand,
   about: data.about.content,
   ...data.contact,
-  ...data.footer,
   logoWhite: "/images/logo/white.png",
   logoBlack: "/images/logo/black.png",
   portrait: "/images/portrait/arguto_portrait_600.webp"

@@ -44,16 +44,16 @@ export default function Preview({
       );
     }
     case 'Brand': {
-      const { brand, footer, hero } = data;
+      const { brand, hero } = data;
       return (
         <div className="rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 py-6 flex flex-col items-center gap-1 text-center">
           <p className="font-serif font-bold text-lg">{brand.nickname || '(nickname)'} Portfolio</p>
           <p className="text-xs text-slate-500">
             © {new Date().getFullYear()} {hero.name}
           </p>
-          {footer.lastUpdated && (
+          {brand.lastUpdated && (
             <p className="text-[10px] uppercase tracking-tighter text-slate-400">
-              Last Updated: {footer.lastUpdated}
+              Last Updated: {brand.lastUpdated}
             </p>
           )}
         </div>

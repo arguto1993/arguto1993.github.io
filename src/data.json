@@ -4,7 +4,9 @@
     "title": "Data Analyst & Engineer"
   },
   "brand": {
-    "nickname": "Arguto"
+    "nickname": "Arguto",
+    "googleVerification": "mg6llNEPe6WyLmV1Y7R-1KAmYhlF5O63czUj3QeMry4",
+    "lastUpdated": "May 1, 2026"
   },
   "about": {
     "content": "I'm a Data Professional with **9+ years of cross-sector experience**, turning complex data into strategic business insights. From national statistics work in the public sector to developing AI-powered features for a __CRM__ and __OMS__ with **15M+ total customers** — my work spans analytics, data engineering, and machine learning. \nSkilled across __Python__, __SQL__, __BigQuery__, __ClickHouse__, and various __BI platforms__, I bring hands-on experience designing scalable data architectures and delivering data consulting to marketing and IT Operations teams. \nBeyond the technical side, I actively communicate and educate — having **mentored 20+ data analysts, trained 100+ government officers**, and delivered insights to enterprise stakeholders across Indonesia and Singapore. \n**Where others see data, I see the decisions waiting to be made** — and I make sure the right people make them confidently."
@@ -19,10 +21,6 @@
     "hackerrank": "https://www.hackerrank.com/arguto1993",
     "portfolio": "https://arguto1993.github.io",
     "resume": "https://drive.google.com/file/d/1QcOhb1iERIWCv4zIQZh6XI49lJ9AlegD/view?usp=sharing"
-  },
-  "footer": {
-    "lastUpdated": "April 28, 2026",
-    "googleVerification": "mg6llNEPe6WyLmV1Y7R-1KAmYhlF5O63czUj3QeMry4"
   },
   "experiences": [
     {

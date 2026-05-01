@@ -108,7 +108,7 @@ export default function AdminApp() {
     const today = formatToday();
     const next: PortfolioData = {
       ...data,
-      footer: { ...data.footer, lastUpdated: today },
+      brand: { ...data.brand, lastUpdated: today },
     };
     try {
       const { commitUrl } = await saveDataFile(
@@ -149,10 +149,8 @@ export default function AdminApp() {
       case 'Brand':
         return (
           <BrandForm
-            brand={data.brand}
-            footer={data.footer}
-            onBrandChange={(v) => setData({ ...data, brand: v })}
-            onFooterChange={(v) => setData({ ...data, footer: v })}
+            value={data.brand}
+            onChange={(v) => setData({ ...data, brand: v })}
           />
         );
       case 'About':

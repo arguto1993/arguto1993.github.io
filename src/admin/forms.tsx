@@ -234,28 +234,24 @@ export function HeroForm({
 }
 
 export function BrandForm({
-  brand,
-  footer,
-  onBrandChange,
-  onFooterChange,
+  value,
+  onChange,
 }: {
-  brand: PortfolioData['brand'];
-  footer: PortfolioData['footer'];
-  onBrandChange: Patch<PortfolioData['brand']>;
-  onFooterChange: Patch<PortfolioData['footer']>;
+  value: PortfolioData['brand'];
+  onChange: Patch<PortfolioData['brand']>;
 }) {
-  const setFooter = <K extends keyof PortfolioData['footer']>(k: K, v: PortfolioData['footer'][K]) =>
-    onFooterChange({ ...footer, [k]: v });
+  const set = <K extends keyof PortfolioData['brand']>(k: K, v: PortfolioData['brand'][K]) =>
+    onChange({ ...value, [k]: v });
   return (
     <div className="grid gap-4 sm:grid-cols-2">
       <Field label="Nickname">
-        <TextInput value={brand.nickname} onChange={(v) => onBrandChange({ ...brand, nickname: v })} />
-      </Field>
-      <Field label="Last updated (auto on save)">
-        <TextInput value={footer.lastUpdated} onChange={(v) => setFooter('lastUpdated', v)} />
+        <TextInput value={value.nickname} onChange={(v) => set('nickname', v)} />
       </Field>
       <Field label="Google site verification token">
-        <TextInput value={footer.googleVerification} onChange={(v) => setFooter('googleVerification', v)} />
+        <TextInput value={value.googleVerification} onChange={(v) => set('googleVerification', v)} />
+      </Field>
+      <Field label="Last updated (auto on save)">
+        <TextInput value={value.lastUpdated} onChange={(v) => set('lastUpdated', v)} />
       </Field>
     </div>
   );
@@ -310,32 +306,6 @@ export function ContactForm({
             <TextInput value={value[key]} onChange={(next) => set(key, next)} />
           </Field>
         ))}
-    </div>
-  );
-}
-
-export function FooterForm({
-  value,
-  onChange,
-}: {
-  value: PortfolioData['footer'];
-  onChange: Patch<PortfolioData['footer']>;
-}) {
-  const set = <K extends keyof PortfolioData['footer']>(
-    k: K,
-    v: PortfolioData['footer'][K],
-  ) => onChange({ ...value, [k]: v });
-  return (
-    <div className="grid gap-4 sm:grid-cols-2">
-      <Field label="Last updated (auto on save)">
-        <TextInput value={value.lastUpdated} onChange={(v) => set('lastUpdated', v)} />
-      </Field>
-      <Field label="Google site verification token">
-        <TextInput
-          value={value.googleVerification}
-          onChange={(v) => set('googleVerification', v)}
-        />
-      </Field>
     </div>
   );
 }

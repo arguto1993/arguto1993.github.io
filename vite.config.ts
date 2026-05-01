@@ -10,7 +10,7 @@ function portfolioSeoPlugin(): Plugin {
     name: 'portfolio-seo',
     transformIndexHtml(html) {
       const data = JSON.parse(fs.readFileSync('./src/data.json', 'utf-8'));
-      const { hero, brand, contact, footer, skills } = data;
+      const { hero, brand, contact, skills } = data;
 
       const allSkills = skills.flatMap((g: { skills: string[] }) => g.skills);
       const description =
@@ -61,8 +61,8 @@ function portfolioSeoPlugin(): Plugin {
         })),
       });
 
-      const verifyTag = footer.googleVerification
-        ? `\n    <meta name="google-site-verification" content="${footer.googleVerification}" />`
+      const verifyTag = brand.googleVerification
+        ? `\n    <meta name="google-site-verification" content="${brand.googleVerification as string}" />`
         : '';
 
       const tags = `
