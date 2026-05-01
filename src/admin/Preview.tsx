@@ -6,7 +6,6 @@ type SectionKey =
   | 'Brand'
   | 'About'
   | 'Contact'
-  | 'Footer'
   | 'Experiences'
   | 'Projects'
   | 'Dashboards'
@@ -45,13 +44,18 @@ export default function Preview({
       );
     }
     case 'Brand': {
-      const brand = data.brand;
+      const { brand, footer, hero } = data;
       return (
-        <div className={card}>
-          <dl className="grid grid-cols-[auto_1fr] gap-x-3 gap-y-1 text-xs text-slate-600 dark:text-slate-400">
-            {brand.nickname && (<><dt>Nickname</dt><dd>{brand.nickname}</dd></>)}
-            {brand.shortName && (<><dt>Short</dt><dd>{brand.shortName}</dd></>)}
-          </dl>
+        <div className="rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 py-6 flex flex-col items-center gap-1 text-center">
+          <p className="font-serif font-bold text-lg">{brand.nickname || '(nickname)'} Portfolio</p>
+          <p className="text-xs text-slate-500">
+            © {new Date().getFullYear()} {hero.name}
+          </p>
+          {footer.lastUpdated && (
+            <p className="text-[10px] uppercase tracking-tighter text-slate-400">
+              Last Updated: {footer.lastUpdated}
+            </p>
+          )}
         </div>
       );
     }
@@ -78,27 +82,6 @@ export default function Preview({
               <li className="text-slate-500">No contact fields configured</li>
             )}
           </ul>
-        </div>
-      );
-    }
-    case 'Footer': {
-      const footer = data.footer;
-      return (
-        <div className="rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 py-3">
-          <p className="font-serif font-bold">{data.brand.nickname || '(nickname)'} Portfolio</p>
-          <p className="text-xs text-slate-500">
-            © {new Date().getFullYear()} {data.hero.name}
-          </p>
-          {footer.lastUpdated && (
-            <p className="text-[10px] uppercase tracking-tighter text-slate-400 mt-0.5">
-              Last Updated: {footer.lastUpdated}
-            </p>
-          )}
-          {footer.googleVerification && (
-            <p className="mt-2 text-xs text-slate-500 break-all">
-              Google verification: {footer.googleVerification}
-            </p>
-          )}
         </div>
       );
     }

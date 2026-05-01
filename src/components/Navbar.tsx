@@ -46,7 +46,7 @@ export const Navbar: React.FC = () => {
         >
           <img 
             src={theme === 'light' ? PERSONAL_INFO.logoBlack : PERSONAL_INFO.logoWhite} 
-            alt={PERSONAL_INFO.shortName} 
+            alt={PERSONAL_INFO.nickname}
             className="h-10 w-10 object-contain"
             referrerPolicy="no-referrer"
           />

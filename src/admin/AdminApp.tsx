@@ -18,7 +18,6 @@ import {
   DashboardsForm,
   EducationForm,
   ExperiencesForm,
-  FooterForm,
   HeroForm,
   ProjectsForm,
   SkillsForm,
@@ -29,14 +28,13 @@ const SECTIONS = [
   'Hero',
   'Brand',
   'About',
-  'Contact',
-  'Footer',
   'Experiences',
   'Projects',
   'Dashboards',
   'Education',
   'Skills',
   'Certifications',
+  'Contact',
 ] as const;
 type SectionKey = (typeof SECTIONS)[number];
 
@@ -151,8 +149,10 @@ export default function AdminApp() {
       case 'Brand':
         return (
           <BrandForm
-            value={data.brand}
-            onChange={(v) => setData({ ...data, brand: v })}
+            brand={data.brand}
+            footer={data.footer}
+            onBrandChange={(v) => setData({ ...data, brand: v })}
+            onFooterChange={(v) => setData({ ...data, footer: v })}
           />
         );
       case 'About':
@@ -167,13 +167,6 @@ export default function AdminApp() {
           <ContactForm
             value={data.contact}
             onChange={(v) => setData({ ...data, contact: v })}
-          />
-        );
-      case 'Footer':
-        return (
-          <FooterForm
-            value={data.footer}
-            onChange={(v) => setData({ ...data, footer: v })}
           />
         );
       case 'Experiences':
