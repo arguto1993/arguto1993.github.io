@@ -48,7 +48,7 @@ function toW3CDate(humanDate) {
   return d.toISOString().split('T')[0];
 }
 
-const lastmod = toW3CDate(data.footer.lastUpdated);
+const lastmod = toW3CDate(data.brand.lastUpdated);
 
 const sitemapUrls = [
   { loc: `${BASE_URL}/`, priority: '1.0', changefreq: 'monthly' },
