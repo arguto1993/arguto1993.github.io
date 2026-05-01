@@ -153,7 +153,7 @@ export function ItemList<T>({
   items: T[];
   onChange: (v: T[]) => void;
   emptyItem: () => T;
-  renderItem: (item: T, update: (next: T) => void) => ReactNode;
+  renderItem: (item: T, update: (next: T) => void, set: <K extends keyof T>(k: K, v: T[K]) => void) => ReactNode;
   itemLabel: (item: T, i: number) => string;
 }) {
   const update = (i: number, next: T) => {
@@ -163,7 +163,10 @@ export function ItemList<T>({
   };
   return (
     <div className="space-y-4">
-      {items.map((item, i) => (
+      {items.map((item, i) => {
+        const itemUpdate = (next: T) => update(i, next);
+        const set = <K extends keyof T>(k: K, v: T[K]) => itemUpdate({ ...item, [k]: v });
+        return (
         <details
           key={i}
           open={i === 0}
@@ -191,10 +194,11 @@ export function ItemList<T>({
             />
           </summary>
           <div className="px-4 pb-4 pt-2 space-y-3">
-            {renderItem(item, (next) => update(i, next))}
+            {renderItem(item, itemUpdate, set)}
           </div>
         </details>
-      ))}
+        );
+      })}
       <button
         type="button"
         onClick={() => onChange([...items, emptyItem()])}
@@ -209,14 +213,9 @@ export function ItemList<T>({
 // ── Section editors ──────────────────────────────────────────────────────────
 
 type Patch<T> = (next: T) => void;
+type SectionProps<K extends keyof PortfolioData> = { value: PortfolioData[K]; onChange: Patch<PortfolioData[K]> };
 
-export function HeroForm({
-  value,
-  onChange,
-}: {
-  value: PortfolioData['hero'];
-  onChange: Patch<PortfolioData['hero']>;
-}) {
+export function HeroForm({ value, onChange }: SectionProps<'hero'>) {
   const set = <K extends keyof PortfolioData['hero']>(
     k: K,
     v: PortfolioData['hero'][K],
@@ -233,13 +232,7 @@ export function HeroForm({
   );
 }
 
-export function BrandForm({
-  value,
-  onChange,
-}: {
-  value: PortfolioData['brand'];
-  onChange: Patch<PortfolioData['brand']>;
-}) {
+export function BrandForm({ value, onChange }: SectionProps<'brand'>) {
   const set = <K extends keyof PortfolioData['brand']>(k: K, v: PortfolioData['brand'][K]) =>
     onChange({ ...value, [k]: v });
   return (
@@ -257,13 +250,7 @@ export function BrandForm({
   );
 }
 
-export function AboutForm({
-  value,
-  onChange,
-}: {
-  value: PortfolioData['about'];
-  onChange: Patch<PortfolioData['about']>;
-}) {
+export function AboutForm({ value, onChange }: SectionProps<'about'>) {
   return (
     <div className="grid gap-4">
       <Field label="About copy (markdown: **bold**, __italic__)">
@@ -277,13 +264,7 @@ export function AboutForm({
   );
 }
 
-export function ContactForm({
-  value,
-  onChange,
-}: {
-  value: PortfolioData['contact'];
-  onChange: Patch<PortfolioData['contact']>;
-}) {
+export function ContactForm({ value, onChange }: SectionProps<'contact'>) {
   const set = <K extends keyof PortfolioData['contact']>(
     k: K,
     v: PortfolioData['contact'][K],
@@ -311,13 +292,7 @@ export function ContactForm({
 }
 
 type Experience = PortfolioData['experiences'][number];
-export function ExperiencesForm({
-  value,
-  onChange,
-}: {
-  value: Experience[];
-  onChange: Patch<Experience[]>;
-}) {
+export function ExperiencesForm({ value, onChange }: SectionProps<'experiences'>) {
   return (
     <ItemList<Experience>
       items={value}
@@ -331,9 +306,7 @@ export function ExperiencesForm({
         description: [''],
       })}
       itemLabel={(e) => `${e.title || '(untitled)'} — ${e.company || ''}`}
-      renderItem={(item, update) => {
-        const set = <K extends keyof Experience>(k: K, v: Experience[K]) =>
-          update({ ...item, [k]: v });
+      renderItem={(item, _update, set) => {
         return (
           <>
             <div className="grid gap-3 sm:grid-cols-2">
@@ -367,13 +340,7 @@ export function ExperiencesForm({
 }
 
 type Project = PortfolioData['projects'][number];
-export function ProjectsForm({
-  value,
-  onChange,
-}: {
-  value: Project[];
-  onChange: Patch<Project[]>;
-}) {
+export function ProjectsForm({ value, onChange }: SectionProps<'projects'>) {
   return (
     <ItemList<Project>
       items={value}
@@ -390,9 +357,7 @@ export function ProjectsForm({
         github: '',
       })}
       itemLabel={(p) => p.title || '(untitled project)'}
-      renderItem={(item, update) => {
-        const set = <K extends keyof Project>(k: K, v: Project[K]) =>
-          update({ ...item, [k]: v });
+      renderItem={(item, _update, set) => {
         return (
           <>
             <div className="grid gap-3 sm:grid-cols-2">
@@ -438,22 +403,14 @@ export function ProjectsForm({
 }
 
 type Dashboard = PortfolioData['dashboards'][number];
-export function DashboardsForm({
-  value,
-  onChange,
-}: {
-  value: Dashboard[];
-  onChange: Patch<Dashboard[]>;
-}) {
+export function DashboardsForm({ value, onChange }: SectionProps<'dashboards'>) {
   return (
     <ItemList<Dashboard>
       items={value}
       onChange={onChange}
       emptyItem={() => ({ title: '', platform: '', description: '', image: '', link: '' })}
       itemLabel={(d) => d.title || '(untitled dashboard)'}
-      renderItem={(item, update) => {
-        const set = <K extends keyof Dashboard>(k: K, v: Dashboard[K]) =>
-          update({ ...item, [k]: v });
+      renderItem={(item, _update, set) => {
         return (
           <>
             <div className="grid gap-3 sm:grid-cols-2">
@@ -485,13 +442,7 @@ export function DashboardsForm({
 }
 
 type Education = PortfolioData['education'][number];
-export function EducationForm({
-  value,
-  onChange,
-}: {
-  value: Education[];
-  onChange: Patch<Education[]>;
-}) {
+export function EducationForm({ value, onChange }: SectionProps<'education'>) {
   return (
     <ItemList<Education>
       items={value}
@@ -504,9 +455,7 @@ export function EducationForm({
         details: [],
       })}
       itemLabel={(e) => e.degree || '(untitled education)'}
-      renderItem={(item, update) => {
-        const set = <K extends keyof Education>(k: K, v: Education[K]) =>
-          update({ ...item, [k]: v });
+      renderItem={(item, _update, set) => {
         return (
           <>
             <div className="grid gap-3 sm:grid-cols-2">
@@ -540,58 +489,36 @@ export function EducationForm({
 }
 
 type SkillGroup = PortfolioData['skills'][number];
-export function SkillsForm({
-  value,
-  onChange,
-}: {
-  value: SkillGroup[];
-  onChange: Patch<SkillGroup[]>;
-}) {
+export function SkillsForm({ value, onChange }: SectionProps<'skills'>) {
   return (
     <ItemList<SkillGroup>
       items={value}
       onChange={onChange}
       emptyItem={() => ({ category: '', skills: [] })}
       itemLabel={(g) => g.category || '(untitled group)'}
-      renderItem={(item, update) => {
-        return (
+      renderItem={(item, _update, set) => (
           <>
             <Field label="Category">
-              <TextInput
-                value={item.category}
-                onChange={(v) => update({ ...item, category: v })}
-              />
+              <TextInput value={item.category} onChange={(v) => set('category', v)} />
             </Field>
             <Field label="Skills">
-              <StringList
-                values={item.skills}
-                onChange={(v) => update({ ...item, skills: v })}
-              />
+              <StringList values={item.skills} onChange={(v) => set('skills', v)} />
             </Field>
           </>
-        );
-      }}
+        )}
     />
   );
 }
 
 type Certification = PortfolioData['certifications'][number];
-export function CertificationsForm({
-  value,
-  onChange,
-}: {
-  value: Certification[];
-  onChange: Patch<Certification[]>;
-}) {
+export function CertificationsForm({ value, onChange }: SectionProps<'certifications'>) {
   return (
     <ItemList<Certification>
       items={value}
       onChange={onChange}
       emptyItem={() => ({ name: '', issuer: '', date: '', link: '' })}
       itemLabel={(c) => c.name || '(untitled certification)'}
-      renderItem={(item, update) => {
-        const set = <K extends keyof Certification>(k: K, v: Certification[K]) =>
-          update({ ...item, [k]: v });
+      renderItem={(item, _update, set) => {
         return (
           <div className="grid gap-3 sm:grid-cols-2">
             <Field label="Name">
