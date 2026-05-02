@@ -91,7 +91,7 @@ function stripMarkdown(str = '') {
 }
 
 function generateStaticHTML(data) {
-  const { hero, about, contact, experiences, projects, skills, education, certifications } = data;
+  const { hero, about, contacts, experiences, projects, skills, education, certifications } = data;
 
   const experienceHTML = experiences.map(exp => `
     <article>
@@ -135,7 +135,7 @@ function generateStaticHTML(data) {
   <header>
     <h1>${esc(hero.name)}</h1>
     <p>${esc(hero.title)}</p>
-    <p>${esc(contact.location)}</p>
+    <p>${esc(contacts.location)}</p>
   </header>
   <main>
     <section id="about">
