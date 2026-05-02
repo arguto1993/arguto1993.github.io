@@ -1,4 +1,4 @@
-import { type ReactNode } from 'react';
+import { type ReactNode, useRef, useState } from 'react';
 
 export const inputCls =
   'w-full rounded-md border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--accent)]';
@@ -60,6 +60,24 @@ function move<T>(arr: T[], i: number, dir: -1 | 1): T[] {
   return next;
 }
 
+function reorder<T>(arr: T[], from: number, to: number): T[] {
+  const next = [...arr];
+  const [item] = next.splice(from, 1);
+  next.splice(to, 0, item);
+  return next;
+}
+
+function GripHandle() {
+  return (
+    <span
+      className="cursor-grab active:cursor-grabbing flex items-center text-slate-400 dark:text-slate-600 px-1 shrink-0 select-none"
+      title="Drag to reorder"
+    >
+      ⠿
+    </span>
+  );
+}
+
 function RowButtons({
   index,
   length,
@@ -106,15 +124,34 @@ export function StringList({
   onChange: (v: string[]) => void;
   placeholder?: string;
 }) {
+  const dragFrom = useRef<number | null>(null);
+  const [dragOver, setDragOver] = useState<number | null>(null);
+
   const update = (i: number, v: string) => {
     const next = [...values];
     next[i] = v;
     onChange(next);
   };
+
   return (
     <div className="space-y-2">
       {values.map((v, i) => (
-        <div key={i} className="flex gap-2">
+        <div
+          key={i}
+          draggable
+          onDragStart={() => { dragFrom.current = i; }}
+          onDragOver={(e) => { e.preventDefault(); setDragOver(i); }}
+          onDrop={() => {
+            if (dragFrom.current !== null && dragFrom.current !== i) {
+              onChange(reorder(values, dragFrom.current, i));
+            }
+            dragFrom.current = null;
+            setDragOver(null);
+          }}
+          onDragEnd={() => { dragFrom.current = null; setDragOver(null); }}
+          className={`flex gap-2 rounded transition-colors ${dragOver === i ? 'ring-2 ring-[var(--accent)] bg-slate-100 dark:bg-slate-800' : ''}`}
+        >
+          <GripHandle />
           <input
             className={inputCls}
             value={v}
@@ -153,11 +190,15 @@ export function ItemList<T>({
   renderItem: (item: T, update: (next: T) => void, set: <K extends keyof T>(k: K, v: T[K]) => void) => ReactNode;
   itemLabel: (item: T, i: number) => string;
 }) {
+  const dragFrom = useRef<number | null>(null);
+  const [dragOver, setDragOver] = useState<number | null>(null);
+
   const update = (i: number, next: T) => {
     const arr = [...items];
     arr[i] = next;
     onChange(arr);
   };
+
   return (
     <div className="space-y-4">
       {items.map((item, i) => {
@@ -167,10 +208,31 @@ export function ItemList<T>({
           <details
             key={i}
             open={i === 0}
-            className="group rounded-lg border border-slate-200 dark:border-slate-800 open:border-[var(--accent)] bg-slate-50 dark:bg-slate-900/40 [&_summary::-webkit-details-marker]:hidden"
+            draggable
+            onDragStart={(e) => {
+              dragFrom.current = i;
+              // prevent drag from bubbling into summary click
+              e.stopPropagation();
+            }}
+            onDragOver={(e) => { e.preventDefault(); setDragOver(i); }}
+            onDrop={(e) => {
+              e.preventDefault();
+              if (dragFrom.current !== null && dragFrom.current !== i) {
+                onChange(reorder(items, dragFrom.current, i));
+              }
+              dragFrom.current = null;
+              setDragOver(null);
+            }}
+            onDragEnd={() => { dragFrom.current = null; setDragOver(null); }}
+            className={`group rounded-lg border bg-slate-50 dark:bg-slate-900/40 [&_summary::-webkit-details-marker]:hidden transition-colors ${
+              dragOver === i
+                ? 'border-[var(--accent)] ring-2 ring-[var(--accent)]'
+                : 'border-slate-200 dark:border-slate-800 open:border-[var(--accent)]'
+            }`}
           >
             <summary className="cursor-pointer select-none px-4 py-2 flex items-center justify-between gap-2 list-none hover:bg-slate-100 dark:hover:bg-slate-800/60 rounded-lg">
               <span className="flex items-center gap-2 min-w-0">
+                <GripHandle />
                 <svg
                   aria-hidden="true"
                   viewBox="0 0 20 20"
