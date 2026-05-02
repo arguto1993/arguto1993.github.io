@@ -7,6 +7,7 @@ import { Projects } from '../components/Projects';
 import { Dashboards } from '../components/Dashboards';
 import { Education } from '../components/Education';
 import { Contact } from '../components/Contact';
+import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
 import type { PortfolioData } from './types';
 
@@ -24,21 +25,22 @@ type SectionKey =
 
 function buildSiteData(data: PortfolioData): SiteDataContextValue {
   return {
+    brand: data.brand,
     hero: data.hero,
     about: data.about,
+    skills: data.skills,
     experiences: data.experiences,
     projects: data.projects,
     dashboards: data.dashboards,
     education: data.education,
-    skills: data.skills,
     certifications: data.certifications,
     contacts: data.contacts,
-    brand: data.brand,
   };
 }
 
 function SectionComponent({ section }: { section: SectionKey }) {
   switch (section) {
+    case 'Brand': return <><Navbar /><div className="h-24" /><Footer /></>;
     case 'Hero': return <Hero />;
     case 'About': return <About />;
     case 'Skills': return <Skills />;
@@ -48,7 +50,6 @@ function SectionComponent({ section }: { section: SectionKey }) {
     case 'Education':
     case 'Certifications': return <Education />;
     case 'Contact': return <Contact />;
-    case 'Brand': return <Footer />;
   }
 }
 
@@ -61,7 +62,8 @@ export default function Preview({
 }) {
   return (
     <SiteDataProvider value={buildSiteData(data)}>
-      <div className="bg-[var(--bg)] text-[var(--text)]">
+      {/* transform creates a new containing block so position:fixed children stay inside */}
+      <div className="bg-[var(--bg)] text-[var(--text)]" style={{ transform: 'translateZ(0)' }}>
         <SectionComponent section={section} />
       </div>
     </SiteDataProvider>

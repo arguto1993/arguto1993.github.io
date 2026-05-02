@@ -24,6 +24,9 @@ export function BrandForm({ value, onChange }: SectionProps<'brand'>) {
     onChange({ ...value, [k]: v });
   return (
     <div className="grid gap-4 sm:grid-cols-2">
+      <Field label="Shortname">
+        <TextInput value={value.shortname} onChange={(v) => set('shortname', v)} />
+      </Field>
       <Field label="Nickname">
         <TextInput value={value.nickname} onChange={(v) => set('nickname', v)} />
       </Field>
