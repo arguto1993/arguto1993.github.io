@@ -1,6 +1,7 @@
 export interface Brand {
   logoWhite: string;
   logoBlack: string;
+  shortname: string;
   nickname: string;
   googleVerification: string;
   lastUpdated: string;

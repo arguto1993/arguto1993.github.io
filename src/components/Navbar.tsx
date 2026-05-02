@@ -7,7 +7,6 @@ import { SECTION_VISIBILITY } from '../constants';
 import { useSiteData } from '../SiteDataContext';
 
 const navLinks = [
-  { name: 'Home', href: '#home', id: 'home' },
   { name: 'About', href: '#about', id: 'about' },
   { name: 'Skills', href: '#skills', id: 'skills' },
   { name: 'Experience', href: '#experience', id: 'experience' },
@@ -40,19 +39,34 @@ export const Navbar: React.FC = () => {
       }`}
     >
       <div className="max-w-6xl mx-auto px-6 flex justify-between items-center">
-        <motion.a
-          href="#"
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          className="flex items-center"
-        >
-          <img 
-            src={theme === 'light' ? brand.logoBlack : brand.logoWhite}
-            alt={brand.nickname}
-            className="h-10 w-10 object-contain"
-            referrerPolicy="no-referrer"
-          />
-        </motion.a>
+        <div className="flex items-center gap-4">
+          <motion.a
+            href="#"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="flex items-center"
+          >
+            <img
+              src={theme === 'light' ? brand.logoBlack : brand.logoWhite}
+              alt={brand.nickname}
+              className="h-10 w-10 object-contain"
+              referrerPolicy="no-referrer"
+            />
+          </motion.a>
+          <motion.a
+            href="#"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.1 }}
+            className={`font-serif font-bold text-2xl tracking-widest uppercase ${
+              theme === 'light'
+                ? 'bg-[var(--accent)] text-black px-2 py-0.5'
+                : 'accent-text'
+            }`}
+          >
+            {brand.shortname}.
+          </motion.a>
+        </div>
 
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center space-x-8">
