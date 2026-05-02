@@ -1,9 +1,11 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { DASHBOARDS } from '../constants';
+import { useSiteData } from '../SiteDataContext';
 import { Layout } from 'lucide-react';
 
 export const Dashboards: React.FC = () => {
+  const { dashboards } = useSiteData();
+
   return (
     <section id="dashboards" className="section-container bg-[var(--card-bg)]/30">
       <motion.div
@@ -17,7 +19,7 @@ export const Dashboards: React.FC = () => {
       </motion.div>
 
       <div className="grid md:grid-cols-2 gap-8">
-        {DASHBOARDS.map((dash, index) => (
+        {dashboards.map((dash, index) => (
           <motion.a
             key={dash.title}
             href={dash.link}

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
-import { PERSONAL_INFO } from '../constants';
+import { useSiteData } from '../SiteDataContext';
 import sections from '../sections.json';
 import { parseInline } from '../inlineMarkdown';
 
@@ -21,6 +21,7 @@ const techTooltips: Record<string, string> = {
 };
 
 export const About: React.FC = () => {
+  const { personalInfo } = useSiteData();
   const [currentMessageIndex, setCurrentMessageIndex] = useState(0);
 
   useEffect(() => {
@@ -61,9 +62,9 @@ export const About: React.FC = () => {
             </motion.div>
 
             <div className="aspect-[3/5] rounded-2xl overflow-hidden border-4 border-[var(--accent)] shadow-2xl bg-gray-300">
-              <img 
-                src={PERSONAL_INFO.portrait} 
-                alt={PERSONAL_INFO.name} 
+              <img
+                src={personalInfo.portrait}
+                alt={personalInfo.name}
                 className="w-full h-full object-cover hover:grayscale-0 transition-all duration-700"
                 referrerPolicy="no-referrer"
               />
@@ -79,7 +80,7 @@ export const About: React.FC = () => {
           >
             <h2 className="text-4xl font-serif font-bold mb-8">{sections.about.title}</h2>
             <div className="space-y-6 text-lg opacity-80 leading-relaxed font-light text-justify">
-              {PERSONAL_INFO.about.split('\n').map((paragraph, i) => (
+              {personalInfo.about.split('\n').map((paragraph, i) => (
                 <p key={i}>
                   {parseInline(paragraph).map((seg, j) => {
                     if (seg.type === 'bold') {

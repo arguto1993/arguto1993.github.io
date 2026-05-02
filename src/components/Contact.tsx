@@ -1,10 +1,12 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { Mail, MapPin, Linkedin, Github, BookOpen, Code } from 'lucide-react';
-import { PERSONAL_INFO } from '../constants';
+import { useSiteData } from '../SiteDataContext';
 import sections from '../sections.json';
 
 export const Contact: React.FC = () => {
+  const { personalInfo } = useSiteData();
+
   return (
     <section id="contact" className="section-container">
       <div className="max-w-6xl mx-auto">
@@ -19,41 +21,41 @@ export const Contact: React.FC = () => {
         </motion.div>
 
         <div className="grid md:grid-cols-3 gap-x-24 gap-y-10">
-          <ContactItem 
-            icon={<Mail className="accent-text" size={24} />} 
-            label="Email" 
-            value={PERSONAL_INFO.email} 
-            href={`mailto:${PERSONAL_INFO.email}`}
+          <ContactItem
+            icon={<Mail className="accent-text" size={24} />}
+            label="Email"
+            value={personalInfo.email}
+            href={`mailto:${personalInfo.email}`}
           />
-          <ContactItem 
-            icon={<Linkedin className="accent-text" size={24} />} 
-            label="LinkedIn" 
-            value="linkedin.com/in/arguto" 
-            href={PERSONAL_INFO.linkedin}
+          <ContactItem
+            icon={<Linkedin className="accent-text" size={24} />}
+            label="LinkedIn"
+            value="linkedin.com/in/arguto"
+            href={personalInfo.linkedin}
           />
-          <ContactItem 
-            icon={<Github className="accent-text" size={24} />} 
-            label="GitHub" 
-            value="github.com/arguto1993" 
-            href={PERSONAL_INFO.github}
+          <ContactItem
+            icon={<Github className="accent-text" size={24} />}
+            label="GitHub"
+            value="github.com/arguto1993"
+            href={personalInfo.github}
           />
-          <ContactItem 
-            icon={<BookOpen className="accent-text" size={24} />} 
-            label="Medium" 
-            value="medium.com/@arguto" 
-            href={PERSONAL_INFO.medium}
+          <ContactItem
+            icon={<BookOpen className="accent-text" size={24} />}
+            label="Medium"
+            value="medium.com/@arguto"
+            href={personalInfo.medium}
           />
-          <ContactItem 
-            icon={<Code className="accent-text" size={24} />} 
-            label="HackerRank" 
-            value="hackerrank.com/arguto" 
-            href={PERSONAL_INFO.hackerrank}
+          <ContactItem
+            icon={<Code className="accent-text" size={24} />}
+            label="HackerRank"
+            value="hackerrank.com/arguto"
+            href={personalInfo.hackerrank}
           />
-          <ContactItem 
-            icon={<MapPin className="accent-text" size={24} />} 
-            label="Location" 
-            value={PERSONAL_INFO.location}
-            href={`https://maps.google.com/?q=${encodeURIComponent(PERSONAL_INFO.location)}`}
+          <ContactItem
+            icon={<MapPin className="accent-text" size={24} />}
+            label="Location"
+            value={personalInfo.location}
+            href={`https://maps.google.com/?q=${encodeURIComponent(personalInfo.location)}`}
           />
         </div>
       </div>

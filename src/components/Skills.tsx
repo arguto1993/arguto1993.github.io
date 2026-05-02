@@ -1,9 +1,11 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { SKILLS } from '../constants';
+import { useSiteData } from '../SiteDataContext';
 import sections from '../sections.json';
 
 export const Skills: React.FC = () => {
+  const { skills } = useSiteData();
+
   return (
     <section id="skills" className="section-container">
       <motion.div
@@ -15,8 +17,8 @@ export const Skills: React.FC = () => {
       >
         <h2 className="text-4xl font-serif font-bold mb-12 text-center">{sections.skills.title}</h2>
         <div className="grid md:grid-cols-3 gap-12">
-          {SKILLS.map((group, i) => (
-            <motion.div 
+          {skills.map((group, i) => (
+            <motion.div
               key={group.category}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}

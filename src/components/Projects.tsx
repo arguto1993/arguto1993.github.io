@@ -1,10 +1,12 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { PROJECTS } from '../constants';
+import { useSiteData } from '../SiteDataContext';
 import { ExternalLink, Github } from 'lucide-react';
 import sections from '../sections.json';
 
 export const Projects: React.FC = () => {
+  const { projects } = useSiteData();
+
   return (
     <section id="projects" className="section-container">
       <motion.div
@@ -18,7 +20,7 @@ export const Projects: React.FC = () => {
       </motion.div>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {PROJECTS.map((project, index) => (
+        {projects.map((project, index) => (
           <motion.div
             key={project.title}
             initial={{ opacity: 0, y: 30 }}
@@ -36,9 +38,9 @@ export const Projects: React.FC = () => {
               />
               <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
                 {project.github && (
-                  <a 
-                    href={project.github} 
-                    target="_blank" 
+                  <a
+                    href={project.github}
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="p-3 rounded-full bg-white text-black hover:bg-[var(--accent)] hover:text-white transition-colors"
                   >
@@ -46,9 +48,9 @@ export const Projects: React.FC = () => {
                   </a>
                 )}
                 {project.link && (
-                  <a 
-                    href={project.link} 
-                    target="_blank" 
+                  <a
+                    href={project.link}
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="p-3 rounded-full bg-white text-black hover:bg-[var(--accent)] hover:text-white transition-colors"
                   >
@@ -64,7 +66,7 @@ export const Projects: React.FC = () => {
                   {project.title}
                 </h3>
               </div>
-              
+
               <div className="mb-4">
                 <span className="accent-badge !text-[10px] !px-2 !py-0.5">
                   {project.organization} • {project.date}

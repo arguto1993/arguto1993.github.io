@@ -1,9 +1,11 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { EDUCATION, CERTIFICATIONS } from '../constants';
+import { useSiteData } from '../SiteDataContext';
 import { GraduationCap, Award } from 'lucide-react';
 
 export const Education: React.FC = () => {
+  const { education, certifications } = useSiteData();
+
   return (
     <section id="education" className="section-container">
       <div className="grid md:grid-cols-2 gap-16">
@@ -21,7 +23,7 @@ export const Education: React.FC = () => {
           </div>
 
           <div className="space-y-10">
-            {EDUCATION.map((edu, index) => (
+            {education.map((edu, index) => (
               <div key={edu.degree} className="relative pl-6 border-l-2 border-[var(--border)]">
                 <div className="absolute left-[-6px] top-0 w-2.5 h-2.5 rounded-full bg-[var(--accent)]" />
                 <h3 className="text-xl font-serif font-bold mb-1">{edu.degree}</h3>
@@ -60,7 +62,7 @@ export const Education: React.FC = () => {
           </div>
 
           <div className="grid gap-4">
-            {CERTIFICATIONS.map((cert) => (
+            {certifications.map((cert) => (
               <div
                 key={cert.name}
                 className="p-6 rounded-xl bg-[var(--card-bg)] border border-[var(--border)] hover:accent-border transition-all duration-300 group"

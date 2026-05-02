@@ -1,10 +1,12 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { EXPERIENCES } from '../constants';
+import { useSiteData } from '../SiteDataContext';
 import { Briefcase } from 'lucide-react';
 import sections from '../sections.json';
 
 export const Experience: React.FC = () => {
+  const { experiences } = useSiteData();
+
   return (
     <section id="experience" className="section-container bg-[var(--card-bg)]/30">
       <div className="max-w-4xl mx-auto">
@@ -19,7 +21,7 @@ export const Experience: React.FC = () => {
         </motion.div>
 
         <div className="space-y-12">
-          {EXPERIENCES.map((exp, index) => (
+          {experiences.map((exp, index) => (
             <motion.div
               key={`${exp.company}-${index}`}
               initial={{ opacity: 0, y: 30 }}
@@ -29,7 +31,7 @@ export const Experience: React.FC = () => {
               className="relative pl-8 border-l border-[var(--border)] group"
             >
               <div className="absolute left-[-9px] top-0 w-4 h-4 rounded-full bg-[var(--bg)] border-2 border-[var(--accent)] group-hover:scale-125 transition-transform duration-300" />
-              
+
               <div className="flex flex-wrap justify-between items-start gap-4 mb-4">
                 <div>
                   <h3 className="text-2xl font-serif font-bold group-hover:accent-text transition-colors">
