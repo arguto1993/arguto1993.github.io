@@ -46,7 +46,8 @@ My professional portfolio website built with React and TypeScript.
 - Sections for Home, About, Skills, Experience, Projects, Dashboards, Education, and Contact
 - Each section can be shown or hidden via `src/sections.json`
 - All content managed in a single `src/data.json` — no code changes needed
-- SEO-ready: meta tags, Open Graph, Twitter Card, and JSON-LD structured data (Person, WebSite, BreadcrumbList) are all auto-generated from `data.json` at build time
+- SEO-ready: meta tags, Open Graph, Twitter Card, and JSON-LD structured data
+  (Person, WebSite, BreadcrumbList) are all auto-generated from `data.json` at build time
 - Pre-rendered static HTML injected at build time so search crawlers (Googlebot, Bingbot) and LLM bots
   (GPTBot, ClaudeBot, PerplexityBot) can read content without executing JavaScript
 - `robots.txt` and `sitemap.xml` auto-generated at build time
@@ -129,18 +130,22 @@ The admin route is lazy-loaded, marked `noindex`, and the OAuth token is held in
 │       ├── portrait/
 │       └── projects/
 └── src/
-    ├── App.tsx          # Routes to AdminApp on #/admin, otherwise the portfolio
-    ├── constants.ts
-    ├── data.json        # Section-aligned content: hero/brand/about/contact/footer + collections
-    ├── sections.json    # Toggle section visibility
+    ├── App.tsx              # Routes to AdminApp on #/admin, otherwise the portfolio
+    ├── SiteDataContext.tsx  # React context + useSiteData hook; default value from constants
+    ├── constants.ts         # Typed exports: HERO, BRAND, ABOUT, CONTACTS + collection arrays
+    ├── types.ts             # TypeScript interfaces for all data shapes
+    ├── inlineMarkdown.ts    # Parses **bold** and __italic__ in about copy
+    ├── data.json            # Section-aligned content: hero/brand/about/contacts + collections
+    ├── sections.json        # Toggle section visibility
     ├── index.css
     ├── main.tsx
-    ├── types.ts
     ├── admin/           # #/admin editor — OAuth + GitHub Contents API
     │   ├── AdminApp.tsx
+    │   ├── Preview.tsx
     │   ├── auth.ts
     │   ├── github.ts
     │   ├── forms.tsx
+    │   ├── primitives.tsx
     │   └── types.ts
     └── components/
         ├── About.tsx
