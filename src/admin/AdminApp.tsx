@@ -272,14 +272,14 @@ export default function AdminApp() {
               onClick={onSave}
               disabled={!data || saving || loading || DEV_PREVIEW}
               title={DEV_PREVIEW ? 'Save disabled in dev preview' : undefined}
-              className="px-4 py-1.5 text-sm rounded-md bg-[var(--accent)] text-white hover:opacity-90 disabled:opacity-50"
+              className="cursor-pointer px-4 py-1.5 text-sm rounded-md bg-[var(--accent)] text-white hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {saving ? 'Saving…' : 'Save'}
             </button>
             {!DEV_PREVIEW && (
               <button
                 onClick={onSignOut}
-                className="px-3 py-1.5 text-sm rounded-md border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800"
+                className="cursor-pointer px-3 py-1.5 text-sm rounded-md border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800"
               >
                 Sign out
               </button>
@@ -317,7 +317,7 @@ export default function AdminApp() {
             <button
               key={s}
               onClick={() => setSection(s)}
-              className={`text-left text-sm px-3 py-2 rounded-md whitespace-nowrap ${
+              className={`cursor-pointer text-left text-sm px-3 py-2 rounded-md whitespace-nowrap ${
                 section === s
                   ? 'bg-[var(--accent)] text-black'
                   : 'hover:bg-slate-100 dark:hover:bg-slate-800'
