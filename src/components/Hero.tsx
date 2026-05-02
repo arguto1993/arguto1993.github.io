@@ -46,7 +46,7 @@ export const Hero: React.FC = () => {
           <SocialLink href={contacts.linkedin} icon={<Linkedin size={20} />} label="LinkedIn" />
           <SocialLink href={contacts.github} icon={<Github size={20} />} label="Github" />
           <SocialLink href={`mailto:${contacts.email}`} icon={<Mail size={20} />} label="Email" />
-          <SocialLink href={contacts.resume} icon={<FileText size={20} />} label="Resume" />
+          <SocialLink href={hero.resume} icon={<FileText size={20} />} label="Resume" />
         </motion.div>
       </div>
     </section>

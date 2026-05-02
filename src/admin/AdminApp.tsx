@@ -28,6 +28,7 @@ import {
 import Preview from './Preview';
 
 const SECTIONS = [
+  'Brand',
   'Hero',
   'About',
   'Skills',
@@ -37,7 +38,6 @@ const SECTIONS = [
   'Education',
   'Certifications',
   'Contact',
-  'Brand',
 ] as const;
 type SectionKey = (typeof SECTIONS)[number];
 

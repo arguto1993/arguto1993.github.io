@@ -11,6 +11,7 @@ import { Footer } from '../components/Footer';
 import type { PortfolioData } from './types';
 
 type SectionKey =
+  | 'Brand'
   | 'Hero'
   | 'About'
   | 'Skills'
@@ -19,8 +20,7 @@ type SectionKey =
   | 'Dashboards'
   | 'Education'
   | 'Certifications'
-  | 'Contact'
-  | 'Brand';
+  | 'Contact';
 
 function buildSiteData(data: PortfolioData): SiteDataContextValue {
   return {

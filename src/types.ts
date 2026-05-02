@@ -1,6 +1,15 @@
+export interface Brand {
+  logoWhite: string;
+  logoBlack: string;
+  nickname: string;
+  googleVerification: string;
+  lastUpdated: string;
+}
+
 export interface Hero {
   name: string;
   title: string;
+  resume: string;
 }
 
 export interface About {
@@ -66,13 +75,4 @@ export interface Contacts {
   medium: string;
   hackerrank: string;
   portfolio: string;
-  resume: string;
-}
-
-export interface Brand {
-  nickname: string;
-  googleVerification: string;
-  lastUpdated: string;
-  logoWhite: string;
-  logoBlack: string;
 }
