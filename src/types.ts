@@ -1,3 +1,18 @@
+export interface Hero {
+  name: string;
+  title: string;
+}
+
+export interface About {
+  content: string;
+  portrait: string;
+}
+
+export interface SkillGroup {
+  category: string;
+  skills: string[];
+}
+
 export interface Experience {
   title: string;
   company: string;
@@ -42,7 +57,22 @@ export interface Certification {
   link?: string;
 }
 
-export interface SkillGroup {
-  category: string;
-  skills: string[];
+export interface Contacts {
+  email: string;
+  phone: string;
+  location: string;
+  linkedin: string;
+  github: string;
+  medium: string;
+  hackerrank: string;
+  portfolio: string;
+  resume: string;
+}
+
+export interface Brand {
+  nickname: string;
+  googleVerification: string;
+  lastUpdated: string;
+  logoWhite: string;
+  logoBlack: string;
 }

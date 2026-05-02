@@ -5,7 +5,7 @@ import { useSiteData } from '../SiteDataContext';
 import sections from '../sections.json';
 
 export const Contact: React.FC = () => {
-  const { personalInfo } = useSiteData();
+  const { contacts } = useSiteData();
 
   return (
     <section id="contact" className="section-container">
@@ -24,38 +24,38 @@ export const Contact: React.FC = () => {
           <ContactItem
             icon={<Mail className="accent-text" size={24} />}
             label="Email"
-            value={personalInfo.email}
-            href={`mailto:${personalInfo.email}`}
+            value={contacts.email}
+            href={`mailto:${contacts.email}`}
           />
           <ContactItem
             icon={<Linkedin className="accent-text" size={24} />}
             label="LinkedIn"
             value="linkedin.com/in/arguto"
-            href={personalInfo.linkedin}
+            href={contacts.linkedin}
           />
           <ContactItem
             icon={<Github className="accent-text" size={24} />}
             label="GitHub"
             value="github.com/arguto1993"
-            href={personalInfo.github}
+            href={contacts.github}
           />
           <ContactItem
             icon={<BookOpen className="accent-text" size={24} />}
             label="Medium"
             value="medium.com/@arguto"
-            href={personalInfo.medium}
+            href={contacts.medium}
           />
           <ContactItem
             icon={<Code className="accent-text" size={24} />}
             label="HackerRank"
             value="hackerrank.com/arguto"
-            href={personalInfo.hackerrank}
+            href={contacts.hackerrank}
           />
           <ContactItem
             icon={<MapPin className="accent-text" size={24} />}
             label="Location"
-            value={personalInfo.location}
-            href={`https://maps.google.com/?q=${encodeURIComponent(personalInfo.location)}`}
+            value={contacts.location}
+            href={`https://maps.google.com/?q=${encodeURIComponent(contacts.location)}`}
           />
         </div>
       </div>

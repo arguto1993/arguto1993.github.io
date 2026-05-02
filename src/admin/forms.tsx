@@ -53,8 +53,8 @@ export function AboutForm({ value, onChange }: SectionProps<'about'>) {
   );
 }
 
-export function ContactForm({ value, onChange }: SectionProps<'contact'>) {
-  const set = <K extends keyof PortfolioData['contact']>(k: K, v: PortfolioData['contact'][K]) =>
+export function ContactForm({ value, onChange }: SectionProps<'contacts'>) {
+  const set = <K extends keyof PortfolioData['contacts']>(k: K, v: PortfolioData['contacts'][K]) =>
     onChange({ ...value, [k]: v });
   return (
     <div className="grid gap-4 sm:grid-cols-2">
@@ -67,7 +67,7 @@ export function ContactForm({ value, onChange }: SectionProps<'contact'>) {
       <Field label="Location">
         <TextInput value={value.location} onChange={(v) => set('location', v)} />
       </Field>
-      {(Object.keys(value) as (keyof PortfolioData['contact'])[])
+      {(Object.keys(value) as (keyof PortfolioData['contacts'])[])
         .filter((key) => !['email', 'phone', 'location'].includes(key))
         .map((key) => (
           <Field key={key} label={key}>

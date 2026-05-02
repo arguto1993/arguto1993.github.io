@@ -24,21 +24,16 @@ type SectionKey =
 
 function buildSiteData(data: PortfolioData): SiteDataContextValue {
   return {
-    personalInfo: {
-      ...data.hero,
-      ...data.brand,
-      about: data.about.content,
-      ...data.contact,
-      logoWhite: '/images/logo/white.png',
-      logoBlack: '/images/logo/black.png',
-      portrait: '/images/portrait/arguto_portrait_600.webp',
-    },
+    hero: data.hero,
+    about: data.about,
     experiences: data.experiences,
     projects: data.projects,
     dashboards: data.dashboards,
     education: data.education,
     skills: data.skills,
     certifications: data.certifications,
+    contacts: data.contacts,
+    brand: data.brand,
   };
 }
 

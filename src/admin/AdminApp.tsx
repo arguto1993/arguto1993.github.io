@@ -163,8 +163,8 @@ export default function AdminApp() {
       case 'Contact':
         return (
           <ContactForm
-            value={data.contact}
-            onChange={(v) => setData({ ...data, contact: v })}
+            value={data.contacts}
+            onChange={(v) => setData({ ...data, contacts: v })}
           />
         );
       case 'Experiences':

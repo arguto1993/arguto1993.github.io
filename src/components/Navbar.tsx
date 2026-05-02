@@ -3,7 +3,8 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Sun, Moon, Menu, X } from 'lucide-react';
 import { useTheme } from './ThemeContext';
 
-import { PERSONAL_INFO, SECTION_VISIBILITY } from '../constants';
+import { SECTION_VISIBILITY } from '../constants';
+import { useSiteData } from '../SiteDataContext';
 
 const navLinks = [
   { name: 'Home', href: '#home', id: 'home' },
@@ -18,6 +19,7 @@ const navLinks = [
 
 export const Navbar: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
+  const { brand } = useSiteData();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -45,8 +47,8 @@ export const Navbar: React.FC = () => {
           className="flex items-center"
         >
           <img 
-            src={theme === 'light' ? PERSONAL_INFO.logoBlack : PERSONAL_INFO.logoWhite} 
-            alt={PERSONAL_INFO.nickname}
+            src={theme === 'light' ? brand.logoBlack : brand.logoWhite}
+            alt={brand.nickname}
             className="h-10 w-10 object-contain"
             referrerPolicy="no-referrer"
           />

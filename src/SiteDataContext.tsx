@@ -1,19 +1,23 @@
 import { createContext, useContext } from 'react';
 import {
-  PERSONAL_INFO,
+  HERO,
+  ABOUT,
   EXPERIENCES,
   PROJECTS,
   DASHBOARDS,
   EDUCATION,
   SKILLS,
   CERTIFICATIONS,
+  CONTACTS,
+  BRAND,
 } from './constants';
-import type { Experience, Project, Dashboard, Education, SkillGroup, Certification } from './types';
-
-type PersonalInfo = typeof PERSONAL_INFO;
+import type { Hero, Brand, About, Contacts, Experience, Project, Dashboard, Education, SkillGroup, Certification } from './types';
 
 export type SiteDataContextValue = {
-  personalInfo: PersonalInfo;
+  hero: Hero;
+  brand: Brand;
+  about: About;
+  contacts: Contacts;
   experiences: Experience[];
   projects: Project[];
   dashboards: Dashboard[];
@@ -25,13 +29,16 @@ export type SiteDataContextValue = {
 const SiteDataContext = createContext<SiteDataContextValue | null>(null);
 
 const defaultValue: SiteDataContextValue = {
-  personalInfo: PERSONAL_INFO,
+  hero: HERO,
+  about: ABOUT,
   experiences: EXPERIENCES,
   projects: PROJECTS,
   dashboards: DASHBOARDS,
   education: EDUCATION,
   skills: SKILLS,
   certifications: CERTIFICATIONS,
+  contacts: CONTACTS,
+  brand: BRAND,
 };
 
 export function SiteDataProvider({

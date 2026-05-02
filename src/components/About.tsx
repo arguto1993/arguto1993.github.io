@@ -21,7 +21,7 @@ const techTooltips: Record<string, string> = {
 };
 
 export const About: React.FC = () => {
-  const { personalInfo } = useSiteData();
+  const { hero, about } = useSiteData();
   const [currentMessageIndex, setCurrentMessageIndex] = useState(0);
 
   useEffect(() => {
@@ -63,8 +63,8 @@ export const About: React.FC = () => {
 
             <div className="aspect-[3/5] rounded-2xl overflow-hidden border-4 border-[var(--accent)] shadow-2xl bg-gray-300">
               <img
-                src={personalInfo.portrait}
-                alt={personalInfo.name}
+                src={about.portrait}
+                alt={hero.name}
                 className="w-full h-full object-cover hover:grayscale-0 transition-all duration-700"
                 referrerPolicy="no-referrer"
               />
@@ -80,7 +80,7 @@ export const About: React.FC = () => {
           >
             <h2 className="text-4xl font-serif font-bold mb-8">{sections.about.title}</h2>
             <div className="space-y-6 text-lg opacity-80 leading-relaxed font-light text-justify">
-              {personalInfo.about.split('\n').map((paragraph, i) => (
+              {about.content.split('\n').map((paragraph, i) => (
                 <p key={i}>
                   {parseInline(paragraph).map((seg, j) => {
                     if (seg.type === 'bold') {

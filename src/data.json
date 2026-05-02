@@ -6,12 +6,15 @@
   "brand": {
     "nickname": "Arguto",
     "googleVerification": "mg6llNEPe6WyLmV1Y7R-1KAmYhlF5O63czUj3QeMry4",
-    "lastUpdated": "May 1, 2026"
+    "lastUpdated": "May 2, 2026",
+    "logoWhite": "/images/logo/white.png",
+    "logoBlack": "/images/logo/black.png"
   },
   "about": {
+    "portrait": "/images/portrait/arguto_portrait_600.webp",
     "content": "I'm a Data Professional with **9+ years of cross-sector experience**, turning complex data into strategic business insights. From national statistics work in the public sector to developing AI-powered features for a __CRM__ and __OMS__ with **15M+ total customers** — my work spans analytics, data engineering, and machine learning. \nSkilled across __Python__, __SQL__, __BigQuery__, __ClickHouse__, and various __BI platforms__, I bring hands-on experience designing scalable data architectures and delivering data consulting to marketing and IT Operations teams. \nBeyond the technical side, I actively communicate and educate — having **mentored 20+ data analysts, trained 100+ government officers**, and delivered insights to enterprise stakeholders across Indonesia and Singapore. \n**Where others see data, I see the decisions waiting to be made** — and I make sure the right people make them confidently."
   },
-  "contact": {
+  "contacts": {
     "email": "argo.wahyu.utomo@gmail.com",
     "phone": "+62896-1401-4144",
     "location": "Jakarta Barat, Indonesia",
