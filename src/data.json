@@ -257,7 +257,11 @@
         "Metabase",
         "Looker Studio (Google Data Studio)",
         "Google Sheets",
-        "Excel"
+        "Google Slides",
+        "Google Apps Script",
+        "Microsoft Excel",
+        "Microsoft PowerPoint",
+        "Canva"
       ]
     },
     {
