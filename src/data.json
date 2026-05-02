@@ -164,7 +164,8 @@
         "Machine Learning",
         "Python",
         "Streamlit",
-        "Data Science"
+        "Data Science",
+        "Project Management"
       ],
       "image": "/images/projects/depression_risk_assessment_cover.jpg",
       "link": "https://depression-risk-assessment.streamlit.app/",
@@ -252,6 +253,8 @@
     {
       "category": "Technical Skills",
       "skills": [
+        "Data Storytelling",
+        "Data Visualization",
         "Exploratory Data Analysis",
         "Descriptive Statistics",
         "Machine Learning",
@@ -262,7 +265,7 @@
         "K-Means Clustering",
         "Sentiment Analysis",
         "RFM Scoring Analysis",
-        "Marketing Performance Analysis",
+        "Performance Marketing Analysis",
         "Vibe Coding",
         "Prompt Engineering",
         "Project Management"
@@ -279,7 +282,7 @@
         "Power BI",
         "Tableau",
         "Metabase",
-        "Looker Studio",
+        "Looker Studio (Google Data Studio)",
         "Google Sheets",
         "Excel"
       ]
@@ -291,9 +294,9 @@
         "Teamwork",
         "Leadership",
         "Public Speaking",
+        "Adaptability",
         "Critical Thinking",
         "Problem Solving",
-        "Adaptability",
         "Attention to Detail"
       ]
     }
