@@ -31,9 +31,11 @@ export default function App() {
 
   if (adminMode) {
     return (
-      <Suspense fallback={null}>
-        <AdminApp />
-      </Suspense>
+      <ThemeProvider>
+        <Suspense fallback={null}>
+          <AdminApp />
+        </Suspense>
+      </ThemeProvider>
     );
   }
 

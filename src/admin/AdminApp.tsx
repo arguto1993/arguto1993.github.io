@@ -1,4 +1,5 @@
-import { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
+import { useTheme } from '../components/ThemeContext';
 import {
   beginOAuth,
   clearToken,
@@ -10,6 +11,8 @@ import type { PortfolioData } from './types';
 import localData from '../data.json';
 
 const DEV_PREVIEW = import.meta.env.DEV;
+const MIN_PREVIEW_W = 320;
+const MAX_PREVIEW_W = 1080;
 import {
   AboutForm,
   BrandForm,
@@ -52,6 +55,23 @@ export default function AdminApp() {
   const [error, setError] = useState<string | null>(null);
   const [savedAt, setSavedAt] = useState<{ url: string } | null>(null);
   const [section, setSection] = useState<SectionKey>('Hero');
+  const [previewWidth, setPreviewWidth] = useState<number | null>(null);
+
+  const handlePreviewDrag = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const startX = e.clientX;
+    const startWidth = previewWidth ?? window.innerWidth * 0.5;
+    const onMove = (ev: MouseEvent) => {
+      const w = Math.min(Math.max(startWidth + startX - ev.clientX, MIN_PREVIEW_W), MAX_PREVIEW_W);
+      setPreviewWidth(w);
+    };
+    const onUp = () => {
+      window.removeEventListener('mousemove', onMove);
+      window.removeEventListener('mouseup', onUp);
+    };
+    window.addEventListener('mousemove', onMove);
+    window.addEventListener('mouseup', onUp);
+  };
 
   // Inject noindex once for the admin route.
   useEffect(() => {
@@ -291,8 +311,8 @@ export default function AdminApp() {
         )}
       </header>
 
-      <div className="px-4 py-6 grid gap-6 md:grid-cols-[180px_1fr] lg:grid-cols-[180px_minmax(0,1fr)_minmax(0,1fr)]">
-        <nav className="md:sticky md:top-24 self-start flex md:flex-col gap-1 overflow-x-auto">
+      <div className="px-4 py-6 grid gap-6 md:grid-cols-[180px_1fr] lg:flex lg:gap-6 lg:items-start">
+        <nav className="md:sticky md:top-24 self-start flex md:flex-col gap-1 overflow-x-auto lg:w-44 lg:shrink-0">
           {SECTIONS.map((s) => (
             <button
               key={s}
@@ -307,19 +327,48 @@ export default function AdminApp() {
             </button>
           ))}
         </nav>
-        <main className="min-w-0">
+        <main className="min-w-0 lg:flex-1">
           {loading && <p className="text-sm text-slate-500">Loading data.json…</p>}
           {body}
         </main>
         {data && (
-          <aside className="hidden lg:block lg:sticky lg:top-24 self-start min-w-0 max-h-[calc(100vh-7rem)] overflow-y-auto">
-            <p className="text-xs uppercase tracking-wide text-slate-500 mb-2">
-              Preview · {section}
-            </p>
-            <Preview section={section} data={data} />
+          <aside
+            className="hidden lg:flex lg:flex-col lg:shrink-0 lg:sticky lg:top-24 self-start max-h-[calc(100vh-7rem)] overflow-y-auto relative"
+            style={{
+              width: previewWidth ?? '50vw',
+              minWidth: MIN_PREVIEW_W,
+              maxWidth: MAX_PREVIEW_W,
+            }}
+          >
+            <div
+              className="absolute left-0 inset-y-0 w-1.5 cursor-col-resize hover:bg-[var(--accent)]/30 active:bg-[var(--accent)]/50 transition-colors"
+              onMouseDown={handlePreviewDrag}
+            />
+            <div className="pl-3">
+              <PreviewHeader section={section} />
+              <Preview section={section} data={data} />
+            </div>
           </aside>
         )}
       </div>
+    </div>
+  );
+}
+
+function PreviewHeader({ section }: { section: SectionKey }) {
+  const { theme, toggleTheme } = useTheme();
+  return (
+    <div className="flex items-center justify-between mb-2">
+      <p className="text-xs uppercase tracking-wide text-slate-500">
+        Preview · {section}
+      </p>
+      <button
+        onClick={toggleTheme}
+        title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+        className="text-xs px-2 py-1 rounded border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400"
+      >
+        {theme === 'dark' ? '☀ Light' : '☾ Dark'}
+      </button>
     </div>
   );
 }

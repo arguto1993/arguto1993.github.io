@@ -61,7 +61,9 @@ export default function Preview({
 }) {
   return (
     <SiteDataProvider value={buildSiteData(data)}>
-      <SectionComponent section={section} />
+      <div className="bg-[var(--bg)] text-[var(--text)]">
+        <SectionComponent section={section} />
+      </div>
     </SiteDataProvider>
   );
 }
