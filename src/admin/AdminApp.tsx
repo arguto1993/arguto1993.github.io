@@ -299,7 +299,7 @@ export default function AdminApp() {
               onClick={() => setSection(s)}
               className={`text-left text-sm px-3 py-2 rounded-md whitespace-nowrap ${
                 section === s
-                  ? 'bg-[var(--accent)] text-white'
+                  ? 'bg-[var(--accent)] text-black'
                   : 'hover:bg-slate-100 dark:hover:bg-slate-800'
               }`}
             >
