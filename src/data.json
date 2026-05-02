@@ -254,6 +254,22 @@
   ],
   "skills": [
     {
+      "category": "Tech Stack",
+      "skills": [
+        "Python",
+        "SQL",
+        "BigQuery",
+        "ClickHouse",
+        "Airbyte",
+        "Power BI",
+        "Tableau",
+        "Metabase",
+        "Looker Studio (Google Data Studio)",
+        "Google Sheets",
+        "Excel"
+      ]
+    },
+    {
       "category": "Technical Skills",
       "skills": [
         "Data Storytelling",
@@ -272,22 +288,6 @@
         "Vibe Coding",
         "Prompt Engineering",
         "Project Management"
-      ]
-    },
-    {
-      "category": "Tech Stack",
-      "skills": [
-        "Python",
-        "SQL",
-        "BigQuery",
-        "ClickHouse",
-        "Airbyte",
-        "Power BI",
-        "Tableau",
-        "Metabase",
-        "Looker Studio (Google Data Studio)",
-        "Google Sheets",
-        "Excel"
       ]
     },
     {
