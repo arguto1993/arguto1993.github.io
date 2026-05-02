@@ -75,5 +75,4 @@ export interface Contacts {
   github: string;
   medium: string;
   hackerrank: string;
-  portfolio: string;
 }
