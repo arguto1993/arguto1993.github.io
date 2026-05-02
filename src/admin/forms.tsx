@@ -46,7 +46,7 @@ export function AboutForm({ value, onChange }: SectionProps<'about'>) {
         <TextArea
           value={value.content}
           onChange={(content) => onChange({ ...value, content })}
-          rows={8}
+          rows={20}
         />
       </Field>
     </div>

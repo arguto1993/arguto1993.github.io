@@ -167,7 +167,7 @@ export function ItemList<T>({
           <details
             key={i}
             open={i === 0}
-            className="group rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/40 [&_summary::-webkit-details-marker]:hidden"
+            className="group rounded-lg border border-slate-200 dark:border-slate-800 open:border-[var(--accent)] bg-slate-50 dark:bg-slate-900/40 [&_summary::-webkit-details-marker]:hidden"
           >
             <summary className="cursor-pointer select-none px-4 py-2 flex items-center justify-between gap-2 list-none hover:bg-slate-100 dark:hover:bg-slate-800/60 rounded-lg">
               <span className="flex items-center gap-2 min-w-0">

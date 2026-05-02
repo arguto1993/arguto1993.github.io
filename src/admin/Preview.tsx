@@ -38,8 +38,8 @@ export default function Preview({
       const hero = data.hero;
       return (
         <div className={card}>
-          <h2 className="text-xl font-bold">{hero.name || '(name)'}</h2>
           <p className="text-sm text-[var(--accent)] mt-1">{hero.title}</p>
+          <h2 className="text-xl font-bold">{hero.name || '(name)'}</h2>
         </div>
       );
     }
