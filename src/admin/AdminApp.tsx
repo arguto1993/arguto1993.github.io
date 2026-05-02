@@ -220,7 +220,7 @@ export default function AdminApp() {
     return (
       <Centered>
         <div className="space-y-4 text-center">
-          <h1 className="text-2xl font-semibold">Portfolio Admin</h1>
+          <h1 className="text-2xl font-semibold">{data?.brand.nickname ?? localData.brand.nickname} Portfolio - Admin</h1>
           <p className="text-sm text-slate-500 dark:text-slate-400">
             Sign in with the GitHub account that owns this repo to edit{' '}
             <code>src/data.json</code>.
@@ -239,8 +239,8 @@ export default function AdminApp() {
   return (
     <div className="min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100">
       <header className="sticky top-0 z-10 border-b border-slate-200 dark:border-slate-800 bg-white/90 dark:bg-slate-950/90 backdrop-blur">
-        <div className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
-          <h1 className="text-base font-semibold">Portfolio Admin</h1>
+        <div className="px-4 py-3 flex items-center justify-between gap-4">
+          <h1 className="text-base font-semibold">{data?.brand.nickname ?? localData.brand.nickname} Portfolio - Admin</h1>
           <div className="flex items-center gap-2">
             <a
               href="/"
@@ -291,7 +291,7 @@ export default function AdminApp() {
         )}
       </header>
 
-      <div className="max-w-7xl mx-auto px-4 py-6 grid gap-6 md:grid-cols-[180px_1fr] lg:grid-cols-[180px_minmax(0,1fr)_minmax(0,1fr)]">
+      <div className="px-4 py-6 grid gap-6 md:grid-cols-[180px_1fr] lg:grid-cols-[180px_minmax(0,1fr)_minmax(0,1fr)]">
         <nav className="md:sticky md:top-24 self-start flex md:flex-col gap-1 overflow-x-auto">
           {SECTIONS.map((s) => (
             <button
