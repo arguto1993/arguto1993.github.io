@@ -264,30 +264,37 @@
     ]
   },
   "dashboards": {
-    "show": false,
+    "show": true,
     "title": "Dashboards Gallery",
     "subtitle": "A collection of interactive visualizations I've built to enable faster & smarter decision-making.",
     "items": [
       {
-        "title": "Enterprise CRM Performance Dashboard",
-        "platform": "Looker Studio",
-        "description": "Comprehensive tracking of CRM metrics for 10+ enterprise clients including Levi's and Burger King.",
-        "image": "https://picsum.photos/seed/dashboard1/800/450",
-        "link": "https://lookerstudio.google.com/s/example-crm"
-      },
-      {
-        "title": "HR Development Monitoring System",
+        "title": "B2B Commerce Sales Performance 2023",
         "platform": "Power BI",
-        "description": "Internal dashboard for BPS-Statistics to monitor HR training progress and performance metrics.",
-        "image": "https://picsum.photos/seed/dashboard2/800/450",
-        "link": "https://app.powerbi.com/view?example-hr"
+        "description": "",
+        "image": "https://drive.google.com/file/d/1hNesHabWSCXzWeRF_iKcfow1TqrVto8C/view?usp=sharing",
+        "link": "https://public.tableau.com/example-sales"
       },
       {
-        "title": "Sales Performance & Customer Retention",
+        "title": "Video Game Sales Analytics (January 2017)",
         "platform": "Tableau",
-        "description": "B2B Commerce dashboard analyzing 15k+ buyers and sellers behavior and retention.",
-        "image": "https://picsum.photos/seed/dashboard3/800/450",
-        "link": "https://public.tableau.com/example-sales"
+        "description": "",
+        "image": "https://drive.google.com/file/d/1Cg_zS32Dm0mLh7ZCrZZ77fU0azxvuL3d/view?usp=sharing",
+        "link": "https://public.tableau.com/views/VideoGameSales2017Dashboard/DASHBOARD?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link"
+      },
+      {
+        "title": "Realisasi Konten Media Sosial Pusdiklat BPS 2023",
+        "platform": "Looker Studio",
+        "description": "",
+        "image": "https://drive.google.com/file/d/1QDiPqtnU_-kQhJiUpgM0pBrO4vkncLw_/view?usp=sharing",
+        "link": "https://datastudio.google.com/reporting/e8eab359-809c-4a17-8e8b-07455bd7df58"
+      },
+      {
+        "title": "Samba Commerce Transactions 2021-2022",
+        "platform": "Looker Studio",
+        "description": "",
+        "image": "https://drive.google.com/file/d/1ExZgKDYpr7C_cOxndIj4-gRhMyBUHwaY/view?usp=sharing",
+        "link": "https://datastudio.google.com/reporting/a76b1e88-2061-48bc-84c2-36b12fd63a0c"
       }
     ]
   },
