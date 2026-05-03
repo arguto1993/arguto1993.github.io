@@ -4,6 +4,24 @@ import { Field, TextInput, TextArea, StringList, ItemList } from './primitives';
 type Patch<T> = (next: T) => void;
 type SectionProps<K extends keyof PortfolioData> = { value: PortfolioData[K]; onChange: Patch<PortfolioData[K]> };
 
+function toDirectGoogleDriveImageUrl(value: string): string {
+  const trimmed = value.trim();
+  const fileId = trimmed.match(/drive\.google\.com\/file\/d\/([^/]+)/)?.[1];
+  if (fileId) return `https://drive.google.com/thumbnail?id=${fileId}&sz=w1600`;
+
+  try {
+    const url = new URL(trimmed);
+    if (url.hostname === 'drive.google.com' && (url.pathname === '/open' || url.pathname === '/uc')) {
+      const id = url.searchParams.get('id');
+      if (id) return `https://drive.google.com/thumbnail?id=${id}&sz=w1600`;
+    }
+  } catch {
+    // Keep manually typed relative paths or incomplete URLs as-is while editing.
+  }
+
+  return value;
+}
+
 function SectionToggle({ show, onChange }: { show: boolean; onChange: (v: boolean) => void }) {
   return (
     <div className="flex items-center gap-3 mb-4 pb-4 border-b border-slate-200 dark:border-slate-700">
@@ -192,7 +210,7 @@ export function ProjectsForm({ value, onChange }: SectionProps<'projects'>) {
               <Field label="Organization"><TextInput value={item.organization} onChange={(v) => set('organization', v)} /></Field>
               <Field label="Date"><TextInput value={item.date} onChange={(v) => set('date', v)} /></Field>
               <Field label="Role"><TextInput value={item.role} onChange={(v) => set('role', v)} /></Field>
-              <Field label="Image URL"><TextInput value={item.image ?? ''} onChange={(v) => set('image', v)} /></Field>
+              <Field label="Image URL"><TextInput value={item.image ?? ''} onChange={(v) => set('image', toDirectGoogleDriveImageUrl(v))} /></Field>
               <Field label="Link"><TextInput value={item.link ?? ''} onChange={(v) => set('link', v)} /></Field>
               <Field label="GitHub"><TextInput value={item.github ?? ''} onChange={(v) => set('github', v)} /></Field>
             </div>
@@ -234,7 +252,7 @@ export function DashboardsForm({ value, onChange }: SectionProps<'dashboards'>) 
             <div className="grid gap-3 sm:grid-cols-2">
               <Field label="Title"><TextInput value={item.title} onChange={(v) => set('title', v)} /></Field>
               <Field label="Platform"><TextInput value={item.platform} onChange={(v) => set('platform', v)} /></Field>
-              <Field label="Image URL"><TextInput value={item.image} onChange={(v) => set('image', v)} /></Field>
+              <Field label="Image URL"><TextInput value={item.image} onChange={(v) => set('image', toDirectGoogleDriveImageUrl(v))} /></Field>
               <Field label="Link"><TextInput value={item.link ?? ''} onChange={(v) => set('link', v)} /></Field>
             </div>
             <Field label="Description">
