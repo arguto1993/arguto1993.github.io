@@ -4,6 +4,8 @@ import fs from 'fs';
 import path from 'path';
 import {defineConfig, loadEnv, type Plugin} from 'vite';
 
+const DEFAULT_HOMEPAGE = 'https://arguto1993.github.io';
+
 /** Reads data.json and injects SEO meta tags + JSON-LD into the built HTML. */
 function portfolioSeoPlugin(): Plugin {
   return {
@@ -11,6 +13,7 @@ function portfolioSeoPlugin(): Plugin {
     transformIndexHtml(html) {
       const data = JSON.parse(fs.readFileSync('./src/data.json', 'utf-8'));
       const { hero, brand, contacts, skills } = data;
+      const homepage = String(brand.homepage || DEFAULT_HOMEPAGE).replace(/\/$/, '');
 
       const allSkills = skills.items.flatMap((g: { skills: string[] }) => g.skills);
       const description =
@@ -25,7 +28,7 @@ function portfolioSeoPlugin(): Plugin {
         alternateName: brand.nickname,
         jobTitle: hero.title,
         description: `Data Professional with 9+ years of cross-sector experience turning complex data into strategic business insights.`,
-        url: contacts.portfolio,
+        url: homepage,
         email: contacts.email,
         address: {
           '@type': 'PostalAddress',
@@ -44,12 +47,20 @@ function portfolioSeoPlugin(): Plugin {
         '@context': 'https://schema.org',
         '@type': 'WebSite',
         name: `${hero.name} — Portfolio`,
-        url: `${contacts.portfolio}/`,
+        url: `${homepage}/`,
         description,
         author: { '@type': 'Person', name: hero.name },
       });
 
-      const sectionIds = ['about', 'experience', 'skills', 'projects', 'education', 'contact'];
+      const sectionIds = [
+        { id: 'about', show: data.about.show },
+        { id: 'experience', show: data.experiences.show },
+        { id: 'skills', show: data.skills.show },
+        { id: 'projects', show: data.projects.show },
+        { id: 'dashboards', show: data.dashboards.show },
+        { id: 'education', show: data.education.show },
+        { id: 'contact', show: data.contacts.show },
+      ].filter((section) => section.show).map((section) => section.id);
       const jsonLdBreadcrumbs = JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',
@@ -57,7 +68,7 @@ function portfolioSeoPlugin(): Plugin {
           '@type': 'ListItem',
           position: i + 1,
           name: id.charAt(0).toUpperCase() + id.slice(1),
-          item: `${contacts.portfolio}/#${id}`,
+          item: `${homepage}/#${id}`,
         })),
       });
 
@@ -70,22 +81,22 @@ function portfolioSeoPlugin(): Plugin {
     <meta name="description" content="${description}" />
     <meta name="keywords" content="${allSkills.join(', ')}, ${hero.name}, ${brand.nickname}" />
     <meta name="author" content="${hero.name}" />
-    <link rel="canonical" href="${contacts.portfolio}/" />
+    <link rel="canonical" href="${homepage}/" />
 
     <!-- Open Graph / Social -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="${contacts.portfolio}/" />
+    <meta property="og:url" content="${homepage}/" />
     <meta property="og:title" content="${hero.name} — ${hero.title}" />
     <meta property="og:description" content="${description}" />
-    <meta property="og:image" content="${contacts.portfolio}/images/logo/white.png" />
+    <meta property="og:image" content="${homepage}/images/logo/white.png" />
     <meta property="og:locale" content="en_US" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:url" content="${contacts.portfolio}/" />
+    <meta name="twitter:url" content="${homepage}/" />
     <meta name="twitter:title" content="${hero.name} — ${hero.title}" />
     <meta name="twitter:description" content="${description}" />
-    <meta name="twitter:image" content="${contacts.portfolio}/images/logo/white.png" />
+    <meta name="twitter:image" content="${homepage}/images/logo/white.png" />
 
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">${jsonLdPerson}</script>

@@ -3,6 +3,8 @@ export interface Brand {
   logoBlack: string;
   shortname: string;
   nickname: string;
+  homepage: string;
+  _homepageComment: string;
   googleVerification: string;
   lastUpdated: string;
 }
@@ -124,4 +126,12 @@ export interface Contacts {
   github: string;
   medium: string;
   hackerrank: string;
+  items: ContactItem[];
+}
+
+export interface ContactItem {
+  icon: string;
+  label: string;
+  value: string;
+  href?: string;
 }

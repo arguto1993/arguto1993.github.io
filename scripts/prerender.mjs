@@ -17,6 +17,7 @@ const rootDir = path.join(__dirname, '..');
 
 const dataPath = path.join(rootDir, 'src', 'data.json');
 const indexPath = path.join(rootDir, 'dist', 'index.html');
+const DEFAULT_HOMEPAGE = 'https://arguto1993.github.io';
 
 if (!fs.existsSync(indexPath)) {
   console.error('dist/index.html not found — run "npm run build" first.');
@@ -36,7 +37,7 @@ console.log('✓ Pre-rendering complete: portfolio content injected into dist/in
 
 // ── Sitemap generation ───────────────────────────────────────────────────────
 
-const BASE_URL = 'https://arguto1993.github.io';
+const BASE_URL = String(data.brand.homepage || DEFAULT_HOMEPAGE).replace(/\/$/, '');
 
 /** Convert "April 12, 2026" → "2026-04-12" (W3C datetime for <lastmod>) */
 function toW3CDate(humanDate) {
@@ -51,15 +52,14 @@ const sitemapUrls = [
   { loc: `${BASE_URL}/`, priority: '1.0', changefreq: 'monthly' },
 ];
 
-// Anchor URLs for visible sections — visibility is now driven by data.json `.show` fields
-// Skip 'home' (it IS the root) and 'dashboards' (gallery, not a nav target)
 const SECTION_MAP = [
-  { id: 'about', show: data.about.show },
-  { id: 'skills', show: data.skills.show },
-  { id: 'experience', show: data.experiences.show },
-  { id: 'projects', show: data.projects.show },
-  { id: 'education', show: data.education.show },
-  { id: 'contact', show: data.contacts.show },
+  { id: 'about', show: data.about.show, title: data.about.title },
+  { id: 'skills', show: data.skills.show, title: data.skills.title },
+  { id: 'experience', show: data.experiences.show, title: data.experiences.title },
+  { id: 'projects', show: data.projects.show, title: data.projects.title },
+  { id: 'dashboards', show: data.dashboards.show, title: data.dashboards.title },
+  { id: 'education', show: data.education.show, title: data.education.title },
+  { id: 'contact', show: data.contacts.show, title: data.contacts.title },
 ];
 for (const { id, show } of SECTION_MAP) {
   if (!show) continue;
@@ -96,7 +96,7 @@ function stripMarkdown(str = '') {
 }
 
 function generateStaticHTML(data) {
-  const { hero, about, skills, experiences, projects, education, contacts } = data;
+  const { hero, about, skills, experiences, projects, dashboards, education, contacts } = data;
 
   const skillsHTML = skills.items.map(group => `
     <div>
@@ -121,6 +121,12 @@ function generateStaticHTML(data) {
       <p>Tags: ${proj.tags.map(esc).join(', ')}</p>
     </article>`).join('');
 
+  const dashboardsHTML = dashboards.items.map(dashboard => `
+    <article>
+      <h3>${esc(dashboard.title)}</h3>
+      <p>${esc(dashboard.platform)}</p>
+      <p>${esc(dashboard.description)}</p>
+    </article>`).join('');
 
   const educationHTML = education.items.map(edu => `
     <article>
@@ -136,6 +142,56 @@ function generateStaticHTML(data) {
       <p>${esc(cert.issuer)} &mdash; ${esc(cert.date)}</p>
     </article>`).join('');
 
+  const contactHTML = contacts.items.map(item => `
+    <p>${esc(item.label)}: ${esc(item.value)}</p>`).join('');
+
+  const sections = [
+    about.show && `
+    <section id="about">
+      <h2>${esc(about.title)}</h2>
+      ${about.subtitle ? `<p>${esc(about.subtitle)}</p>` : ''}
+      <p>${esc(stripMarkdown(about.content))}</p>
+    </section>`,
+    skills.show && `
+    <section id="skills">
+      <h2>${esc(skills.title)}</h2>
+      ${skills.subtitle ? `<p>${esc(skills.subtitle)}</p>` : ''}
+      ${skillsHTML}
+    </section>`,
+    experiences.show && `
+    <section id="experience">
+      <h2>${esc(experiences.title)}</h2>
+      ${experiences.subtitle ? `<p>${esc(experiences.subtitle)}</p>` : ''}
+      ${experienceHTML}
+    </section>`,
+    projects.show && `
+    <section id="projects">
+      <h2>${esc(projects.title)}</h2>
+      ${projects.subtitle ? `<p>${esc(projects.subtitle)}</p>` : ''}
+      ${projectsHTML}
+    </section>`,
+    dashboards.show && `
+    <section id="dashboards">
+      <h2>${esc(dashboards.title)}</h2>
+      ${dashboards.subtitle ? `<p>${esc(dashboards.subtitle)}</p>` : ''}
+      ${dashboardsHTML}
+    </section>`,
+    education.show && `
+    <section id="education">
+      <h2>${esc(education.title)}</h2>
+      ${education.subtitle ? `<p>${esc(education.subtitle)}</p>` : ''}
+      ${educationHTML}
+      <h3>${esc(education.certifications.title)}</h3>
+      ${certsHTML}
+    </section>`,
+    contacts.show && `
+    <section id="contact">
+      <h2>${esc(contacts.title)}</h2>
+      ${contacts.subtitle ? `<p>${esc(contacts.subtitle)}</p>` : ''}
+      ${contactHTML}
+    </section>`,
+  ].filter(Boolean).join('');
+
   return `
 <div id="prerendered" aria-hidden="false">
   <header>
@@ -144,33 +200,7 @@ function generateStaticHTML(data) {
     <p>${esc(contacts.location)}</p>
   </header>
   <main>
-    <section id="about">
-      <h2>About</h2>
-      <p>${esc(stripMarkdown(about.content))}</p>
-    </section>
-    <section id="skills">
-      <h2>Skills</h2>
-      ${skillsHTML}
-    </section>
-    <section id="experience">
-      <h2>Experience</h2>
-      ${experienceHTML}
-    </section>
-    <section id="projects">
-      <h2>Projects</h2>
-      ${projectsHTML}
-    </section>
-    <section id="education">
-      <h2>Education</h2>
-      ${educationHTML}
-      <h3>Certifications</h3>
-      ${certsHTML}
-    </section>
-    <section id="contact">
-      <h2>Contact</h2>
-      <p>${esc(contacts.email)}</p>
-      <p>${esc(contacts.location)}</p>
-    </section>
+${sections}
   </main>
 </div>`;
 }

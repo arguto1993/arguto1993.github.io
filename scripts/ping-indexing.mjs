@@ -23,8 +23,8 @@ const BASE_URL = `https://${HOST}`;
 const urlList = [
   `${BASE_URL}/`,
   `${BASE_URL}/#about`,
-  `${BASE_URL}/#experience`,
   `${BASE_URL}/#skills`,
+  `${BASE_URL}/#experience`,
   `${BASE_URL}/#projects`,
   `${BASE_URL}/#education`,
   `${BASE_URL}/#contact`,

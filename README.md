@@ -44,7 +44,8 @@ My professional portfolio website built with React and TypeScript.
 - Responsive portfolio website
 - Dark/light theme support
 - Sections for Home, About, Skills, Experience, Projects, Dashboards, Education, and Contact
-- Each section can be shown or hidden via the `show` flag inside each section in `src/data.json`, or via the admin page
+- Each content section can be shown or hidden via the `show` flag inside each section in `src/data.json`, or via the admin page
+- The Hero section is always shown; `hero.show` remains in `src/data.json` only for section schema consistency
 - All content managed in a single `src/data.json` — no code changes needed
 - SEO-ready: meta tags, Open Graph, Twitter Card, and JSON-LD structured data
   (Person, WebSite, BreadcrumbList) are all auto-generated from `data.json` at build time
@@ -58,9 +59,12 @@ My professional portfolio website built with React and TypeScript.
 | What to change | Where |
 | --- | --- |
 | All content, section titles, and visibility (show/hide) | `src/data.json` (or the admin page — see below) |
+| Canonical portfolio URL used by SEO and sitemap generation | `src/data.json` → `brand.homepage` |
+| Contact card labels, display values, links, and icons | `src/data.json` → `contacts.items` |
 | Images | `public/images/` |
 
 > SEO meta tags, Open Graph, and JSON-LD are all derived from `data.json` automatically — no manual updates needed.
+> `brand.homepage` is used for canonical URLs, Open Graph/Twitter images, JSON-LD, and sitemap URLs.
 
 ## 🔐 Admin page (`#/admin`)
 
@@ -103,7 +107,7 @@ auto-deploys via the existing CI workflow.
 > disabled — commit content via the live admin page.
 
 The admin route is lazy-loaded, marked `noindex`, and the OAuth token is held in
-`sessionStorage` only. `footer.lastUpdated` is bumped to today on every save.
+`sessionStorage` only. `brand.lastUpdated` is bumped to today on every save.
 
 ## 📁 Project Structure
 
@@ -134,7 +138,7 @@ The admin route is lazy-loaded, marked `noindex`, and the OAuth token is held in
     ├── constants.ts         # Typed exports: HERO, BRAND, ABOUT, CONTACTS + section objects
     ├── types.ts             # TypeScript interfaces for all data shapes
     ├── inlineMarkdown.ts    # Parses **bold** and __italic__ in about copy
-    ├── data.json            # All content + per-section show/title/subtitle flags
+    ├── data.json            # All content, homepage metadata, contact cards, and section flags
     ├── index.css
     ├── main.tsx
     ├── admin/           # #/admin editor — OAuth + GitHub Contents API

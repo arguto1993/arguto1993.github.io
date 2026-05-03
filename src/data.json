@@ -4,6 +4,8 @@
     "logoBlack": "/images/logo/black.png",
     "shortname": "Guto",
     "nickname": "Arguto",
+    "homepage": "https://arguto1993.github.io",
+    "_homepageComment": "Used by vite.config.ts for SEO canonical, Open Graph, Twitter Card, and JSON-LD URLs, and by scripts/prerender.mjs for sitemap URLs.",
     "googleVerification": "mg6llNEPe6WyLmV1Y7R-1KAmYhlF5O63czUj3QeMry4",
     "lastUpdated": "May 3, 2026"
   },
@@ -362,6 +364,44 @@
     "linkedin": "https://linkedin.com/in/arguto",
     "github": "https://github.com/arguto1993",
     "medium": "https://medium.com/@arguto",
-    "hackerrank": "https://www.hackerrank.com/arguto1993"
+    "hackerrank": "https://www.hackerrank.com/arguto1993",
+    "items": [
+      {
+        "icon": "mail",
+        "label": "Email",
+        "value": "argo.wahyu.utomo@gmail.com",
+        "href": "mailto:argo.wahyu.utomo@gmail.com"
+      },
+      {
+        "icon": "linkedin",
+        "label": "LinkedIn",
+        "value": "linkedin.com/in/arguto",
+        "href": "https://linkedin.com/in/arguto"
+      },
+      {
+        "icon": "github",
+        "label": "GitHub",
+        "value": "github.com/arguto1993",
+        "href": "https://github.com/arguto1993"
+      },
+      {
+        "icon": "book",
+        "label": "Medium",
+        "value": "medium.com/@arguto",
+        "href": "https://medium.com/@arguto"
+      },
+      {
+        "icon": "code",
+        "label": "HackerRank",
+        "value": "hackerrank.com/arguto1993",
+        "href": "https://www.hackerrank.com/arguto1993"
+      },
+      {
+        "icon": "map",
+        "label": "Location",
+        "value": "Jakarta Barat, Indonesia",
+        "href": "https://maps.google.com/?q=Jakarta%20Barat%2C%20Indonesia"
+      }
+    ]
   }
 }

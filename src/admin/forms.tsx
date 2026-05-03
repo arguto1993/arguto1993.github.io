@@ -25,7 +25,9 @@ export function HeroForm({ value, onChange }: SectionProps<'hero'>) {
     onChange({ ...value, [k]: v });
   return (
     <div className="grid gap-4">
-      <SectionToggle show={value.show} onChange={(v) => set('show', v)} />
+      <p className="px-3 py-2 text-sm text-slate-500 dark:text-slate-400 rounded-md border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50">
+        Hero is always shown. The <code>show</code> field stays in data.json only for section schema consistency.
+      </p>
       <div className="grid gap-4 sm:grid-cols-2">
         <Field label="Name">
           <TextInput value={value.name} onChange={(v) => set('name', v)} />
@@ -51,6 +53,14 @@ export function BrandForm({ value, onChange }: SectionProps<'brand'>) {
       </Field>
       <Field label="Nickname">
         <TextInput value={value.nickname} onChange={(v) => set('nickname', v)} />
+      </Field>
+      <Field label="Homepage">
+        <TextInput value={value.homepage} onChange={(v) => set('homepage', v)} />
+      </Field>
+      <Field label="Homepage usage note">
+        <p className="px-3 py-2 text-sm text-slate-500 dark:text-slate-400 rounded-md border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50">
+          {value._homepageComment}
+        </p>
       </Field>
       <Field label="Google site verification token">
         <TextInput value={value.googleVerification} onChange={(v) => set('googleVerification', v)} />
@@ -293,6 +303,7 @@ export function CertificationsForm({ value, onChange }: { value: CertGroup; onCh
 export function ContactsForm({ value, onChange }: SectionProps<'contacts'>) {
   const set = <K extends keyof PortfolioData['contacts']>(k: K, v: PortfolioData['contacts'][K]) =>
     onChange({ ...value, [k]: v });
+  type ContactItem = PortfolioData['contacts']['items'][number];
   return (
     <div className="grid gap-4">
       <SectionToggle show={value.show} onChange={(v) => set('show', v)} />
@@ -313,13 +324,35 @@ export function ContactsForm({ value, onChange }: SectionProps<'contacts'>) {
           <TextInput value={value.location} onChange={(v) => set('location', v)} />
         </Field>
         {(Object.keys(value) as (keyof PortfolioData['contacts'])[])
-          .filter((key) => !['show', 'title', 'subtitle', 'email', 'phone', 'location'].includes(key))
+          .filter((key) => !['show', 'title', 'subtitle', 'email', 'phone', 'location', 'items'].includes(key))
           .map((key) => (
             <Field key={key} label={key}>
               <TextInput value={value[key] as string} onChange={(next) => set(key, next as never)} />
             </Field>
           ))}
       </div>
+      <ItemList<ContactItem>
+        items={value.items}
+        onChange={(items) => onChange({ ...value, items })}
+        emptyItem={() => ({ icon: 'mail', label: '', value: '', href: '' })}
+        itemLabel={(item) => item.label || '(untitled contact)'}
+        renderItem={(item, _update, set) => (
+          <div className="grid gap-3 sm:grid-cols-2">
+            <Field label="Icon">
+              <TextInput value={item.icon} onChange={(v) => set('icon', v as ContactItem['icon'])} />
+            </Field>
+            <Field label="Label">
+              <TextInput value={item.label} onChange={(v) => set('label', v)} />
+            </Field>
+            <Field label="Display value">
+              <TextInput value={item.value} onChange={(v) => set('value', v)} />
+            </Field>
+            <Field label="Link">
+              <TextInput value={item.href ?? ''} onChange={(v) => set('href', v)} />
+            </Field>
+          </div>
+        )}
+      />
     </div>
   );
 }
