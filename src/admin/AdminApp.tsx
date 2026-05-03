@@ -54,7 +54,7 @@ export default function AdminApp() {
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [savedAt, setSavedAt] = useState<{ url: string } | null>(null);
-  const [section, setSection] = useState<SectionKey>('Hero');
+  const [section, setSection] = useState<SectionKey>('Brand');
   const [previewWidth, setPreviewWidth] = useState<number | null>(null);
 
   const handlePreviewDrag = (e: React.MouseEvent) => {
@@ -159,18 +159,18 @@ export default function AdminApp() {
   const body = useMemo(() => {
     if (!data) return null;
     switch (section) {
-      case 'Hero':
-        return (
-          <HeroForm
-            value={data.hero}
-            onChange={(v) => setData({ ...data, hero: v })}
-          />
-        );
       case 'Brand':
         return (
           <BrandForm
             value={data.brand}
             onChange={(v) => setData({ ...data, brand: v })}
+          />
+        );
+      case 'Hero':
+        return (
+          <HeroForm
+            value={data.hero}
+            onChange={(v) => setData({ ...data, hero: v })}
           />
         );
       case 'About':
@@ -180,11 +180,11 @@ export default function AdminApp() {
             onChange={(v) => setData({ ...data, about: v })}
           />
         );
-      case 'Contact':
+      case 'Skills':
         return (
-          <ContactForm
-            value={data.contacts}
-            onChange={(v) => setData({ ...data, contacts: v })}
+          <SkillsForm
+            value={data.skills}
+            onChange={(v) => setData({ ...data, skills: v })}
           />
         );
       case 'Experiences':
@@ -215,18 +215,18 @@ export default function AdminApp() {
             onChange={(v) => setData({ ...data, education: v })}
           />
         );
-      case 'Skills':
-        return (
-          <SkillsForm
-            value={data.skills}
-            onChange={(v) => setData({ ...data, skills: v })}
-          />
-        );
       case 'Certifications':
         return (
           <CertificationsForm
             value={data.certifications}
             onChange={(v) => setData({ ...data, certifications: v })}
+          />
+        );
+      case 'Contact':
+        return (
+          <ContactForm
+            value={data.contacts}
+            onChange={(v) => setData({ ...data, contacts: v })}
           />
         );
     }
@@ -256,6 +256,7 @@ export default function AdminApp() {
     );
   }
 
+  // Main admin UI — rendered once data is loaded
   return (
     <div className="min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100">
       <header className="sticky top-0 z-10 border-b border-slate-200 dark:border-slate-800 bg-white/90 dark:bg-slate-950/90 backdrop-blur">
