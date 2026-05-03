@@ -56,7 +56,7 @@ export function AboutForm({ value, onChange }: SectionProps<'about'>) {
   );
 }
 
-export function ContactForm({ value, onChange }: SectionProps<'contacts'>) {
+export function ContactsForm({ value, onChange }: SectionProps<'contacts'>) {
   const set = <K extends keyof PortfolioData['contacts']>(k: K, v: PortfolioData['contacts'][K]) =>
     onChange({ ...value, [k]: v });
   return (

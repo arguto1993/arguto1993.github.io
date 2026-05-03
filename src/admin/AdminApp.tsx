@@ -17,7 +17,7 @@ import {
   AboutForm,
   BrandForm,
   CertificationsForm,
-  ContactForm,
+  ContactsForm,
   DashboardsForm,
   EducationForm,
   ExperiencesForm,
@@ -37,7 +37,7 @@ const SECTIONS = [
   'Dashboards',
   'Education',
   'Certifications',
-  'Contact',
+  'Contacts',
 ] as const;
 type SectionKey = (typeof SECTIONS)[number];
 
@@ -222,9 +222,9 @@ export default function AdminApp() {
             onChange={(v) => setData({ ...data, certifications: v })}
           />
         );
-      case 'Contact':
+      case 'Contacts':
         return (
-          <ContactForm
+          <ContactsForm
             value={data.contacts}
             onChange={(v) => setData({ ...data, contacts: v })}
           />
