@@ -44,7 +44,7 @@ My professional portfolio website built with React and TypeScript.
 - Responsive portfolio website
 - Dark/light theme support
 - Sections for Home, About, Skills, Experience, Projects, Dashboards, Education, and Contact
-- Each section can be shown or hidden via `src/sections.json`
+- Each section can be shown or hidden via the `show` flag inside each section in `src/data.json`, or via the admin page
 - All content managed in a single `src/data.json` — no code changes needed
 - SEO-ready: meta tags, Open Graph, Twitter Card, and JSON-LD structured data
   (Person, WebSite, BreadcrumbList) are all auto-generated from `data.json` at build time
@@ -57,8 +57,7 @@ My professional portfolio website built with React and TypeScript.
 
 | What to change | Where |
 | --- | --- |
-| Section-aligned profile content and portfolio collections | `src/data.json` (or the admin page — see below) |
-| Section visibility (show/hide) | `src/sections.json` |
+| All content, section titles, and visibility (show/hide) | `src/data.json` (or the admin page — see below) |
 | Images | `public/images/` |
 
 > SEO meta tags, Open Graph, and JSON-LD are all derived from `data.json` automatically — no manual updates needed.
@@ -132,11 +131,10 @@ The admin route is lazy-loaded, marked `noindex`, and the OAuth token is held in
 └── src/
     ├── App.tsx              # Routes to AdminApp on #/admin, otherwise the portfolio
     ├── SiteDataContext.tsx  # React context + useSiteData hook; default value from constants
-    ├── constants.ts         # Typed exports: HERO, BRAND, ABOUT, CONTACTS + collection arrays
+    ├── constants.ts         # Typed exports: HERO, BRAND, ABOUT, CONTACTS + section objects
     ├── types.ts             # TypeScript interfaces for all data shapes
     ├── inlineMarkdown.ts    # Parses **bold** and __italic__ in about copy
-    ├── data.json            # Section-aligned content: hero/brand/about/contacts + collections
-    ├── sections.json        # Toggle section visibility
+    ├── data.json            # All content + per-section show/title/subtitle flags
     ├── index.css
     ├── main.tsx
     ├── admin/           # #/admin editor — OAuth + GitHub Contents API

@@ -2,7 +2,6 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { Mail, MapPin, Linkedin, Github, BookOpen, Code } from 'lucide-react';
 import { useSiteData } from '../SiteDataContext';
-import sections from '../sections.json';
 
 export const Contact: React.FC = () => {
   const { contacts } = useSiteData();
@@ -16,8 +15,8 @@ export const Contact: React.FC = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-serif font-bold mb-6">{sections.contact.title}</h2>
-          <p className="text-lg opacity-60 max-w-4xl mx-auto">{sections.contact.subtitle}</p>
+          <h2 className="text-4xl md:text-5xl font-serif font-bold mb-6">{contacts.title}</h2>
+          <p className="text-lg opacity-60 max-w-4xl mx-auto">{contacts.subtitle}</p>
         </motion.div>
 
         <div className="grid md:grid-cols-3 gap-x-24 gap-y-10">

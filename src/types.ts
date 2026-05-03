@@ -8,12 +8,17 @@ export interface Brand {
 }
 
 export interface Hero {
+  show: boolean;
   name: string;
   title: string;
+  subtitle: string;
   resume: string;
 }
 
 export interface About {
+  show: boolean;
+  title: string;
+  subtitle: string;
   content: string;
   portrait: string;
 }
@@ -23,6 +28,13 @@ export interface SkillGroup {
   skills: string[];
 }
 
+export interface Skills {
+  show: boolean;
+  title: string;
+  subtitle: string;
+  items: SkillGroup[];
+}
+
 export interface Experience {
   title: string;
   company: string;
@@ -30,6 +42,13 @@ export interface Experience {
   period: string;
   type: string;
   description: string[];
+}
+
+export interface Experiences {
+  show: boolean;
+  title: string;
+  subtitle: string;
+  items: Experience[];
 }
 
 export interface Project {
@@ -44,6 +63,13 @@ export interface Project {
   image?: string;
 }
 
+export interface Projects {
+  show: boolean;
+  title: string;
+  subtitle: string;
+  items: Project[];
+}
+
 export interface Dashboard {
   title: string;
   platform: string;
@@ -52,12 +78,27 @@ export interface Dashboard {
   link?: string;
 }
 
-export interface Education {
+export interface Dashboards {
+  show: boolean;
+  title: string;
+  subtitle: string;
+  items: Dashboard[];
+}
+
+export interface EducationItem {
   degree: string;
   institution: string;
   location: string;
   period: string;
   details?: string[];
+}
+
+export interface Education {
+  show: boolean;
+  title: string;
+  subtitle: string;
+  items: EducationItem[];
+  certifications: CertificationsGroup;
 }
 
 export interface Certification {
@@ -67,7 +108,15 @@ export interface Certification {
   link?: string;
 }
 
+export interface CertificationsGroup {
+  title: string;
+  items: Certification[];
+}
+
 export interface Contacts {
+  show: boolean;
+  title: string;
+  subtitle: string;
   email: string;
   phone: string;
   location: string;

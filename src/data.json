@@ -8,318 +8,354 @@
     "lastUpdated": "May 3, 2026"
   },
   "hero": {
+    "show": true,
     "name": "Argo Wahyu Utomo",
     "title": "Data Analyst & Engineer",
+    "subtitle": "Turning complex data into strategic business insights with 9+ years of cross-sector experience.",
     "resume": "https://drive.google.com/file/d/1QcOhb1iERIWCv4zIQZh6XI49lJ9AlegD/view?usp=sharing"
   },
   "about": {
+    "show": true,
+    "title": "About Me",
+    "subtitle": "",
     "portrait": "/images/portrait/arguto_portrait_600.webp",
     "content": "I'm a Data Professional with **9+ years of cross-sector experience**, turning complex data into strategic business insights. From national statistics work in the public sector to developing AI-powered features for a __CRM__ and __OMS__ with **15M+ total customers** — my work spans analytics, data engineering, and machine learning. \nSkilled across __Python__, __SQL__, __BigQuery__, __ClickHouse__, and various __BI platforms__, I bring hands-on experience designing scalable data architectures and delivering data consulting to marketing and IT Operations teams. \nBeyond the technical side, I actively communicate and educate — having **mentored 20+ data analysts, trained 100+ government officers**, and delivered insights to enterprise stakeholders across Indonesia and Singapore. \n**Where others see data, I see the decisions waiting to be made** — and I make sure the right people make them confidently."
   },
-  "experiences": [
-    {
-      "title": "Data Analyst & Engineer",
-      "company": "Stamps Indonesia (IT Services & Consulting)",
-      "location": "Jakarta Barat, Indonesia",
-      "period": "Apr 2024 - Present",
-      "type": "Full-time, Hybrid",
-      "description": [
-        "Develop 12+ AI-powered features for the CRM & OMS to generate context-aware insights and intelligent recommendations.",
-        "Collaborate with developers, IT Operations, and marketing team to build and maintain a rule-based product recommendation system to enhance marketing campaigns—increased EDM & WA open rates by 25%+ YoY.",
-        "Provide data-driven consulting to marketing teams, applying techniques such as customer segmentation, RFM scoring, and persuadable prediction to improve acquisition and retention across up to 5 campaigns per month.",
-        "Deliver scheduled weekly/monthly/quarterly reports and ad-hoc analysis for 10+ enterprise clients (e.g., Levi’s Indonesia, Tim Hortons Singapore, Burger King, Kawan Lama Group) with a total of 15M+ customers.",
-        "Optimize Django ORM queries—achieved 75%+ faster execution time (4x speed increase) for daily automated report generation (cron).",
-        "Design & implement scalable end-to-end data solution architecture with PostgreSQL, Airbyte, ClickHouse, BigQuery, & Looker Studio."
-      ]
-    },
-    {
-      "title": "Student Development Coordinator Full-Stack Data Analytics",
-      "company": "RevoU (Education Technology)",
-      "location": "Jakarta, Indonesia",
-      "period": "Feb 2026 - Present",
-      "type": "Part-time, Remote",
-      "description": [
-        "Mentor a team of 19 Data Analyst Associates, guiding to tackle real business projects with monthly 1-on-1 and weekly group sessions, fostering technical excellence and accelerating portfolio readiness."
-      ]
-    },
-    {
-      "title": "Data Analyst Associate",
-      "company": "RevoU x Telkom Indonesia (B2B Commerce)",
-      "location": "Jakarta, Indonesia",
-      "period": "Mar 2024 - May 2024",
-      "type": "Internship, Remote",
-      "description": [
-        "Crafted 3 pages of sales performance dashboard for various stakeholders.",
-        "Conducted customer segmentation and retention analysis for over 15k buyers and sellers."
-      ]
-    },
-    {
-      "title": "Data Analysis Mentor",
-      "company": "Lingkaran (Professional Training & Coaching)",
-      "location": "Jakarta Selatan, Indonesia",
-      "period": "Mar 2024",
-      "type": "Contract, Remote",
-      "description": [
-        "Curated and refined 5 chapters of “Data Analysis to Solve Business Problems” webinar presentations, ensuring content is engaging, up-to-date, and relevant to industry trends.",
-        "Facilitated 15 interactive webinar sessions, provided expert guidance and knowledge sharing to participants from diverse backgrounds."
-      ]
-    },
-    {
-      "title": "Data Annotation Specialist",
-      "company": "Appen (IT Services & Consulting)",
-      "location": "Washington, USA",
-      "period": "Feb 2024",
-      "type": "Part-time, Remote",
-      "description": [
-        "Annotated data to support AI development, ensuring high-quality training data for machine learning models."
-      ]
-    },
-    {
-      "title": "Data Analyst",
-      "company": "BPS-Statistics Education & Training Center",
-      "location": "Jakarta Selatan, Indonesia",
-      "period": "Apr 2021 - Jan 2024",
-      "type": "Full-time, On-site",
-      "description": [
-        "Extracted and analyzed data from 2 main sources: internal HR development system and Moodle-based LMS.",
-        "Developed, implemented, and maintained 10+ dashboards to monitor and evaluate key metrics related to HR development programs & public relations team performance.",
-        "Presented data findings and recommendations to 20+ different stakeholders from both internal and external.",
-        "Delivered data processing lessons to 100+ computer administrators from across Indonesia through 4 online training courses."
-      ]
-    },
-    {
-      "title": "Statistical Data Processing Officer",
-      "company": "BPS-Statistics of Kalimantan Barat Province",
-      "location": "Pontianak, Indonesia",
-      "period": "Apr 2019 – Mar 2021",
-      "type": "Full-time, On-site",
-      "description": [
-        "Supervised, monitored, & evaluated national statistics activities including 10+ censuses & surveys.",
-        "Ensured data quality for 10+ official statistics publications in a timely manner.",
-        "Developed a data entry application to improve efficiency.",
-        "Taught 100+ surveyors and data entry operators as national instructor."
-      ]
-    },
-    {
-      "title": "Data Annotation Specialist",
-      "company": "Leapforce, Inc (Technology, Information, and Internet)",
-      "location": "California, USA",
-      "period": "Jan 2018 – Aug 2019",
-      "type": "Part-time, Remote",
-      "description": [
-        "Delivered 1000+ precise ratings of search engine results, website quality, social media ads relevance, and audio data quality to guide major tech companies for enhanced performance."
-      ]
-    },
-    {
-      "title": "Statistical Data Processing & Dissemination Officer",
-      "company": "BPS-Statistics of Pontianak City",
-      "location": "Pontianak, Indonesia",
-      "period": "Feb 2017 – Mar 2019",
-      "type": "Full-time, On-site",
-      "description": [
-        "Contributed to 10+ official statistics activities as surveyor & data entry operator.",
-        "Supervised 20+ partners for field data collecting, document batching, data entry, & data validation activities.",
-        "Designed 10+ infographics and other data visualizations for official statistics publications.",
-        "Updated over 100km² Statistical Master Area Map by defining administrative boundaries & updating map coordinates with GIS software."
+  "skills": {
+    "show": true,
+    "title": "Skills",
+    "subtitle": "",
+    "items": [
+      {
+        "category": "Tech Stack",
+        "skills": [
+          "Python",
+          "SQL",
+          "BigQuery",
+          "ClickHouse",
+          "Airbyte",
+          "Power BI",
+          "Tableau",
+          "Metabase",
+          "Looker Studio (Google Data Studio)",
+          "Google Sheets",
+          "Google Slides",
+          "Google Apps Script",
+          "Microsoft Excel",
+          "Microsoft PowerPoint",
+          "Canva"
+        ]
+      },
+      {
+        "category": "Technical Skills",
+        "skills": [
+          "Data Storytelling",
+          "Data Visualization",
+          "Exploratory Data Analysis",
+          "Descriptive Statistics",
+          "Machine Learning",
+          "Regression",
+          "Classification",
+          "Cohort Analysis",
+          "Customer Segmentation",
+          "K-Means Clustering",
+          "Sentiment Analysis",
+          "RFM Scoring Analysis",
+          "Performance Marketing Analysis",
+          "Vibe Coding",
+          "Prompt Engineering",
+          "Project Management"
+        ]
+      },
+      {
+        "category": "Soft Skills",
+        "skills": [
+          "Communication",
+          "Teamwork",
+          "Leadership",
+          "Public Speaking",
+          "Adaptability",
+          "Critical Thinking",
+          "Problem Solving",
+          "Attention to Detail"
+        ]
+      }
+    ]
+  },
+  "experiences": {
+    "show": true,
+    "title": "Professional Experience",
+    "subtitle": "Nearly a decade across government, education, and tech — what's next?",
+    "items": [
+      {
+        "title": "Data Analyst & Engineer",
+        "company": "Stamps Indonesia (IT Services & Consulting)",
+        "location": "Jakarta Barat, Indonesia",
+        "period": "Apr 2024 - Present",
+        "type": "Full-time, Hybrid",
+        "description": [
+          "Develop 12+ AI-powered features for the CRM & OMS to generate context-aware insights and intelligent recommendations.",
+          "Collaborate with developers, IT Operations, and marketing team to build and maintain a rule-based product recommendation system to enhance marketing campaigns—increased EDM & WA open rates by 25%+ YoY.",
+          "Provide data-driven consulting to marketing teams, applying techniques such as customer segmentation, RFM scoring, and persuadable prediction to improve acquisition and retention across up to 5 campaigns per month.",
+          "Deliver scheduled weekly/monthly/quarterly reports and ad-hoc analysis for 10+ enterprise clients (e.g., Levi's Indonesia, Tim Hortons Singapore, Burger King, Kawan Lama Group) with a total of 15M+ customers.",
+          "Optimize Django ORM queries—achieved 75%+ faster execution time (4x speed increase) for daily automated report generation (cron).",
+          "Design & implement scalable end-to-end data solution architecture with PostgreSQL, Airbyte, ClickHouse, BigQuery, & Looker Studio."
+        ]
+      },
+      {
+        "title": "Student Development Coordinator Full-Stack Data Analytics",
+        "company": "RevoU (Education Technology)",
+        "location": "Jakarta, Indonesia",
+        "period": "Feb 2026 - Present",
+        "type": "Part-time, Remote",
+        "description": [
+          "Mentor a team of 19 Data Analyst Associates, guiding to tackle real business projects with monthly 1-on-1 and weekly group sessions, fostering technical excellence and accelerating portfolio readiness."
+        ]
+      },
+      {
+        "title": "Data Analyst Associate",
+        "company": "RevoU x Telkom Indonesia (B2B Commerce)",
+        "location": "Jakarta, Indonesia",
+        "period": "Mar 2024 - May 2024",
+        "type": "Internship, Remote",
+        "description": [
+          "Crafted 3 pages of sales performance dashboard for various stakeholders.",
+          "Conducted customer segmentation and retention analysis for over 15k buyers and sellers."
+        ]
+      },
+      {
+        "title": "Data Analysis Mentor",
+        "company": "Lingkaran (Professional Training & Coaching)",
+        "location": "Jakarta Selatan, Indonesia",
+        "period": "Mar 2024",
+        "type": "Contract, Remote",
+        "description": [
+          "Curated and refined 5 chapters of \"Data Analysis to Solve Business Problems\" webinar presentations, ensuring content is engaging, up-to-date, and relevant to industry trends.",
+          "Facilitated 15 interactive webinar sessions, provided expert guidance and knowledge sharing to participants from diverse backgrounds."
+        ]
+      },
+      {
+        "title": "Data Annotation Specialist",
+        "company": "Appen (IT Services & Consulting)",
+        "location": "Washington, USA",
+        "period": "Feb 2024",
+        "type": "Part-time, Remote",
+        "description": [
+          "Annotated data to support AI development, ensuring high-quality training data for machine learning models."
+        ]
+      },
+      {
+        "title": "Data Analyst",
+        "company": "BPS-Statistics Education & Training Center",
+        "location": "Jakarta Selatan, Indonesia",
+        "period": "Apr 2021 - Jan 2024",
+        "type": "Full-time, On-site",
+        "description": [
+          "Extracted and analyzed data from 2 main sources: internal HR development system and Moodle-based LMS.",
+          "Developed, implemented, and maintained 10+ dashboards to monitor and evaluate key metrics related to HR development programs & public relations team performance.",
+          "Presented data findings and recommendations to 20+ different stakeholders from both internal and external.",
+          "Delivered data processing lessons to 100+ computer administrators from across Indonesia through 4 online training courses."
+        ]
+      },
+      {
+        "title": "Statistical Data Processing Officer",
+        "company": "BPS-Statistics of Kalimantan Barat Province",
+        "location": "Pontianak, Indonesia",
+        "period": "Apr 2019 – Mar 2021",
+        "type": "Full-time, On-site",
+        "description": [
+          "Supervised, monitored, & evaluated national statistics activities including 10+ censuses & surveys.",
+          "Ensured data quality for 10+ official statistics publications in a timely manner.",
+          "Developed a data entry application to improve efficiency.",
+          "Taught 100+ surveyors and data entry operators as national instructor."
+        ]
+      },
+      {
+        "title": "Data Annotation Specialist",
+        "company": "Leapforce, Inc (Technology, Information, and Internet)",
+        "location": "California, USA",
+        "period": "Jan 2018 – Aug 2019",
+        "type": "Part-time, Remote",
+        "description": [
+          "Delivered 1000+ precise ratings of search engine results, website quality, social media ads relevance, and audio data quality to guide major tech companies for enhanced performance."
+        ]
+      },
+      {
+        "title": "Statistical Data Processing & Dissemination Officer",
+        "company": "BPS-Statistics of Pontianak City",
+        "location": "Pontianak, Indonesia",
+        "period": "Feb 2017 – Mar 2019",
+        "type": "Full-time, On-site",
+        "description": [
+          "Contributed to 10+ official statistics activities as surveyor & data entry operator.",
+          "Supervised 20+ partners for field data collecting, document batching, data entry, & data validation activities.",
+          "Designed 10+ infographics and other data visualizations for official statistics publications.",
+          "Updated over 100km² Statistical Master Area Map by defining administrative boundaries & updating map coordinates with GIS software."
+        ]
+      }
+    ]
+  },
+  "projects": {
+    "show": true,
+    "title": "Featured Projects",
+    "subtitle": "Passion projects let me showcase how I solve problems for different business domains.",
+    "items": [
+      {
+        "title": "Customer Segmentation & Recommendation Impact Analysis",
+        "organization": "RevoU",
+        "date": "Dec 2025",
+        "role": "Student Development Coordinator Full Stack Data Analytics",
+        "description": [
+          "Analyzed 2K+ aggregated retail customers data by demography and behavior with RFM-Scoring & K-Means Clustering to identify the rewarding customers.",
+          "Provided detailed marketing strategy for each segment, conducted a quantitative analysis of business impact, feasibility, and ROI to prioritize top 3 action items.",
+          "Built looker studio dashboard to enable stakeholder's self service Exploratory Data Analysis."
+        ],
+        "tags": [
+          "Python",
+          "RFM",
+          "K-Means Clustering",
+          "Looker Studio"
+        ],
+        "image": "/images/projects/recommendation_priority_matrix.jpg",
+        "link": "https://www.canva.com/design/DAG7UFqzl8s/QjoyGUl5pZ2OvRkNx2PRTQ/view?utm_content=DAG7UFqzl8s&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h42326d28a8e",
+        "github": "https://github.com/arguto1993/wine-customer-analysis"
+      },
+      {
+        "title": "Depression Risk Assessment with Machine Learning",
+        "organization": "Dicoding Academy",
+        "date": "Feb 2025",
+        "role": "Project Manager & Data Scientist",
+        "description": [
+          "Led a team of 4 to identify key factors of student depressions based on the provided dataset.",
+          "Built a website to demonstrate machine learning capability to predict a person's depression risk."
+        ],
+        "tags": [
+          "Machine Learning",
+          "Python",
+          "Streamlit",
+          "Data Science",
+          "Project Management"
+        ],
+        "image": "/images/projects/depression_risk_assessment_cover.jpg",
+        "link": "https://depression-risk-assessment.streamlit.app/",
+        "github": "https://github.com/arguto1993/depression-risk-assessment-with-machine-learning"
+      },
+      {
+        "title": "Video Game Sales Analytics",
+        "organization": "RevoU",
+        "date": "2024",
+        "role": "Project Manager, Data Analyst",
+        "description": [
+          "Conducted deep dive analysis into global video game sales trends.",
+          "Identified key growth regions and platform preferences over two decades."
+        ],
+        "tags": [
+          "EDA",
+          "Tableau",
+          "Project Management"
+        ],
+        "image": "/images/projects/video_game_sales_analytics.jpg",
+        "link": "https://docs.google.com/presentation/d/19mP0bx_K0UXkc7V5PhYEcRWy8Y9IJkMTNHvg3IE8zD0/edit?usp=sharing",
+        "github": ""
+      }
+    ]
+  },
+  "dashboards": {
+    "show": false,
+    "title": "Dashboards Gallery",
+    "subtitle": "A collection of interactive visualizations I've built to enable faster & smarter decision-making.",
+    "items": [
+      {
+        "title": "Enterprise CRM Performance Dashboard",
+        "platform": "Looker Studio",
+        "description": "Comprehensive tracking of CRM metrics for 10+ enterprise clients including Levi's and Burger King.",
+        "image": "https://picsum.photos/seed/dashboard1/800/450",
+        "link": "https://lookerstudio.google.com/s/example-crm"
+      },
+      {
+        "title": "HR Development Monitoring System",
+        "platform": "Power BI",
+        "description": "Internal dashboard for BPS-Statistics to monitor HR training progress and performance metrics.",
+        "image": "https://picsum.photos/seed/dashboard2/800/450",
+        "link": "https://app.powerbi.com/view?example-hr"
+      },
+      {
+        "title": "Sales Performance & Customer Retention",
+        "platform": "Tableau",
+        "description": "B2B Commerce dashboard analyzing 15k+ buyers and sellers behavior and retention.",
+        "image": "https://picsum.photos/seed/dashboard3/800/450",
+        "link": "https://public.tableau.com/example-sales"
+      }
+    ]
+  },
+  "education": {
+    "show": true,
+    "title": "Education",
+    "subtitle": "",
+    "items": [
+      {
+        "degree": "Data Science Bootcamp",
+        "institution": "Dicoding Academy",
+        "location": "Remote",
+        "period": "2024-2025",
+        "details": [
+          "Volunteered as Project Manager for Capstone / Final Project (led a team of 4, scored 92/100)"
+        ]
+      },
+      {
+        "degree": "Full Stack Data Analytics",
+        "institution": "RevoU",
+        "location": "Remote",
+        "period": "2023-2024",
+        "details": [
+          "Best Intermediate Assignments Submission & Presenter for EDA & Cluster Analysis with Python (chosen out of 70+ students)",
+          "Volunteered as Project Manager for Group Final Project (led a team of 4, scored 96,25/100)"
+        ]
+      },
+      {
+        "degree": "Bachelor of Applied Science (Statistical Computing)",
+        "institution": "Sekolah Tinggi Ilmu Statistik",
+        "location": "Jakarta, Indonesia",
+        "period": "2012-2016",
+        "details": [
+          "Thesis: Pengembangan Aplikasi Mobile BPS-Community (BPS-Statistics Employee Portal Android App Development with PHP RESTFul API)"
+        ]
+      },
+      {
+        "degree": "Technical Informatics and Computer Science Education",
+        "institution": "Universitas Negeri Semarang",
+        "location": "Semarang, Indonesia",
+        "period": "2011-2012"
+      }
+    ],
+    "certifications": {
+      "title": "Certifications",
+      "items": [
+        {
+          "name": "Data Science Bootcamp Certificate of Completion",
+          "issuer": "Dicoding Academy",
+          "date": "Feb 2025",
+          "link": "https://drive.google.com/file/d/11OpjRYdDOgcxqRDAm8992dZVxGsM1U_Q/view"
+        },
+        {
+          "name": "Full Stack Data Analytics Certificate of Excellence",
+          "issuer": "RevoU",
+          "date": "Jun 2024",
+          "link": "https://drive.google.com/file/d/1HH5Fw5uRYS4ttVWy1unvJhhsPAcK3Pet/view?usp=sharing"
+        },
+        {
+          "name": "SQL (Advanced) Certificate of Accomplishment",
+          "issuer": "HackerRank",
+          "date": "Feb 2024",
+          "link": "https://www.hackerrank.com/certificates/ef7e4694f4ec"
+        }
       ]
     }
-  ],
-  "projects": [
-    {
-      "title": "Customer Segmentation & Recommendation Impact Analysis",
-      "organization": "RevoU",
-      "date": "Dec 2025",
-      "role": "Student Development Coordinator Full Stack Data Analytics",
-      "description": [
-        "Analyzed 2K+ aggregated retail customers data by demography and behavior with RFM-Scoring & K-Means Clustering to identify the rewarding customers.",
-        "Provided detailed marketing strategy for each segment, conducted a quantitative analysis of business impact, feasibility, and ROI to prioritize top 3 action items.",
-        "Built looker studio dashboard to enable stakeholder’s self service Exploratory Data Analysis."
-      ],
-      "tags": [
-        "Python",
-        "RFM",
-        "K-Means Clustering",
-        "Looker Studio"
-      ],
-      "image": "/images/projects/recommendation_priority_matrix.jpg",
-      "link": "https://www.canva.com/design/DAG7UFqzl8s/QjoyGUl5pZ2OvRkNx2PRTQ/view?utm_content=DAG7UFqzl8s&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h42326d28a8e",
-      "github": "https://github.com/arguto1993/wine-customer-analysis"
-    },
-    {
-      "title": "Depression Risk Assessment with Machine Learning",
-      "organization": "Dicoding Academy",
-      "date": "Feb 2025",
-      "role": "Project Manager & Data Scientist",
-      "description": [
-        "Led a team of 4 to identify key factors of student depressions based on the provided dataset.",
-        "Built a website to demonstrate machine learning capability to predict a person’s depression risk."
-      ],
-      "tags": [
-        "Machine Learning",
-        "Python",
-        "Streamlit",
-        "Data Science",
-        "Project Management"
-      ],
-      "image": "/images/projects/depression_risk_assessment_cover.jpg",
-      "link": "https://depression-risk-assessment.streamlit.app/",
-      "github": "https://github.com/arguto1993/depression-risk-assessment-with-machine-learning"
-    },
-    {
-      "title": "Video Game Sales Analytics",
-      "organization": "RevoU",
-      "date": "2024",
-      "role": "Project Manager, Data Analyst",
-      "description": [
-        "Conducted deep dive analysis into global video game sales trends.",
-        "Identified key growth regions and platform preferences over two decades."
-      ],
-      "tags": [
-        "EDA",
-        "Tableau",
-        "Project Management"
-      ],
-      "image": "/images/projects/video_game_sales_analytics.jpg",
-      "link": "https://docs.google.com/presentation/d/19mP0bx_K0UXkc7V5PhYEcRWy8Y9IJkMTNHvg3IE8zD0/edit?usp=sharing",
-      "github": ""
-    }
-  ],
-  "dashboards": [
-    {
-      "title": "Enterprise CRM Performance Dashboard",
-      "platform": "Looker Studio",
-      "description": "Comprehensive tracking of CRM metrics for 10+ enterprise clients including Levi's and Burger King.",
-      "image": "https://picsum.photos/seed/dashboard1/800/450",
-      "link": "https://lookerstudio.google.com/s/example-crm"
-    },
-    {
-      "title": "HR Development Monitoring System",
-      "platform": "Power BI",
-      "description": "Internal dashboard for BPS-Statistics to monitor HR training progress and performance metrics.",
-      "image": "https://picsum.photos/seed/dashboard2/800/450",
-      "link": "https://app.powerbi.com/view?example-hr"
-    },
-    {
-      "title": "Sales Performance & Customer Retention",
-      "platform": "Tableau",
-      "description": "B2B Commerce dashboard analyzing 15k+ buyers and sellers behavior and retention.",
-      "image": "https://picsum.photos/seed/dashboard3/800/450",
-      "link": "https://public.tableau.com/example-sales"
-    }
-  ],
-  "education": [
-    {
-      "degree": "Data Science Bootcamp",
-      "institution": "Dicoding Academy",
-      "location": "Remote",
-      "period": "2024-2025",
-      "details": [
-        "Volunteered as Project Manager for Capstone / Final Project (led a team of 4, scored 92/100)"
-      ]
-    },
-    {
-      "degree": "Full Stack Data Analytics",
-      "institution": "RevoU",
-      "location": "Remote",
-      "period": "2023-2024",
-      "details": [
-        "Best Intermediate Assignments Submission & Presenter for EDA & Cluster Analysis with Python (chosen out of 70+ students)",
-        "Volunteered as Project Manager for Group Final Project (led a team of 4, scored 96,25/100)"
-      ]
-    },
-    {
-      "degree": "Bachelor of Applied Science (Statistical Computing)",
-      "institution": "Sekolah Tinggi Ilmu Statistik",
-      "location": "Jakarta, Indonesia",
-      "period": "2012-2016",
-      "details": [
-        "Thesis: Pengembangan Aplikasi Mobile BPS-Community (BPS-Statistics Employee Portal Android App Development with PHP RESTFul API)"
-      ]
-    },
-    {
-      "degree": "Technical Informatics and Computer Science Education",
-      "institution": "Universitas Negeri Semarang",
-      "location": "Semarang, Indonesia",
-      "period": "2011-2012"
-    }
-  ],
-  "skills": [
-    {
-      "category": "Tech Stack",
-      "skills": [
-        "Python",
-        "SQL",
-        "BigQuery",
-        "ClickHouse",
-        "Airbyte",
-        "Power BI",
-        "Tableau",
-        "Metabase",
-        "Looker Studio (Google Data Studio)",
-        "Google Sheets",
-        "Google Slides",
-        "Google Apps Script",
-        "Microsoft Excel",
-        "Microsoft PowerPoint",
-        "Canva"
-      ]
-    },
-    {
-      "category": "Technical Skills",
-      "skills": [
-        "Data Storytelling",
-        "Data Visualization",
-        "Exploratory Data Analysis",
-        "Descriptive Statistics",
-        "Machine Learning",
-        "Regression",
-        "Classification",
-        "Cohort Analysis",
-        "Customer Segmentation",
-        "K-Means Clustering",
-        "Sentiment Analysis",
-        "RFM Scoring Analysis",
-        "Performance Marketing Analysis",
-        "Vibe Coding",
-        "Prompt Engineering",
-        "Project Management"
-      ]
-    },
-    {
-      "category": "Soft Skills",
-      "skills": [
-        "Communication",
-        "Teamwork",
-        "Leadership",
-        "Public Speaking",
-        "Adaptability",
-        "Critical Thinking",
-        "Problem Solving",
-        "Attention to Detail"
-      ]
-    }
-  ],
-  "certifications": [
-    {
-      "name": "Data Science Bootcamp Certificate of Completion",
-      "issuer": "Dicoding Academy",
-      "date": "Feb 2025",
-      "link": "https://drive.google.com/file/d/11OpjRYdDOgcxqRDAm8992dZVxGsM1U_Q/view"
-    },
-    {
-      "name": "Full Stack Data Analytics Certificate of Excellence",
-      "issuer": "RevoU",
-      "date": "Jun 2024",
-      "link": "https://drive.google.com/file/d/1HH5Fw5uRYS4ttVWy1unvJhhsPAcK3Pet/view?usp=sharing"
-    },
-    {
-      "name": "SQL (Advanced) Certificate of Accomplishment",
-      "issuer": "HackerRank",
-      "date": "Feb 2024",
-      "link": "https://www.hackerrank.com/certificates/ef7e4694f4ec"
-    }
-  ],
+  },
   "contacts": {
+    "show": true,
+    "title": "Get In Touch",
+    "subtitle": "Let's build something bold together — ideas, projects, or collaborations welcome.",
     "email": "argo.wahyu.utomo@gmail.com",
     "phone": "+62896-1401-4144",
     "location": "Jakarta Barat, Indonesia",

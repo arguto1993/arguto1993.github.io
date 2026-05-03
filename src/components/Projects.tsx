@@ -2,7 +2,6 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { useSiteData } from '../SiteDataContext';
 import { ExternalLink, Github } from 'lucide-react';
-import sections from '../sections.json';
 
 export const Projects: React.FC = () => {
   const { projects } = useSiteData();
@@ -15,12 +14,12 @@ export const Projects: React.FC = () => {
         viewport={{ once: true }}
         className="text-center mb-16"
       >
-        <h2 className="text-4xl font-serif font-bold mb-4">{sections.projects.title}</h2>
-        <p className="opacity-60">{sections.projects.subtitle}</p>
+        <h2 className="text-4xl font-serif font-bold mb-4">{projects.title}</h2>
+        <p className="opacity-60">{projects.subtitle}</p>
       </motion.div>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {projects.map((project, index) => (
+        {projects.items.map((project, index) => (
           <motion.div
             key={project.title}
             initial={{ opacity: 0, y: 30 }}

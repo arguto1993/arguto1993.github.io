@@ -14,12 +14,12 @@ export const Dashboards: React.FC = () => {
         viewport={{ once: true }}
         className="text-center mb-16"
       >
-        <h2 className="text-4xl font-serif font-bold mb-4">Interactive Dashboards</h2>
-        <p className="opacity-60">Visualizing data to drive decision making.</p>
+        <h2 className="text-4xl font-serif font-bold mb-4">{dashboards.title}</h2>
+        <p className="opacity-60">{dashboards.subtitle}</p>
       </motion.div>
 
       <div className="grid md:grid-cols-2 gap-8">
-        {dashboards.map((dash, index) => (
+        {dashboards.items.map((dash, index) => (
           <motion.a
             key={dash.title}
             href={dash.link}

@@ -2,7 +2,6 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { Github, Linkedin, Mail, FileText } from 'lucide-react';
 import { useSiteData } from '../SiteDataContext';
-import sections from '../sections.json';
 
 export const Hero: React.FC = () => {
   const { hero, contacts } = useSiteData();
@@ -33,7 +32,7 @@ export const Hero: React.FC = () => {
             </span>
           </h1>
           <p className="text-xl md:text-2xl opacity-70 max-w-2xl mx-auto mb-16 leading-relaxed font-light">
-            {sections.home.subtitle}
+            {hero.subtitle}
           </p>
         </motion.div>
 

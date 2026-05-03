@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { useSiteData } from '../SiteDataContext';
-import sections from '../sections.json';
 import { parseInline } from '../inlineMarkdown';
 
 const messages = [
@@ -78,7 +77,7 @@ export const About: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-4xl font-serif font-bold mb-8">{sections.about.title}</h2>
+            <h2 className="text-4xl font-serif font-bold mb-8">{about.title}</h2>
             <div className="space-y-6 text-lg opacity-80 leading-relaxed font-light text-justify">
               {about.content.split('\n').map((paragraph, i) => (
                 <p key={i}>

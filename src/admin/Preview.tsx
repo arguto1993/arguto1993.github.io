@@ -21,7 +21,7 @@ type SectionKey =
   | 'Dashboards'
   | 'Education'
   | 'Certifications'
-  | 'Contact';
+  | 'Contacts';
 
 function buildSiteData(data: PortfolioData): SiteDataContextValue {
   return {
@@ -33,7 +33,6 @@ function buildSiteData(data: PortfolioData): SiteDataContextValue {
     projects: data.projects,
     dashboards: data.dashboards,
     education: data.education,
-    certifications: data.certifications,
     contacts: data.contacts,
   };
 }
@@ -49,7 +48,7 @@ function SectionComponent({ section }: { section: SectionKey }) {
     case 'Dashboards': return <Dashboards />;
     case 'Education':
     case 'Certifications': return <Education />;
-    case 'Contact': return <Contact />;
+    case 'Contacts': return <Contact />;
   }
 }
 

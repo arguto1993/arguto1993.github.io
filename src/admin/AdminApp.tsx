@@ -218,8 +218,8 @@ export default function AdminApp() {
       case 'Certifications':
         return (
           <CertificationsForm
-            value={data.certifications}
-            onChange={(v) => setData({ ...data, certifications: v })}
+            value={data.education.certifications}
+            onChange={(v) => setData({ ...data, education: { ...data.education, certifications: v } })}
           />
         );
       case 'Contacts':

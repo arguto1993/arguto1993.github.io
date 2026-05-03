@@ -12,7 +12,7 @@ function portfolioSeoPlugin(): Plugin {
       const data = JSON.parse(fs.readFileSync('./src/data.json', 'utf-8'));
       const { hero, brand, contacts, skills } = data;
 
-      const allSkills = skills.flatMap((g: { skills: string[] }) => g.skills);
+      const allSkills = skills.items.flatMap((g: { skills: string[] }) => g.skills);
       const description =
         `Data Professional with 9+ years of cross-sector experience in analytics, ` +
         `data engineering, and machine learning. Skilled in Python, SQL, BigQuery, ` +
@@ -36,7 +36,7 @@ function portfolioSeoPlugin(): Plugin {
         knowsAbout: allSkills,
         worksFor: {
           '@type': 'Organization',
-          name: data.experiences[0]?.company ?? '',
+          name: data.experiences.items[0]?.company ?? '',
         },
       });
 

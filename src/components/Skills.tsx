@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { useSiteData } from '../SiteDataContext';
-import sections from '../sections.json';
 
 export const Skills: React.FC = () => {
   const { skills } = useSiteData();
@@ -15,9 +14,9 @@ export const Skills: React.FC = () => {
         transition={{ duration: 0.6 }}
         className="max-w-4xl mx-auto"
       >
-        <h2 className="text-4xl font-serif font-bold mb-12 text-center">{sections.skills.title}</h2>
+        <h2 className="text-4xl font-serif font-bold mb-12 text-center">{skills.title}</h2>
         <div className="grid md:grid-cols-3 gap-12">
-          {skills.map((group, i) => (
+          {skills.items.map((group, i) => (
             <motion.div
               key={group.category}
               initial={{ opacity: 0, y: 20 }}
