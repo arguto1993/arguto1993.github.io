@@ -245,12 +245,13 @@
         "github": "https://github.com/arguto1993/depression-risk-assessment-with-machine-learning"
       },
       {
-        "title": "Video Game Sales Analytics: How To G",
+        "title": "What Kind of Game to Develop to Get 1M USD Global Sales Within 1 Year?",
         "organization": "RevoU",
         "date": "2024",
         "role": "Project Manager, Data Analyst",
         "description": [
-          "Answer to business question: what kind of game to develop to get 1M USD global sales in 1 Year"
+          "Identify the characteristics of high sales performing games in 2017 by analyzing the provided dataset with Exploratory Data Analysis and Correlation Analysis.",
+          "Built a Tableau dashboard to enable stakeholder's self service Exploratory Data Analysis."
         ],
         "tags": [
           "Issue Tree",
