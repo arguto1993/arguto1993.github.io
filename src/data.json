@@ -268,15 +268,29 @@
   },
   "dashboards": {
     "show": true,
-    "title": "Dashboards Gallery",
+    "title": "Dashboard Gallery",
     "subtitle": "A collection of interactive visualizations I've built to enable faster & smarter decision-making.",
     "items": [
+      {
+        "title": "Student Depression Characteristics",
+        "platform": "Streamlit",
+        "description": "",
+        "image": "https://drive.google.com/thumbnail?id=15jdye-wzm9DXZLaCiOGyuxbBMzxtKyeM&sz=w1600",
+        "link": "https://depression-risk-assessment.streamlit.app/"
+      },
       {
         "title": "B2B Commerce Sales Performance 2023",
         "platform": "Power BI",
         "description": "",
         "image": "https://drive.google.com/thumbnail?id=1hNesHabWSCXzWeRF_iKcfow1TqrVto8C&sz=w1600",
         "link": "https://docs.google.com/presentation/d/13T6KiZi6NX5FVsSbd1xmHICup-zOtvDbsWYj8M7Ir0Y/edit?usp=sharing"
+      },
+      {
+        "title": "Daily Supply Chain & Logistics Performance",
+        "platform": "Looker Studio",
+        "description": "",
+        "image": "https://drive.google.com/thumbnail?id=1SRwpyR5GNr59o9GoMUprX9mmdBh0myPq&sz=w1600",
+        "link": "https://datastudio.google.com/reporting/ea7d3be4-a585-4868-b632-c25db6dfa94d"
       },
       {
         "title": "Video Game Sales Analytics (January 2017)",
