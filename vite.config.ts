@@ -19,7 +19,7 @@ function portfolioSeoPlugin(): Plugin {
       const description =
         `Data Professional with 9+ years of cross-sector experience in analytics, ` +
         `data engineering, and machine learning. Skilled in Python, SQL, BigQuery, ` +
-        `ClickHouse, and BI platforms. Based in ${contacts.location}.`;
+        `ClickHouse, and BI platforms. Based in ${contacts.items.find((i: { icon: string }) => i.icon === 'map')?.value ?? ''}.`;
 
       const jsonLdPerson = JSON.stringify({
         '@context': 'https://schema.org',
@@ -29,13 +29,15 @@ function portfolioSeoPlugin(): Plugin {
         jobTitle: hero.title,
         description: `Data Professional with 9+ years of cross-sector experience turning complex data into strategic business insights.`,
         url: homepage,
-        email: contacts.email,
+        email: contacts.items.find((i: { icon: string }) => i.icon === 'mail')?.value ?? '',
         address: {
           '@type': 'PostalAddress',
-          addressLocality: contacts.location.split(',')[0]?.trim(),
+          addressLocality: (contacts.items.find((i: { icon: string }) => i.icon === 'map')?.value ?? '').split(',')[0]?.trim(),
           addressCountry: 'ID',
         },
-        sameAs: [contacts.linkedin, contacts.github, contacts.medium, contacts.hackerrank],
+        sameAs: ['linkedin', 'github', 'book', 'code'].map(
+          (icon: string) => contacts.items.find((i: { icon: string }) => i.icon === icon)?.href ?? ''
+        ).filter(Boolean),
         knowsAbout: allSkills,
         worksFor: {
           '@type': 'Organization',

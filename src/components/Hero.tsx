@@ -42,9 +42,9 @@ export const Hero: React.FC = () => {
           transition={{ delay: 0.4, duration: 0.6 }}
           className="flex flex-wrap justify-center gap-6"
         >
-          <SocialLink href={contacts.linkedin} icon={<Linkedin size={20} />} label="LinkedIn" />
-          <SocialLink href={contacts.github} icon={<Github size={20} />} label="Github" />
-          <SocialLink href={`mailto:${contacts.email}`} icon={<Mail size={20} />} label="Email" />
+          <SocialLink href={contacts.items.find(i => i.icon === 'linkedin')?.href ?? ''} icon={<Linkedin size={20} />} label="LinkedIn" />
+          <SocialLink href={contacts.items.find(i => i.icon === 'github')?.href ?? ''} icon={<Github size={20} />} label="Github" />
+          <SocialLink href={contacts.items.find(i => i.icon === 'mail')?.href ?? ''} icon={<Mail size={20} />} label="Email" />
           <SocialLink href={hero.resume} icon={<FileText size={20} />} label="Resume" />
         </motion.div>
       </div>

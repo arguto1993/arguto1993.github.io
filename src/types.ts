@@ -119,13 +119,6 @@ export interface Contacts {
   show: boolean;
   title: string;
   subtitle: string;
-  email: string;
-  phone: string;
-  location: string;
-  linkedin: string;
-  github: string;
-  medium: string;
-  hackerrank: string;
   items: ContactItem[];
 }
 

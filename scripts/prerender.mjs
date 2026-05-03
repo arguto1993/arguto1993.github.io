@@ -197,7 +197,7 @@ function generateStaticHTML(data) {
   <header>
     <h1>${esc(hero.name)}</h1>
     <p>${esc(hero.title)}</p>
-    <p>${esc(contacts.location)}</p>
+    <p>${esc(contacts.items.find(i => i.icon === 'map')?.value ?? '')}</p>
   </header>
   <main>
 ${sections}
