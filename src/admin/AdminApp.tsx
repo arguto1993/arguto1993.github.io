@@ -131,11 +131,14 @@ export default function AdminApp() {
       brand: { ...data.brand, lastUpdated: today },
     };
     try {
+      const isoJakarta = new Intl.DateTimeFormat('sv-SE', {
+        timeZone: 'Asia/Jakarta', dateStyle: 'short', timeStyle: 'medium',
+      }).format(new Date());
       const { commitUrl } = await saveDataFile(
         token,
         next,
         sha,
-        `chore(content): update via admin (${toIsoDate(new Date())})`,
+        `data.json: update via admin (${isoJakarta} Jakarta)`,
       );
       setData(next);
       setSavedAt({ url: commitUrl });
