@@ -144,7 +144,19 @@ The admin route is lazy-loaded, marked `noindex`, and the OAuth token is held in
     │   ├── Preview.tsx
     │   ├── auth.ts
     │   ├── github.ts
-    │   ├── forms.tsx
+    │   ├── forms/
+    │   │   ├── AboutForm.tsx
+    │   │   ├── BrandForm.tsx
+    │   │   ├── CertificationsForm.tsx
+    │   │   ├── ContactForm.tsx
+    │   │   ├── DashboardsForm.tsx
+    │   │   ├── EducationForm.tsx
+    │   │   ├── ExperienceForm.tsx
+    │   │   ├── HeroForm.tsx
+    │   │   ├── ProjectsForm.tsx
+    │   │   ├── SkillsForm.tsx
+    │   │   ├── index.ts
+    │   │   └── shared.tsx
     │   ├── primitives.tsx
     │   ├── sections.tsx
     │   ├── types.ts
