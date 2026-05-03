@@ -54,12 +54,12 @@ const sitemapUrls = [
 // Anchor URLs for visible sections — visibility is now driven by data.json `.show` fields
 // Skip 'home' (it IS the root) and 'dashboards' (gallery, not a nav target)
 const SECTION_MAP = [
-  { id: 'about',    show: data.about.show },
-  { id: 'skills',   show: data.skills.show },
+  { id: 'about', show: data.about.show },
+  { id: 'skills', show: data.skills.show },
   { id: 'experience', show: data.experiences.show },
   { id: 'projects', show: data.projects.show },
   { id: 'education', show: data.education.show },
-  { id: 'contact',  show: data.contacts.show },
+  { id: 'contact', show: data.contacts.show },
 ];
 for (const { id, show } of SECTION_MAP) {
   if (!show) continue;
