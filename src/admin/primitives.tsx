@@ -67,9 +67,21 @@ function reorder<T>(arr: T[], from: number, to: number): T[] {
   return next;
 }
 
-function GripHandle() {
+function insertIndex(from: number, hoverIndex: number, before: boolean): number {
+  const insertAt = before ? hoverIndex : hoverIndex + 1;
+  return insertAt > from ? insertAt - 1 : insertAt;
+}
+
+function dropPosition(e: React.DragEvent): boolean {
+  const rect = e.currentTarget.getBoundingClientRect();
+  return e.clientY < rect.top + rect.height / 2;
+}
+
+function GripHandle({ onDragStart }: { onDragStart?: (e: React.DragEvent) => void }) {
   return (
     <span
+      draggable={!!onDragStart}
+      onDragStart={onDragStart}
       className="cursor-grab active:cursor-grabbing flex items-center text-slate-400 dark:text-slate-600 px-1 shrink-0 select-none"
       title="Drag to reorder"
     >
@@ -115,6 +127,15 @@ function RowButtons({
   );
 }
 
+type DropTarget = { index: number; before: boolean } | null;
+
+function dropLineCls(dropTarget: DropTarget, i: number) {
+  if (dropTarget?.index !== i) return '';
+  return dropTarget.before
+    ? 'shadow-[inset_0_2px_0_0_var(--accent)]'
+    : 'shadow-[inset_0_-2px_0_0_var(--accent)]';
+}
+
 export function StringList({
   values,
   onChange,
@@ -125,7 +146,7 @@ export function StringList({
   placeholder?: string;
 }) {
   const dragFrom = useRef<number | null>(null);
-  const [dragOver, setDragOver] = useState<number | null>(null);
+  const [dropTarget, setDropTarget] = useState<DropTarget>(null);
 
   const update = (i: number, v: string) => {
     const next = [...values];
@@ -138,20 +159,24 @@ export function StringList({
       {values.map((v, i) => (
         <div
           key={i}
-          draggable
-          onDragStart={() => { dragFrom.current = i; }}
-          onDragOver={(e) => { e.preventDefault(); setDragOver(i); }}
-          onDrop={() => {
-            if (dragFrom.current !== null && dragFrom.current !== i) {
-              onChange(reorder(values, dragFrom.current, i));
+          onDragOver={(e) => {
+            e.preventDefault();
+            const before = dropPosition(e);
+            setDropTarget({ index: i, before });
+          }}
+          onDrop={(e) => {
+            if (dragFrom.current !== null) {
+              const before = dropPosition(e);
+              const to = insertIndex(dragFrom.current, i, before);
+              if (dragFrom.current !== to) onChange(reorder(values, dragFrom.current, to));
             }
             dragFrom.current = null;
-            setDragOver(null);
+            setDropTarget(null);
           }}
-          onDragEnd={() => { dragFrom.current = null; setDragOver(null); }}
-          className={`flex gap-2 rounded transition-colors ${dragOver === i ? 'ring-2 ring-[var(--accent)] bg-slate-100 dark:bg-slate-800' : ''}`}
+          onDragEnd={() => { dragFrom.current = null; setDropTarget(null); }}
+          className={`flex gap-2 rounded transition-shadow ${dropLineCls(dropTarget, i)}`}
         >
-          <GripHandle />
+          <GripHandle onDragStart={() => { dragFrom.current = i; }} />
           <input
             className={inputCls}
             value={v}
@@ -191,7 +216,7 @@ export function ItemList<T>({
   itemLabel: (item: T, i: number) => string;
 }) {
   const dragFrom = useRef<number | null>(null);
-  const [dragOver, setDragOver] = useState<number | null>(null);
+  const [dropTarget, setDropTarget] = useState<DropTarget>(null);
 
   const update = (i: number, next: T) => {
     const arr = [...items];
@@ -208,31 +233,33 @@ export function ItemList<T>({
           <details
             key={i}
             open={i === 0}
-            draggable
-            onDragStart={(e) => {
-              dragFrom.current = i;
-              // prevent drag from bubbling into summary click
-              e.stopPropagation();
+            onDragOver={(e) => {
+              e.preventDefault();
+              const before = dropPosition(e);
+              setDropTarget({ index: i, before });
             }}
-            onDragOver={(e) => { e.preventDefault(); setDragOver(i); }}
             onDrop={(e) => {
               e.preventDefault();
-              if (dragFrom.current !== null && dragFrom.current !== i) {
-                onChange(reorder(items, dragFrom.current, i));
+              if (dragFrom.current !== null) {
+                const before = dropPosition(e);
+                const to = insertIndex(dragFrom.current, i, before);
+                if (dragFrom.current !== to) onChange(reorder(items, dragFrom.current, to));
               }
               dragFrom.current = null;
-              setDragOver(null);
+              setDropTarget(null);
             }}
-            onDragEnd={() => { dragFrom.current = null; setDragOver(null); }}
-            className={`group rounded-lg border bg-slate-50 dark:bg-slate-900/40 [&_summary::-webkit-details-marker]:hidden transition-colors ${
-              dragOver === i
-                ? 'border-[var(--accent)] ring-2 ring-[var(--accent)]'
+            onDragEnd={() => { dragFrom.current = null; setDropTarget(null); }}
+            className={`group rounded-lg border bg-slate-50 dark:bg-slate-900/40 [&_summary::-webkit-details-marker]:hidden transition-shadow ${
+              dropTarget?.index === i
+                ? dropTarget.before
+                  ? 'shadow-[inset_0_2px_0_0_var(--accent)] border-slate-200 dark:border-slate-800'
+                  : 'shadow-[inset_0_-2px_0_0_var(--accent)] border-slate-200 dark:border-slate-800'
                 : 'border-slate-200 dark:border-slate-800 open:border-[var(--accent)]'
             }`}
           >
             <summary className="cursor-pointer select-none px-4 py-2 flex items-center justify-between gap-2 list-none hover:bg-slate-100 dark:hover:bg-slate-800/60 rounded-lg">
               <span className="flex items-center gap-2 min-w-0">
-                <GripHandle />
+                <GripHandle onDragStart={(e) => { dragFrom.current = i; e.stopPropagation(); }} />
                 <svg
                   aria-hidden="true"
                   viewBox="0 0 20 20"
