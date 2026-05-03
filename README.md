@@ -59,9 +59,6 @@ My professional portfolio website built with React and TypeScript.
 | What to change | Where |
 | --- | --- |
 | All content, section titles, and visibility (show/hide) | `src/data.json` (or the admin page — see below) |
-| Canonical portfolio URL used by SEO and sitemap generation | `src/data.json` → `brand.homepage` |
-| Contact card labels, display values, links, and icons | `src/data.json` → `contact.items` |
-| Images | `public/images/` |
 
 > SEO meta tags, Open Graph, and JSON-LD are all derived from `data.json` automatically — no manual updates needed.
 > `brand.homepage` is used for canonical URLs, Open Graph/Twitter images, JSON-LD, and sitemap URLs.
@@ -162,3 +159,7 @@ The admin route is lazy-loaded, marked `noindex`, and the OAuth token is held in
         ├── Skills.tsx
         └── ThemeContext.tsx
 ```
+
+## 👐 Open Source
+
+Feel free to reuse, adapt, or extend this portfolio site repo for your own needs. You are welcome to [fork the repository](https://github.com/arguto1993/arguto1993.github.io) for personal or professional use, or [open an issue](https://github.com/arguto1993/arguto1993.github.io/issues) if you have suggestions or spot something worth improving.
