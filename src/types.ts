@@ -129,3 +129,15 @@ export interface ContactItem {
   value: string;
   href?: string;
 }
+
+export interface PortfolioData {
+  brand: Brand;
+  hero: Hero;
+  about: About;
+  skills: Skills;
+  experience: Experience;
+  projects: Projects;
+  dashboards: Dashboards;
+  education: Education;
+  contact: Contact;
+}

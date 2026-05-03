@@ -1,5 +1,5 @@
 import { Field, ItemList, StringList, TextInput } from '../primitives';
-import type { PortfolioData } from '../types';
+import type { PortfolioData } from '../../types';
 import { SectionToggle, type SectionProps } from './shared';
 
 type SkillGroup = PortfolioData['skills']['items'][number];

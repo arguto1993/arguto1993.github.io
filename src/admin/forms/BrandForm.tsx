@@ -1,5 +1,5 @@
 import { Field, TextInput } from '../primitives';
-import type { PortfolioData } from '../types';
+import type { PortfolioData } from '../../types';
 import type { SectionProps } from './shared';
 
 export function BrandForm({ value, onChange }: SectionProps<'brand'>) {

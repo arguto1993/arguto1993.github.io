@@ -143,6 +143,7 @@ The admin route is lazy-loaded, marked `noindex`, and the OAuth token is held in
     │   ├── AdminPreviewPane.tsx
     │   ├── Preview.tsx
     │   ├── auth.ts
+    │   ├── config.ts
     │   ├── github.ts
     │   ├── forms/
     │   │   ├── AboutForm.tsx
@@ -159,7 +160,6 @@ The admin route is lazy-loaded, marked `noindex`, and the OAuth token is held in
     │   │   └── shared.tsx
     │   ├── primitives.tsx
     │   ├── sections.tsx
-    │   ├── types.ts
     │   └── useAdminData.ts
     └── components/
         ├── About.tsx

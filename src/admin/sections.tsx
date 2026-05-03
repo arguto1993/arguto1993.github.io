@@ -11,7 +11,7 @@ import {
   ProjectsForm,
   SkillsForm,
 } from './forms';
-import type { PortfolioData } from './types';
+import type { PortfolioData } from '../types';
 
 export const ADMIN_SECTIONS = [
   {

@@ -1,5 +1,5 @@
 import { Field, TextArea, TextInput } from '../primitives';
-import type { PortfolioData } from '../types';
+import type { PortfolioData } from '../../types';
 import { SectionToggle, type SectionProps } from './shared';
 
 export function AboutForm({ value, onChange }: SectionProps<'about'>) {

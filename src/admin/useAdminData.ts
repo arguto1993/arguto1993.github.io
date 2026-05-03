@@ -5,7 +5,7 @@ import {
   handleOAuthCallback,
 } from './auth';
 import { loadDataFile, saveDataFile } from './github';
-import type { PortfolioData } from './types';
+import type { PortfolioData } from '../types';
 import localData from '../data.json';
 
 const DEV_PREVIEW = import.meta.env.DEV;

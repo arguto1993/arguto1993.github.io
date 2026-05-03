@@ -4,7 +4,7 @@ import {
   OAUTH_WORKER_URL,
   SESSION_STATE_KEY,
   SESSION_TOKEN_KEY,
-} from './types';
+} from './config';
 
 export function getStoredToken(): string | null {
   return sessionStorage.getItem(SESSION_TOKEN_KEY);

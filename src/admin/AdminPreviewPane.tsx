@@ -3,7 +3,7 @@ import type { MouseEvent as ReactMouseEvent } from 'react';
 import { useTheme } from '../components/ThemeContext';
 import Preview from './Preview';
 import type { AdminSectionKey } from './sections';
-import type { PortfolioData } from './types';
+import type { PortfolioData } from '../types';
 
 const MIN_PREVIEW_W = 320;
 const MAX_PREVIEW_W = 1080;

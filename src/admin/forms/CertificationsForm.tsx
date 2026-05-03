@@ -1,5 +1,5 @@
 import { Field, ItemList, TextInput } from '../primitives';
-import type { PortfolioData } from '../types';
+import type { PortfolioData } from '../../types';
 
 type CertGroup = PortfolioData['education']['certifications'];
 

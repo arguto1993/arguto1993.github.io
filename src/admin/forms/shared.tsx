@@ -1,4 +1,4 @@
-import type { PortfolioData } from '../types';
+import type { PortfolioData } from '../../types';
 
 export type Patch<T> = (next: T) => void;
 export type SectionProps<K extends keyof PortfolioData> = {

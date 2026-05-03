@@ -10,7 +10,7 @@ import { Contact } from '../components/Contact';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
 import type { AdminSectionKey } from './sections';
-import type { PortfolioData } from './types';
+import type { PortfolioData } from '../types';
 
 function buildSiteData(data: PortfolioData): SiteDataContextValue {
   return {

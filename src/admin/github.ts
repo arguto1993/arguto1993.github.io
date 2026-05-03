@@ -1,4 +1,5 @@
-import { DATA_PATH, REPO_NAME, REPO_OWNER, type PortfolioData } from './types';
+import type { PortfolioData } from '../types';
+import { DATA_PATH, REPO_NAME, REPO_OWNER } from './config';
 
 const API = 'https://api.github.com';
 

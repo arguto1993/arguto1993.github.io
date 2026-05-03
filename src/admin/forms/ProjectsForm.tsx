@@ -1,5 +1,5 @@
 import { Field, ItemList, StringList, TextInput } from '../primitives';
-import type { PortfolioData } from '../types';
+import type { PortfolioData } from '../../types';
 import { SectionToggle, toDirectGoogleDriveImageUrl, type SectionProps } from './shared';
 
 type Project = PortfolioData['projects']['items'][number];
