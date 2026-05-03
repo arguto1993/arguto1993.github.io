@@ -10,7 +10,7 @@ export const Footer: React.FC = () => {
         <h2 className="text-2xl font-serif font-bold">
           {brand.nickname} Portfolio
         </h2>
-        <div className="flex items-center gap-2 text-[10px] opacity-30 uppercase tracking-tighter justify-center">
+        <div className="flex items-center gap-2 text-[10px] opacity-79 uppercase tracking-tighter justify-center">
           <a
             href={brand.repository}
             target="_blank"
