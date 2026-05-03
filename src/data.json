@@ -300,6 +300,20 @@
         "link": "https://public.tableau.com/views/VideoGameSales2017Dashboard/DASHBOARD?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link"
       },
       {
+        "title": "Something in Tasikmalaya by Kecamatan (Tableau)",
+        "platform": "Tableau",
+        "description": "",
+        "image": "https://drive.google.com/thumbnail?id=1mm5gWwuCAjfhUE50sO5tbKyowKY3xIZP&sz=w1600",
+        "link": "https://public.tableau.com/views/SomethinginTasikmalayabyKecamatan/Dashboard?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link"
+      },
+      {
+        "title": "Something in Tasikmalaya by Kecamatan (Looker Studio)",
+        "platform": "Looker Studio",
+        "description": "",
+        "image": "https://drive.google.com/thumbnail?id=1y5-KprlKYTNgOShJ-Y3GJj1EtdLNGES6&sz=w1600",
+        "link": "https://datastudio.google.com/reporting/d0b5f14c-be70-4a86-9162-f5fc43c4310c"
+      },
+      {
         "title": "Realisasi Konten Media Sosial Pusdiklat BPS 2023",
         "platform": "Looker Studio",
         "description": "",
