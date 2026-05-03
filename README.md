@@ -140,12 +140,15 @@ The admin route is lazy-loaded, marked `noindex`, and the OAuth token is held in
     ├── main.tsx
     ├── admin/           # #/admin editor — OAuth + GitHub Contents API
     │   ├── AdminApp.tsx
+    │   ├── AdminPreviewPane.tsx
     │   ├── Preview.tsx
     │   ├── auth.ts
     │   ├── github.ts
     │   ├── forms.tsx
     │   ├── primitives.tsx
-    │   └── types.ts
+    │   ├── sections.tsx
+    │   ├── types.ts
+    │   └── useAdminData.ts
     └── components/
         ├── About.tsx
         ├── Contact.tsx

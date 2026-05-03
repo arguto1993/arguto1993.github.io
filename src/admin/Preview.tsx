@@ -9,19 +9,8 @@ import { Education } from '../components/Education';
 import { Contact } from '../components/Contact';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
+import type { AdminSectionKey } from './sections';
 import type { PortfolioData } from './types';
-
-type SectionKey =
-  | 'Brand'
-  | 'Hero'
-  | 'About'
-  | 'Skills'
-  | 'Experience'
-  | 'Projects'
-  | 'Dashboards'
-  | 'Education'
-  | 'Certifications'
-  | 'Contact';
 
 function buildSiteData(data: PortfolioData): SiteDataContextValue {
   return {
@@ -37,7 +26,7 @@ function buildSiteData(data: PortfolioData): SiteDataContextValue {
   };
 }
 
-function SectionComponent({ section }: { section: SectionKey }) {
+function SectionComponent({ section }: { section: AdminSectionKey }) {
   switch (section) {
     case 'Brand': return <><Navbar /><div className="h-24" /><Footer /></>;
     case 'Hero': return <Hero />;
@@ -56,7 +45,7 @@ export default function Preview({
   section,
   data,
 }: {
-  section: SectionKey;
+  section: AdminSectionKey;
   data: PortfolioData;
 }) {
   return (
