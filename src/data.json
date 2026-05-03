@@ -32,8 +32,8 @@
       {
         "category": "Tech Stack",
         "skills": [
-          "Python",
-          "SQL",
+          "Python (Pandas, Streamlit, Matplotlib, TensorFlow, Prophet, Django)",
+          "SQL (MySQL, PostgreSQL, SQLite)",
           "BigQuery",
           "ClickHouse",
           "Airbyte",
@@ -63,7 +63,7 @@
           "Customer Segmentation",
           "K-Means Clustering",
           "Sentiment Analysis",
-          "RFM Scoring Analysis",
+          "RFM Scoring",
           "Performance Marketing Analysis",
           "Vibe Coding",
           "Prompt Engineering",
@@ -215,11 +215,12 @@
         ],
         "tags": [
           "Python",
-          "RFM",
+          "RFM Scoring",
           "K-Means Clustering",
+          "Impact Analysis",
           "Looker Studio"
         ],
-        "image": "/images/projects/recommendation_priority_matrix.jpg",
+        "image": "https://drive.google.com/thumbnail?id=1eNIp5JTNffirocRxyAHk4Y5IbwjhDy1e&sz=w1600",
         "link": "https://www.canva.com/design/DAG7UFqzl8s/QjoyGUl5pZ2OvRkNx2PRTQ/view?utm_content=DAG7UFqzl8s&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h42326d28a8e",
         "github": "https://github.com/arguto1993/wine-customer-analysis"
       },
@@ -239,25 +240,26 @@
           "Data Science",
           "Project Management"
         ],
-        "image": "/images/projects/depression_risk_assessment_cover.jpg",
+        "image": "https://drive.google.com/thumbnail?id=1VgY6-DqSL4aR8o-8_1lJFLyWcRbQysvM&sz=w1600",
         "link": "https://depression-risk-assessment.streamlit.app/",
         "github": "https://github.com/arguto1993/depression-risk-assessment-with-machine-learning"
       },
       {
-        "title": "Video Game Sales Analytics",
+        "title": "Video Game Sales Analytics: How To G",
         "organization": "RevoU",
         "date": "2024",
         "role": "Project Manager, Data Analyst",
         "description": [
-          "Conducted deep dive analysis into global video game sales trends.",
-          "Identified key growth regions and platform preferences over two decades."
+          "Answer to business question: what kind of game to develop to get 1M USD global sales in 1 Year"
         ],
         "tags": [
-          "EDA",
+          "Issue Tree",
+          "Exploratory Data Analysis",
+          "Correlation",
           "Tableau",
           "Project Management"
         ],
-        "image": "/images/projects/video_game_sales_analytics.jpg",
+        "image": "https://drive.google.com/thumbnail?id=1MSNERgArL6AgSFYPNHPwwnHBfkWlw7S_&sz=w1600",
         "link": "https://docs.google.com/presentation/d/19mP0bx_K0UXkc7V5PhYEcRWy8Y9IJkMTNHvg3IE8zD0/edit?usp=sharing",
         "github": ""
       }
