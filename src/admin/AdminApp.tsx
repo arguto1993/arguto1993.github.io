@@ -17,10 +17,10 @@ import {
   AboutForm,
   BrandForm,
   CertificationsForm,
-  ContactsForm,
+  ContactForm,
   DashboardsForm,
   EducationForm,
-  ExperiencesForm,
+  ExperienceForm,
   HeroForm,
   ProjectsForm,
   SkillsForm,
@@ -32,12 +32,12 @@ const SECTIONS = [
   'Hero',
   'About',
   'Skills',
-  'Experiences',
+  'Experience',
   'Projects',
   'Dashboards',
   'Education',
   'Certifications',
-  'Contacts',
+  'Contact',
 ] as const;
 type SectionKey = (typeof SECTIONS)[number];
 
@@ -187,11 +187,11 @@ export default function AdminApp() {
             onChange={(v) => setData({ ...data, skills: v })}
           />
         );
-      case 'Experiences':
+      case 'Experience':
         return (
-          <ExperiencesForm
-            value={data.experiences}
-            onChange={(v) => setData({ ...data, experiences: v })}
+          <ExperienceForm
+            value={data.experience}
+            onChange={(v) => setData({ ...data, experience: v })}
           />
         );
       case 'Projects':
@@ -222,11 +222,11 @@ export default function AdminApp() {
             onChange={(v) => setData({ ...data, education: { ...data.education, certifications: v } })}
           />
         );
-      case 'Contacts':
+      case 'Contact':
         return (
-          <ContactsForm
-            value={data.contacts}
-            onChange={(v) => setData({ ...data, contacts: v })}
+          <ContactForm
+            value={data.contact}
+            onChange={(v) => setData({ ...data, contact: v })}
           />
         );
     }

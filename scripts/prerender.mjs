@@ -55,11 +55,11 @@ const sitemapUrls = [
 const SECTION_MAP = [
   { id: 'about', show: data.about.show, title: data.about.title },
   { id: 'skills', show: data.skills.show, title: data.skills.title },
-  { id: 'experience', show: data.experiences.show, title: data.experiences.title },
+  { id: 'experience', show: data.experience.show, title: data.experience.title },
   { id: 'projects', show: data.projects.show, title: data.projects.title },
   { id: 'dashboards', show: data.dashboards.show, title: data.dashboards.title },
   { id: 'education', show: data.education.show, title: data.education.title },
-  { id: 'contact', show: data.contacts.show, title: data.contacts.title },
+  { id: 'contact', show: data.contact.show, title: data.contact.title },
 ];
 for (const { id, show } of SECTION_MAP) {
   if (!show) continue;
@@ -96,7 +96,7 @@ function stripMarkdown(str = '') {
 }
 
 function generateStaticHTML(data) {
-  const { hero, about, skills, experiences, projects, dashboards, education, contacts } = data;
+  const { hero, about, skills, experience, projects, dashboards, education, contact } = data;
 
   const skillsHTML = skills.items.map(group => `
     <div>
@@ -104,7 +104,7 @@ function generateStaticHTML(data) {
       <p>${group.skills.map(esc).join(', ')}</p>
     </div>`).join('');
     
-  const experienceHTML = experiences.items.map(exp => `
+  const experienceHTML = experience.items.map(exp => `
     <article>
       <h3>${esc(exp.title)}</h3>
       <p>${esc(exp.company)} &mdash; ${esc(exp.location)}</p>
@@ -142,7 +142,7 @@ function generateStaticHTML(data) {
       <p>${esc(cert.issuer)} &mdash; ${esc(cert.date)}</p>
     </article>`).join('');
 
-  const contactHTML = contacts.items.map(item => `
+  const contactHTML = contact.items.map(item => `
     <p>${esc(item.label)}: ${esc(item.value)}</p>`).join('');
 
   const sections = [
@@ -158,10 +158,10 @@ function generateStaticHTML(data) {
       ${skills.subtitle ? `<p>${esc(skills.subtitle)}</p>` : ''}
       ${skillsHTML}
     </section>`,
-    experiences.show && `
+    experience.show && `
     <section id="experience">
-      <h2>${esc(experiences.title)}</h2>
-      ${experiences.subtitle ? `<p>${esc(experiences.subtitle)}</p>` : ''}
+      <h2>${esc(experience.title)}</h2>
+      ${experience.subtitle ? `<p>${esc(experience.subtitle)}</p>` : ''}
       ${experienceHTML}
     </section>`,
     projects.show && `
@@ -184,10 +184,10 @@ function generateStaticHTML(data) {
       <h3>${esc(education.certifications.title)}</h3>
       ${certsHTML}
     </section>`,
-    contacts.show && `
+    contact.show && `
     <section id="contact">
-      <h2>${esc(contacts.title)}</h2>
-      ${contacts.subtitle ? `<p>${esc(contacts.subtitle)}</p>` : ''}
+      <h2>${esc(contact.title)}</h2>
+      ${contact.subtitle ? `<p>${esc(contact.subtitle)}</p>` : ''}
       ${contactHTML}
     </section>`,
   ].filter(Boolean).join('');
@@ -197,7 +197,7 @@ function generateStaticHTML(data) {
   <header>
     <h1>${esc(hero.name)}</h1>
     <p>${esc(hero.title)}</p>
-    <p>${esc(contacts.items.find(i => i.icon === 'map')?.value ?? '')}</p>
+    <p>${esc(contact.items.find(i => i.icon === 'map')?.value ?? '')}</p>
   </header>
   <main>
 ${sections}

@@ -12,14 +12,14 @@ function portfolioSeoPlugin(): Plugin {
     name: 'portfolio-seo',
     transformIndexHtml(html) {
       const data = JSON.parse(fs.readFileSync('./src/data.json', 'utf-8'));
-      const { hero, brand, contacts, skills } = data;
+      const { hero, brand, contact, skills } = data;
       const homepage = String(brand.homepage || DEFAULT_HOMEPAGE).replace(/\/$/, '');
 
       const allSkills = skills.items.flatMap((g: { skills: string[] }) => g.skills);
       const description =
         `Data Professional with 9+ years of cross-sector experience in analytics, ` +
         `data engineering, and machine learning. Skilled in Python, SQL, BigQuery, ` +
-        `ClickHouse, and BI platforms. Based in ${contacts.items.find((i: { icon: string }) => i.icon === 'map')?.value ?? ''}.`;
+        `ClickHouse, and BI platforms. Based in ${contact.items.find((i: { icon: string }) => i.icon === 'map')?.value ?? ''}.`;
 
       const jsonLdPerson = JSON.stringify({
         '@context': 'https://schema.org',
@@ -29,19 +29,19 @@ function portfolioSeoPlugin(): Plugin {
         jobTitle: hero.title,
         description: `Data Professional with 9+ years of cross-sector experience turning complex data into strategic business insights.`,
         url: homepage,
-        email: contacts.items.find((i: { icon: string }) => i.icon === 'mail')?.value ?? '',
+        email: contact.items.find((i: { icon: string }) => i.icon === 'mail')?.value ?? '',
         address: {
           '@type': 'PostalAddress',
-          addressLocality: (contacts.items.find((i: { icon: string }) => i.icon === 'map')?.value ?? '').split(',')[0]?.trim(),
+          addressLocality: (contact.items.find((i: { icon: string }) => i.icon === 'map')?.value ?? '').split(',')[0]?.trim(),
           addressCountry: 'ID',
         },
         sameAs: ['linkedin', 'github', 'book', 'code'].map(
-          (icon: string) => contacts.items.find((i: { icon: string }) => i.icon === icon)?.href ?? ''
+          (icon: string) => contact.items.find((i: { icon: string }) => i.icon === icon)?.href ?? ''
         ).filter(Boolean),
         knowsAbout: allSkills,
         worksFor: {
           '@type': 'Organization',
-          name: data.experiences.items[0]?.company ?? '',
+          name: data.experience.items[0]?.company ?? '',
         },
       });
 
@@ -56,12 +56,12 @@ function portfolioSeoPlugin(): Plugin {
 
       const sectionIds = [
         { id: 'about', show: data.about.show },
-        { id: 'experience', show: data.experiences.show },
+        { id: 'experience', show: data.experience.show },
         { id: 'skills', show: data.skills.show },
         { id: 'projects', show: data.projects.show },
         { id: 'dashboards', show: data.dashboards.show },
         { id: 'education', show: data.education.show },
-        { id: 'contact', show: data.contacts.show },
+        { id: 'contact', show: data.contact.show },
       ].filter((section) => section.show).map((section) => section.id);
       const jsonLdBreadcrumbs = JSON.stringify({
         '@context': 'https://schema.org',

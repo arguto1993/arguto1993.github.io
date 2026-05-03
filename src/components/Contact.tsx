@@ -14,7 +14,7 @@ const iconMap: Record<string, typeof Mail> = {
 };
 
 export const Contact: React.FC = () => {
-  const { contacts } = useSiteData();
+  const { contact } = useSiteData();
 
   return (
     <section id="contact" className="section-container">
@@ -25,12 +25,12 @@ export const Contact: React.FC = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-serif font-bold mb-6">{contacts.title}</h2>
-          <p className="text-lg opacity-60 max-w-4xl mx-auto">{contacts.subtitle}</p>
+          <h2 className="text-4xl md:text-5xl font-serif font-bold mb-6">{contact.title}</h2>
+          <p className="text-lg opacity-60 max-w-4xl mx-auto">{contact.subtitle}</p>
         </motion.div>
 
         <div className="grid md:grid-cols-3 gap-x-24 gap-y-10">
-          {contacts.items.map((item) => (
+          {contact.items.map((item) => (
             <ContactItem key={`${item.label}-${item.value}`} item={item} />
           ))}
         </div>
@@ -50,7 +50,7 @@ const ContactItem: React.FC<{ item: ContactItemType }> = ({ item }) => {
       <div>
         <p className="text-xs uppercase tracking-widest opacity-50 font-bold mb-1">{item.label}</p>
         {item.href ? (
-          <a href={item.href} target="_blank" rel="noopener noreferrer" className="text-lg font-medium hover:accent-text transition-colors">
+          <a href={item.href} target="_blank" rel="noopener noreferrer" className="text-md font-medium hover:accent-text transition-colors">
             {item.value}
           </a>
         ) : (

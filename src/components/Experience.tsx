@@ -4,7 +4,7 @@ import { useSiteData } from '../SiteDataContext';
 import { Briefcase } from 'lucide-react';
 
 export const Experience: React.FC = () => {
-  const { experiences } = useSiteData();
+  const { experience } = useSiteData();
 
   return (
     <section id="experience" className="section-container bg-[var(--card-bg)]/30">
@@ -15,12 +15,12 @@ export const Experience: React.FC = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-serif font-bold mb-4">{experiences.title}</h2>
-          <p className="opacity-60">{experiences.subtitle}</p>
+          <h2 className="text-4xl font-serif font-bold mb-4">{experience.title}</h2>
+          <p className="opacity-60">{experience.subtitle}</p>
         </motion.div>
 
         <div className="space-y-12">
-          {experiences.items.map((exp, index) => (
+          {experience.items.map((exp, index) => (
             <motion.div
               key={`${exp.company}-${index}`}
               initial={{ opacity: 0, y: 30 }}

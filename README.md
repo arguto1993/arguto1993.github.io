@@ -60,7 +60,7 @@ My professional portfolio website built with React and TypeScript.
 | --- | --- |
 | All content, section titles, and visibility (show/hide) | `src/data.json` (or the admin page — see below) |
 | Canonical portfolio URL used by SEO and sitemap generation | `src/data.json` → `brand.homepage` |
-| Contact card labels, display values, links, and icons | `src/data.json` → `contacts.items` |
+| Contact card labels, display values, links, and icons | `src/data.json` → `contact.items` |
 | Images | `public/images/` |
 
 > SEO meta tags, Open Graph, and JSON-LD are all derived from `data.json` automatically — no manual updates needed.
@@ -135,7 +135,7 @@ The admin route is lazy-loaded, marked `noindex`, and the OAuth token is held in
 └── src/
     ├── App.tsx              # Routes to AdminApp on #/admin, otherwise the portfolio
     ├── SiteDataContext.tsx  # React context + useSiteData hook; default value from constants
-    ├── constants.ts         # Typed exports: HERO, BRAND, ABOUT, CONTACTS + section objects
+    ├── constants.ts         # Section visibility flags (from data.json)
     ├── types.ts             # TypeScript interfaces for all data shapes
     ├── inlineMarkdown.ts    # Parses **bold** and __italic__ in about copy
     ├── data.json            # All content, homepage metadata, contact cards, and section flags

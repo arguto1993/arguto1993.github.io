@@ -4,7 +4,7 @@ import { Github, Linkedin, Mail, FileText } from 'lucide-react';
 import { useSiteData } from '../SiteDataContext';
 
 export const Hero: React.FC = () => {
-  const { hero, contacts } = useSiteData();
+  const { hero, contact } = useSiteData();
 
   return (
     <section id="home" className="min-h-[calc(100vh-130px)] flex items-center justify-center pt-4 pb-2 relative">
@@ -42,9 +42,9 @@ export const Hero: React.FC = () => {
           transition={{ delay: 0.4, duration: 0.6 }}
           className="flex flex-wrap justify-center gap-6"
         >
-          <SocialLink href={contacts.items.find(i => i.icon === 'linkedin')?.href ?? ''} icon={<Linkedin size={20} />} label="LinkedIn" />
-          <SocialLink href={contacts.items.find(i => i.icon === 'github')?.href ?? ''} icon={<Github size={20} />} label="Github" />
-          <SocialLink href={contacts.items.find(i => i.icon === 'mail')?.href ?? ''} icon={<Mail size={20} />} label="Email" />
+          <SocialLink href={contact.items.find(i => i.icon === 'linkedin')?.href ?? ''} icon={<Linkedin size={20} />} label="LinkedIn" />
+          <SocialLink href={contact.items.find(i => i.icon === 'github')?.href ?? ''} icon={<Github size={20} />} label="Github" />
+          <SocialLink href={contact.items.find(i => i.icon === 'mail')?.href ?? ''} icon={<Mail size={20} />} label="Email" />
           <SocialLink href={hero.resume} icon={<FileText size={20} />} label="Resume" />
         </motion.div>
       </div>

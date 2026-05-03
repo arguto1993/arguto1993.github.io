@@ -6,6 +6,7 @@ export interface Brand {
   homepage: string;
   _homepageComment: string;
   googleVerification: string;
+  repository: string;
   lastUpdated: string;
 }
 
@@ -37,7 +38,7 @@ export interface Skills {
   items: SkillGroup[];
 }
 
-export interface Experience {
+export interface ExperienceItem {
   title: string;
   company: string;
   location: string;
@@ -46,11 +47,11 @@ export interface Experience {
   description: string[];
 }
 
-export interface Experiences {
+export interface Experience {
   show: boolean;
   title: string;
   subtitle: string;
-  items: Experience[];
+  items: ExperienceItem[];
 }
 
 export interface Project {
@@ -115,7 +116,7 @@ export interface CertificationsGroup {
   items: Certification[];
 }
 
-export interface Contacts {
+export interface Contact {
   show: boolean;
   title: string;
   subtitle: string;

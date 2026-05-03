@@ -20,40 +20,19 @@ function SectionToggle({ show, onChange }: { show: boolean; onChange: (v: boolea
   );
 }
 
-export function HeroForm({ value, onChange }: SectionProps<'hero'>) {
-  const set = <K extends keyof PortfolioData['hero']>(k: K, v: PortfolioData['hero'][K]) =>
-    onChange({ ...value, [k]: v });
-  return (
-    <div className="grid gap-4">
-      <p className="px-3 py-2 text-sm text-slate-500 dark:text-slate-400 rounded-md border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50">
-        Hero is always shown. The <code>show</code> field stays in data.json only for section schema consistency.
-      </p>
-      <div className="grid gap-4 sm:grid-cols-2">
-        <Field label="Name">
-          <TextInput value={value.name} onChange={(v) => set('name', v)} />
-        </Field>
-        <Field label="Title (badge)">
-          <TextInput value={value.title} onChange={(v) => set('title', v)} />
-        </Field>
-        <Field label="Subtitle (paragraph text)" >
-          <TextInput value={value.subtitle} onChange={(v) => set('subtitle', v)} />
-        </Field>
-      </div>
-    </div>
-  );
-}
-
 export function BrandForm({ value, onChange }: SectionProps<'brand'>) {
   const set = <K extends keyof PortfolioData['brand']>(k: K, v: PortfolioData['brand'][K]) =>
     onChange({ ...value, [k]: v });
   return (
-    <div className="grid gap-4 sm:grid-cols-2">
-      <Field label="Shortname">
-        <TextInput value={value.shortname} onChange={(v) => set('shortname', v)} />
-      </Field>
-      <Field label="Nickname">
-        <TextInput value={value.nickname} onChange={(v) => set('nickname', v)} />
-      </Field>
+    <div className="grid gap-4">
+      <div className="grid gap-4 sm:grid-cols-2">
+        <Field label="Shortname">
+          <TextInput value={value.shortname} onChange={(v) => set('shortname', v)} />
+        </Field>
+        <Field label="Nickname">
+          <TextInput value={value.nickname} onChange={(v) => set('nickname', v)} />
+        </Field>
+      </div>
       <Field label="Homepage">
         <TextInput value={value.homepage} onChange={(v) => set('homepage', v)} />
       </Field>
@@ -74,16 +53,43 @@ export function BrandForm({ value, onChange }: SectionProps<'brand'>) {
   );
 }
 
+export function HeroForm({ value, onChange }: SectionProps<'hero'>) {
+  const set = <K extends keyof PortfolioData['hero']>(k: K, v: PortfolioData['hero'][K]) =>
+    onChange({ ...value, [k]: v });
+  return (
+    <div className="grid gap-4">
+      <p className="px-3 py-2 text-sm text-slate-500 dark:text-slate-400 rounded-md border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50">
+        Hero is always shown. The <code>show</code> field stays in data.json only for section schema consistency.
+      </p>
+      <div className="grid gap-4">
+        <Field label="Title (badge)">
+          <TextInput value={value.title} onChange={(v) => set('title', v)} />
+        </Field>
+        <Field label="Full Name">
+          <TextInput value={value.name} onChange={(v) => set('name', v)} />
+        </Field>
+      </div>
+      <Field label="Subtitle (Tagline)">
+        <TextArea
+          value={value.subtitle}
+          onChange={(v) => set('subtitle', v)}
+          rows={3}
+        />
+      </Field>
+    </div>
+  );
+}
+
 export function AboutForm({ value, onChange }: SectionProps<'about'>) {
   const set = <K extends keyof PortfolioData['about']>(k: K, v: PortfolioData['about'][K]) =>
     onChange({ ...value, [k]: v });
   return (
     <div className="grid gap-4">
       <SectionToggle show={value.show} onChange={(v) => set('show', v)} />
-      <Field label="Section title">
+      <Field label="Title">
         <TextInput value={value.title} onChange={(v) => set('title', v)} />
       </Field>
-      <Field label="About copy (markdown: **bold**, __italic__)">
+      <Field label="Content (markdown: **bold**, __italic__)">
         <TextArea
           value={value.content}
           onChange={(content) => onChange({ ...value, content })}
@@ -101,7 +107,7 @@ export function SkillsForm({ value, onChange }: SectionProps<'skills'>) {
   return (
     <div className="grid gap-4">
       <SectionToggle show={value.show} onChange={(v) => set('show', v)} />
-      <Field label="Section title">
+      <Field label="Title">
         <TextInput value={value.title} onChange={(v) => set('title', v)} />
       </Field>
       <ItemList<SkillGroup>
@@ -120,18 +126,18 @@ export function SkillsForm({ value, onChange }: SectionProps<'skills'>) {
   );
 }
 
-type Experience = PortfolioData['experiences']['items'][number];
-export function ExperiencesForm({ value, onChange }: SectionProps<'experiences'>) {
-  const set = <K extends keyof PortfolioData['experiences']>(k: K, v: PortfolioData['experiences'][K]) =>
+type Experience = PortfolioData['experience']['items'][number];
+export function ExperienceForm({ value, onChange }: SectionProps<'experience'>) {
+  const set = <K extends keyof PortfolioData['experience']>(k: K, v: PortfolioData['experience'][K]) =>
     onChange({ ...value, [k]: v });
   return (
     <div className="grid gap-4">
       <SectionToggle show={value.show} onChange={(v) => set('show', v)} />
-      <div className="grid gap-4 sm:grid-cols-2 mb-2">
-        <Field label="Section title">
+      <div className="grid gap-4 mb-2">
+        <Field label="Title">
           <TextInput value={value.title} onChange={(v) => set('title', v)} />
         </Field>
-        <Field label="Section subtitle">
+        <Field label="Subtitle">
           <TextInput value={value.subtitle} onChange={(v) => set('subtitle', v)} />
         </Field>
       </div>
@@ -166,11 +172,11 @@ export function ProjectsForm({ value, onChange }: SectionProps<'projects'>) {
   return (
     <div className="grid gap-4">
       <SectionToggle show={value.show} onChange={(v) => set('show', v)} />
-      <div className="grid gap-4 sm:grid-cols-2 mb-2">
-        <Field label="Section title">
+      <div className="grid gap-4 mb-2">
+        <Field label="Title">
           <TextInput value={value.title} onChange={(v) => set('title', v)} />
         </Field>
-        <Field label="Section subtitle">
+        <Field label="Subtitle">
           <TextInput value={value.subtitle} onChange={(v) => set('subtitle', v)} />
         </Field>
       </div>
@@ -210,11 +216,11 @@ export function DashboardsForm({ value, onChange }: SectionProps<'dashboards'>) 
   return (
     <div className="grid gap-4">
       <SectionToggle show={value.show} onChange={(v) => set('show', v)} />
-      <div className="grid gap-4 sm:grid-cols-2 mb-2">
-        <Field label="Section title">
+      <div className="grid gap-4 mb-2">
+        <Field label="Title">
           <TextInput value={value.title} onChange={(v) => set('title', v)} />
         </Field>
-        <Field label="Section subtitle">
+        <Field label="Subtitle">
           <TextInput value={value.subtitle} onChange={(v) => set('subtitle', v)} />
         </Field>
       </div>
@@ -248,7 +254,7 @@ export function EducationForm({ value, onChange }: SectionProps<'education'>) {
   return (
     <div className="grid gap-4">
       <SectionToggle show={value.show} onChange={(v) => set('show', v)} />
-      <Field label="Section title">
+      <Field label="Title">
         <TextInput value={value.title} onChange={(v) => set('title', v)} />
       </Field>
       <ItemList<EducationItem>
@@ -279,7 +285,7 @@ export function CertificationsForm({ value, onChange }: { value: CertGroup; onCh
   type Cert = CertGroup['items'][number];
   return (
     <div className="grid gap-4">
-      <Field label="Section title">
+      <Field label="Title">
         <TextInput value={value.title} onChange={(title) => onChange({ ...value, title })} />
       </Field>
       <ItemList<Cert>
@@ -300,30 +306,23 @@ export function CertificationsForm({ value, onChange }: { value: CertGroup; onCh
   );
 }
 
-export function ContactsForm({ value, onChange }: SectionProps<'contacts'>) {
-  const set = <K extends keyof PortfolioData['contacts']>(k: K, v: PortfolioData['contacts'][K]) =>
+export function ContactForm({ value, onChange }: SectionProps<'contact'>) {
+  const set = <K extends keyof PortfolioData['contact']>(k: K, v: PortfolioData['contact'][K]) =>
     onChange({ ...value, [k]: v });
-  type ContactItem = PortfolioData['contacts']['items'][number];
+  type ContactItem = PortfolioData['contact']['items'][number];
   return (
     <div className="grid gap-4">
       <SectionToggle show={value.show} onChange={(v) => set('show', v)} />
-      <div className="grid gap-4 sm:grid-cols-2">
-        <Field label="Section title">
+      <div className="grid gap-4 mb-2">
+        <Field label="Title">
           <TextInput value={value.title} onChange={(v) => set('title', v)} />
         </Field>
-        <Field label="Section subtitle">
+        <Field label="Subtitle">
           <TextInput value={value.subtitle} onChange={(v) => set('subtitle', v)} />
         </Field>
-        <Field label="Email">
-          <TextInput value={value.email} onChange={(v) => set('email', v)} type="email" />
-        </Field>
-        <Field label="Phone">
-          <TextInput value={value.phone} onChange={(v) => set('phone', v)} />
-        </Field>
-        <Field label="Location">
-          <TextInput value={value.location} onChange={(v) => set('location', v)} />
-        </Field>
-        {(Object.keys(value) as (keyof PortfolioData['contacts'])[])
+      </div>
+      <div className="grid gap-4 sm:grid-cols-2">
+        {(Object.keys(value) as (keyof PortfolioData['contact'])[])
           .filter((key) => !['show', 'title', 'subtitle', 'email', 'phone', 'location', 'items'].includes(key))
           .map((key) => (
             <Field key={key} label={key}>

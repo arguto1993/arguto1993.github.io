@@ -1,41 +1,33 @@
+
+import data from './data.json';
 import { createContext, useContext } from 'react';
-import {
-  BRAND,
-  HERO,
-  ABOUT,
-  SKILLS,
-  EXPERIENCES,
-  PROJECTS,
-  DASHBOARDS,
-  EDUCATION,
-  CONTACTS,
-} from './constants';
-import type { Hero, Brand, About, Contacts, Experiences, Projects, Dashboards, Education, Skills } from './types';
+import type { Hero, Brand, About, Contact, Experience, Projects, Dashboards, Education, Skills } from './types';
 
 export type SiteDataContextValue = {
   brand: Brand;
   hero: Hero;
   about: About;
   skills: Skills;
-  experiences: Experiences;
+  experience: Experience;
   projects: Projects;
   dashboards: Dashboards;
   education: Education;
-  contacts: Contacts;
+  contact: Contact;
 };
 
 const SiteDataContext = createContext<SiteDataContextValue | null>(null);
 
+// Dynamically generate defaultValue from data.json, preserving type safety
 const defaultValue: SiteDataContextValue = {
-  brand: BRAND,
-  hero: HERO,
-  about: ABOUT,
-  experiences: EXPERIENCES,
-  projects: PROJECTS,
-  dashboards: DASHBOARDS,
-  education: EDUCATION,
-  skills: SKILLS,
-  contacts: CONTACTS,
+  brand: data.brand,
+  hero: data.hero,
+  about: data.about,
+  skills: data.skills,
+  experience: data.experience,
+  projects: data.projects,
+  dashboards: data.dashboards,
+  education: data.education,
+  contact: data.contact,
 };
 
 export function SiteDataProvider({

@@ -16,12 +16,12 @@ type SectionKey =
   | 'Hero'
   | 'About'
   | 'Skills'
-  | 'Experiences'
+  | 'Experience'
   | 'Projects'
   | 'Dashboards'
   | 'Education'
   | 'Certifications'
-  | 'Contacts';
+  | 'Contact';
 
 function buildSiteData(data: PortfolioData): SiteDataContextValue {
   return {
@@ -29,11 +29,11 @@ function buildSiteData(data: PortfolioData): SiteDataContextValue {
     hero: data.hero,
     about: data.about,
     skills: data.skills,
-    experiences: data.experiences,
+    experience: data.experience,
     projects: data.projects,
     dashboards: data.dashboards,
     education: data.education,
-    contacts: data.contacts,
+    contact: data.contact,
   };
 }
 
@@ -43,12 +43,12 @@ function SectionComponent({ section }: { section: SectionKey }) {
     case 'Hero': return <Hero />;
     case 'About': return <About />;
     case 'Skills': return <Skills />;
-    case 'Experiences': return <Experience />;
+    case 'Experience': return <Experience />;
     case 'Projects': return <Projects />;
     case 'Dashboards': return <Dashboards />;
     case 'Education':
     case 'Certifications': return <Education />;
-    case 'Contacts': return <Contact />;
+    case 'Contact': return <Contact />;
   }
 }
 
