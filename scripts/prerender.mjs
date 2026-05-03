@@ -36,9 +36,6 @@ console.log('✓ Pre-rendering complete: portfolio content injected into dist/in
 
 // ── Sitemap generation ───────────────────────────────────────────────────────
 
-const sectionsPath = path.join(rootDir, 'src', 'sections.json');
-const sections = JSON.parse(fs.readFileSync(sectionsPath, 'utf-8'));
-
 const BASE_URL = 'https://arguto1993.github.io';
 
 /** Convert "April 12, 2026" → "2026-04-12" (W3C datetime for <lastmod>) */
@@ -54,10 +51,18 @@ const sitemapUrls = [
   { loc: `${BASE_URL}/`, priority: '1.0', changefreq: 'monthly' },
 ];
 
-// Anchor URLs for visible sections — skip 'home' (it IS the root) and hidden ones
-const SKIP_SECTIONS = new Set(['home', 'dashboards']);
-for (const [id, section] of Object.entries(sections)) {
-  if (SKIP_SECTIONS.has(id) || !section.show) continue;
+// Anchor URLs for visible sections — visibility is now driven by data.json `.show` fields
+// Skip 'home' (it IS the root) and 'dashboards' (gallery, not a nav target)
+const SECTION_MAP = [
+  { id: 'about',    show: data.about.show },
+  { id: 'skills',   show: data.skills.show },
+  { id: 'experience', show: data.experiences.show },
+  { id: 'projects', show: data.projects.show },
+  { id: 'education', show: data.education.show },
+  { id: 'contact',  show: data.contacts.show },
+];
+for (const { id, show } of SECTION_MAP) {
+  if (!show) continue;
   sitemapUrls.push({ loc: `${BASE_URL}/#${id}`, priority: '0.8', changefreq: 'monthly' });
 }
 
@@ -91,9 +96,15 @@ function stripMarkdown(str = '') {
 }
 
 function generateStaticHTML(data) {
-  const { hero, about, contacts, experiences, projects, skills, education, certifications } = data;
+  const { hero, about, skills, experiences, projects, education, contacts } = data;
 
-  const experienceHTML = experiences.map(exp => `
+  const skillsHTML = skills.items.map(group => `
+    <div>
+      <h3>${esc(group.category)}</h3>
+      <p>${group.skills.map(esc).join(', ')}</p>
+    </div>`).join('');
+    
+  const experienceHTML = experiences.items.map(exp => `
     <article>
       <h3>${esc(exp.title)}</h3>
       <p>${esc(exp.company)} &mdash; ${esc(exp.location)}</p>
@@ -101,7 +112,7 @@ function generateStaticHTML(data) {
       <ul>${exp.description.map(d => `<li>${esc(d)}</li>`).join('')}</ul>
     </article>`).join('');
 
-  const projectsHTML = projects.map(proj => `
+  const projectsHTML = projects.items.map(proj => `
     <article>
       <h3>${esc(proj.title)}</h3>
       <p>${esc(proj.organization)} &mdash; ${esc(proj.date)}</p>
@@ -110,13 +121,8 @@ function generateStaticHTML(data) {
       <p>Tags: ${proj.tags.map(esc).join(', ')}</p>
     </article>`).join('');
 
-  const skillsHTML = skills.map(group => `
-    <div>
-      <h3>${esc(group.category)}</h3>
-      <p>${group.skills.map(esc).join(', ')}</p>
-    </div>`).join('');
 
-  const educationHTML = education.map(edu => `
+  const educationHTML = education.items.map(edu => `
     <article>
       <h3>${esc(edu.degree)}</h3>
       <p>${esc(edu.institution)} &mdash; ${esc(edu.location)}</p>
@@ -124,7 +130,7 @@ function generateStaticHTML(data) {
       ${edu.details ? `<ul>${edu.details.map(d => `<li>${esc(d)}</li>`).join('')}</ul>` : ''}
     </article>`).join('');
 
-  const certsHTML = certifications.map(cert => `
+  const certsHTML = education.certifications.items.map(cert => `
     <article>
       <h3>${esc(cert.name)}</h3>
       <p>${esc(cert.issuer)} &mdash; ${esc(cert.date)}</p>
@@ -142,13 +148,13 @@ function generateStaticHTML(data) {
       <h2>About</h2>
       <p>${esc(stripMarkdown(about.content))}</p>
     </section>
-    <section id="experience">
-      <h2>Experience</h2>
-      ${experienceHTML}
-    </section>
     <section id="skills">
       <h2>Skills</h2>
       ${skillsHTML}
+    </section>
+    <section id="experience">
+      <h2>Experience</h2>
+      ${experienceHTML}
     </section>
     <section id="projects">
       <h2>Projects</h2>
@@ -157,10 +163,13 @@ function generateStaticHTML(data) {
     <section id="education">
       <h2>Education</h2>
       ${educationHTML}
-    </section>
-    <section id="certifications">
-      <h2>Certifications</h2>
+      <h3>Certifications</h3>
       ${certsHTML}
+    </section>
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>${esc(contacts.email)}</p>
+      <p>${esc(contacts.location)}</p>
     </section>
   </main>
 </div>`;
