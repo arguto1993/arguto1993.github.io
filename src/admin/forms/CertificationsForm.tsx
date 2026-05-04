@@ -16,10 +16,12 @@ export function CertificationsForm({ value, onChange }: { value: CertGroup; onCh
         emptyItem={() => ({ name: '', issuer: '', date: '', link: '' })}
         itemLabel={(c) => c.name || '(untitled certification)'}
         renderItem={(item, _update, set) => (
-          <div className="grid gap-3 sm:grid-cols-2">
+          <div className="grid gap-3">
             <Field label="Name"><TextInput value={item.name} onChange={(v) => set('name', v)} /></Field>
-            <Field label="Issuer"><TextInput value={item.issuer} onChange={(v) => set('issuer', v)} /></Field>
-            <Field label="Date"><TextInput value={item.date} onChange={(v) => set('date', v)} /></Field>
+            <div className="grid gap-3 sm:grid-cols-2">
+              <Field label="Issuer"><TextInput value={item.issuer} onChange={(v) => set('issuer', v)} /></Field>
+              <Field label="Date"><TextInput value={item.date} onChange={(v) => set('date', v)} /></Field>
+            </div>
             <Field label="Link"><TextInput value={item.link ?? ''} onChange={(v) => set('link', v)} /></Field>
           </div>
         )}
