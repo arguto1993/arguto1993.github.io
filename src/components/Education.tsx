@@ -70,7 +70,8 @@ export const Education: React.FC = () => {
                 <h3 className="text-lg font-serif font-bold group-hover:accent-text transition-colors mb-1">
                   {cert.name}
                 </h3>
-                <div className="flex justify-between items-center text-sm opacity-60">
+                <p className="text-xs font-medium accent-text mb-2">{cert.type}</p>
+                <div className="flex justify-between items-center gap-3 text-sm opacity-60">
                   <span>{cert.issuer}</span>
                   <span className="accent-badge !text-[9px] !px-1.5 !py-0.5 !rounded-md">
                     {cert.date}

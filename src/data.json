@@ -60,7 +60,12 @@
           "Google Apps Script",
           "Microsoft Excel",
           "Microsoft PowerPoint",
-          "Canva"
+          "Canva",
+          "Visual Studio Code",
+          "Google Colab",
+          "Claude Code",
+          "Github",
+          "Codex"
         ]
       },
       {
@@ -80,8 +85,7 @@
           "RFM Scoring",
           "Performance Marketing Analysis",
           "Vibe Coding",
-          "Prompt Engineering",
-          "Project Management"
+          "Prompt Engineering"
         ]
       },
       {
@@ -89,10 +93,16 @@
         "skills": [
           "Communication",
           "Teamwork",
+          "Cross-functional Collaboration",
+          "Stakeholder Management",
+          "Project Management",
+          "Consulting",
           "Leadership",
+          "Mentoring",
           "Public Speaking",
           "Adaptability",
           "Critical Thinking",
+          "Analytical Thinking",
           "Problem Solving",
           "Attention to Detail"
         ]
@@ -387,25 +397,29 @@
       "title": "Certifications",
       "items": [
         {
-          "name": "Data Science Bootcamp Certificate of Completion",
+          "name": "Data Science Bootcamp",
+          "type": "Ceritificate of Completion",
           "issuer": "Dicoding Academy",
           "date": "Feb 2025",
           "link": "https://drive.google.com/file/d/11OpjRYdDOgcxqRDAm8992dZVxGsM1U_Q/view"
         },
         {
-          "name": "Storytelling: The Key to Effective Last Mile Delivery of Statistical Products Certificate of Participation",
+          "name": "Storytelling: The Key to Effective Last Mile Delivery of Statistical Products",
+          "type": "Certificate of Participation",
           "issuer": "Badan Pusat Statistik",
           "date": "Jul 2024",
           "link": "https://drive.google.com/file/d/1JnL_Td0Xi9y7jKzf2Sd3FzRhX5glrpkV/view?usp=sharing"
         },
         {
-          "name": "Full Stack Data Analytics Certificate of Excellence",
+          "name": "Full Stack Data Analytics",
+          "type": "Certificate of Excellence",
           "issuer": "RevoU",
           "date": "Jun 2024",
           "link": "https://drive.google.com/file/d/1HH5Fw5uRYS4ttVWy1unvJhhsPAcK3Pet/view?usp=sharing"
         },
         {
           "name": "SQL (Advanced) Certificate of Accomplishment",
+          "type": "Certificate of Accomplishment",
           "issuer": "HackerRank",
           "date": "Feb 2024",
           "link": "https://www.hackerrank.com/certificates/ef7e4694f4ec"

@@ -108,6 +108,7 @@ export interface Education {
 
 export interface Certification {
   name: string;
+  type: string;
   issuer: string;
   date: string;
   link?: string;
