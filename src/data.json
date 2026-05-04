@@ -39,7 +39,7 @@
     }
   },
   "skills": {
-    "show": true,
+    "show": false,
     "title": "Skills",
     "subtitle": "",
     "items": [
