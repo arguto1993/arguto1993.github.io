@@ -39,7 +39,7 @@ export const Dashboards: React.FC = () => {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent flex flex-col justify-end p-8 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
               <div className="mb-3">
-                <span className="accent-badge !text-[10px] !px-2 !py-0.5 flex items-center gap-1 w-fit">
+                <span className="accent-badge-2 !text-[10px] !px-2 !py-0.5 flex items-center gap-1 w-fit">
                   <Layout size={10} /> {dash.platform}
                 </span>
               </div>

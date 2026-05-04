@@ -73,6 +73,17 @@
     padding-left: 0 !important;
     padding-right: 0 !important;
   }
+
+  .accent-badge-2 {  /* Intentionally the same in light mode */
+    @apply px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest inline-block transition-all duration-300;
+    background-color: var(--accent);
+    color: #000000;
+  }
+
+  .dark .accent-badge-2 {
+    background-color:  #000000 !important;
+    color: var(--accent) !important;
+  }
 }
 
 /* Custom scrollbar */
