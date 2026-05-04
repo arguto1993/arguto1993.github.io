@@ -4,8 +4,10 @@ import fs from 'fs';
 import path from 'path';
 import {defineConfig, loadEnv, type Plugin} from 'vite';
 import {
-  getVisibleContentSections,
-  normalizeHomepage,
+  getAllSkills,
+  getContactByIcon,
+  getHomepage,
+  getVisibleSections,
 } from './src/sectionRegistry.js';
 
 /** Reads data.json and injects SEO meta tags + JSON-LD into the built HTML. */
@@ -14,14 +16,15 @@ function portfolioSeoPlugin(): Plugin {
     name: 'portfolio-seo',
     transformIndexHtml(html) {
       const data = JSON.parse(fs.readFileSync('./src/data.json', 'utf-8'));
-      const { hero, brand, contact, skills } = data;
-      const homepage = normalizeHomepage(brand.homepage);
+      const { hero, brand } = data;
+      const homepage = getHomepage(data);
+      const location = getContactByIcon(data, 'map')?.value ?? '';
 
-      const allSkills = skills.items.flatMap((g: { skills: string[] }) => g.skills);
+      const allSkills = getAllSkills(data);
       const description =
         `Data Professional with 9+ years of cross-sector experience in analytics, ` +
         `data engineering, and machine learning. Skilled in Python, SQL, BigQuery, ` +
-        `ClickHouse, and BI platforms. Based in ${contact.items.find((i: { icon: string }) => i.icon === 'map')?.value ?? ''}.`;
+        `ClickHouse, and BI platforms. Based in ${location}.`;
 
       const jsonLdPerson = JSON.stringify({
         '@context': 'https://schema.org',
@@ -31,14 +34,14 @@ function portfolioSeoPlugin(): Plugin {
         jobTitle: hero.title,
         description: `Data Professional with 9+ years of cross-sector experience turning complex data into strategic business insights.`,
         url: homepage,
-        email: contact.items.find((i: { icon: string }) => i.icon === 'mail')?.value ?? '',
+        email: getContactByIcon(data, 'mail')?.value ?? '',
         address: {
           '@type': 'PostalAddress',
-          addressLocality: (contact.items.find((i: { icon: string }) => i.icon === 'map')?.value ?? '').split(',')[0]?.trim(),
+          addressLocality: location.split(',')[0]?.trim(),
           addressCountry: 'ID',
         },
         sameAs: ['linkedin', 'github', 'book', 'code'].map(
-          (icon: string) => contact.items.find((i: { icon: string }) => i.icon === icon)?.href ?? ''
+          (icon: string) => getContactByIcon(data, icon)?.href ?? ''
         ).filter(Boolean),
         knowsAbout: allSkills,
         worksFor: {
@@ -56,7 +59,7 @@ function portfolioSeoPlugin(): Plugin {
         author: { '@type': 'Person', name: hero.name },
       });
 
-      const visibleSections = getVisibleContentSections(data);
+      const visibleSections = getVisibleSections(data);
       const jsonLdBreadcrumbs = JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',

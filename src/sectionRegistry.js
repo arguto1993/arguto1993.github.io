@@ -24,6 +24,18 @@ export function normalizeHomepage(homepage) {
   return String(homepage || DEFAULT_HOMEPAGE).replace(/\/$/, '');
 }
 
+export function getHomepage(data) {
+  return normalizeHomepage(data.brand?.homepage);
+}
+
+export function getContactByIcon(data, icon) {
+  return data.contact?.items?.find((item) => item.icon === icon);
+}
+
+export function getAllSkills(data) {
+  return data.skills?.items?.flatMap((group) => group.skills) ?? [];
+}
+
 export function isSectionVisible(data, sectionId) {
   if (sectionId === HOME_SECTION.id) return true;
   const section = CONTENT_SECTIONS.find((item) => item.id === sectionId);
@@ -32,6 +44,10 @@ export function isSectionVisible(data, sectionId) {
 
 export function getVisibleContentSections(data) {
   return CONTENT_SECTIONS.filter((section) => isSectionVisible(data, section.id));
+}
+
+export function getVisibleSections(data) {
+  return getVisibleContentSections(data);
 }
 
 export function getVisibleNavSections(data) {
@@ -45,7 +61,7 @@ export function buildSectionVisibility(data) {
 }
 
 export function buildPortfolioUrls(data, options = {}) {
-  const baseUrl = normalizeHomepage(data.brand?.homepage);
+  const baseUrl = getHomepage(data);
   const includeHome = options.includeHome ?? true;
   const urls = includeHome ? [`${baseUrl}/`] : [];
   return [

@@ -16,7 +16,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import {
   buildPortfolioUrls,
-  normalizeHomepage,
+  getHomepage,
 } from '../src/sectionRegistry.js';
 
 const KEY = process.env.INDEXNOW_KEY;
@@ -28,7 +28,7 @@ if (!KEY) {
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.join(__dirname, '..');
 const data = JSON.parse(fs.readFileSync(path.join(rootDir, 'src', 'data.json'), 'utf-8'));
-const baseUrl = normalizeHomepage(data.brand.homepage);
+const baseUrl = getHomepage(data);
 const host = new URL(baseUrl).host;
 const urlList = buildPortfolioUrls(data);
 

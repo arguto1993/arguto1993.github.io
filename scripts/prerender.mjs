@@ -13,8 +13,9 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import {
   CONTENT_SECTIONS,
-  getVisibleContentSections,
-  normalizeHomepage,
+  getContactByIcon,
+  getHomepage,
+  getVisibleSections,
 } from '../src/sectionRegistry.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -41,7 +42,7 @@ console.log('✓ Pre-rendering complete: portfolio content injected into dist/in
 
 // ── Sitemap generation ───────────────────────────────────────────────────────
 
-const BASE_URL = normalizeHomepage(data.brand.homepage);
+const BASE_URL = getHomepage(data);
 
 /** Convert "April 12, 2026" → "2026-04-12" (W3C datetime for <lastmod>) */
 function toW3CDate(humanDate) {
@@ -56,7 +57,7 @@ const sitemapUrls = [
   { loc: `${BASE_URL}/`, priority: '1.0', changefreq: 'monthly' },
 ];
 
-for (const section of getVisibleContentSections(data)) {
+for (const section of getVisibleSections(data)) {
   sitemapUrls.push({ loc: `${BASE_URL}/${section.href}`, priority: '0.8', changefreq: 'monthly' });
 }
 
@@ -196,7 +197,7 @@ function generateStaticHTML(data) {
   <header>
     <h1>${esc(hero.name)}</h1>
     <p>${esc(hero.title)}</p>
-    <p>${esc(contact.items.find(i => i.icon === 'map')?.value ?? '')}</p>
+    <p>${esc(getContactByIcon(data, 'map')?.value ?? '')}</p>
   </header>
   <main>
 ${sections}
