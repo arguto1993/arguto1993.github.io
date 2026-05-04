@@ -11,13 +11,17 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import {
+  CONTENT_SECTIONS,
+  getVisibleContentSections,
+  normalizeHomepage,
+} from '../src/sectionRegistry.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.join(__dirname, '..');
 
 const dataPath = path.join(rootDir, 'src', 'data.json');
 const indexPath = path.join(rootDir, 'dist', 'index.html');
-const DEFAULT_HOMEPAGE = 'https://arguto1993.github.io';
 
 if (!fs.existsSync(indexPath)) {
   console.error('dist/index.html not found — run "npm run build" first.');
@@ -37,7 +41,7 @@ console.log('✓ Pre-rendering complete: portfolio content injected into dist/in
 
 // ── Sitemap generation ───────────────────────────────────────────────────────
 
-const BASE_URL = String(data.brand.homepage || DEFAULT_HOMEPAGE).replace(/\/$/, '');
+const BASE_URL = normalizeHomepage(data.brand.homepage);
 
 /** Convert "April 12, 2026" → "2026-04-12" (W3C datetime for <lastmod>) */
 function toW3CDate(humanDate) {
@@ -52,18 +56,8 @@ const sitemapUrls = [
   { loc: `${BASE_URL}/`, priority: '1.0', changefreq: 'monthly' },
 ];
 
-const SECTION_MAP = [
-  { id: 'about', show: data.about.show, title: data.about.title },
-  { id: 'skills', show: data.skills.show, title: data.skills.title },
-  { id: 'experience', show: data.experience.show, title: data.experience.title },
-  { id: 'projects', show: data.projects.show, title: data.projects.title },
-  { id: 'dashboards', show: data.dashboards.show, title: data.dashboards.title },
-  { id: 'education', show: data.education.show, title: data.education.title },
-  { id: 'contact', show: data.contact.show, title: data.contact.title },
-];
-for (const { id, show } of SECTION_MAP) {
-  if (!show) continue;
-  sitemapUrls.push({ loc: `${BASE_URL}/#${id}`, priority: '0.8', changefreq: 'monthly' });
+for (const section of getVisibleContentSections(data)) {
+  sitemapUrls.push({ loc: `${BASE_URL}/${section.href}`, priority: '0.8', changefreq: 'monthly' });
 }
 
 const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
@@ -145,38 +139,38 @@ function generateStaticHTML(data) {
   const contactHTML = contact.items.map(item => `
     <p>${esc(item.label)}: ${esc(item.value)}</p>`).join('');
 
-  const sections = [
-    about.show && `
+  const sectionRenderers = {
+    about: () => `
     <section id="about">
       <h2>${esc(about.title)}</h2>
       ${about.subtitle ? `<p>${esc(about.subtitle)}</p>` : ''}
       <p>${esc(stripMarkdown(about.content))}</p>
     </section>`,
-    skills.show && `
+    skills: () => `
     <section id="skills">
       <h2>${esc(skills.title)}</h2>
       ${skills.subtitle ? `<p>${esc(skills.subtitle)}</p>` : ''}
       ${skillsHTML}
     </section>`,
-    experience.show && `
+    experience: () => `
     <section id="experience">
       <h2>${esc(experience.title)}</h2>
       ${experience.subtitle ? `<p>${esc(experience.subtitle)}</p>` : ''}
       ${experienceHTML}
     </section>`,
-    projects.show && `
+    projects: () => `
     <section id="projects">
       <h2>${esc(projects.title)}</h2>
       ${projects.subtitle ? `<p>${esc(projects.subtitle)}</p>` : ''}
       ${projectsHTML}
     </section>`,
-    dashboards.show && `
+    dashboards: () => `
     <section id="dashboards">
       <h2>${esc(dashboards.title)}</h2>
       ${dashboards.subtitle ? `<p>${esc(dashboards.subtitle)}</p>` : ''}
       ${dashboardsHTML}
     </section>`,
-    education.show && `
+    education: () => `
     <section id="education">
       <h2>${esc(education.title)}</h2>
       ${education.subtitle ? `<p>${esc(education.subtitle)}</p>` : ''}
@@ -184,13 +178,18 @@ function generateStaticHTML(data) {
       <h3>${esc(education.certifications.title)}</h3>
       ${certsHTML}
     </section>`,
-    contact.show && `
+    contact: () => `
     <section id="contact">
       <h2>${esc(contact.title)}</h2>
       ${contact.subtitle ? `<p>${esc(contact.subtitle)}</p>` : ''}
       ${contactHTML}
     </section>`,
-  ].filter(Boolean).join('');
+  };
+
+  const sections = CONTENT_SECTIONS
+    .filter((section) => data[section.dataKey]?.show)
+    .map((section) => sectionRenderers[section.id]?.() ?? '')
+    .join('');
 
   return `
 <div id="prerendered" aria-hidden="false">

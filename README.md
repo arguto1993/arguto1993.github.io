@@ -132,7 +132,8 @@ The admin route is lazy-loaded, marked `noindex`, and the OAuth token is held in
 └── src/
     ├── App.tsx              # Routes to AdminApp on #/admin, otherwise the portfolio
     ├── SiteDataContext.tsx  # React context + useSiteData hook; default value from constants
-    ├── constants.ts         # Section visibility flags (from data.json)
+    ├── constants.ts         # Section visibility flags derived from the section registry + data.json
+    ├── sectionRegistry.js   # Shared section order, visibility, and URL helpers for app/build scripts
     ├── types.ts             # TypeScript interfaces for all data shapes
     ├── inlineMarkdown.ts    # Parses **bold** and __italic__ in about copy
     ├── data.json            # All content, homepage metadata, contact cards, and section flags

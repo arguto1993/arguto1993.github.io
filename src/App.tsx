@@ -11,8 +11,19 @@ import { Education } from './components/Education';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 import { SECTION_VISIBILITY } from './constants';
+import { CONTENT_SECTIONS } from './sectionRegistry.js';
 
 const AdminApp = lazy(() => import('./admin/AdminApp'));
+
+const sectionComponents = {
+  about: About,
+  skills: Skills,
+  experience: Experience,
+  projects: Projects,
+  dashboards: Dashboards,
+  education: Education,
+  contact: Contact,
+} as const;
 
 function isAdminRoute(): boolean {
   if (typeof window === 'undefined') return false;
@@ -45,13 +56,10 @@ export default function App() {
         <Navbar />
         <main>
           <Hero />
-          {SECTION_VISIBILITY.about && <About />}
-          {SECTION_VISIBILITY.skills && <Skills />}
-          {SECTION_VISIBILITY.experience && <Experience />}
-          {SECTION_VISIBILITY.projects && <Projects />}
-          {SECTION_VISIBILITY.dashboards && <Dashboards />}
-          {SECTION_VISIBILITY.education && <Education />}
-          {SECTION_VISIBILITY.contact && <Contact />}
+          {CONTENT_SECTIONS.map((section) => {
+            const Section = sectionComponents[section.id as keyof typeof sectionComponents];
+            return SECTION_VISIBILITY[section.id] && Section ? <Section key={section.id} /> : null;
+          })}
         </main>
         <Footer />
       </div>

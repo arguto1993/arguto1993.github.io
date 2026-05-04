@@ -3,26 +3,17 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Sun, Moon, Menu, X } from 'lucide-react';
 import { useTheme } from './ThemeContext';
 
-import { SECTION_VISIBILITY } from '../constants';
 import { useSiteData } from '../SiteDataContext';
-
-const navLinks = [
-  { name: 'About', href: '#about', id: 'about' },
-  { name: 'Skills', href: '#skills', id: 'skills' },
-  { name: 'Experience', href: '#experience', id: 'experience' },
-  { name: 'Projects', href: '#projects', id: 'projects' },
-  { name: 'Dashboards', href: '#dashboards', id: 'dashboards' },
-  { name: 'Education', href: '#education', id: 'education' },
-  { name: 'Contact', href: '#contact', id: 'contact' },
-];
+import { getVisibleNavSections } from '../sectionRegistry.js';
 
 export const Navbar: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
-  const { brand } = useSiteData();
+  const siteData = useSiteData();
+  const { brand } = siteData;
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const visibleLinks = navLinks.filter(link => (SECTION_VISIBILITY as any)[link.id]);
+  const visibleLinks = getVisibleNavSections(siteData);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -72,14 +63,14 @@ export const Navbar: React.FC = () => {
         <div className="hidden md:flex items-center space-x-8">
           {visibleLinks.map((link, i) => (
             <motion.a
-              key={link.name}
+              key={link.id}
               href={link.href}
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.1 }}
               className="text-sm font-medium hover:accent-text transition-colors relative group"
             >
-              {link.name}
+              {link.label}
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[var(--accent)] transition-all duration-300 group-hover:w-full" />
             </motion.a>
           ))}
@@ -129,7 +120,7 @@ export const Navbar: React.FC = () => {
             <div className="px-6 py-8 flex flex-col space-y-6">
               {visibleLinks.map((link) => (
                 <a
-                  key={link.name}
+                  key={link.id}
                   href={link.href}
                   onClick={() => setIsMobileMenuOpen(false)}
                   onTouchEnd={(e) => {
@@ -143,7 +134,7 @@ export const Navbar: React.FC = () => {
                   }}
                   className="text-lg font-medium hover:accent-text transition-colors relative w-fit group cursor-pointer"
                 >
-                  {link.name}
+                  {link.label}
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[var(--accent)] transition-all duration-300 group-hover:w-full" />
                 </a>
               ))}

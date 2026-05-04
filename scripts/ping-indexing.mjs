@@ -11,29 +11,31 @@
  * Google does not participate in IndexNow — use Google Search Console for that.
  */
 
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import {
+  buildPortfolioUrls,
+  normalizeHomepage,
+} from '../src/sectionRegistry.js';
+
 const KEY = process.env.INDEXNOW_KEY;
 if (!KEY) {
   console.error('Error: INDEXNOW_KEY environment variable is not set.');
   process.exit(1);
 }
 
-const HOST = 'arguto1993.github.io';
-const BASE_URL = `https://${HOST}`;
-
-const urlList = [
-  `${BASE_URL}/`,
-  `${BASE_URL}/#about`,
-  `${BASE_URL}/#skills`,
-  `${BASE_URL}/#experience`,
-  `${BASE_URL}/#projects`,
-  `${BASE_URL}/#education`,
-  `${BASE_URL}/#contact`,
-];
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const rootDir = path.join(__dirname, '..');
+const data = JSON.parse(fs.readFileSync(path.join(rootDir, 'src', 'data.json'), 'utf-8'));
+const baseUrl = normalizeHomepage(data.brand.homepage);
+const host = new URL(baseUrl).host;
+const urlList = buildPortfolioUrls(data);
 
 const payload = {
-  host: HOST,
+  host,
   key: KEY,
-  keyLocation: `${BASE_URL}/${KEY}.txt`,
+  keyLocation: `${baseUrl}/${KEY}.txt`,
   urlList,
 };
 

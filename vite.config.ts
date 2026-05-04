@@ -3,8 +3,10 @@ import react from '@vitejs/plugin-react';
 import fs from 'fs';
 import path from 'path';
 import {defineConfig, loadEnv, type Plugin} from 'vite';
-
-const DEFAULT_HOMEPAGE = 'https://arguto1993.github.io';
+import {
+  getVisibleContentSections,
+  normalizeHomepage,
+} from './src/sectionRegistry.js';
 
 /** Reads data.json and injects SEO meta tags + JSON-LD into the built HTML. */
 function portfolioSeoPlugin(): Plugin {
@@ -13,7 +15,7 @@ function portfolioSeoPlugin(): Plugin {
     transformIndexHtml(html) {
       const data = JSON.parse(fs.readFileSync('./src/data.json', 'utf-8'));
       const { hero, brand, contact, skills } = data;
-      const homepage = String(brand.homepage || DEFAULT_HOMEPAGE).replace(/\/$/, '');
+      const homepage = normalizeHomepage(brand.homepage);
 
       const allSkills = skills.items.flatMap((g: { skills: string[] }) => g.skills);
       const description =
@@ -54,23 +56,15 @@ function portfolioSeoPlugin(): Plugin {
         author: { '@type': 'Person', name: hero.name },
       });
 
-      const sectionIds = [
-        { id: 'about', show: data.about.show },
-        { id: 'experience', show: data.experience.show },
-        { id: 'skills', show: data.skills.show },
-        { id: 'projects', show: data.projects.show },
-        { id: 'dashboards', show: data.dashboards.show },
-        { id: 'education', show: data.education.show },
-        { id: 'contact', show: data.contact.show },
-      ].filter((section) => section.show).map((section) => section.id);
+      const visibleSections = getVisibleContentSections(data);
       const jsonLdBreadcrumbs = JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',
-        itemListElement: sectionIds.map((id, i) => ({
+        itemListElement: visibleSections.map((section, i) => ({
           '@type': 'ListItem',
           position: i + 1,
-          name: id.charAt(0).toUpperCase() + id.slice(1),
-          item: `${homepage}/#${id}`,
+          name: section.label,
+          item: `${homepage}/${section.href}`,
         })),
       });
 
