@@ -13,8 +13,26 @@ export default [
       "@typescript-eslint": tsPlugin,
       react: reactPlugin,
     },
+    settings: {
+      react: {
+        version: "detect",
+      },
+    },
     rules: {
-      // Add your custom rules here
+      "@typescript-eslint/consistent-type-imports": ["warn", { prefer: "type-imports" }],
+      "@typescript-eslint/no-explicit-any": "warn",
+      "@typescript-eslint/no-unused-vars": [
+        "warn",
+        {
+          argsIgnorePattern: "^_",
+          caughtErrorsIgnorePattern: "^_",
+          varsIgnorePattern: "^_",
+        },
+      ],
+      eqeqeq: ["error", "always"],
+      "no-var": "error",
+      "prefer-const": "warn",
+      "react/jsx-no-target-blank": "error",
     },
   },
 ];

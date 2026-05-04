@@ -23,7 +23,7 @@ export const Education: React.FC = () => {
           </div>
 
           <div className="space-y-10">
-            {education.items.map((edu, index) => (
+            {education.items.map((edu) => (
               <div key={edu.degree} className="relative pl-6 border-l-2 border-[var(--border)]">
                 <div className="absolute left-[-6px] top-0 w-2.5 h-2.5 rounded-full bg-[var(--accent)]" />
                 <h3 className="text-xl font-serif font-bold mb-1">{edu.degree}</h3>

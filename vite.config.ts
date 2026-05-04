@@ -102,7 +102,7 @@ function portfolioSeoPlugin(): Plugin {
     <script type="application/ld+json">${jsonLdWebSite}</script>
     <script type="application/ld+json">${jsonLdBreadcrumbs}</script>`;
 
-      let result = html.replace(
+      const result = html.replace(
         '<title>Arguto Portfolio</title>',
         `<title>Arguto Portfolio</title>`,
       );

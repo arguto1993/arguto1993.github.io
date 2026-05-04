@@ -15,7 +15,7 @@ const GitHubMark: React.FC = () => (
 );
 
 export const Footer: React.FC = () => {
-  const { hero, brand } = useSiteData();
+  const { brand } = useSiteData();
 
   return (
     <footer className="border-t border-[var(--border)] py-10">
