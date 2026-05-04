@@ -58,7 +58,7 @@ My professional portfolio website built with React and TypeScript.
 
 | What to change | Where |
 | --- | --- |
-| All content, section titles, and visibility (show/hide) | `src/data.json` (or the admin page — see below) |
+| All contents & section visibility settings (show/hide) | `src/data.json` (or the admin page — see below) |
 
 > SEO meta tags, Open Graph, and JSON-LD are all derived from `data.json` automatically — no manual updates needed.
 > `brand.homepage` is used for canonical URLs, Open Graph/Twitter images, JSON-LD, and sitemap URLs.

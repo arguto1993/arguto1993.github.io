@@ -24,6 +24,8 @@ export interface About {
   subtitle: string;
   content: string;
   portrait: string;
+  greetingMessages: string[];
+  tooltips: Record<string, string>;
 }
 
 export interface SkillGroup {

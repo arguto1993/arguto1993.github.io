@@ -3,33 +3,22 @@ import { motion } from 'motion/react';
 import { useSiteData } from '../SiteDataContext';
 import { parseInline } from '../inlineMarkdown';
 
-const messages = [
-  "Hi! Welcome to my portfolio.",
-  "I'm Guto. Nice to meet you.",
-  "How can I help you?"
-];
-
-const techTooltips: Record<string, string> = {
-  'Python': 'Programming language',
-  'SQL': 'Structured Query Language',
-  'BigQuery': 'Google Cloud data warehouse',
-  'ClickHouse': 'Columnar database for analytics',
-  'BI platforms': 'Business Intelligence tools',
-  'CRM': 'Customer Relationship Management',
-  'OMS': 'Order Management System'
-};
-
 export const About: React.FC = () => {
   const { hero, about } = useSiteData();
   const [currentMessageIndex, setCurrentMessageIndex] = useState(0);
+  const messageCount = about.greetingMessages.length;
+  const currentMessage = messageCount > 0
+    ? about.greetingMessages[currentMessageIndex % messageCount]
+    : '';
 
   useEffect(() => {
+    if (messageCount <= 1) return;
     const interval = setInterval(() => {
-      setCurrentMessageIndex((prev) => (prev + 1) % messages.length);
+      setCurrentMessageIndex((prev) => (prev + 1) % messageCount);
     }, 3000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [messageCount]);
 
   return (
     <section id="about" className="section-container">
@@ -56,7 +45,7 @@ export const About: React.FC = () => {
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.5 }}
               >
-                {messages[currentMessageIndex]}
+                {currentMessage}
               </motion.div>
             </motion.div>
 
@@ -97,7 +86,7 @@ export const About: React.FC = () => {
                         <span
                           key={j}
                           className="underline decoration-[var(--accent)] decoration-2 underline-offset-2 cursor-help"
-                          title={techTooltips[seg.value] || seg.value}
+                          title={about.tooltips[seg.value] || seg.value}
                         >
                           {seg.value}
                         </span>
