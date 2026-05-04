@@ -39,7 +39,7 @@
     }
   },
   "skills": {
-    "show": false,
+    "show": true,
     "title": "Skills",
     "subtitle": "",
     "items": [
@@ -391,6 +391,12 @@
           "issuer": "Dicoding Academy",
           "date": "Feb 2025",
           "link": "https://drive.google.com/file/d/11OpjRYdDOgcxqRDAm8992dZVxGsM1U_Q/view"
+        },
+        {
+          "name": "Storytelling: The Key to Effective Last Mile Delivery of Statistical Products Certificate of Participation",
+          "issuer": "Badan Pusat Statistik",
+          "date": "Jul 2024",
+          "link": "https://drive.google.com/file/d/1JnL_Td0Xi9y7jKzf2Sd3FzRhX5glrpkV/view?usp=sharing"
         },
         {
           "name": "Full Stack Data Analytics Certificate of Excellence",
