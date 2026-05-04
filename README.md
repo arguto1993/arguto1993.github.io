@@ -97,7 +97,7 @@ auto-deploys via the existing CI workflow.
 
 - Go to <https://arguto1993.github.io/#/admin>.
 - Click **Sign in with GitHub** → approve.
-- Edit fields → **Save**. A commit lands on `master`; GitHub Pages redeploys in ~1 min.
+- Edit fields → **Save**. A commit lands on `master`; GitHub Pages redeploys in ~5 min.
 
 > Local dev (`npm run dev`) bypasses OAuth: `#/admin` opens directly with
 > `src/data.json` loaded into the form so you can preview the UI. Save is
