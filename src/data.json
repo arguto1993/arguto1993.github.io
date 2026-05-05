@@ -8,7 +8,7 @@
     "_homepageComment": "Used by vite.config.ts for SEO canonical, Open Graph, Twitter Card, and JSON-LD URLs, and by scripts/prerender.mjs for sitemap URLs.",
     "googleVerification": "mg6llNEPe6WyLmV1Y7R-1KAmYhlF5O63czUj3QeMry4",
     "repository": "https://github.com/arguto1993/arguto1993.github.io",
-    "lastUpdated": "May 4, 2026"
+    "lastUpdated": "May 5, 2026"
   },
   "hero": {
     "show": true,
@@ -418,7 +418,7 @@
           "link": "https://drive.google.com/file/d/1HH5Fw5uRYS4ttVWy1unvJhhsPAcK3Pet/view?usp=sharing"
         },
         {
-          "name": "SQL (Advanced) Certificate of Accomplishment",
+          "name": "SQL (Advanced)",
           "type": "Certificate of Accomplishment",
           "issuer": "HackerRank",
           "date": "Feb 2024",
