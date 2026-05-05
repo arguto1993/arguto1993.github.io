@@ -6,8 +6,8 @@ import './index.css';
 if (!import.meta.env.DEV && !location.hash.startsWith('#/admin')) {
   fetch(`https://ntfy.sh/${import.meta.env.VITE_NTFY_TOPIC}`, {
     method: 'POST',
-    body: `🌐 arguto1993.github.io${location.pathname}${location.hash || ''}  🔗 ${document.referrer || 'direct'}`,
-    headers: { Title: 'New portfolio visit', Priority: 'low', Tags: 'eyes' },
+    body: `🌐 arguto1993.github.io${location.pathname}${location.hash || ''}\n🔗 ${document.referrer || 'direct'}`,
+    headers: { Title: 'New portfolio visit!', Priority: 'low', Tags: 'eyes' },
   }).catch(() => {});
 }
 
