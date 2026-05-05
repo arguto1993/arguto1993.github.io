@@ -28,6 +28,11 @@ export const Navbar: React.FC = () => {
     const sectionIds = visibleLinks.map((l) => l.href.replace('#', ''));
 
     const handleScroll = () => {
+      const atBottom = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 10;
+      if (atBottom) {
+        setActiveSection(sectionIds[sectionIds.length - 1] ?? '');
+        return;
+      }
       const scrollY = window.scrollY + window.innerHeight * 0.35;
       let current = '';
       for (const id of sectionIds) {
