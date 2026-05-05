@@ -29,6 +29,8 @@ jobs:
 
       - name: Build
         run: npm run build
+        env:
+          VITE_NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
         # postbuild (prerender.mjs) runs automatically — generates dist/sitemap.xml
         # and injects static HTML for crawler visibility.
         # Admin page (#/admin) env vars come from .env.production (committed).

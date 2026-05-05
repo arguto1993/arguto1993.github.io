@@ -50,7 +50,7 @@ jobs:
         if: steps.check.outputs.status == 'ok'
         run: |
           curl -s -X POST https://ntfy.sh/${{ secrets.NTFY_TOPIC }} \
-            -H "Title: Portfolio is alive ✓" \
+            -H "Title: Portfolio is alive" \
             -H "Priority: low" \
             -H "Tags: white_check_mark" \
             -d "arguto1993.github.io — homepage, sitemap.xml, and robots.txt all OK."
@@ -59,7 +59,7 @@ jobs:
         if: steps.check.outputs.status == 'down'
         run: |
           curl -s -X POST https://ntfy.sh/${{ secrets.NTFY_TOPIC }} \
-            -H "Title: Portfolio has issues ✗" \
+            -H "Title: Portfolio has issues" \
             -H "Priority: urgent" \
             -H "Tags: rotating_light" \
             -d "${{ steps.check.outputs.issues }}"
