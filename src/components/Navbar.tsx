@@ -12,6 +12,7 @@ export const Navbar: React.FC = () => {
   const { brand } = siteData;
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState<string>('');
 
   const visibleLinks = getVisibleNavSections(siteData);
 
@@ -22,6 +23,24 @@ export const Navbar: React.FC = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  useEffect(() => {
+    const sectionIds = visibleLinks.map((l) => l.href.replace('#', ''));
+
+    const handleScroll = () => {
+      const scrollY = window.scrollY + window.innerHeight * 0.35;
+      let current = '';
+      for (const id of sectionIds) {
+        const el = document.getElementById(id);
+        if (el && el.offsetTop <= scrollY) current = id;
+      }
+      setActiveSection(current);
+    };
+
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [visibleLinks]);
 
   return (
     <nav
@@ -61,19 +80,22 @@ export const Navbar: React.FC = () => {
 
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center space-x-8">
-          {visibleLinks.map((link, i) => (
-            <motion.a
-              key={link.id}
-              href={link.href}
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1 }}
-              className="text-sm font-medium hover:accent-text transition-colors relative group"
-            >
-              {link.label}
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[var(--accent)] transition-all duration-300 group-hover:w-full" />
-            </motion.a>
-          ))}
+          {visibleLinks.map((link, i) => {
+            const isActive = activeSection === link.href.replace('#', '');
+            return (
+              <motion.a
+                key={link.id}
+                href={link.href}
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.1 }}
+                className="text-sm font-medium hover:accent-text transition-colors relative group"
+              >
+                {link.label}
+                <span className={`absolute -bottom-1 left-0 h-0.5 bg-[var(--accent)] transition-all duration-300 ${isActive ? 'w-full' : 'w-0 group-hover:w-full'}`} />
+              </motion.a>
+            );
+          })}
           <button
             onClick={toggleTheme}
             className="p-2 rounded-full hover:bg-[var(--border)] transition-colors"
@@ -118,26 +140,28 @@ export const Navbar: React.FC = () => {
             className="md:hidden bg-[var(--bg)] border-b border-[var(--border)]"
           >
             <div className="px-6 py-8 flex flex-col space-y-6">
-              {visibleLinks.map((link) => (
-                <a
-                  key={link.id}
-                  href={link.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  onTouchEnd={(e) => {
-                    e.preventDefault();
-                    setIsMobileMenuOpen(false);
-                    // Smooth scroll to the section
-                    const target = document.querySelector(link.href);
-                    if (target) {
-                      target.scrollIntoView({ behavior: 'smooth' });
-                    }
-                  }}
-                  className="text-lg font-medium hover:accent-text transition-colors relative w-fit group cursor-pointer"
-                >
-                  {link.label}
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[var(--accent)] transition-all duration-300 group-hover:w-full" />
-                </a>
-              ))}
+              {visibleLinks.map((link) => {
+                const isActive = activeSection === link.href.replace('#', '');
+                return (
+                  <a
+                    key={link.id}
+                    href={link.href}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    onTouchEnd={(e) => {
+                      e.preventDefault();
+                      setIsMobileMenuOpen(false);
+                      const target = document.querySelector(link.href);
+                      if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                      }
+                    }}
+                    className="text-lg font-medium hover:accent-text transition-colors relative w-fit group cursor-pointer"
+                  >
+                    {link.label}
+                    <span className={`absolute -bottom-1 left-0 h-0.5 bg-[var(--accent)] transition-all duration-300 ${isActive ? 'w-full' : 'w-0 group-hover:w-full'}`} />
+                  </a>
+                );
+              })}
             </div>
           </motion.div>
         )}
