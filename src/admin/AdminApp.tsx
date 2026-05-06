@@ -117,7 +117,7 @@ export default function AdminApp() {
             <a className="underline" href={actionsRunsUrl()} target="_blank" rel="noreferrer">
               Watch deploy
             </a>{' '}
-            (redeploys in ~5 min)
+            (live in ~5 min)
           </div>
         )}
       </header>
