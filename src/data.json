@@ -111,7 +111,7 @@
   },
   "experience": {
     "show": true,
-    "defaultExpanded": false,
+    "defaultExpanded": true,
     "title": "Professional Experience",
     "subtitle": "Nearly a decade across government, education, and tech — what's next?",
     "items": [
