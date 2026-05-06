@@ -12,7 +12,7 @@ export const Skills: React.FC = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="max-w-4xl mx-auto"
+        className="max-w-5xl mx-auto"
       >
         <h2 className="text-4xl font-serif font-bold mb-12 text-center">{skills.title}</h2>
         <div className="grid md:grid-cols-3 gap-12">
