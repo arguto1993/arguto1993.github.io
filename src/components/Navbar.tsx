@@ -53,7 +53,7 @@ export const Navbar: React.FC = () => {
         isScrolled ? 'bg-[var(--bg)]/80 backdrop-blur-md border-b border-[var(--border)] py-4' : 'bg-transparent py-6'
       }`}
     >
-      <div className="max-w-6xl mx-auto px-6 flex justify-between items-center">
+      <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
         <div className="flex items-center gap-4">
           <motion.a
             href="#"

@@ -10,7 +10,7 @@ export const Hero: React.FC = () => {
 
   return (
     <section id="home" className="min-h-[calc(100vh-130px)] flex items-center justify-center pt-4 pb-2 relative">
-      <div className="max-w-4xl mx-auto px-6 text-center">
+      <div className="max-w-5xl mx-auto px-6 text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
