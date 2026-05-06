@@ -45,7 +45,7 @@ export const Hero: React.FC = () => {
           className="flex flex-wrap justify-center gap-6"
         >
           <SocialLink href={getContactByIcon(siteData, 'linkedin')?.href ?? ''} icon={<Linkedin size={20} />} label="LinkedIn" />
-          <SocialLink href={getContactByIcon(siteData, 'github')?.href ?? ''} icon={<Github size={20} />} label="Github" />
+          {/* <SocialLink href={getContactByIcon(siteData, 'github')?.href ?? ''} icon={<Github size={20} />} label="Github" /> */}
           <SocialLink href={getContactByIcon(siteData, 'mail')?.href ?? ''} icon={<Mail size={20} />} label="Email" />
           <SocialLink href={hero.resume} icon={<FileText size={20} />} label="Resume" />
         </motion.div>
