@@ -10,6 +10,17 @@ export function ExperienceForm({ value, onChange }: SectionProps<'experience'>) 
   return (
     <div className="grid gap-4">
       <SectionToggle show={value.show} onChange={(v) => set('show', v)} />
+      <div className="flex items-center gap-3 mb-2 pb-4 border-b border-slate-200 dark:border-slate-700">
+        <label className="flex items-center gap-2 text-sm cursor-pointer select-none">
+          <input
+            type="checkbox"
+            checked={value.defaultExpanded}
+            onChange={(e) => set('defaultExpanded', e.target.checked)}
+            className="w-4 h-4 rounded accent-[var(--accent)]"
+          />
+          <span className="font-medium">Show all bullet points by default</span>
+        </label>
+      </div>
       <div className="grid gap-4 mb-2">
         <Field label="Title">
           <TextInput value={value.title} onChange={(v) => set('title', v)} />

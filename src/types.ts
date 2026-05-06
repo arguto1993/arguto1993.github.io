@@ -43,6 +43,7 @@ export interface Skills {
 export interface ExperienceItem {
   title: string;
   company: string;
+  companyUrl?: string;
   location: string;
   period: string;
   type: string;
@@ -51,6 +52,7 @@ export interface ExperienceItem {
 
 export interface Experience {
   show: boolean;
+  defaultExpanded: boolean;
   title: string;
   subtitle: string;
   items: ExperienceItem[];

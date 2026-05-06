@@ -8,7 +8,7 @@
     "_homepageComment": "Used by vite.config.ts for SEO canonical, Open Graph, Twitter Card, and JSON-LD URLs, and by scripts/prerender.mjs for sitemap URLs.",
     "googleVerification": "mg6llNEPe6WyLmV1Y7R-1KAmYhlF5O63czUj3QeMry4",
     "repository": "https://github.com/arguto1993/arguto1993.github.io",
-    "lastUpdated": "May 5, 2026"
+    "lastUpdated": "May 6, 2026"
   },
   "hero": {
     "show": true,
@@ -111,12 +111,14 @@
   },
   "experience": {
     "show": true,
+    "defaultExpanded": false,
     "title": "Professional Experience",
     "subtitle": "Nearly a decade across government, education, and tech — what's next?",
     "items": [
       {
         "title": "Data Analyst & Engineer",
         "company": "Stamps Indonesia (IT Services & Consulting)",
+        "companyUrl": "https://stamps.id/en/",
         "location": "Jakarta Barat, Indonesia",
         "period": "Apr 2024 - Present",
         "type": "Full-time, Hybrid",
@@ -132,6 +134,7 @@
       {
         "title": "Student Development Coordinator Full-Stack Data Analytics",
         "company": "RevoU (Education Technology)",
+        "companyUrl": "https://www.revou.co/",
         "location": "Jakarta, Indonesia",
         "period": "Feb 2026 - Present",
         "type": "Part-time, Remote",
@@ -142,6 +145,7 @@
       {
         "title": "Data Analyst Associate",
         "company": "RevoU x Telkom Indonesia (B2B Commerce)",
+        "companyUrl": "https://www.linkedin.com/company/revou-x-telkom-indonesia/",
         "location": "Jakarta, Indonesia",
         "period": "Mar 2024 - May 2024",
         "type": "Internship, Remote",
@@ -153,6 +157,7 @@
       {
         "title": "Data Analysis Mentor",
         "company": "Lingkaran (Professional Training & Coaching)",
+        "companyUrl": "https://lingkaran.co/",
         "location": "Jakarta Selatan, Indonesia",
         "period": "Mar 2024",
         "type": "Contract, Remote",
@@ -164,6 +169,7 @@
       {
         "title": "Data Annotation Specialist",
         "company": "Appen (IT Services & Consulting)",
+        "companyUrl": "https://www.appen.com/",
         "location": "Washington, USA",
         "period": "Feb 2024",
         "type": "Part-time, Remote",
@@ -174,6 +180,7 @@
       {
         "title": "Data Analyst",
         "company": "BPS-Statistics Education & Training Center",
+        "companyUrl": "https://pusdiklat.bps.go.id/",
         "location": "Jakarta Selatan, Indonesia",
         "period": "Apr 2021 - Jan 2024",
         "type": "Full-time, On-site",
@@ -187,6 +194,7 @@
       {
         "title": "Statistical Data Processing Officer",
         "company": "BPS-Statistics of Kalimantan Barat Province",
+        "companyUrl": "https://kalbar.bps.go.id/id",
         "location": "Pontianak, Indonesia",
         "period": "Apr 2019 – Mar 2021",
         "type": "Full-time, On-site",
@@ -200,6 +208,7 @@
       {
         "title": "Data Annotation Specialist",
         "company": "Leapforce, Inc (Technology, Information, and Internet)",
+        "companyUrl": "https://www.linkedin.com/company/leapforce-inc",
         "location": "California, USA",
         "period": "Jan 2018 – Aug 2019",
         "type": "Part-time, Remote",
@@ -210,6 +219,7 @@
       {
         "title": "Statistical Data Processing & Dissemination Officer",
         "company": "BPS-Statistics of Pontianak City",
+        "companyUrl": "https://pontianakkota.bps.go.id/id",
         "location": "Pontianak, Indonesia",
         "period": "Feb 2017 – Mar 2019",
         "type": "Full-time, On-site",
