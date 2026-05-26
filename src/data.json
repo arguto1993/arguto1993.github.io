@@ -8,7 +8,7 @@
     "_homepageComment": "Used by vite.config.ts for SEO canonical, Open Graph, Twitter Card, and JSON-LD URLs, and by scripts/prerender.mjs for sitemap URLs.",
     "googleVerification": "mg6llNEPe6WyLmV1Y7R-1KAmYhlF5O63czUj3QeMry4",
     "repository": "https://github.com/arguto1993/arguto1993.github.io",
-    "lastUpdated": "May 6, 2026"
+    "lastUpdated": "May 26, 2026"
   },
   "hero": {
     "show": true,
@@ -242,19 +242,38 @@
         "organization": "RevoU",
         "date": "Dec 2025",
         "role": "Student Development Coordinator Full Stack Data Analytics",
+        "domain": "Retail & E-Commerce",
+        "background": "A wine retailer wanted to move beyond one-size-fits-all marketing by deeply understanding its 2,240 customers across demographics, spending patterns, purchase channels, and campaign responses — to identify who deserves more attention and how to engage each group differently.",
+        "goal": "Apply EDA, RFM segmentation, and K-Means clustering to uncover the most rewarding customer groups, then deliver prioritized marketing recommendations with a quantified impact analysis scored by business impact, feasibility, and ROI.",
         "description": [
-          "Analyzed 2K+ aggregated retail customers data by demography and behavior with RFM-Scoring & K-Means Clustering to identify the rewarding customers.",
-          "Provided detailed marketing strategy for each segment, conducted a quantitative analysis of business impact, feasibility, and ROI to prioritize top 3 action items.",
-          "Built looker studio dashboard to enable stakeholder's self service Exploratory Data Analysis."
+          "EDA, RFM segmentation, and K-Means clustering on 2,240 wine retail customers to identify high-value segments.",
+          "Prioritized top 3 marketing recommendations using a business impact × feasibility × ROI scoring framework.",
+          "Built a Looker Studio dashboard for stakeholder self-service EDA."
         ],
-        "tags": [
+        "keyInsights": [
+          "RFM segmentation identified Champions & Loyal Customers (34.7% of customers) as the highest-value group, spending 2× the overall average — with wine ($626) and meat ($364) dominating their basket.",
+          "K-Means clustering revealed 4 behavioral clusters: Premium High-Value (20.5%, avg spend $1,476), Engaged Mid-Tier (21.3%, $927), Deal-Seeking (14.4%, $475), and Price-Sensitive Occasional Buyers (43.8%, $86).",
+          "Priority impact analysis ranked Cross-Sell Wine to Meat Buyers (score 1,134) and Personalized Email Marketing (1,080) as the top quick-win strategies — both low-cost with high feasibility and 10–12% expected revenue lift."
+        ],
+        "techStack": [
           "Python",
+          "Pandas",
+          "Scikit-learn",
+          "Looker Studio",
           "RFM Scoring",
           "K-Means Clustering",
-          "Impact Analysis",
-          "Looker Studio"
+          "Impact Analysis"
+        ],
+        "relatedSkills": [
+          "Data Analysis",
+          "Machine Learning",
+          "Business Intelligence",
+          "Marketing Strategy"
         ],
         "image": "https://drive.google.com/thumbnail?id=1eNIp5JTNffirocRxyAHk4Y5IbwjhDy1e&sz=w1600",
+        "dashboardLink": "",
+        "githubLink": "https://github.com/arguto1993/wine-customer-analysis",
+        "presentationLink": "https://www.canva.com/design/DAG7UFqzl8s/QjoyGUl5pZ2OvRkNx2PRTQ/view?utm_content=DAG7UFqzl8s&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h42326d28a8e",
         "link": "https://www.canva.com/design/DAG7UFqzl8s/QjoyGUl5pZ2OvRkNx2PRTQ/view?utm_content=DAG7UFqzl8s&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h42326d28a8e",
         "github": "https://github.com/arguto1993/wine-customer-analysis"
       },
@@ -262,19 +281,38 @@
         "title": "Depression Risk Assessment with Machine Learning",
         "organization": "Dicoding Academy",
         "date": "Feb 2025",
-        "role": "Project Manager & Data Scientist",
+        "role": "Project Manager, Data Scientist",
+        "domain": "Healthcare & Mental Health",
+        "background": "Depression is rising globally across all age groups — WHO and INAMHS 2022 data show a surge in cases — yet early detection remains limited. Most institutions have not leveraged data to identify individuals at risk, missing opportunities for timely intervention.",
+        "goal": "Identify the key factors driving depression risk, build a classification model to predict high-risk individuals, and deploy it as an accessible web app so institutions and individuals can act on early warning signals.",
         "description": [
-          "Led a team of 4 to identify key factors of student depressions based on the provided dataset.",
-          "Built a website to demonstrate machine learning capability to predict a person's depression risk."
+          "Led a team of 4 to benchmark 5 ML models and identify the top 10 depression risk factors from survey data.",
+          "Deployed a Streamlit web app for real-time individual depression risk prediction and interactive data exploration.",
+          "Built an interactive dashboard to explore the training dataset, surfacing patterns in demographics, lifestyle factors, and depression prevalence."
         ],
-        "tags": [
-          "Machine Learning",
+        "keyInsights": [
+          "Feature importance analysis ranked suicidal thoughts, academic pressure, and financial stress as the top 3 depression risk factors — ahead of sleep duration, dietary habits, and family mental health history.",
+          "Five ML models were trained and benchmarked (Random Forest, Extra Trees, Logistic Regression, AdaBoost, SVC); Logistic Regression was selected as the best model with 85% accuracy using 10 features.",
+          "The deployed Streamlit web app enables real-time individual risk assessment and a data dashboard, making the model accessible for institutions to support early mental health intervention."
+        ],
+        "techStack": [
           "Python",
+          "Scikit-learn",
           "Streamlit",
+          "Machine Learning",
           "Data Science",
           "Project Management"
         ],
+        "relatedSkills": [
+          "Machine Learning",
+          "Data Science",
+          "Web Development",
+          "Project Management"
+        ],
         "image": "https://drive.google.com/thumbnail?id=1VgY6-DqSL4aR8o-8_1lJFLyWcRbQysvM&sz=w1600",
+        "dashboardLink": "https://depression-risk-assessment.streamlit.app/",
+        "githubLink": "https://github.com/arguto1993/depression-risk-assessment-with-machine-learning",
+        "presentationLink": "",
         "link": "https://depression-risk-assessment.streamlit.app/",
         "github": "https://github.com/arguto1993/depression-risk-assessment-with-machine-learning"
       },
@@ -283,18 +321,35 @@
         "organization": "RevoU",
         "date": "2024",
         "role": "Project Manager, Data Analyst",
+        "domain": "Gaming & Entertainment",
+        "background": "A newly established game studio — Sigma Game Studio — needed data-backed guidance on what type of game to develop for its debut release, with the clear target of reaching $1M USD in global sales within 1 year of launch.",
+        "goal": "Identify the characteristics of games that achieved $1M+ global sales within 1 year of release (2016–2017 data), and investigate whether critic and user scores meaningfully impact commercial performance.",
         "description": [
-          "Identify the characteristics of high sales performing games in 2017 by analyzing the provided dataset with Exploratory Data Analysis and Correlation Analysis.",
-          "Built a Tableau dashboard to enable stakeholder's self service Exploratory Data Analysis."
+          "Analyzed 2016–2017 global video game sales data to identify platform, genre, rating, and regional patterns of $1M+ successful titles.",
+          "Built an interactive Tableau dashboard for stakeholder self-service EDA with cross-referenced filters."
         ],
-        "tags": [
+        "keyInsights": [
+          "PS4 dominated successful recent releases with $62.21M total sales across 21 games, followed by Xbox One ($21.98M, 10 games) — only 4 of 9 active platforms produced any $1M+ title.",
+          "Shooter was the top-performing genre ($40.55M total, avg $3.38M per game); Mature-rated games had the highest total sales while Everyone-rated games had the highest average sales per title ($3.54M).",
+          "Critic and user scores showed very low correlation with global sales (r = 0.24 and 0.09 respectively) and were dropped from the regression model — quality scores alone don't drive commercial success."
+        ],
+        "techStack": [
+          "Tableau",
+          "Google Sheets",
           "Issue Tree",
           "Exploratory Data Analysis",
           "Correlation",
-          "Tableau",
+          "Project Management"
+        ],
+        "relatedSkills": [
+          "Data Analysis",
+          "Business Intelligence",
           "Project Management"
         ],
         "image": "https://drive.google.com/thumbnail?id=1MSNERgArL6AgSFYPNHPwwnHBfkWlw7S_&sz=w1600",
+        "dashboardLink": "https://public.tableau.com/views/VideoGameSales2017Dashboard/DASHBOARD?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link",
+        "githubLink": "",
+        "presentationLink": "https://docs.google.com/presentation/d/19mP0bx_K0UXkc7V5PhYEcRWy8Y9IJkMTNHvg3IE8zD0/edit?usp=sharing",
         "link": "https://docs.google.com/presentation/d/19mP0bx_K0UXkc7V5PhYEcRWy8Y9IJkMTNHvg3IE8zD0/edit?usp=sharing",
         "github": ""
       }

@@ -21,7 +21,7 @@ export function ProjectsForm({ value, onChange }: SectionProps<'projects'>) {
       <ItemList<Project>
         items={value.items}
         onChange={(items) => onChange({ ...value, items })}
-        emptyItem={() => ({ title: '', organization: '', date: '', role: '', description: [''], tags: [], image: '', link: '', github: '' })}
+        emptyItem={() => ({ title: '', organization: '', date: '', role: '', domain: '', background: '', goal: '', description: [''], keyInsights: [], techStack: [], relatedSkills: [], image: '', dashboardLink: '', githubLink: '', presentationLink: '', link: '', github: '' })}
         itemLabel={(p) => p.title || '(untitled project)'}
         renderItem={(item, _update, set) => (
           <>
@@ -40,23 +40,47 @@ export function ProjectsForm({ value, onChange }: SectionProps<'projects'>) {
               <Field label="Role">
                 <TextInput value={item.role} onChange={(v) => set('role', v)} />
               </Field>
+              <Field label="Domain (e.g. Retail & E-Commerce)">
+                <TextInput value={item.domain ?? ''} onChange={(v) => set('domain', v)} />
+              </Field>
+              <Field label="Direct Image URL (Google Drive links will auto-converted)">
+                <TextInput value={item.image ?? ''} onChange={(v) => set('image', toDirectGoogleDriveImageUrl(v))} />
+              </Field>
               <div className="grid gap-3">
-                <Field label="Direct Image URL (Google Drive links will auto-converted)">
-                  <TextInput value={item.image ?? ''} onChange={(v) => set('image', toDirectGoogleDriveImageUrl(v))} />
+                <Field label="Dashboard Link">
+                  <TextInput value={item.dashboardLink ?? ''} onChange={(v) => set('dashboardLink', v)} />
                 </Field>
-                <Field label="Link">
+                <Field label="GitHub Link">
+                  <TextInput value={item.githubLink ?? ''} onChange={(v) => set('githubLink', v)} />
+                </Field>
+                <Field label="Presentation Link">
+                  <TextInput value={item.presentationLink ?? ''} onChange={(v) => set('presentationLink', v)} />
+                </Field>
+                <Field label="Link (legacy)">
                   <TextInput value={item.link ?? ''} onChange={(v) => set('link', v)} />
                 </Field>
-                <Field label="GitHub">
+                <Field label="GitHub (legacy)">
                   <TextInput value={item.github ?? ''} onChange={(v) => set('github', v)} />
                 </Field>
               </div>
             </div>
+            <Field label="Background">
+              <TextInput value={item.background ?? ''} onChange={(v) => set('background', v)} />
+            </Field>
+            <Field label="Goal">
+              <TextInput value={item.goal ?? ''} onChange={(v) => set('goal', v)} />
+            </Field>
             <Field label="Description bullets">
               <StringList values={item.description} onChange={(v) => set('description', v)} />
             </Field>
-            <Field label="Tags">
-              <StringList values={item.tags} onChange={(v) => set('tags', v)} />
+            <Field label="Key Insights & Results">
+              <StringList values={item.keyInsights ?? []} onChange={(v) => set('keyInsights', v)} />
+            </Field>
+            <Field label="Tech Stack">
+              <StringList values={item.techStack ?? []} onChange={(v) => set('techStack', v)} />
+            </Field>
+            <Field label="Related Skills">
+              <StringList values={item.relatedSkills ?? []} onChange={(v) => set('relatedSkills', v)} />
             </Field>
           </>
         )}

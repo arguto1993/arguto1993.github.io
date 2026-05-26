@@ -171,6 +171,7 @@ The admin route is lazy-loaded, marked `noindex`, and the OAuth token is held in
         ├── Footer.tsx
         ├── Hero.tsx
         ├── Navbar.tsx
+        ├── ProjectModal.tsx
         ├── Projects.tsx
         ├── Skills.tsx
         └── ThemeContext.tsx

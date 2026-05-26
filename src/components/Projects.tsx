@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { useSiteData } from '../SiteDataContext';
-import { ExternalLink, Github } from 'lucide-react';
+import { Github, ExternalLink, LayoutDashboard, ArrowRight } from 'lucide-react';
+import { ProjectModal } from './ProjectModal';
+import { Project } from '../types';
 
 export const Projects: React.FC = () => {
   const { projects } = useSiteData();
+  const [selected, setSelected] = useState<Project | null>(null);
 
   return (
     <section id="projects" className="section-container">
@@ -26,9 +29,13 @@ export const Projects: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: index * 0.1 }}
-            className="card group hover:shadow-2xl hover:shadow-[var(--accent)]/10"
+            className="card group flex flex-col hover:shadow-2xl hover:shadow-[var(--accent)]/10"
           >
-            <div className="relative aspect-video overflow-hidden">
+            {/* Image — clicking anywhere on it opens modal; icons stop propagation */}
+            <div
+              className="relative aspect-video overflow-hidden cursor-pointer"
+              onClick={() => setSelected(project)}
+            >
               <img
                 src={project.image}
                 alt={project.title}
@@ -42,8 +49,20 @@ export const Projects: React.FC = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="p-3 rounded-full bg-white text-black hover:bg-[var(--accent)] hover:text-white transition-colors"
+                    onClick={e => e.stopPropagation()}
                   >
                     <Github size={20} />
+                  </a>
+                )}
+                {project.dashboardLink && (
+                  <a
+                    href={project.dashboardLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3 rounded-full bg-white text-black hover:bg-[var(--accent)] hover:text-white transition-colors"
+                    onClick={e => e.stopPropagation()}
+                  >
+                    <LayoutDashboard size={20} />
                   </a>
                 )}
                 {project.link && (
@@ -52,44 +71,64 @@ export const Projects: React.FC = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="p-3 rounded-full bg-white text-black hover:bg-[var(--accent)] hover:text-white transition-colors"
+                    onClick={e => e.stopPropagation()}
                   >
                     <ExternalLink size={20} />
                   </a>
                 )}
               </div>
+              {project.domain && (
+                <div className="absolute bottom-3 left-3">
+                  <span className="accent-badge-2 !text-[10px] !px-3 !py-1">
+                    ✦ {project.domain}
+                  </span>
+                </div>
+              )}
             </div>
 
-            <div className="p-6">
-              <div className="flex justify-between items-start mb-4">
-                <h3 className="text-xl font-serif font-bold leading-tight group-hover:accent-text transition-colors">
-                  {project.title}
-                </h3>
-              </div>
+            {/* Body */}
+            <div className="p-6 flex flex-col flex-1">
+              <p className="text-[11px] opacity-40 tracking-wide mb-3">
+                {[project.organization, project.date].filter(Boolean).join('  ·  ')}
+              </p>
 
-              <div className="mb-4">
-                <span className="accent-badge !text-[10px] !px-2 !py-0.5">
-                  {project.organization} • {project.date}
-                </span>
-              </div>
+              <h3 className="text-xl font-serif font-bold leading-tight mb-3 line-clamp-2">
+                {project.title}
+              </h3>
 
-              <p className="text-sm opacity-70 line-clamp-3 mb-6 font-light leading-relaxed">
+              <p className="text-sm opacity-70 line-clamp-2 mb-4 font-light leading-relaxed flex-1">
                 {project.description[0]}
               </p>
 
-              <div className="flex flex-wrap gap-2">
-                {project.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="px-2 py-0.5 rounded-full bg-[var(--bg)] border border-[var(--border)] text-[9px] font-bold uppercase tracking-wider opacity-70 hover:opacity-100 transition-opacity"
-                  >
-                    {tag}
-                  </span>
-                ))}
+              {project.techStack && project.techStack.length > 0 && (
+                <div className="flex flex-wrap gap-1.5 mb-5">
+                  {project.techStack.slice(0, 4).map(t => (
+                    <span
+                      key={t}
+                      className="px-2 py-0.5 rounded-full border border-[var(--border)] text-[9px] font-bold uppercase tracking-wider opacity-70"
+                      style={{ backgroundColor: 'var(--bg)' }}
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              )}
+
+              <div className="pt-4 border-t border-[var(--border)]">
+                <button
+                  onClick={() => setSelected(project)}
+                  className="flex items-center gap-1.5 text-sm font-semibold cursor-pointer transition-all duration-200 hover:gap-3"
+                  style={{ color: 'var(--accent)' }}
+                >
+                  View Details <ArrowRight size={14} />
+                </button>
               </div>
             </div>
           </motion.div>
         ))}
       </div>
+
+      <ProjectModal project={selected} onClose={() => setSelected(null)} />
     </section>
   );
 };

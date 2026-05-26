@@ -112,8 +112,13 @@ function generateStaticHTML(data) {
       <h3>${esc(proj.title)}</h3>
       <p>${esc(proj.organization)} &mdash; ${esc(proj.date)}</p>
       <p>${esc(proj.role)}</p>
+      ${proj.domain ? `<p>${esc(proj.domain)}</p>` : ''}
+      ${proj.background ? `<p>${esc(proj.background)}</p>` : ''}
+      ${proj.goal ? `<p>${esc(proj.goal)}</p>` : ''}
       <ul>${proj.description.map(d => `<li>${esc(d)}</li>`).join('')}</ul>
-      <p>Tags: ${proj.tags.map(esc).join(', ')}</p>
+      ${proj.keyInsights?.length ? `<ul>${proj.keyInsights.map(k => `<li>${esc(k)}</li>`).join('')}</ul>` : ''}
+      ${proj.techStack?.length ? `<p>Stack: ${proj.techStack.map(esc).join(', ')}</p>` : ''}
+      ${proj.relatedSkills?.length ? `<p>Skills: ${proj.relatedSkills.map(esc).join(', ')}</p>` : ''}
     </article>`).join('');
 
   const dashboardsHTML = dashboards.items.map(dashboard => `

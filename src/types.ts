@@ -63,11 +63,19 @@ export interface Project {
   organization: string;
   date: string;
   role: string;
+  domain?: string;
+  background?: string;
+  goal?: string;
   description: string[];
-  tags: string[];
+  keyInsights?: string[];
+  techStack: string[];
+  relatedSkills?: string[];
+  image?: string;
+  dashboardLink?: string;
+  githubLink?: string;
+  presentationLink?: string;
   link?: string;
   github?: string;
-  image?: string;
 }
 
 export interface Projects {
