@@ -74,8 +74,13 @@ export default function AdminApp() {
   return (
     <div className="min-h-screen bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100">
       <header className="sticky top-0 z-10 border-b border-gray-200 dark:border-gray-800 bg-white/90 dark:bg-gray-950/90 backdrop-blur">
-        <div className="px-4 py-3 flex items-center justify-between gap-4">
+        <div className="relative px-4 py-3 flex items-center justify-between gap-4">
           <h1 className="text-base font-semibold">{ADMIN_TITLE}</h1>
+          {DEV_PREVIEW && (
+            <span className="absolute left-1/2 -translate-x-1/2 text-xs px-3 py-1 rounded-full border border-red-400 dark:border-red-600 text-amber-700 dark:text-amber-300 whitespace-nowrap">
+              Dev preview — OAuth bypassed, edits are local-only and Save is disabled.
+            </span>
+          )}
           <div className="flex items-center gap-2">
             <a
               href="/"
@@ -100,21 +105,15 @@ export default function AdminApp() {
             >
               {saving ? 'Saving…' : 'Save'}
             </button>
-            {!DEV_PREVIEW && (
-              <button
-                onClick={signOut}
-                className="cursor-pointer px-3 py-1.5 text-sm rounded-md border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800"
-              >
-                Sign out
-              </button>
-            )}
+            <button
+              onClick={DEV_PREVIEW ? undefined : signOut}
+              disabled={DEV_PREVIEW}
+              className="cursor-pointer px-3 py-1.5 text-sm rounded-md border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              Sign out
+            </button>
           </div>
         </div>
-        {DEV_PREVIEW && (
-          <div className="bg-amber-50 dark:bg-amber-950/40 text-amber-800 dark:text-amber-200 text-sm px-4 py-2 border-t border-amber-200 dark:border-amber-900">
-            Dev preview — OAuth bypassed, edits are local-only and Save is disabled.
-          </div>
-        )}
         {error && (
           <div className="bg-red-50 dark:bg-red-950/40 text-red-700 dark:text-red-300 text-sm px-4 py-2 border-t border-red-200 dark:border-red-900">
             {error}
