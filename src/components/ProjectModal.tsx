@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import ReactDOM from 'react-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { X, Github as GithubIcon, LayoutDashboard, FileText } from 'lucide-react';
 import { Project } from '../types';
@@ -22,7 +23,7 @@ export const ProjectModal: React.FC<Props> = ({ project, onClose }) => {
 
   const hasLinks = project && (project.dashboardLink || project.githubLink || project.presentationLink);
 
-  return (
+  return ReactDOM.createPortal(
     <AnimatePresence>
       {project && (
         <motion.div
@@ -218,6 +219,7 @@ export const ProjectModal: React.FC<Props> = ({ project, onClose }) => {
           </motion.div>
         </motion.div>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body
   );
 };
