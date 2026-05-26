@@ -48,7 +48,7 @@ export function AboutForm({ value, onChange }: SectionProps<'about'>) {
                   const { [key]: _removed, ...tooltips } = value.tooltips;
                   set('tooltips', tooltips);
                 }}
-                className="px-2 py-1 text-xs rounded border border-slate-300 dark:border-slate-700 text-red-600 dark:text-red-400 hover:bg-slate-100 dark:hover:bg-slate-800"
+                className="px-2 py-1 text-xs rounded border border-gray-300 dark:border-gray-700 text-red-600 dark:text-red-400 hover:bg-gray-100 dark:hover:bg-gray-800"
               >
                 Remove
               </button>

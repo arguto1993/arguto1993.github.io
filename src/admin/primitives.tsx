@@ -30,15 +30,15 @@ export function ConfirmModal({
       onClick={onCancel}
     >
       <div
-        className="bg-white dark:bg-slate-900 rounded-xl shadow-xl w-full max-w-sm mx-4 p-6 space-y-4"
+        className="bg-white dark:bg-gray-900 rounded-xl shadow-xl w-full max-w-sm mx-4 p-6 space-y-4"
         onClick={(e) => e.stopPropagation()}
       >
-        <h2 className="text-base font-semibold text-slate-900 dark:text-slate-100">{title}</h2>
-        <p className="text-sm text-slate-500 dark:text-slate-400">{message}</p>
+        <h2 className="text-base font-semibold text-gray-900 dark:text-gray-100">{title}</h2>
+        <p className="text-sm text-gray-500 dark:text-gray-400">{message}</p>
         <div className="flex justify-end gap-2 pt-1">
           <button
             onClick={onCancel}
-            className="cursor-pointer px-4 py-1.5 text-sm rounded-md border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800"
+            className="cursor-pointer px-4 py-1.5 text-sm rounded-md border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800"
           >
             Cancel
           </button>
@@ -55,12 +55,12 @@ export function ConfirmModal({
 }
 
 export const inputCls =
-  'w-full rounded-md border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--accent)]';
+  'w-full rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--accent)]';
 
 export function Field({ label, children }: { label: string; children: ReactNode }) {
   return (
     <label className="block">
-      <span className="block text-xs font-medium uppercase tracking-wide text-slate-500 dark:text-slate-400 mb-1">
+      <span className="block text-xs font-medium uppercase tracking-wide text-gray-500 dark:text-gray-400 mb-1">
         {label}
       </span>
       {children}
@@ -136,7 +136,7 @@ function GripHandle({ onDragStart }: { onDragStart?: (e: React.DragEvent) => voi
     <span
       draggable={!!onDragStart}
       onDragStart={onDragStart}
-      className="cursor-grab active:cursor-grabbing flex items-center text-slate-400 dark:text-slate-600 px-1 shrink-0 select-none"
+      className="cursor-grab active:cursor-grabbing flex items-center text-gray-400 dark:text-gray-600 px-1 shrink-0 select-none"
       title="Drag to reorder"
     >
       ⠿
@@ -156,7 +156,7 @@ function RowButtons({
   onRemove: () => void;
 }) {
   const btn =
-    'px-2 py-1 text-xs rounded border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 disabled:opacity-30';
+    'px-2 py-1 text-xs rounded border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-30';
   return (
     <div className="flex gap-1 shrink-0">
       <button type="button" className={btn} disabled={index === 0} onClick={() => onMove(-1)}>
@@ -303,21 +303,21 @@ export function ItemList<T>({
               setDropTarget(null);
             }}
             onDragEnd={() => { dragFrom.current = null; setDropTarget(null); }}
-            className={`group rounded-lg border bg-slate-50 dark:bg-slate-900/40 [&_summary::-webkit-details-marker]:hidden transition-shadow ${
+            className={`group rounded-lg border bg-gray-50 dark:bg-gray-900/40 [&_summary::-webkit-details-marker]:hidden transition-shadow ${
               dropTarget?.index === i
                 ? dropTarget.before
-                  ? 'shadow-[inset_0_2px_0_0_var(--accent)] border-slate-200 dark:border-slate-800'
-                  : 'shadow-[inset_0_-2px_0_0_var(--accent)] border-slate-200 dark:border-slate-800'
-                : 'border-slate-200 dark:border-slate-800 open:border-[var(--accent)]'
+                  ? 'shadow-[inset_0_2px_0_0_var(--accent)] border-gray-200 dark:border-gray-800'
+                  : 'shadow-[inset_0_-2px_0_0_var(--accent)] border-gray-200 dark:border-gray-800'
+                : 'border-gray-200 dark:border-gray-800 open:border-[var(--accent)]'
             }`}
           >
-            <summary className="cursor-pointer select-none px-4 py-2 flex items-center justify-between gap-2 list-none hover:bg-slate-100 dark:hover:bg-slate-800/60 rounded-lg">
+            <summary className="cursor-pointer select-none px-4 py-2 flex items-center justify-between gap-2 list-none hover:bg-gray-100 dark:hover:bg-gray-800/60 rounded-lg">
               <span className="flex items-center gap-2 min-w-0">
                 <GripHandle onDragStart={(e) => { dragFrom.current = i; e.stopPropagation(); }} />
                 <svg
                   aria-hidden="true"
                   viewBox="0 0 20 20"
-                  className="w-4 h-4 shrink-0 text-slate-500 dark:text-slate-400 transition-transform group-open:rotate-90"
+                  className="w-4 h-4 shrink-0 text-gray-500 dark:text-gray-400 transition-transform group-open:rotate-90"
                   fill="currentColor"
                 >
                   <path d="M7 5l6 5-6 5V5z" />

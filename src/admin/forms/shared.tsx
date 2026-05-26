@@ -26,7 +26,7 @@ export function toDirectGoogleDriveImageUrl(value: string): string {
 
 export function SectionToggle({ show, onChange }: { show: boolean; onChange: (v: boolean) => void }) {
   return (
-    <div className="flex items-center gap-3 mb-4 pb-4 border-b border-slate-200 dark:border-slate-700">
+    <div className="flex items-center gap-3 mb-4 pb-4 border-b border-gray-200 dark:border-gray-700">
       <label className="flex items-center gap-2 text-sm cursor-pointer select-none">
         <input
           type="checkbox"

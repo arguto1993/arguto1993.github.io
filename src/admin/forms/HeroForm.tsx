@@ -7,7 +7,7 @@ export function HeroForm({ value, onChange }: SectionProps<'hero'>) {
     onChange({ ...value, [k]: v });
   return (
     <div className="grid gap-4">
-      <p className="px-3 py-2 text-sm text-slate-500 dark:text-slate-400 rounded-md border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50">
+      <p className="px-3 py-2 text-sm text-gray-500 dark:text-gray-400 rounded-md border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50">
         Hero is always shown. The <code>show</code> field stays in data.json only for section schema consistency.
       </p>
       <div className="grid gap-4">

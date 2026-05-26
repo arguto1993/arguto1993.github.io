@@ -281,17 +281,17 @@ function PreviewHeader({
   const { theme, toggleTheme } = useTheme();
   return (
     <div className="flex items-center justify-between mb-2 gap-2 flex-wrap">
-      <p className="text-xs uppercase tracking-wide text-slate-500 shrink-0">
+      <p className="text-xs uppercase tracking-wide text-gray-500 shrink-0">
         Preview · {section}
       </p>
       <div className="flex items-center gap-1.5">
-        <div className="flex rounded border border-slate-200 dark:border-slate-700 text-xs overflow-hidden">
+        <div className="flex rounded border border-gray-200 dark:border-gray-700 text-xs overflow-hidden">
           <button
             onClick={onDesktop}
             className={`px-2 py-1 transition-colors ${
               mode === 'desktop'
                 ? 'bg-[var(--accent)] text-black'
-                : 'hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400'
+                : 'hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-500 dark:text-gray-400'
             }`}
           >
             Desktop
@@ -301,7 +301,7 @@ function PreviewHeader({
             className={`px-2 py-1 transition-colors ${
               mode === 'mobile'
                 ? 'bg-[var(--accent)] text-black'
-                : 'hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400'
+                : 'hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-500 dark:text-gray-400'
             }`}
           >
             Mobile
@@ -310,7 +310,7 @@ function PreviewHeader({
         <button
           onClick={toggleTheme}
           title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-          className="text-xs px-2 py-1 rounded border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400"
+          className="text-xs px-2 py-1 rounded border border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-500 dark:text-gray-400"
         >
           {theme === 'dark' ? '☀ Light' : '☾ Dark'}
         </button>

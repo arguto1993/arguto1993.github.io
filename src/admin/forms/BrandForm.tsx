@@ -19,7 +19,7 @@ export function BrandForm({ value, onChange }: SectionProps<'brand'>) {
         <TextInput value={value.homepage} onChange={(v) => set('homepage', v)} />
       </Field>
       <Field label="Homepage usage note">
-        <p className="px-3 py-2 text-sm text-slate-500 dark:text-slate-400 rounded-md border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50">
+        <p className="px-3 py-2 text-sm text-gray-500 dark:text-gray-400 rounded-md border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50">
           {value._homepageComment}
         </p>
       </Field>
@@ -27,7 +27,7 @@ export function BrandForm({ value, onChange }: SectionProps<'brand'>) {
         <TextInput value={value.googleVerification} onChange={(v) => set('googleVerification', v)} />
       </Field>
       <Field label="Last updated (auto on save)">
-        <p className="px-3 py-2 text-sm text-slate-500 dark:text-slate-400 rounded-md border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50">
+        <p className="px-3 py-2 text-sm text-gray-500 dark:text-gray-400 rounded-md border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50">
           {value.lastUpdated || '—'}
         </p>
       </Field>
