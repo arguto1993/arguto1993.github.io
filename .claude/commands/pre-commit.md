@@ -1,0 +1,1 @@
+check staged diff and our session, flag any miss or reply execute /commit-message if all good
