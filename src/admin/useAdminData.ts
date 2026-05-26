@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   clearToken,
   getStoredToken,
@@ -20,6 +20,9 @@ export function useAdminData() {
   );
   const [bootstrapping, setBootstrapping] = useState(!DEV_PREVIEW);
   const [data, setData] = useState<PortfolioData | null>(
+    DEV_PREVIEW ? (localData as PortfolioData) : null,
+  );
+  const originalData = useRef<PortfolioData | null>(
     DEV_PREVIEW ? (localData as PortfolioData) : null,
   );
   const [sha, setSha] = useState<string | null>(null);
@@ -49,6 +52,7 @@ export function useAdminData() {
     loadDataFile(token)
       .then(({ data, sha }) => {
         setData(data);
+        originalData.current = data;
         setSha(sha);
       })
       .catch((e: Error) => setError(e.message))
@@ -81,6 +85,7 @@ export function useAdminData() {
         `data.json: update via admin (${isoJakarta} Jakarta)`,
       );
       setData(next);
+      originalData.current = next;
       setSavedAt({ url: commitUrl });
       const fresh = await loadDataFile(token);
       setSha(fresh.sha);
@@ -95,14 +100,29 @@ export function useAdminData() {
     clearToken();
     setToken(null);
     setData(null);
+    originalData.current = null;
     setSha(null);
   };
+
+  const resetToOriginal = () => {
+    if (!originalData.current) return;
+    setData(originalData.current);
+    setError(null);
+    setSavedAt(null);
+  };
+
+  const isDirty =
+    data !== null &&
+    originalData.current !== null &&
+    JSON.stringify(data) !== JSON.stringify(originalData.current);
 
   return {
     bootstrapping,
     data,
     error,
+    isDirty,
     loading,
+    resetToOriginal,
     save,
     savedAt,
     saving,

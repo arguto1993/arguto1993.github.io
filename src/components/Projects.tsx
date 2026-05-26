@@ -3,11 +3,11 @@ import { motion } from 'motion/react';
 import { useSiteData } from '../SiteDataContext';
 import { Github, ExternalLink, LayoutDashboard, ArrowRight } from 'lucide-react';
 import { ProjectModal } from './ProjectModal';
-import { Project } from '../types';
 
 export const Projects: React.FC = () => {
   const { projects } = useSiteData();
-  const [selected, setSelected] = useState<Project | null>(null);
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  const selected = selectedIndex !== null ? (projects.items[selectedIndex] ?? null) : null;
 
   return (
     <section id="projects" className="section-container">
@@ -34,7 +34,7 @@ export const Projects: React.FC = () => {
             {/* Image — clicking anywhere on it opens modal; icons stop propagation */}
             <div
               className="relative aspect-video overflow-hidden cursor-pointer"
-              onClick={() => setSelected(project)}
+              onClick={() => setSelectedIndex(index)}
             >
               <img
                 src={project.image}
@@ -116,7 +116,7 @@ export const Projects: React.FC = () => {
 
               <div className="pt-4 border-t border-[var(--border)]">
                 <button
-                  onClick={() => setSelected(project)}
+                  onClick={() => setSelectedIndex(index)}
                   className="flex items-center gap-1.5 text-sm font-semibold cursor-pointer transition-all duration-200 hover:gap-3"
                   style={{ color: 'var(--accent)' }}
                 >
@@ -128,7 +128,7 @@ export const Projects: React.FC = () => {
         ))}
       </div>
 
-      <ProjectModal project={selected} onClose={() => setSelected(null)} />
+      <ProjectModal project={selected} onClose={() => setSelectedIndex(null)} />
     </section>
   );
 };

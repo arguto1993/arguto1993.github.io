@@ -9,6 +9,7 @@ import {
   type AdminSectionKey,
 } from './sections';
 import { useAdminData } from './useAdminData';
+import { ConfirmModal } from './primitives';
 
 const DEV_PREVIEW = import.meta.env.DEV;
 const ADMIN_TITLE = 'Arguto Portfolio 2.0 - Admin';
@@ -18,7 +19,9 @@ export default function AdminApp() {
     bootstrapping,
     data,
     error,
+    isDirty,
     loading,
+    resetToOriginal,
     save,
     savedAt,
     saving,
@@ -27,6 +30,7 @@ export default function AdminApp() {
     token,
   } = useAdminData();
   const [section, setSection] = useState<AdminSectionKey>('Brand');
+  const [confirmReset, setConfirmReset] = useState(false);
 
   // Inject noindex once for the admin route.
   useEffect(() => {
@@ -79,6 +83,15 @@ export default function AdminApp() {
             >
               ← Back to site
             </a>
+            {isDirty && (
+              <button
+                onClick={() => setConfirmReset(true)}
+                disabled={saving}
+                className="cursor-pointer px-3 py-1.5 text-sm rounded-md border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                Reset
+              </button>
+            )}
             <button
               onClick={save}
               disabled={!data || saving || loading || DEV_PREVIEW}
@@ -144,6 +157,15 @@ export default function AdminApp() {
         </main>
         {data && <AdminPreviewPane section={section} data={data} />}
       </div>
+
+      <ConfirmModal
+        open={confirmReset}
+        title="Discard changes"
+        message="All unsaved changes will be lost. This cannot be undone."
+        confirmLabel="Discard"
+        onConfirm={() => { setConfirmReset(false); resetToOriginal(); }}
+        onCancel={() => setConfirmReset(false)}
+      />
     </div>
   );
 }
