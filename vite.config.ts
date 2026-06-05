@@ -16,23 +16,31 @@ function portfolioSeoPlugin(): Plugin {
     name: 'portfolio-seo',
     transformIndexHtml(html) {
       const data = JSON.parse(fs.readFileSync('./src/data.json', 'utf-8'));
-      const { hero, brand } = data;
+      const { hero, brand, about, projects, education } = data;
       const homepage = getHomepage(data);
       const location = getContactByIcon(data, 'map')?.value ?? '';
 
       const allSkills = getAllSkills(data);
-      const description =
-        `Data Professional with 9+ years of cross-sector experience in analytics, ` +
-        `data engineering, and machine learning. Skilled in Python, SQL, BigQuery, ` +
-        `ClickHouse, and BI platforms. Based in ${location}.`;
 
-      const jsonLdPerson = JSON.stringify({
+      const stripMarkdown = (str = '') =>
+        String(str).replace(/\*\*/g, '').replace(/__/g, '').replace(/\s+/g, ' ').trim();
+      const escAttr = (str = '') =>
+        String(str).replace(/&/g, '&amp;').replace(/"/g, '&quot;');
+
+      // Derived from data.json (about copy + location) so the description stays in
+      // sync with content edits instead of being hardcoded here.
+      const aboutLead = stripMarkdown(about?.content ?? '').split('. ')[0];
+      const description = aboutLead
+        ? `${aboutLead}. Based in ${location}.`
+        : `${hero.title} based in ${location}.`;
+
+      const personSchema: Record<string, unknown> = {
         '@context': 'https://schema.org',
         '@type': 'Person',
         name: hero.name,
         alternateName: brand.nickname,
         jobTitle: hero.title,
-        description: `Data Professional with 9+ years of cross-sector experience turning complex data into strategic business insights.`,
+        description,
         url: homepage,
         email: getContactByIcon(data, 'mail')?.value ?? '',
         address: {
@@ -46,67 +54,122 @@ function portfolioSeoPlugin(): Plugin {
         knowsAbout: allSkills,
         worksFor: {
           '@type': 'Organization',
-          name: data.experience.items[0]?.company ?? '',
+          name: data.experience?.items?.[0]?.company ?? '',
         },
-      });
+      };
 
-      const jsonLdWebSite = JSON.stringify({
-        '@context': 'https://schema.org',
-        '@type': 'WebSite',
-        name: `${hero.name} — Portfolio`,
-        url: `${homepage}/`,
-        description,
-        author: { '@type': 'Person', name: hero.name },
-      });
+      // Education & certifications enrich the Person graph when the section is shown.
+      if (education?.show) {
+        personSchema.alumniOf = (education.items ?? []).map(
+          (edu: { institution: string }) => ({
+            '@type': 'EducationalOrganization',
+            name: edu.institution,
+          })
+        );
+        personSchema.hasCredential = (education.certifications?.items ?? []).map(
+          (cert: { name: string; type: string; issuer: string; link?: string }) => ({
+            '@type': 'EducationalOccupationalCredential',
+            name: cert.name,
+            credentialCategory: cert.type,
+            recognizedBy: { '@type': 'Organization', name: cert.issuer },
+            ...(cert.link ? { url: cert.link } : {}),
+          })
+        );
+      }
 
       const visibleSections = getVisibleSections(data);
-      const jsonLdBreadcrumbs = JSON.stringify({
-        '@context': 'https://schema.org',
-        '@type': 'BreadcrumbList',
-        itemListElement: visibleSections.map((section, i) => ({
-          '@type': 'ListItem',
-          position: i + 1,
-          name: section.label,
-          item: `${homepage}/${section.href}`,
-        })),
-      });
+
+      const jsonLd: Record<string, unknown>[] = [
+        personSchema,
+        {
+          '@context': 'https://schema.org',
+          '@type': 'WebSite',
+          name: `${hero.name} — Portfolio`,
+          url: `${homepage}/`,
+          description,
+          author: { '@type': 'Person', name: hero.name },
+        },
+        {
+          '@context': 'https://schema.org',
+          '@type': 'BreadcrumbList',
+          itemListElement: visibleSections.map((section, i) => ({
+            '@type': 'ListItem',
+            position: i + 1,
+            name: section.label,
+            item: `${homepage}/${section.href}`,
+          })),
+        },
+      ];
+
+      // Projects as an ItemList of CreativeWorks so search/AI crawlers can read the portfolio.
+      if (projects?.show && projects.items?.length) {
+        jsonLd.push({
+          '@context': 'https://schema.org',
+          '@type': 'ItemList',
+          name: `${projects.title} — ${hero.name}`,
+          itemListElement: projects.items.map((proj: {
+            title: string;
+            goal?: string;
+            background?: string;
+            description?: string[];
+            date?: string;
+            techStack?: string[];
+            relatedSkills?: string[];
+            domain?: string;
+            image?: string;
+            link?: string;
+          }, i: number) => ({
+            '@type': 'ListItem',
+            position: i + 1,
+            item: {
+              '@type': 'CreativeWork',
+              name: proj.title,
+              description: proj.goal || proj.background || proj.description?.[0] || '',
+              dateCreated: proj.date,
+              creator: { '@type': 'Person', name: hero.name },
+              keywords: [...(proj.techStack ?? []), ...(proj.relatedSkills ?? [])].join(', '),
+              ...(proj.domain ? { about: proj.domain } : {}),
+              ...(proj.image ? { image: proj.image } : {}),
+              ...(proj.link ? { url: proj.link } : {}),
+            },
+          })),
+        });
+      }
 
       const verifyTag = brand.googleVerification
         ? `\n    <meta name="google-site-verification" content="${brand.googleVerification as string}" />`
         : '';
 
+      const jsonLdTags = jsonLd
+        .map((schema) => `    <script type="application/ld+json">${JSON.stringify(schema)}</script>`)
+        .join('\n');
+
       const tags = `
     <!-- Primary SEO -->${verifyTag}
-    <meta name="description" content="${description}" />
-    <meta name="keywords" content="${allSkills.join(', ')}, ${hero.name}, ${brand.nickname}" />
-    <meta name="author" content="${hero.name}" />
+    <meta name="description" content="${escAttr(description)}" />
+    <meta name="keywords" content="${escAttr(`${allSkills.join(', ')}, ${hero.name}, ${brand.nickname}`)}" />
+    <meta name="author" content="${escAttr(hero.name)}" />
     <link rel="canonical" href="${homepage}/" />
 
     <!-- Open Graph / Social -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="${homepage}/" />
-    <meta property="og:title" content="${hero.name} — ${hero.title}" />
-    <meta property="og:description" content="${description}" />
+    <meta property="og:title" content="${escAttr(`${hero.name} — ${hero.title}`)}" />
+    <meta property="og:description" content="${escAttr(description)}" />
     <meta property="og:image" content="${homepage}/images/logo/white.png" />
     <meta property="og:locale" content="en_US" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:url" content="${homepage}/" />
-    <meta name="twitter:title" content="${hero.name} — ${hero.title}" />
-    <meta name="twitter:description" content="${description}" />
+    <meta name="twitter:title" content="${escAttr(`${hero.name} — ${hero.title}`)}" />
+    <meta name="twitter:description" content="${escAttr(description)}" />
     <meta name="twitter:image" content="${homepage}/images/logo/white.png" />
 
     <!-- JSON-LD Structured Data -->
-    <script type="application/ld+json">${jsonLdPerson}</script>
-    <script type="application/ld+json">${jsonLdWebSite}</script>
-    <script type="application/ld+json">${jsonLdBreadcrumbs}</script>`;
+${jsonLdTags}`;
 
-      const result = html.replace(
-        '<title>Arguto Portfolio</title>',
-        `<title>Arguto Portfolio</title>`,
-      );
-      return result.replace('</head>', `${tags}\n  </head>`);
+      return html.replace('</head>', `${tags}\n  </head>`);
     },
   };
 }

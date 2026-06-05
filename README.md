@@ -47,8 +47,10 @@ My professional portfolio website built with React and TypeScript.
 - Each content section can be shown or hidden via the `show` flag inside each section in `src/data.json`, or via the admin page
 - The Hero section is always shown; `hero.show` remains in `src/data.json` only for section schema consistency
 - All content managed in a single `src/data.json` — no code changes needed
-- SEO-ready: meta tags, Open Graph, Twitter Card, and JSON-LD structured data
-  (Person, WebSite, BreadcrumbList) are all auto-generated from `data.json` at build time
+- SEO-ready: meta tags, Open Graph, Twitter Card, and JSON-LD structured data are all
+  auto-generated from `data.json` at build time — the meta description is derived from the
+  About copy, and the JSON-LD covers Person (with `alumniOf` education + `hasCredential`
+  certifications), WebSite, BreadcrumbList, and an ItemList of projects as `CreativeWork`s
 - Pre-rendered static HTML injected at build time so search crawlers (Googlebot, Bingbot) and LLM bots
   (GPTBot, ClaudeBot, PerplexityBot) can read content without executing JavaScript
 - `robots.txt` and `sitemap.xml` auto-generated at build time
