@@ -128,7 +128,7 @@ export const ProjectModal: React.FC<Props> = ({ projects, index, onClose, onNavi
 
               {/* Image */}
               <div
-                className="w-full flex items-center justify-center px-6 py-2"
+                className="w-full flex items-center justify-center px-6 pt-2 pb-1"
                 style={{ background: 'color-mix(in srgb, var(--accent) 6%, var(--bg))' }}
               >
                 {project.image ? (
@@ -148,16 +148,18 @@ export const ProjectModal: React.FC<Props> = ({ projects, index, onClose, onNavi
               </div>
 
               {/* Meta + links */}
-              <div className="px-6 pt-4 pb-6 flex flex-col gap-3 flex-1">
-                <p className="text-xs opacity-50 tracking-wide">
-                  {[project.organization, project.date].filter(Boolean).join('  ·  ')}
-                </p>
-                {project.role && (
-                  <p className="text-xs opacity-40 tracking-wide italic">{project.role}</p>
-                )}
+              <div className="px-6 pt-4 pb-6 flex flex-col gap-2 flex-1">
+                <div className="flex flex-col gap-0.5 pb-3 border-b border-[var(--border)]">
+                  <p className="text-xs opacity-50 tracking-wide">
+                    {[project.organization, project.date].filter(Boolean).join('  ·  ')}
+                  </p>
+                  {project.role && (
+                    <p className="text-xs opacity-40 tracking-wide italic">{project.role}</p>
+                  )}
+                </div>
 
                 {project.description && project.description.length > 0 && (
-                  <ul className="mt-1 space-y-1.5">
+                  <ul className="space-y-1.5">
                     {project.description.map((d, i) => (
                       <li key={i} className="flex gap-2 text-xs leading-relaxed opacity-60">
                         <span
