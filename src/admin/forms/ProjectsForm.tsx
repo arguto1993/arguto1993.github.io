@@ -21,7 +21,7 @@ export function ProjectsForm({ value, onChange }: SectionProps<'projects'>) {
       <ItemList<Project>
         items={value.items}
         onChange={(items) => onChange({ ...value, items })}
-        emptyItem={() => ({ title: '', organization: '', date: '', role: '', domain: '', background: '', goal: '', description: [''], keyInsights: [], techStack: [], relatedSkills: [], image: '', dashboardLink: '', githubLink: '', presentationLink: '', link: '', github: '' })}
+        emptyItem={() => ({ title: '', organization: '', date: '', role: '', domain: '', background: '', goal: '', description: [''], keyInsights: [], techStack: [], relatedSkills: [], image: '', dashboardLink: '', githubLink: '', presentationLink: '', videoLink: '', link: '', github: '' })}
         itemLabel={(p) => p.title || '(untitled project)'}
         renderItem={(item, _update, set) => (
           <>
@@ -55,6 +55,9 @@ export function ProjectsForm({ value, onChange }: SectionProps<'projects'>) {
                 </Field>
                 <Field label="Presentation Link">
                   <TextInput value={item.presentationLink ?? ''} onChange={(v) => set('presentationLink', v)} />
+                </Field>
+                <Field label="Video Link">
+                  <TextInput value={item.videoLink ?? ''} onChange={(v) => set('videoLink', v)} />
                 </Field>
                 <Field label="Link (legacy)">
                   <TextInput value={item.link ?? ''} onChange={(v) => set('link', v)} />

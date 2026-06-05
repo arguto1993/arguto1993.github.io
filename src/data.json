@@ -8,11 +8,11 @@
     "_homepageComment": "Used by vite.config.ts for SEO canonical, Open Graph, Twitter Card, and JSON-LD URLs, and by scripts/prerender.mjs for sitemap URLs.",
     "googleVerification": "mg6llNEPe6WyLmV1Y7R-1KAmYhlF5O63czUj3QeMry4",
     "repository": "https://github.com/arguto1993/arguto1993.github.io",
-    "lastUpdated": "June 5, 2026"
+    "lastUpdated": "June 6, 2026"
   },
   "hero": {
     "show": true,
-    "title": "Data Analyst & Engineer",
+    "title": "Full Stack Data Professional",
     "name": "Argo Wahyu Utomo",
     "subtitle": "Turning complex data into strategic business insights with 9+ years of cross-sector experience.",
     "resume": "https://drive.google.com/file/d/1QcOhb1iERIWCv4zIQZh6XI49lJ9AlegD/view?usp=sharing"
@@ -259,14 +259,13 @@
           "Python",
           "Pandas",
           "Scikit-learn",
-          "Looker Studio",
-          "RFM Scoring",
-          "K-Means Clustering",
-          "Impact Analysis"
+          "Looker Studio"
         ],
         "relatedSkills": [
-          "Data Analysis",
           "Machine Learning",
+          "RFM Scoring",
+          "K-Means Clustering",
+          "Impact Analysis",
           "Business Intelligence",
           "Marketing Strategy"
         ],
@@ -298,10 +297,7 @@
         "techStack": [
           "Python",
           "Scikit-learn",
-          "Streamlit",
-          "Machine Learning",
-          "Data Science",
-          "Project Management"
+          "Streamlit"
         ],
         "relatedSkills": [
           "Machine Learning",
@@ -309,19 +305,205 @@
           "Web Development",
           "Project Management"
         ],
-        "image": "https://drive.google.com/thumbnail?id=1VgY6-DqSL4aR8o-8_1lJFLyWcRbQysvM&sz=w1600",
-        "dashboardLink": "https://depression-risk-assessment.streamlit.app/",
+        "image": "https://drive.google.com/thumbnail?id=1B3UPn3WoT4eGc2hCoaWISTF0W1EyhlmU&sz=w1600",
+        "dashboardLink": "",
         "githubLink": "https://github.com/arguto1993/depression-risk-assessment-with-machine-learning",
-        "presentationLink": "",
+        "presentationLink": "https://docs.google.com/presentation/d/1lgghuBy4zX1hWud8T-fG0458QMPtotzjAk9VBqWiFfM/edit?usp=sharing",
+        "videoLink": "https://www.youtube.com/watch?v=qTZRZB-TxGE",
         "link": "https://depression-risk-assessment.streamlit.app/",
         "github": "https://github.com/arguto1993/depression-risk-assessment-with-machine-learning"
+      },
+      {
+        "title": "JKT48 YouTube Comment Sentiment Analysis",
+        "organization": "Dicoding Academy",
+        "date": "Jan 2025",
+        "role": "Data Scientist",
+        "domain": "Music & Entertainment",
+        "background": "JKT48's 'New Era' special performance video — Benang Sari, Putik, dan Kupu-Kupu Malam — drew tens of thousands of YouTube comments reacting to its bold new concept. That raw, unstructured feedback held a clear signal of how fans felt, but there was no straightforward way to measure whether the overall reception was positive, neutral, or negative, or what was driving each reaction.",
+        "goal": "Classify YouTube comment sentiment into positive, neutral, and negative to quantify audience reaction to the performance, compare lexicon-based and pre-trained BERT labeling, and train machine learning models that can predict the sentiment of new comments.",
+        "description": [
+          "Collected 22,996 comments via the YouTube Data API v3 and cleaned them down to 11,650 usable top-level comments through deduplication, text cleaning, stopword removal, and custom Indonesian slang normalization.",
+          "Labeled sentiment with the ID-OpinionWords lexicon (supplemented by custom English word lists) and benchmarked it against pre-trained BERT labeling.",
+          "Trained and compared four model + feature-extraction combinations — SVM, Random Forest, and a BiLSTM deep learning model — to predict comment sentiment."
+        ],
+        "keyInsights": [
+          "Overall reception skewed favorable: 50% neutral, 39% positive, and only 11% negative across 11,650 comments — with 'keren', 'keren banget', and 'new era' dominating positive mentions.",
+          "Negative comments were the smallest group but the most engaging — highest average likes (20.71) and replies (1.92) per comment vs. 16.28 and 1.00 for positive — clustering around the provocative 'kupu-kupu malam' theme.",
+          "A BiLSTM (5 epochs, batch size 32, max sequence length 20) was the best classifier at 93.44% test accuracy, beating SVM + TF-IDF (91.09%) and both Random Forest variants; lexicon labels produced more consistent results than BERT labels."
+        ],
+        "techStack": [
+          "Python",
+          "Pandas",
+          "Scikit-learn",
+          "TensorFlow",
+          "YouTube Data API"
+        ],
+        "relatedSkills": [
+          "Natural Language Processing",
+          "Sentiment Analysis",
+          "Machine Learning",
+          "Deep Learning",
+          "Data Science"
+        ],
+        "image": "https://drive.google.com/thumbnail?id=1XA43b-k8PfDET0q3iSR-lqlV8Gu0XQbK&sz=w1600",
+        "dashboardLink": "",
+        "githubLink": "https://github.com/arguto1993/jkt48-video-sentiment-analysis",
+        "presentationLink": "https://www.canva.com/design/DAHLuDeM8lo/D0oAz9wLE2IE9j5AutB5NA/view?utm_content=DAHLuDeM8lo&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton",
+        "link": "https://www.canva.com/design/DAHLuDeM8lo/D0oAz9wLE2IE9j5AutB5NA/view?utm_content=DAHLuDeM8lo&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton",
+        "github": "https://github.com/arguto1993/jkt48-video-sentiment-analysis"
+      },
+      {
+        "title": "B2B Commerce Customer Retention & Cohort Analysis",
+        "organization": "RevoU x Telkom Indonesia",
+        "date": "May 2024",
+        "role": "Data Analyst Associate",
+        "domain": "B2B E-Commerce",
+        "background": "Telkom Indonesia's B2B marketplace — built with the Ministry of SOEs, the Ministry of MSMEs, and LKPP to help MSMEs join government procurement — needed to keep customers loyal. Maintaining loyalty is critical in e-commerce, so the team set out to analyze customer retention to reduce churn and stop buyers from switching to competitors.",
+        "goal": "Evaluate current retention performance through retention rate, customer lifetime value (CLV), and average revenue per user (ARPU), then surface trends and patterns to recommend concrete ways to improve retention — focusing on the highest-potential hyper-active and seasonal buyer segments.",
+        "description": [
+          "Ran monthly cohort analysis on 12,810 active buyers, focusing on the hyper-active (7,643) and seasonal (3,330) segments identified earlier via K-Means.",
+          "Built retention-rate, CLV, and ARPU cohort heatmaps for 2023 to track how each monthly acquisition cohort behaved over time.",
+          "Translated cohort patterns into segment-specific retention plays — loyalty programs, seasonal incentives, and proactive support."
+        ],
+        "keyInsights": [
+          "Hyper-active buyers' January & February cohorts were the largest and stickiest — the January cohort climbed to 87.7% retention by month 11 and dominated CLV (Rp 419.6B) and ARPU all year.",
+          "Retention was weakest for the April–October hyper-active cohorts, yet overall retention rose over time across cohorts, peaking in November & December.",
+          "Seasonal buyers made more first orders in H2 (July–September) with lower overall retention than hyper-active buyers; ARPU declined over time for both segments, with the steepest drop from January to February."
+        ],
+        "techStack": [
+          "Python",
+          "Pandas",
+          "Matplotlib",
+          "Seaborn"
+        ],
+        "relatedSkills": [
+          "Cohort Analysis",
+          "Customer Retention",
+          "Customer Lifetime Value",
+          "Data Storytelling",
+          "Data Visualization"
+        ],
+        "image": "https://drive.google.com/thumbnail?id=1yMXD5XA5YdGKUDM3DE4YG_cYXUBftgtI&sz=w1600",
+        "dashboardLink": "",
+        "githubLink": "https://github.com/arguto1993/b2b-commerce-segmentation-retention-dashboard/tree/master/3.%20cohort",
+        "presentationLink": "https://www.canva.com/design/DAGFG0Zcxqk/RdtIQZePYMr09KqFRTh3ew/view?utm_content=DAGFG0Zcxqk&utm_campaign=designshare&utm_medium=link&utm_source=viewer",
+        "link": "https://www.canva.com/design/DAGFG0Zcxqk/RdtIQZePYMr09KqFRTh3ew/view?utm_content=DAGFG0Zcxqk&utm_campaign=designshare&utm_medium=link&utm_source=viewer",
+        "github": "https://github.com/arguto1993/b2b-commerce-segmentation-retention-dashboard/tree/master/3.%20cohort"
+      },
+      {
+        "title": "B2B Commerce Customer Segmentation",
+        "organization": "RevoU x Telkom Indonesia",
+        "date": "Apr 2024",
+        "role": "Data Analyst Associate",
+        "domain": "B2B E-Commerce",
+        "background": "The B2B Commerce team believed they were missing an opportunity to leverage their customers with one-size-fits-all treatment. They wanted to understand the characteristics of each buyer and seller segment and tailor different approaches per segment — improving business performance and providing better support for sellers.",
+        "goal": "Use EDA and K-Means clustering to segment active sellers and buyers, characterize each segment's behavior, and pinpoint the highest-potential groups for proactive support and retention.",
+        "description": [
+          "Segmented 6,661 active sellers and 12,810 active buyers from 2023 marketplace data using K-Means clustering.",
+          "Engineered behavioral features — recency, order frequency, GMV, AOV, revenue, voucher usage, and buyer/seller reach — to profile each cluster.",
+          "Defined 3 seller and 3 buyer segments and flagged hyper-active sellers & buyers as the top targets for retention."
+        ],
+        "keyInsights": [
+          "Sellers split into 3 clusters: Hyper-Active (4,324; avg 36 orders, GMV Rp 807M, recency 19 days), Big-Order Occasional (749; highest AOV at Rp 107.6M but just 1 order), and Seasonal (1,588).",
+          "Buyers split into Hyper-Active (7,643; avg 20 orders, GMV Rp 480M), Seasonal (3,330), and Small-Order Occasional (1,837) — the only segment that meaningfully used vouchers (median Rp 25,000).",
+          "Hyper-active sellers & buyers showed the highest revenue-growth potential, making them ideal targets for proactive support and retention; voucher usage overall was very low at 3.2% of orders."
+        ],
+        "techStack": [
+          "Python",
+          "Pandas",
+          "Scikit-learn",
+          "Power BI"
+        ],
+        "relatedSkills": [
+          "Customer Segmentation",
+          "K-Means Clustering",
+          "Exploratory Data Analysis",
+          "RFM Scoring",
+          "Data Storytelling"
+        ],
+        "image": "https://drive.google.com/thumbnail?id=1O5yvy83fRB2nvat_JhUfGUrPQP-M1dyX&sz=w1600",
+        "dashboardLink": "",
+        "githubLink": "https://github.com/arguto1993/b2b-commerce-segmentation-retention-dashboard/tree/master/2.%20clustering",
+        "presentationLink": "https://docs.google.com/presentation/d/10iVlLZvmqyUgvfHouQRtzATwglO94ZJrPTPnyoi1zIc/edit?usp=sharing",
+        "link": "https://docs.google.com/presentation/d/10iVlLZvmqyUgvfHouQRtzATwglO94ZJrPTPnyoi1zIc/edit?usp=sharing",
+        "github": "https://github.com/arguto1993/b2b-commerce-segmentation-retention-dashboard/tree/master/2.%20clustering"
+      },
+      {
+        "title": "B2B Commerce Sales Performance Dashboard",
+        "organization": "RevoU x Telkom Indonesia",
+        "date": "Apr 2024",
+        "role": "Data Analyst Associate",
+        "domain": "B2B E-Commerce",
+        "background": "The B2B Commerce team wanted to monitor marketplace performance. As the data analyst, the task was to build a dashboard that gives the sales team and its manager a comprehensive, story-driven view of the data to support informed business decisions.",
+        "goal": "Design a multi-page Power BI dashboard to (1) understand the general performance of the business and (2) analyze seller performance — surfacing prioritized KPIs through interactive, filterable visuals.",
+        "description": [
+          "Built a 3-page Power BI dashboard (Overview, Payments, Map) on 2023 B2B marketplace data for the sales team and its manager.",
+          "Prioritized 6 core KPIs — GMV, Revenue, AOV, # Order, # Active Seller, # Active Buyer — with an interactive KPI selector and slicers for month, order status, seller category, and province.",
+          "Modeled the data with custom measures and parameters, then documented dashboard usage and insight-generation demos."
+        ],
+        "keyInsights": [
+          "2023 delivered Rp 10.94T GMV, Rp 73.7B revenue, and a Rp 26.78M AOV across 137K orders from 6,413 active sellers and 12.2K active buyers.",
+          "Active buyers (12.2K) nearly doubled active sellers (6.4K), flagging an opportunity to recruit more sellers or grow buyers per seller; DKI Jakarta, Jawa Barat, and Jawa Timur led both sides.",
+          "GMV, revenue, orders, and active users all trended upward through the year — peaking in December with dips around April–May and September–October; voucher usage was only 3.2% of orders."
+        ],
+        "techStack": [
+          "Power BI",
+          "DAX"
+        ],
+        "relatedSkills": [
+          "Dashboard Design",
+          "Data Visualization",
+          "Business Intelligence",
+          "KPI Reporting",
+          "Data Storytelling"
+        ],
+        "image": "https://drive.google.com/thumbnail?id=1hNesHabWSCXzWeRF_iKcfow1TqrVto8C&sz=w1600",
+        "dashboardLink": "",
+        "githubLink": "https://github.com/arguto1993/b2b-commerce-segmentation-retention-dashboard/tree/master/1.%20dashboard",
+        "presentationLink": "https://docs.google.com/presentation/d/13T6KiZi6NX5FVsSbd1xmHICup-zOtvDbsWYj8M7Ir0Y/edit?usp=sharing",
+        "link": "https://docs.google.com/presentation/d/13T6KiZi6NX5FVsSbd1xmHICup-zOtvDbsWYj8M7Ir0Y/edit?usp=sharing",
+        "github": "https://github.com/arguto1993/b2b-commerce-segmentation-retention-dashboard/tree/master/1.%20dashboard"
+      },
+      {
+        "title": "Daily Supply Chain & Logistics Performance Analysis",
+        "organization": "RevoU",
+        "date": "Mar 2024",
+        "role": "Data Analyst",
+        "domain": "Supply Chain & Logistics",
+        "background": "Supply chain managers need to review past daily performance, but sifting through historical shipment records is time-consuming and rarely reveals the big picture — slowing down adjustments and proactive problem-solving.",
+        "goal": "Build a daily supply chain & logistics dashboard and demonstrate, on a single day's data, how it streamlines performance analysis and supports faster, data-driven operational decisions.",
+        "description": [
+          "Built a daily supply chain & logistics dashboard in Looker Studio by blending order, warehouse cost, and capacity tables from a ~9,215-order dataset.",
+          "Prioritized 7 day-level KPIs — order volume, transit time, ship-ahead/late counts, weight, and cost — for at-a-glance monitoring.",
+          "Generated insights and recommendations from a single day's data to demonstrate the dashboard's decision-support value."
+        ],
+        "keyInsights": [
+          "PORT04 acted as the network hub, handling 9,041 of 9,215 orders, ~29.3M of 29.5M shipped units, and 150,948 kg of weight — nearly all activity concentrated at one origin port.",
+          "Operations skewed fast and early: transit processing time averaged 2 days (median 2, max 4) and shipments arrived ~2 days ahead of schedule on average, with very few significant late arrivals.",
+          "The day totaled $15.6M in cost across 183K tons, but the dashboard explicitly flags that day-level snapshots need historical benchmarks and richer order detail before driving trend-level decisions."
+        ],
+        "techStack": [
+          "Looker Studio",
+          "Google Sheets"
+        ],
+        "relatedSkills": [
+          "Data Visualization",
+          "Business Intelligence",
+          "Dashboard Design"
+        ],
+        "image": "https://drive.google.com/thumbnail?id=1SRwpyR5GNr59o9GoMUprX9mmdBh0myPq&sz=w1600",
+        "dashboardLink": "https://datastudio.google.com/reporting/ea7d3be4-a585-4868-b632-c25db6dfa94d",
+        "githubLink": "",
+        "presentationLink": "https://docs.google.com/presentation/d/1KSQARrobE4Lk_0EevCLqyM-QilmGCTsIYRVQiW11D9o/edit?usp=sharing",
+        "link": "https://docs.google.com/presentation/d/1KSQARrobE4Lk_0EevCLqyM-QilmGCTsIYRVQiW11D9o/edit?usp=sharing",
+        "github": ""
       },
       {
         "title": "What Kind of Game to Develop to Get 1M USD Global Sales Within 1 Year?",
         "organization": "RevoU",
         "date": "2024",
         "role": "Project Manager, Data Analyst",
-        "domain": "Gaming & Entertainment",
+        "domain": "Gaming",
         "background": "A newly established game studio — Sigma Game Studio — needed data-backed guidance on what type of game to develop for its debut release, with the clear target of reaching $1M USD in global sales within 1 year of launch.",
         "goal": "Identify the characteristics of games that achieved $1M+ global sales within 1 year of release (2016–2017 data), and investigate whether critic and user scores meaningfully impact commercial performance.",
         "description": [
@@ -335,22 +517,60 @@
         ],
         "techStack": [
           "Tableau",
-          "Google Sheets",
-          "Issue Tree",
-          "Exploratory Data Analysis",
-          "Correlation",
-          "Project Management"
+          "Google Sheets"
         ],
         "relatedSkills": [
-          "Data Analysis",
+          "Exploratory Data Analysis",
+          "Correlation",
+          "Issue Tree",
           "Business Intelligence",
           "Project Management"
         ],
-        "image": "https://drive.google.com/thumbnail?id=1MSNERgArL6AgSFYPNHPwwnHBfkWlw7S_&sz=w1600",
+        "image": "https://drive.google.com/thumbnail?id=1-4sAH_0eG-idnR8dZ0CFuEZHg3QyTOWi&sz=w1600",
         "dashboardLink": "https://public.tableau.com/views/VideoGameSales2017Dashboard/DASHBOARD?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link",
         "githubLink": "",
         "presentationLink": "https://docs.google.com/presentation/d/19mP0bx_K0UXkc7V5PhYEcRWy8Y9IJkMTNHvg3IE8zD0/edit?usp=sharing",
         "link": "https://docs.google.com/presentation/d/19mP0bx_K0UXkc7V5PhYEcRWy8Y9IJkMTNHvg3IE8zD0/edit?usp=sharing",
+        "github": ""
+      },
+      {
+        "title": "Berita2600 Social Media Content Word Cloud Analysis",
+        "organization": "BPS-Statistics Education & Training Center",
+        "date": "Jan 2024",
+        "role": "Data Analyst",
+        "domain": "Public Relations & Communications",
+        "background": "Pusdiklat BPS published 183 social media content pieces ('Berita2600') throughout 2023, but the recurring themes and messaging patterns buried in all that text were never systematically examined — leaving the PR team without a clear read on what their content actually emphasized.",
+        "goal": "Understand the key themes of Pusdiklat BPS's 2023 social media content and identify concrete opportunities to improve content strategy for 2024, using word clouds and word/phrase frequency analysis.",
+        "description": [
+          "Scraped 183 social media posts ('Berita2600') from the Pusdiklat BPS blog using Simplescraper and cleaned the text in spreadsheets.",
+          "Generated word clouds and frequency charts in Python after Indonesian stopword removal, surfacing the top 15 words and phrases.",
+          "Translated the most frequent terms into thematic insights and content recommendations."
+        ],
+        "keyInsights": [
+          "After stopword removal the 183 posts held 15.3K words/phrases (3.6K unique, ~84 unique per post); the top 15 terms made up only ~10% of the total, indicating broad topical coverage.",
+          "'peserta' (241), 'pelatihan' (213), and 'kegiatan' (154) dominated — confirming consistent, participant- and training-centric messaging aligned with the org's mission.",
+          "High-ranking 'Pembukaan Pelatihan' (67 mentions across 183 posts) flagged an over-reliance on opening-ceremony coverage, surfacing a clear opportunity to diversify content in 2024."
+        ],
+        "techStack": [
+          "Python",
+          "Google Colab",
+          "Google Sheets",
+          "Simplescraper",
+          "WordCloud",
+          "NLTK"
+        ],
+        "relatedSkills": [
+          "Natural Language Processing",
+          "Text Mining",
+          "Web Scraping",
+          "Data Visualization",
+          "Data Storytelling"
+        ],
+        "image": "https://drive.google.com/thumbnail?id=1ZKBzWc44qzHShlLqS3fJY1bwulgQgKDD&sz=w1600",
+        "dashboardLink": "https://datastudio.google.com/reporting/e8eab359-809c-4a17-8e8b-07455bd7df58",
+        "githubLink": "",
+        "presentationLink": "https://docs.google.com/presentation/d/1h-E5dHt6ZV-QrZE3D2jbWYKjRjUgBT1MAUFNKhDOsP4/edit?usp=sharing",
+        "link": "https://docs.google.com/presentation/d/1h-E5dHt6ZV-QrZE3D2jbWYKjRjUgBT1MAUFNKhDOsP4/edit?usp=sharing",
         "github": ""
       }
     ]

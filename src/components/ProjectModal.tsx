@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, Github as GithubIcon, LayoutDashboard, FileText, ChevronLeft, ChevronRight } from 'lucide-react';
+import { X, Github as GithubIcon, LayoutDashboard, FileText, Youtube, Globe, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Project } from '../types';
 
 interface Props {
@@ -44,7 +44,12 @@ export const ProjectModal: React.FC<Props> = ({ projects, index, onClose, onNavi
     return () => window.removeEventListener('keydown', onKey);
   }, [onClose, isOpen, index, count]);
 
-  const hasLinks = project && (project.dashboardLink || project.githubLink || project.presentationLink);
+  const modalLinks = project
+    ? [project.dashboardLink, project.githubLink, project.presentationLink, project.videoLink].filter(Boolean)
+    : [];
+  // Legacy `link` renders as a Website button only when it isn't already one of the labelled links above.
+  const websiteUrl = project?.link && !modalLinks.includes(project.link) ? project.link : null;
+  const hasLinks = modalLinks.length > 0 || !!websiteUrl;
 
   return ReactDOM.createPortal(
     <AnimatePresence>
@@ -98,7 +103,7 @@ export const ProjectModal: React.FC<Props> = ({ projects, index, onClose, onNavi
               <div className="flex items-center gap-3 min-w-0">
                 <p className="text-sm font-bold uppercase tracking-widest opacity-50 shrink-0">Project Details</p>
                 {project.domain && (
-                  <span className="accent-badge-2 !text-[10px] !px-3 !py-1 truncate">✦ {project.domain}</span>
+                  <span className="accent-badge-2 !text-xs !px-3 !py-1 truncate">✦ {project.domain}</span>
                 )}
               </div>
               <button
@@ -167,12 +172,22 @@ export const ProjectModal: React.FC<Props> = ({ projects, index, onClose, onNavi
 
                 {hasLinks && (
                   <div className="flex flex-wrap gap-2 mt-auto pt-4">
+                    {websiteUrl && (
+                      <a
+                        href={websiteUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="modal-link"
+                      >
+                        <Globe size={14} /> Website
+                      </a>
+                    )}
                     {project.dashboardLink && (
                       <a
                         href={project.dashboardLink}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-2 px-4 py-2 rounded-full border border-[var(--border)] text-sm font-semibold hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors"
+                        className="modal-link"
                       >
                         <LayoutDashboard size={14} /> Dashboard
                       </a>
@@ -182,7 +197,7 @@ export const ProjectModal: React.FC<Props> = ({ projects, index, onClose, onNavi
                         href={project.githubLink}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-2 px-4 py-2 rounded-full border border-[var(--border)] text-sm font-semibold hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors"
+                        className="modal-link"
                       >
                         <GithubIcon size={14} /> GitHub
                       </a>
@@ -192,9 +207,19 @@ export const ProjectModal: React.FC<Props> = ({ projects, index, onClose, onNavi
                         href={project.presentationLink}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-2 px-4 py-2 rounded-full border border-[var(--border)] text-sm font-semibold hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors"
+                        className="modal-link"
                       >
                         <FileText size={14} /> Presentation
+                      </a>
+                    )}
+                    {project.videoLink && (
+                      <a
+                        href={project.videoLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="modal-link"
+                      >
+                        <Youtube size={14} /> Video
                       </a>
                     )}
                   </div>
@@ -239,7 +264,7 @@ export const ProjectModal: React.FC<Props> = ({ projects, index, onClose, onNavi
                 <div className="flex flex-col gap-4">
                   {project.techStack && project.techStack.length > 0 && (
                     <div>
-                      <p className="text-xs font-bold uppercase tracking-widest opacity-50 mb-2.5">Stack</p>
+                      <p className="text-xs font-bold uppercase tracking-widest opacity-50 mb-2.5">Tech Stack</p>
                       <div className="flex flex-wrap gap-1.5">
                         {project.techStack.map(t => (
                           <span

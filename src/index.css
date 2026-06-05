@@ -84,6 +84,20 @@
     background-color:  #000000 !important;
     color: var(--accent) !important;
   }
+
+  /* Link pills in the project modal — accent-tinted so they pop without
+     matching the solid domain badge (.accent-badge-2). */
+  .modal-link {
+    @apply flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold transition-colors;
+    background-color: color-mix(in srgb, var(--accent) 16%, var(--card-bg));
+    color: var(--accent);
+    border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent);
+  }
+
+  .modal-link:hover {
+    background-color: color-mix(in srgb, var(--accent) 30%, var(--card-bg));
+    border-color: var(--accent);
+  }
 }
 
 /* Custom scrollbar */
