@@ -1,1 +1,1 @@
-check staged diff and write conventional commit messages to copy with 1 click
+check staged diff and write conventional commit messages in a codeblock

@@ -7,7 +7,6 @@ import { ProjectModal } from './ProjectModal';
 export const Projects: React.FC = () => {
   const { projects } = useSiteData();
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
-  const selected = selectedIndex !== null ? (projects.items[selectedIndex] ?? null) : null;
 
   return (
     <section id="projects" className="section-container">
@@ -128,7 +127,12 @@ export const Projects: React.FC = () => {
         ))}
       </div>
 
-      <ProjectModal project={selected} onClose={() => setSelectedIndex(null)} />
+      <ProjectModal
+        projects={projects.items}
+        index={selectedIndex}
+        onClose={() => setSelectedIndex(null)}
+        onNavigate={setSelectedIndex}
+      />
     </section>
   );
 };
