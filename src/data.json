@@ -8,7 +8,7 @@
     "_homepageComment": "Used by vite.config.ts for SEO canonical, Open Graph, Twitter Card, and JSON-LD URLs, and by scripts/prerender.mjs for sitemap URLs.",
     "googleVerification": "mg6llNEPe6WyLmV1Y7R-1KAmYhlF5O63czUj3QeMry4",
     "repository": "https://github.com/arguto1993/arguto1993.github.io",
-    "lastUpdated": "May 26, 2026"
+    "lastUpdated": "June 5, 2026"
   },
   "hero": {
     "show": true,
@@ -287,8 +287,8 @@
         "goal": "Identify the key factors driving depression risk, build a classification model to predict high-risk individuals, and deploy it as an accessible web app so institutions and individuals can act on early warning signals.",
         "description": [
           "Led a team of 4 to benchmark 5 ML models and identify the top 10 depression risk factors from survey data.",
-          "Deployed a Streamlit web app for real-time individual depression risk prediction and interactive data exploration.",
-          "Built an interactive dashboard to explore the training dataset, surfacing patterns in demographics, lifestyle factors, and depression prevalence."
+          "Deployed a Streamlit web app for real-time individual depression risk assessment.",
+          "Built an interactive dashboard surfacing training dataset patterns in demographics, lifestyle, and depression prevalence."
         ],
         "keyInsights": [
           "Feature importance analysis ranked suicidal thoughts, academic pressure, and financial stress as the top 3 depression risk factors — ahead of sleep duration, dietary habits, and family mental health history.",
