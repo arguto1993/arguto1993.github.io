@@ -21,7 +21,7 @@ export function ProjectsForm({ value, onChange }: SectionProps<'projects'>) {
       <ItemList<Project>
         items={value.items}
         onChange={(items) => onChange({ ...value, items })}
-        emptyItem={() => ({ title: '', organization: '', date: '', role: '', domain: '', background: '', goal: '', description: [''], keyInsights: [], techStack: [], relatedSkills: [], image: '', dashboardLink: '', githubLink: '', presentationLink: '', videoLink: '', link: '', github: '' })}
+        emptyItem={() => ({ title: '', organization: '', date: '', role: '', domain: '', background: '', goal: '', description: [''], keyInsights: [], techStack: [], relatedSkills: [], image: '', dashboardLink: '', githubLink: '', presentationLink: '', videoLink: '' })}
         itemLabel={(p) => p.title || '(untitled project)'}
         renderItem={(item, _update, set) => (
           <>
