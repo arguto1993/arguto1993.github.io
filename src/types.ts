@@ -75,8 +75,6 @@ export interface Project {
   githubLink?: string;
   presentationLink?: string;
   videoLink?: string;
-  link?: string;
-  github?: string;
 }
 
 export interface Projects {

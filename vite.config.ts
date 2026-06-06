@@ -117,7 +117,9 @@ function portfolioSeoPlugin(): Plugin {
             relatedSkills?: string[];
             domain?: string;
             image?: string;
-            link?: string;
+            githubLink?: string;
+            dashboardLink?: string;
+            presentationLink?: string;
           }, i: number) => ({
             '@type': 'ListItem',
             position: i + 1,
@@ -130,7 +132,9 @@ function portfolioSeoPlugin(): Plugin {
               keywords: [...(proj.techStack ?? []), ...(proj.relatedSkills ?? [])].join(', '),
               ...(proj.domain ? { about: proj.domain } : {}),
               ...(proj.image ? { image: proj.image } : {}),
-              ...(proj.link ? { url: proj.link } : {}),
+              ...((proj.githubLink || proj.dashboardLink || proj.presentationLink)
+                ? { url: proj.githubLink || proj.dashboardLink || proj.presentationLink }
+                : {}),
             },
           })),
         });

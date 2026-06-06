@@ -59,12 +59,6 @@ export function ProjectsForm({ value, onChange }: SectionProps<'projects'>) {
                 <Field label="Video Link">
                   <TextInput value={item.videoLink ?? ''} onChange={(v) => set('videoLink', v)} />
                 </Field>
-                <Field label="Link (legacy)">
-                  <TextInput value={item.link ?? ''} onChange={(v) => set('link', v)} />
-                </Field>
-                <Field label="GitHub (legacy)">
-                  <TextInput value={item.github ?? ''} onChange={(v) => set('github', v)} />
-                </Field>
               </div>
             </div>
             <Field label="Background">

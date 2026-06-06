@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { useSiteData } from '../SiteDataContext';
-import { Github, ExternalLink, LayoutDashboard, Youtube, ArrowRight } from 'lucide-react';
+import { Github, FileText, LayoutDashboard, Youtube, ArrowRight } from 'lucide-react';
 import { ProjectModal } from './ProjectModal';
 
 export const Projects: React.FC = () => {
@@ -42,9 +42,9 @@ export const Projects: React.FC = () => {
                 referrerPolicy="no-referrer"
               />
               <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
-                {project.github && (
+                {project.githubLink && (
                   <a
-                    href={project.github}
+                    href={project.githubLink}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="p-3 rounded-full bg-white text-black hover:bg-[var(--accent)] hover:text-white transition-colors"
@@ -64,6 +64,17 @@ export const Projects: React.FC = () => {
                     <LayoutDashboard size={20} />
                   </a>
                 )}
+                {project.presentationLink && (
+                  <a
+                    href={project.presentationLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3 rounded-full bg-white text-black hover:bg-[var(--accent)] hover:text-white transition-colors"
+                    onClick={e => e.stopPropagation()}
+                  >
+                    <FileText size={20} />
+                  </a>
+                )}
                 {project.videoLink && (
                   <a
                     href={project.videoLink}
@@ -73,17 +84,6 @@ export const Projects: React.FC = () => {
                     onClick={e => e.stopPropagation()}
                   >
                     <Youtube size={20} />
-                  </a>
-                )}
-                {project.link && (
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-3 rounded-full bg-white text-black hover:bg-[var(--accent)] hover:text-white transition-colors"
-                    onClick={e => e.stopPropagation()}
-                  >
-                    <ExternalLink size={20} />
                   </a>
                 )}
               </div>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, Github as GithubIcon, LayoutDashboard, FileText, Youtube, Globe, ChevronLeft, ChevronRight } from 'lucide-react';
+import { X, Github as GithubIcon, LayoutDashboard, FileText, Youtube, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Project } from '../types';
 
 interface Props {
@@ -47,9 +47,7 @@ export const ProjectModal: React.FC<Props> = ({ projects, index, onClose, onNavi
   const modalLinks = project
     ? [project.dashboardLink, project.githubLink, project.presentationLink, project.videoLink].filter(Boolean)
     : [];
-  // Legacy `link` renders as a Website button only when it isn't already one of the labelled links above.
-  const websiteUrl = project?.link && !modalLinks.includes(project.link) ? project.link : null;
-  const hasLinks = modalLinks.length > 0 || !!websiteUrl;
+  const hasLinks = modalLinks.length > 0;
 
   return ReactDOM.createPortal(
     <AnimatePresence>
@@ -171,16 +169,6 @@ export const ProjectModal: React.FC<Props> = ({ projects, index, onClose, onNavi
 
                 {hasLinks && (
                   <div className="flex flex-wrap gap-2 mt-auto pt-4">
-                    {websiteUrl && (
-                      <a
-                        href={websiteUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="modal-link"
-                      >
-                        <Globe size={14} /> Website
-                      </a>
-                    )}
                     {project.dashboardLink && (
                       <a
                         href={project.dashboardLink}
