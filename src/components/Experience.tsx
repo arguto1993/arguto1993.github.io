@@ -32,8 +32,9 @@ export const Experience: React.FC = () => {
   };
 
   return (
-    <section id="experience" className="section-container bg-[var(--card-bg)]/30">
-      <div className="max-w-4xl mx-auto">
+    <section id="experience" className="bg-[var(--section-alt)] scroll-mt-20">
+      <div className="section-container">
+        <div className="max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -134,6 +135,7 @@ export const Experience: React.FC = () => {
               </motion.div>
             );
           })}
+          </div>
         </div>
       </div>
     </section>
