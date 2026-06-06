@@ -8,7 +8,7 @@
     "_homepageComment": "Used by vite.config.ts for SEO canonical, Open Graph, Twitter Card, and JSON-LD URLs, and by scripts/prerender.mjs for sitemap URLs.",
     "googleVerification": "mg6llNEPe6WyLmV1Y7R-1KAmYhlF5O63czUj3QeMry4",
     "repository": "https://github.com/arguto1993/arguto1993.github.io",
-    "lastUpdated": "June 6, 2026"
+    "lastUpdated": "June 7, 2026"
   },
   "hero": {
     "show": true,
@@ -64,8 +64,8 @@
           "Canva",
           "Visual Studio Code",
           "Google Colab",
-          "Claude Code",
           "Github",
+          "Claude Code",
           "Codex",
           "Simplescraper",
           "YouTube Data API"
@@ -76,14 +76,12 @@
         "skills": [
           "Data Storytelling",
           "Data Visualization",
-          "Business Intelligence",
           "KPI Reporting",
           "Exploratory Data Analysis",
           "Descriptive Statistics",
           "Statistics",
           "Correlation",
           "Hypothesis Testing",
-          "Predictive Modeling",
           "Machine Learning",
           "Deep Learning",
           "Natural Language Processing",
@@ -103,9 +101,7 @@
           "Root Cause Analysis",
           "Issue Tree",
           "Hypothesis Prioritization",
-          "Problem Framing",
           "Metrics Recommendation",
-          "Data Science",
           "Web Development",
           "Performance Marketing Analysis",
           "Vibe Coding",
@@ -135,7 +131,7 @@
   },
   "experience": {
     "show": true,
-    "defaultExpanded": true,
+    "defaultExpanded": false,
     "title": "Professional Experience",
     "subtitle": "Nearly a decade across government, education, and tech — what's next?",
     "items": [
@@ -276,7 +272,7 @@
         "date": "Dec 2025",
         "role": "Student Development Coordinator Full Stack Data Analytics",
         "domain": "Retail & E-Commerce",
-        "background": "A wine retailer wanted to move beyond one-size-fits-all marketing by deeply understanding its 2,240 customers across demographics, spending patterns, purchase channels, and campaign responses — to identify who deserves more attention and how to engage each group differently.",
+        "background": "A wine retailer relied on one-size-fits-all marketing despite having 2,240 customers with distinct demographics, spending patterns, purchase channels, and campaign responses.",
         "goal": "Apply EDA, RFM segmentation, and K-Means clustering to uncover the most rewarding customer groups, then deliver prioritized marketing recommendations with a quantified impact analysis scored by business impact, feasibility, and ROI.",
         "description": [
           "EDA, RFM segmentation, and K-Means clustering on 2,240 wine retail customers to identify high-value segments.",
@@ -300,7 +296,6 @@
           "RFM Scoring",
           "K-Means Clustering",
           "Impact Analysis",
-          "Business Intelligence",
           "Marketing Strategy",
           "Data Storytelling",
           "Data Visualization"
@@ -316,7 +311,7 @@
         "date": "Feb 2025",
         "role": "Project Manager, Data Scientist",
         "domain": "Healthcare & Mental Health",
-        "background": "Depression is rising globally across all age groups — WHO and INAMHS 2022 data show a surge in cases — yet early detection remains limited. Most institutions have not leveraged data to identify individuals at risk, missing opportunities for timely intervention.",
+        "background": "Depression is rising globally across all age groups — WHO and INAMHS 2022 data show a surge in cases — yet early detection remains limited, especially in institutions that have not turned available data into practical screening support.",
         "goal": "Identify the key factors driving depression risk, build a classification model to predict high-risk individuals, and deploy it as an accessible web app so institutions and individuals can act on early warning signals.",
         "description": [
           "Led a team of 4 to benchmark 5 ML models and identify the top 10 depression risk factors from survey data.",
@@ -356,7 +351,7 @@
         "date": "Jan 2025",
         "role": "Data Scientist",
         "domain": "Music & Entertainment",
-        "background": "JKT48's 'New Era' special performance video — Benang Sari, Putik, dan Kupu-Kupu Malam — drew tens of thousands of YouTube comments reacting to its bold new concept. That raw, unstructured feedback held a clear signal of how fans felt, but there was no straightforward way to measure whether the overall reception was positive, neutral, or negative, or what was driving each reaction.",
+        "background": "JKT48's 'New Era' special performance video — Benang Sari, Putik, dan Kupu-Kupu Malam — drew tens of thousands of YouTube comments reacting to its bold new concept, creating a large pool of raw, unstructured audience feedback.",
         "goal": "Classify YouTube comment sentiment into positive, neutral, and negative to quantify audience reaction to the performance, compare lexicon-based and pre-trained BERT labeling, and train machine learning models that can predict the sentiment of new comments.",
         "description": [
           "Collected 22,996 comments via the YouTube Data API v3 and cleaned them down to 11,650 usable top-level comments through deduplication, text cleaning, stopword removal, and custom Indonesian slang normalization.",
@@ -422,7 +417,6 @@
           "Exploratory Data Analysis",
           "Descriptive Statistics",
           "Geospatial Analysis",
-          "Business Intelligence",
           "KPI Reporting",
           "Data Storytelling",
           "Data Visualization"
@@ -439,7 +433,7 @@
         "date": "May 2024",
         "role": "Data Analyst Associate",
         "domain": "B2B E-Commerce",
-        "background": "Telkom Indonesia's B2B marketplace — built with the Ministry of SOEs, the Ministry of MSMEs, and LKPP to help MSMEs join government procurement — needed to keep customers loyal. Maintaining loyalty is critical in e-commerce, so the team set out to analyze customer retention to reduce churn and stop buyers from switching to competitors.",
+        "background": "Telkom Indonesia's B2B marketplace — built with the Ministry of SOEs, the Ministry of MSMEs, and LKPP to help MSMEs join government procurement — needed stronger customer loyalty in a competitive e-commerce environment.",
         "goal": "Evaluate current retention performance through retention rate, customer lifetime value (CLV), and average revenue per user (ARPU), then surface trends and patterns to recommend concrete ways to improve retention — focusing on the highest-potential hyper-active and seasonal buyer segments.",
         "description": [
           "Ran monthly cohort analysis on 12,810 active buyers, focusing on the hyper-active (7,643) and seasonal (3,330) segments identified earlier via K-Means.",
@@ -478,7 +472,7 @@
         "date": "Apr 2024",
         "role": "Data Analyst Associate",
         "domain": "B2B E-Commerce",
-        "background": "The B2B Commerce team believed they were missing an opportunity to leverage their customers with one-size-fits-all treatment. They wanted to understand the characteristics of each buyer and seller segment and tailor different approaches per segment — improving business performance and providing better support for sellers.",
+        "background": "The B2B Commerce team believed its one-size-fits-all treatment of buyers and sellers was leaving customer potential untapped and limiting segment-specific support.",
         "goal": "Use EDA and K-Means clustering to segment active sellers and buyers, characterize each segment's behavior, and pinpoint the highest-potential groups for proactive support and retention.",
         "description": [
           "Segmented 6,661 active sellers and 12,810 active buyers from 2023 marketplace data using K-Means clustering.",
@@ -516,7 +510,7 @@
         "date": "Apr 2024",
         "role": "Data Analyst Associate",
         "domain": "B2B E-Commerce",
-        "background": "The B2B Commerce team wanted to monitor marketplace performance. As the data analyst, the task was to build a dashboard that gives the sales team and its manager a comprehensive, story-driven view of the data to support informed business decisions.",
+        "background": "The B2B Commerce team needed a clearer way to monitor marketplace performance and give the sales team a comprehensive, story-driven view of the data.",
         "goal": "Design a multi-page Power BI dashboard to (1) understand the general performance of the business and (2) analyze seller performance — surfacing prioritized KPIs through interactive, filterable visuals.",
         "description": [
           "Built a 3-page Power BI dashboard (Overview, Payments, Map) on 2023 B2B marketplace data for the sales team and its manager.",
@@ -535,7 +529,6 @@
         "relatedSkills": [
           "Exploratory Data Analysis",
           "Data Visualization",
-          "Business Intelligence",
           "KPI Reporting",
           "Data Storytelling",
           "Stakeholder Management",
@@ -571,8 +564,7 @@
         "relatedSkills": [
           "Exploratory Data Analysis",
           "Data Storytelling",
-          "Data Visualization",
-          "Business Intelligence"
+          "Data Visualization"
         ],
         "image": "https://drive.google.com/thumbnail?id=1SRwpyR5GNr59o9GoMUprX9mmdBh0myPq&sz=w1600",
         "dashboardLink": "https://datastudio.google.com/reporting/ea7d3be4-a585-4868-b632-c25db6dfa94d",
@@ -585,7 +577,7 @@
         "date": "2024",
         "role": "Project Manager, Data Analyst",
         "domain": "Gaming",
-        "background": "A newly established game studio — Sigma Game Studio — needed data-backed guidance on what type of game to develop for its debut release, with the clear target of reaching $1M USD in global sales within 1 year of launch.",
+        "background": "A newly established game studio — Sigma Game Studio — needed data-backed guidance on what type of game to develop for its debut release.",
         "goal": "Identify the characteristics of games that achieved $1M+ global sales within 1 year of release (2016–2017 data), and investigate whether critic and user scores meaningfully impact commercial performance.",
         "description": [
           "Analyzed 2016–2017 global video game sales data to identify platform, genre, rating, and regional patterns of $1M+ successful titles.",
@@ -604,7 +596,6 @@
           "Exploratory Data Analysis",
           "Correlation",
           "Issue Tree",
-          "Business Intelligence",
           "Project Management",
           "Data Storytelling",
           "Data Visualization",
@@ -664,8 +655,8 @@
         "date": "Sep 2023",
         "role": "Data Analyst",
         "domain": "Retail & E-Commerce",
-        "background": "Samba Commerce is a fast-growing Brazilian e-commerce launched in 2021, selling 15K products across 50+ categories nationwide. With transactions as the company's main OKR this year, the CEO (Mr. Ronaldinho) asked the Head of Data (Mr. Neymar) for a company-wide dashboard that captures more metrics and makes the data more comprehensive and insightful for business performance analysis.",
-        "goal": "Develop company-wide, transaction-focused visualizations and dashboards in Tableau and Looker Studio that let the CEO, Head of Data, and department managers understand transaction trends and key metrics, and support decision-making and progress monitoring toward the main OKR.",
+        "background": "Samba Commerce is a fast-growing Brazilian e-commerce launched in 2021, selling 15K products across 50+ categories nationwide, with transactions set as the company's main OKR for the year.",
+        "goal": "Develop company-wide, transaction-focused visualizations and dashboards in Tableau and Looker Studio so leaders and department managers can monitor transaction trends, key metrics, and OKR progress.",
         "description": [
           "Joined Orders, Order History, and Payments tables in Tableau and blended them in Looker Studio to model the full transaction lifecycle (~49.5K orders, Jan 2021–Jan 2022).",
           "Built 8 transaction visualizations — KPIs, monthly order vs payment-value trends, top-10 sellers, customer geography, and Pareto charts — plus a Tableau dashboard mockup.",
@@ -685,7 +676,6 @@
           "Exploratory Data Analysis",
           "Data Storytelling",
           "Data Visualization",
-          "Business Intelligence",
           "KPI Reporting"
         ],
         "image": "https://drive.google.com/thumbnail?id=15mK7WBE7xmjVGS-AtgmmY3iJoFvuhrTt&sz=w1600",
@@ -699,7 +689,7 @@
         "date": "Aug 2023",
         "role": "Data Analyst",
         "domain": "Banking & Financial Services",
-        "background": "Over six months, RevoBank ran a promotion exclusively for credit-card users — distributing RevoShop vouchers via email/SMS (each redemption worth 15 reward points ≈ €1.5), unlimited and fully bank-funded. Afterward, the Card Partnership Lead wanted a better understanding of spending patterns among RevoShop customers who are RevoBank credit-card users, and ways to reduce the promotion's cost (the bank earns a 2.4% margin per transaction).",
+        "background": "Over six months, RevoBank ran a fully bank-funded promotion for credit-card users, distributing unlimited RevoShop vouchers via email/SMS, with each redemption worth 15 reward points ≈ €1.5 and the bank earning a 2.4% margin per transaction.",
         "goal": "Provide an overview of the promotion's performance, segment credit-card users by spending behavior and promo sensitivity, and discover opportunities to customize the rewards program for each segment while reducing promotion cost.",
         "description": [
           "Cleaned ~107,658 RevoShop credit-card customer records in Python — filtered merchants, removed missing values, fixed data types — and engineered promo-sensitivity, total-sales, age, and tenure features.",
@@ -707,7 +697,7 @@
           "Ran K-Means clustering (MinMax scaling, k=3 chosen via elbow + silhouette), profiled each segment, and built tailored reward recommendations."
         ],
         "keyInsights": [
-          "Over six months RevoShop generated €56.6M in total sales (62% promo-driven); the promotion cost €456K but produced €845K in revenue — an ~85% return — and ~72K of 107.7K customers were promo-sensitive.",
+          "RevoShop generated €56.6M in six months (62% promo-driven), with €456K in promo cost producing €845K in revenue (~85% ROI) and ~72K promo-sensitive customers.",
           "Average transactions rose with promotional messages up to ~6 messages, then declined with oversaturation — pinpointing an optimal messaging frequency.",
           "K-Means revealed 3 segments — Promo-Insensitive (33%), High-Value Buyer (45%, highest avg transaction €139.68), and Shopaholic (22%, highest frequency 7.58 and total sales €733.55) — so promos should focus on the High-Value Buyer and Shopaholic groups while the Promo-Insensitive group is better served with personalized banking instead."
         ],
@@ -738,7 +728,7 @@
         "date": "Jul 2023",
         "role": "Data Analyst",
         "domain": "Retail & E-Commerce",
-        "background": "TheLook, an eCommerce clothing site, faced a potential 2023 crisis and needed to optimize resources. Management decided to cut spending on the lowest-growth product categories of the past year and asked the data team to identify them — and to determine the percentage of users who return in the following months of 2022 after their first purchase.",
+        "background": "TheLook, an eCommerce clothing site, faced a potential 2023 crisis and needed to optimize resources by reassessing low-growth product categories and customer retention.",
         "goal": "Use BigQuery SQL to identify the product categories with the lowest growth over the past year (for potential resource reduction) and run a monthly retention cohort analysis to measure how many users return after their initial purchase.",
         "description": [
           "Wrote BigQuery SQL with window functions (LAG) and DATE_TRUNC to compute month-over-month inventory growth per product category across 2022.",
@@ -794,7 +784,6 @@
           "Correlation",
           "Regression",
           "Statistics",
-          "Predictive Modeling",
           "Data Storytelling",
           "Data Visualization"
         ],
@@ -843,7 +832,7 @@
         "date": "May 2023",
         "role": "Data Analyst",
         "domain": "Human Resources",
-        "background": "XYZ Company, a 4,000-employee organization, faced a 15% annual attrition rate that left many positions to backfill from the market. The CHRO asked the data team to understand the situation and identify potential solutions to reduce attrition within the following year.",
+        "background": "XYZ Company, a 4,000-employee organization, faced a 15% annual attrition rate that left many positions to backfill from the market.",
         "goal": "Frame the business problem and design a root-cause-analysis approach — DARCI roles, a SMART objective, an issue tree of potential root causes, prioritized hypotheses, and tracking metrics — to reduce attrition from 15% to 5-10% within one year.",
         "description": [
           "Defined a DARCI matrix and a SMART problem statement/objective to cut attrition from 15% to 5-10% within one year.",
@@ -863,7 +852,6 @@
           "Root Cause Analysis",
           "Issue Tree",
           "Hypothesis Prioritization",
-          "Problem Framing",
           "Metrics Recommendation",
           "Data Storytelling"
         ],

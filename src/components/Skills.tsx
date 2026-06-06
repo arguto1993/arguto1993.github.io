@@ -31,7 +31,7 @@ export const Skills: React.FC = () => {
                   {group.category}
                 </span>
               </div>
-              <div className="flex flex-wrap items-start gap-2">
+              <div className="flex flex-wrap items-start gap-1.5">
                 {group.skills.map((skill) => (
                   <SkillBadge key={skill} skill={skill} />
                 ))}
