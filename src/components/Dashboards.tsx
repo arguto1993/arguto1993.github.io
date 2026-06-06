@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { motion } from 'motion/react';
+import { AnimatePresence, motion } from 'motion/react';
 import { useSiteData } from '../SiteDataContext';
-import { Layout, Columns3, Search, X } from 'lucide-react';
+import { Layout, Columns3, Search, SlidersHorizontal, X } from 'lucide-react';
 import { DashboardModal } from './DashboardModal';
 
 const COL_OPTIONS = [2, 3, 4, 5];
@@ -52,18 +52,40 @@ export const Dashboards: React.FC = () => {
   const [platform, setPlatform] = useState<string>(ALL);
   const [sort, setSort] = useState<SortId>('newest');
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  const [filtersOpen, setFiltersOpen] = useState(false);
+  const [toolbarHidden, setToolbarHidden] = useState(false);
+  const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' && window.innerWidth < 768);
 
   // Track how many columns the viewport can fit; options and grid step down as it shrinks.
   const [maxCols, setMaxCols] = useState(() =>
     typeof window === 'undefined' ? 5 : maxColsFor(window.innerWidth)
   );
   useEffect(() => {
-    const onResize = () => setMaxCols(maxColsFor(window.innerWidth));
+    const onResize = () => {
+      const width = window.innerWidth;
+      const nextIsMobile = width < 768;
+      setMaxCols(maxColsFor(width));
+      setIsMobile(nextIsMobile);
+      if (!nextIsMobile) {
+        setFiltersOpen(false);
+        setToolbarHidden(false);
+      }
+    };
     onResize();
     window.addEventListener('resize', onResize);
     return () => window.removeEventListener('resize', onResize);
   }, []);
   const effectiveCols = Math.min(cols, maxCols);
+
+  useEffect(() => {
+    const onNavVisibility = (event: Event) => {
+      const hidden = !!(event as CustomEvent<{ hidden?: boolean }>).detail?.hidden;
+      setToolbarHidden(isMobile && hidden);
+      if (isMobile && hidden) setFiltersOpen(false);
+    };
+    window.addEventListener('portfolio:mobile-nav-visibility', onNavVisibility);
+    return () => window.removeEventListener('portfolio:mobile-nav-visibility', onNavVisibility);
+  }, [isMobile]);
 
   const platformOptions = useMemo(
     () => [...new Set(dashboards.items.map(d => d.platform).filter(Boolean))].sort(),
@@ -107,6 +129,16 @@ export const Dashboards: React.FC = () => {
   };
 
   const tabs = [{ id: ALL, label: 'All Platforms' }, ...platformOptions.map(p => ({ id: p, label: p }))];
+  const activeFilterCount = (platform !== ALL ? 1 : 0) + (sort !== 'newest' ? 1 : 0);
+
+  const toggleFilters = () => {
+    if (isMobile) {
+      window.dispatchEvent(
+        new CustomEvent('portfolio:mobile-toolbar-toggle', { detail: { guardUntil: Date.now() + 500 } })
+      );
+    }
+    setFiltersOpen(open => !open);
+  };
 
   return (
     <section id="dashboards" className="section-container bg-[var(--card-bg)]/30">
@@ -120,11 +152,15 @@ export const Dashboards: React.FC = () => {
         <p className="opacity-60">{dashboards.subtitle}</p>
       </motion.div>
 
-      {/* Toolbar — search, platform tabs, sort + columns control; sticks below the navbar while scrolling */}
-      <div className="sticky top-16 z-40 flex flex-col gap-3 pt-6 pb-4 bg-[var(--bg)]/95 backdrop-blur-md">
+      {/* Toolbar — mobile follows navbar visibility; desktop remains sticky below the navbar */}
+      <div
+        className={`sticky top-16 z-40 flex flex-col gap-3 pt-6 pb-4 bg-[var(--bg)]/95 backdrop-blur-md transition-transform duration-300
+          ${toolbarHidden ? '-translate-y-full md:translate-y-0' : 'translate-y-0'}
+        `}
+      >
         {/* Row 1: search + per-row */}
-        <div className="flex flex-col sm:flex-row gap-3">
-          <div className="relative flex-1">
+        <div className="flex items-center gap-2 md:gap-3">
+          <div className="relative flex-1 min-w-0">
             <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 opacity-50" />
             <input
               type="text"
@@ -146,7 +182,7 @@ export const Dashboards: React.FC = () => {
           </div>
 
           {maxCols > 1 && (
-            <div className="flex items-center gap-2 text-sm shrink-0 self-start">
+            <div className="hidden md:flex items-center gap-2 text-sm shrink-0 self-start">
               <Columns3 size={15} className="opacity-50" />
               <span className="opacity-50">Per row</span>
               <div
@@ -171,10 +207,93 @@ export const Dashboards: React.FC = () => {
               </div>
             </div>
           )}
+
+          <button
+            onClick={toggleFilters}
+            aria-expanded={filtersOpen}
+            aria-label="Toggle dashboard filters"
+            className="md:hidden relative flex items-center gap-1.5 px-3 py-2 rounded-lg border text-sm font-medium transition-colors cursor-pointer shrink-0"
+            style={{
+              backgroundColor: 'var(--card-bg)',
+              borderColor: filtersOpen || activeFilterCount > 0 ? 'var(--accent)' : 'var(--border)',
+            }}
+          >
+            <SlidersHorizontal
+              size={15}
+              className={filtersOpen || activeFilterCount > 0 ? 'accent-text' : 'opacity-60'}
+            />
+            {activeFilterCount > 0 && (
+              <span
+                className="flex items-center justify-center min-w-[18px] h-[18px] px-1 rounded-full text-[10px] font-bold"
+                style={{ backgroundColor: 'var(--accent)', color: '#000' }}
+              >
+                {activeFilterCount}
+              </span>
+            )}
+          </button>
         </div>
 
-        {/* Row 2: platform tabs + sort */}
-        <div className="flex items-center gap-3">
+        <AnimatePresence>
+          {filtersOpen && (
+            <motion.div
+              key="dashboard-filter-panel"
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: 'auto', opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="md:hidden overflow-hidden"
+            >
+              <div className="grid gap-3 pt-3 pb-4 border-t border-[var(--border)]">
+                <label className="grid gap-1.5 text-sm">
+                  <span className="opacity-50">Platform</span>
+                  <select
+                    value={platform}
+                    onChange={e => setPlatform(e.target.value)}
+                    className="w-full px-3 py-2.5 rounded-lg border text-sm outline-none focus:border-[var(--accent)] cursor-pointer"
+                    style={{ backgroundColor: 'var(--card-bg)', borderColor: 'var(--border)' }}
+                  >
+                    {tabs.map(t => (
+                      <option key={t.id} value={t.id}>
+                        {t.label}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+
+                <label className="grid gap-1.5 text-sm">
+                  <span className="opacity-50">Sort</span>
+                  <select
+                    value={sort}
+                    onChange={e => setSort(e.target.value as SortId)}
+                    className="w-full px-3 py-2.5 rounded-lg border text-sm outline-none focus:border-[var(--accent)] cursor-pointer"
+                    style={{ backgroundColor: 'var(--card-bg)', borderColor: 'var(--border)' }}
+                  >
+                    {SORT_OPTIONS.map(o => (
+                      <option key={o.id} value={o.id}>
+                        {o.label}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+
+                {(platform !== ALL || sort !== 'newest') && (
+                  <button
+                    onClick={() => {
+                      setPlatform(ALL);
+                      setSort('newest');
+                    }}
+                    className="flex items-center gap-1.5 w-fit py-1 text-sm opacity-70 hover:opacity-100 hover:text-[var(--accent)] transition-colors cursor-pointer"
+                  >
+                    <X size={14} /> Clear filters
+                  </button>
+                )}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Row 2: desktop platform tabs + sort */}
+        <div className="hidden md:flex items-center gap-3">
           <div className="flex-1 flex items-center overflow-x-auto no-scrollbar -mb-1 pb-1">
             {tabs.map((t, i) => (
               <button

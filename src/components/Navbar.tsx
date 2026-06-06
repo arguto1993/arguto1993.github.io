@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Sun, Moon, Menu, X } from 'lucide-react';
 import { useTheme } from './ThemeContext';
 
 import { useSiteData } from '../SiteDataContext';
 import { getVisibleNavSections } from '../sectionRegistry.js';
+
+const SCROLL_HIDE_DELTA = 8;
 
 export const Navbar: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
@@ -13,16 +15,49 @@ export const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string>('');
+  const [navHidden, setNavHidden] = useState(false);
+  const lastScrollRef = useRef(0);
+  const navScrollGuardRef = useRef(0);
 
   const visibleLinks = getVisibleNavSections(siteData);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+    window.dispatchEvent(new CustomEvent('portfolio:mobile-nav-visibility', { detail: { hidden: navHidden } }));
+  }, [navHidden]);
+
+  useEffect(() => {
+    const handleToolbarToggle = (event: Event) => {
+      const detail = (event as CustomEvent<{ guardUntil?: number }>).detail;
+      navScrollGuardRef.current = Math.max(navScrollGuardRef.current, detail?.guardUntil ?? Date.now() + 500);
+      setNavHidden(false);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+
+    window.addEventListener('portfolio:mobile-toolbar-toggle', handleToolbarToggle);
+    return () => window.removeEventListener('portfolio:mobile-toolbar-toggle', handleToolbarToggle);
   }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const curr = window.scrollY;
+      const delta = curr - lastScrollRef.current;
+      setIsScrolled(curr > 50);
+      if (Date.now() < navScrollGuardRef.current) {
+        lastScrollRef.current = curr;
+        return;
+      }
+      if (!navHidden && delta > SCROLL_HIDE_DELTA && curr > 80) {
+        navScrollGuardRef.current = Date.now() + 400;
+        setNavHidden(true);
+        setIsMobileMenuOpen(false);
+      } else if (navHidden && delta < -SCROLL_HIDE_DELTA) {
+        navScrollGuardRef.current = Date.now() + 400;
+        setNavHidden(false);
+      }
+      lastScrollRef.current = curr;
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [navHidden]);
 
   useEffect(() => {
     const sectionIds = visibleLinks.map((l) => l.href.replace('#', ''));
@@ -49,9 +84,10 @@ export const Navbar: React.FC = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-[var(--bg)]/80 backdrop-blur-md border-b border-[var(--border)] py-4' : 'bg-transparent py-6'
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300
+        ${navHidden ? '-translate-y-full md:translate-y-0' : 'translate-y-0'}
+        ${isScrolled ? 'bg-[var(--bg)]/80 backdrop-blur-md border-b border-[var(--border)] py-4' : 'bg-transparent py-6'}
+      `}
     >
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
         <div className="flex items-center gap-4">

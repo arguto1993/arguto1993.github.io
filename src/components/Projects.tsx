@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { motion } from 'motion/react';
+import { AnimatePresence, motion } from 'motion/react';
 import { useSiteData } from '../SiteDataContext';
 import {
   Github,
@@ -15,8 +15,9 @@ import {
   ChevronLeft,
   ChevronRight,
   X,
+  SlidersHorizontal,
 } from 'lucide-react';
-import { Project } from '../types';
+import type { Project } from '../types';
 import { ProjectModal } from './ProjectModal';
 
 type ViewMode = 'grid' | 'list' | 'compact';
@@ -428,6 +429,50 @@ export const Projects: React.FC = () => {
   const [selSkills, setSelSkills] = useState<string[]>([]);
   const [selMonths, setSelMonths] = useState<string[]>([]);
   const [selYears, setSelYears] = useState<string[]>([]);
+  const [filtersOpen, setFiltersOpen] = useState(false);
+  const [toolbarHidden, setToolbarHidden] = useState(false);
+  const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' && window.innerWidth < 768);
+  const [countPinned, setCountPinned] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const update = () => {
+      const nextIsMobile = window.innerWidth < 768;
+      setIsMobile(nextIsMobile);
+      if (!nextIsMobile) setToolbarHidden(false);
+    };
+    window.addEventListener('resize', update, { passive: true });
+    return () => window.removeEventListener('resize', update);
+  }, []);
+
+  useEffect(() => {
+    const onNavVisibility = (event: Event) => {
+      const hidden = !!(event as CustomEvent<{ hidden?: boolean }>).detail?.hidden;
+      setToolbarHidden(isMobile && hidden);
+      if (isMobile && hidden) setFiltersOpen(false);
+    };
+    window.addEventListener('portfolio:mobile-nav-visibility', onNavVisibility);
+    return () => window.removeEventListener('portfolio:mobile-nav-visibility', onNavVisibility);
+  }, [isMobile]);
+
+  useEffect(() => {
+    const updatePinnedCount = () => {
+      if (!isMobile || !sectionRef.current) {
+        setCountPinned(false);
+        return;
+      }
+      const rect = sectionRef.current.getBoundingClientRect();
+      setCountPinned(rect.top <= 0 && rect.bottom > 48);
+    };
+
+    updatePinnedCount();
+    window.addEventListener('scroll', updatePinnedCount, { passive: true });
+    window.addEventListener('resize', updatePinnedCount, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', updatePinnedCount);
+      window.removeEventListener('resize', updatePinnedCount);
+    };
+  }, [isMobile]);
 
   // Derive filter option lists from the data
   const { domainOptions, techOptions, skillOptions, monthOptions, yearOptions } = useMemo(() => {
@@ -498,6 +543,9 @@ export const Projects: React.FC = () => {
     selMonths.length > 0 ||
     selYears.length > 0;
 
+  const activeFilterCount =
+    selDomains.length + selTech.length + selSkills.length + selMonths.length + selYears.length;
+
   const clearAll = () => {
     setSearch('');
     setSelDomains([]);
@@ -507,14 +555,26 @@ export const Projects: React.FC = () => {
     setSelYears([]);
   };
 
-  const viewButtons: { mode: ViewMode; Icon: typeof LayoutGrid; label: string }[] = [
+  const toggleFilters = () => {
+    const guardUntil = Date.now() + 500;
+    if (isMobile) {
+      window.dispatchEvent(new CustomEvent('portfolio:mobile-toolbar-toggle', { detail: { guardUntil } }));
+    }
+    setFiltersOpen(open => !open);
+  };
+
+  const allViewButtons: { mode: ViewMode; Icon: typeof LayoutGrid; label: string }[] = [
     { mode: 'grid', Icon: LayoutGrid, label: 'Grid view' },
     { mode: 'list', Icon: ListIcon, label: 'List view' },
     { mode: 'compact', Icon: Rows3, label: 'Compact list' },
   ];
+  const viewButtons = isMobile
+    ? allViewButtons.filter(b => b.mode !== 'list')
+    : allViewButtons;
+  const effectiveView: ViewMode = isMobile && view === 'list' ? 'compact' : view;
 
   return (
-    <section id="projects" className="section-container">
+    <section ref={sectionRef} id="projects" className="section-container">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -525,121 +585,176 @@ export const Projects: React.FC = () => {
         <p className="opacity-60">{projects.subtitle}</p>
       </motion.div>
 
-      {/* Toolbar — sticks below the navbar while scrolling through this section */}
-      <div className="sticky top-16 z-40 mb-8 flex flex-col gap-4 pt-6 pb-4 bg-[var(--bg)]/95 backdrop-blur-md border-b border-[var(--border)]">
-        {/* Row 1: search + view toggle */}
-        <div className="flex flex-col sm:flex-row gap-3">
-          <div className="relative flex-1">
-            <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 opacity-50" />
-            <input
-              type="text"
-              value={search}
-              onChange={e => setSearch(e.target.value)}
-              placeholder="Search projects, industry, tech, skills, month, year…"
-              className="w-full pl-9 pr-9 py-2.5 rounded-lg border text-sm outline-none focus:border-[var(--accent)] transition-colors"
+      {/* Toolbar */}
+      <div
+        className={`sticky top-16 z-40 bg-[var(--bg)]/95 backdrop-blur-md border-b border-[var(--border)] transition-transform duration-300
+          ${toolbarHidden ? '-translate-y-full md:translate-y-0' : 'translate-y-0'}
+        `}
+      >
+        <div>
+          {/* Single row: search + view toggle + filter hamburger */}
+          <div className="flex items-center gap-2 pt-4 pb-3">
+            <div className="relative flex-1 min-w-0">
+              <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 opacity-50" />
+              <input
+                type="text"
+                value={search}
+                onChange={e => setSearch(e.target.value)}
+                placeholder="Search projects…"
+                className="w-full pl-9 pr-9 py-2.5 rounded-lg border text-sm outline-none focus:border-[var(--accent)] transition-colors"
+                style={{ backgroundColor: 'var(--card-bg)', borderColor: 'var(--border)' }}
+              />
+              {search && (
+                <button
+                  onClick={() => setSearch('')}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 opacity-50 hover:opacity-100 cursor-pointer"
+                  aria-label="Clear search"
+                >
+                  <X size={15} />
+                </button>
+              )}
+            </div>
+
+            <div
+              className="flex items-center rounded-lg border p-1 shrink-0"
               style={{ backgroundColor: 'var(--card-bg)', borderColor: 'var(--border)' }}
-            />
-            {search && (
-              <button
-                onClick={() => setSearch('')}
-                className="absolute right-3 top-1/2 -translate-y-1/2 opacity-50 hover:opacity-100 cursor-pointer"
-                aria-label="Clear search"
-              >
-                <X size={15} />
-              </button>
-            )}
-          </div>
+            >
+              {viewButtons.map(({ mode, Icon, label }) => (
+                <button
+                  key={mode}
+                  onClick={() => setView(mode)}
+                  aria-label={label}
+                  aria-pressed={effectiveView === mode}
+                  className="p-2 rounded-md transition-colors cursor-pointer"
+                  style={
+                    effectiveView === mode
+                      ? { backgroundColor: 'var(--accent)', color: '#000' }
+                      : { color: 'var(--text)', opacity: 0.6 }
+                  }
+                >
+                  <Icon size={16} />
+                </button>
+              ))}
+            </div>
 
-          <div
-            className="flex items-center rounded-lg border p-1 shrink-0 self-start"
-            style={{ backgroundColor: 'var(--card-bg)', borderColor: 'var(--border)' }}
-          >
-            {viewButtons.map(({ mode, Icon, label }) => (
-              <button
-                key={mode}
-                onClick={() => setView(mode)}
-                aria-label={label}
-                aria-pressed={view === mode}
-                className="p-2 rounded-md transition-colors cursor-pointer"
-                style={
-                  view === mode
-                    ? { backgroundColor: 'var(--accent)', color: '#000' }
-                    : { color: 'var(--text)', opacity: 0.6 }
-                }
-              >
-                <Icon size={16} />
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Row 2: filters + per-page */}
-        <div className="flex flex-wrap items-center gap-3">
-          <MultiSelect label="Industry" options={domainOptions} selected={selDomains} onChange={setSelDomains} />
-          <MultiSelect label="Tech stack" options={techOptions} selected={selTech} onChange={setSelTech} />
-          <MultiSelect label="Skills" options={skillOptions} selected={selSkills} onChange={setSelSkills} />
-          <MultiSelect
-            label="Month"
-            options={monthOptions.map(m => MONTH_NAMES[m])}
-            selected={selMonths.map(m => MONTH_NAMES[m])}
-            onChange={names =>
-              setSelMonths(names.map(n => MONTHS.find(m => MONTH_NAMES[m] === n)!).filter(Boolean))
-            }
-          />
-          <MultiSelect label="Year" options={yearOptions} selected={selYears} onChange={setSelYears} />
-
-          {hasFilters && (
             <button
-              onClick={clearAll}
-              className="flex items-center gap-1.5 px-3 py-2 text-sm opacity-70 hover:opacity-100 hover:text-[var(--accent)] transition-colors cursor-pointer"
+              onClick={toggleFilters}
+              aria-expanded={filtersOpen}
+              aria-label="Toggle filters"
+              className="relative flex items-center gap-1.5 px-3 py-2 rounded-lg border text-sm font-medium transition-colors cursor-pointer shrink-0"
+              style={{
+                backgroundColor: 'var(--card-bg)',
+                borderColor: filtersOpen || activeFilterCount > 0 ? 'var(--accent)' : 'var(--border)',
+              }}
             >
-              <X size={14} /> Clear all
+              <SlidersHorizontal
+                size={15}
+                className={filtersOpen || activeFilterCount > 0 ? 'accent-text' : 'opacity-60'}
+              />
+              <span className={`hidden md:inline ${activeFilterCount > 0 ? 'accent-text' : 'opacity-70'}`}>
+                Filters
+              </span>
+              {activeFilterCount > 0 && (
+                <span
+                  className="flex items-center justify-center min-w-[18px] h-[18px] px-1 rounded-full text-[10px] font-bold"
+                  style={{ backgroundColor: 'var(--accent)', color: '#000' }}
+                >
+                  {activeFilterCount}
+                </span>
+              )}
             </button>
-          )}
-
-          <div className="flex items-center gap-2 ml-auto text-sm">
-            <span className="opacity-50">Sort</span>
-            <select
-              value={sort}
-              onChange={e => setSort(e.target.value as SortId)}
-              className="px-2 py-2 rounded-lg border text-sm outline-none focus:border-[var(--accent)] cursor-pointer"
-              style={{ backgroundColor: 'var(--card-bg)', borderColor: 'var(--border)' }}
-            >
-              {SORT_OPTIONS.map(o => (
-                <option key={o.id} value={o.id}>
-                  {o.label}
-                </option>
-              ))}
-            </select>
           </div>
 
-          <div className="flex items-center gap-2 text-sm">
-            <span className="opacity-50">Per page</span>
-            <select
-              value={Number.isFinite(perPage) ? String(perPage) : 'all'}
-              onChange={e => setPerPage(e.target.value === 'all' ? Infinity : Number(e.target.value))}
-              className="px-2 py-2 rounded-lg border text-sm outline-none focus:border-[var(--accent)] cursor-pointer"
-              style={{ backgroundColor: 'var(--card-bg)', borderColor: 'var(--border)' }}
-            >
-              {PER_PAGE_OPTIONS.map(n => (
-                <option key={n} value={n}>
-                  {n}
-                </option>
-              ))}
-              <option value="all">All</option>
-            </select>
-          </div>
+          {/* Collapsible filter panel */}
+          <AnimatePresence>
+            {filtersOpen && (
+              <motion.div
+                key="filter-panel"
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: 'auto', opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className="overflow-hidden"
+              >
+                <div className="flex flex-wrap items-center gap-3 pb-4 pt-3 border-t border-[var(--border)]">
+                  <MultiSelect label="Industry" options={domainOptions} selected={selDomains} onChange={setSelDomains} />
+                  <MultiSelect label="Tech stack" options={techOptions} selected={selTech} onChange={setSelTech} />
+                  <MultiSelect label="Skills" options={skillOptions} selected={selSkills} onChange={setSelSkills} />
+                  <MultiSelect
+                    label="Month"
+                    options={monthOptions.map(m => MONTH_NAMES[m])}
+                    selected={selMonths.map(m => MONTH_NAMES[m])}
+                    onChange={names =>
+                      setSelMonths(names.map(n => MONTHS.find(m => MONTH_NAMES[m] === n)!).filter(Boolean))
+                    }
+                  />
+                  <MultiSelect label="Year" options={yearOptions} selected={selYears} onChange={setSelYears} />
+
+                  {hasFilters && (
+                    <button
+                      onClick={clearAll}
+                      className="flex items-center gap-1.5 px-3 py-2 text-sm opacity-70 hover:opacity-100 hover:text-[var(--accent)] transition-colors cursor-pointer"
+                    >
+                      <X size={14} /> Clear all
+                    </button>
+                  )}
+
+                  <div className="flex items-center gap-2 ml-auto text-sm">
+                    <span className="opacity-50">Sort</span>
+                    <select
+                      value={sort}
+                      onChange={e => setSort(e.target.value as SortId)}
+                      className="px-2 py-2 rounded-lg border text-sm outline-none focus:border-[var(--accent)] cursor-pointer"
+                      style={{ backgroundColor: 'var(--card-bg)', borderColor: 'var(--border)' }}
+                    >
+                      {SORT_OPTIONS.map(o => (
+                        <option key={o.id} value={o.id}>
+                          {o.label}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div className="flex items-center gap-2 text-sm">
+                    <span className="opacity-50">Per page</span>
+                    <select
+                      value={Number.isFinite(perPage) ? String(perPage) : 'all'}
+                      onChange={e => setPerPage(e.target.value === 'all' ? Infinity : Number(e.target.value))}
+                      className="px-2 py-2 rounded-lg border text-sm outline-none focus:border-[var(--accent)] cursor-pointer"
+                      style={{ backgroundColor: 'var(--card-bg)', borderColor: 'var(--border)' }}
+                    >
+                      {PER_PAGE_OPTIONS.map(n => (
+                        <option key={n} value={n}>
+                          {n}
+                        </option>
+                      ))}
+                      <option value="all">All</option>
+                    </select>
+                  </div>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
 
-        <p className="text-xs opacity-40">
+        <p className={`text-xs pb-3 ${toolbarHidden ? 'opacity-0 md:opacity-40' : 'opacity-40'}`}>
           Showing {sorted.length === 0 ? 0 : start + 1}–{Math.min(start + pageSize, sorted.length)} of{' '}
           {sorted.length} project{sorted.length === 1 ? '' : 's'}
         </p>
       </div>
 
+      <p
+        className={`md:hidden fixed top-0 left-0 right-0 z-40 px-6 py-2 bg-[var(--bg)]/95 backdrop-blur-md border-b border-[var(--border)] text-xs opacity-40 transition-opacity duration-200
+          ${toolbarHidden && countPinned ? 'opacity-100' : 'opacity-0 pointer-events-none'}
+        `}
+      >
+        Showing {sorted.length === 0 ? 0 : start + 1}–{Math.min(start + pageSize, sorted.length)} of{' '}
+        {sorted.length} project{sorted.length === 1 ? '' : 's'}
+      </p>
+
       {/* Results */}
       {pageItems.length === 0 ? (
-        <div className="text-center py-20 opacity-60">
+        <div className="text-center py-20 mt-8 opacity-60">
           <p className="text-lg font-serif mb-2">No projects match your filters.</p>
           <button onClick={clearAll} className="text-sm accent-text hover:underline cursor-pointer">
             Clear all filters
@@ -647,20 +762,20 @@ export const Projects: React.FC = () => {
         </div>
       ) : (
         <motion.div
-          key={`${view}-${currentPage}`}
+          key={`${effectiveView}-${currentPage}`}
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3 }}
           className={
-            view === 'grid'
-              ? 'grid md:grid-cols-2 lg:grid-cols-3 gap-8'
-              : 'flex flex-col gap-4'
+            effectiveView === 'grid'
+              ? 'grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8'
+              : 'flex flex-col gap-4 mt-8'
           }
         >
           {pageItems.map((project, i) => {
             const open = () => setSelectedIndex(start + i);
-            if (view === 'grid') return <GridCard key={project.title} project={project} onOpen={open} />;
-            if (view === 'list') return <ListRow key={project.title} project={project} onOpen={open} />;
+            if (effectiveView === 'grid') return <GridCard key={project.title} project={project} onOpen={open} />;
+            if (effectiveView === 'list') return <ListRow key={project.title} project={project} onOpen={open} />;
             return <CompactRow key={project.title} project={project} onOpen={open} />;
           })}
         </motion.div>
