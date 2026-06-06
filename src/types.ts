@@ -104,6 +104,7 @@ export interface Dashboards {
 export interface EducationItem {
   degree: string;
   institution: string;
+  institutionLogo?: string;
   location: string;
   period: string;
   details?: string[];

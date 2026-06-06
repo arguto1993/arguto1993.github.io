@@ -3,6 +3,13 @@ import { motion } from 'motion/react';
 import { useSiteData } from '../SiteDataContext';
 import { GraduationCap, Award } from 'lucide-react';
 
+/** Convert a Google Drive share link into a direct, embeddable thumbnail URL. */
+const driveImageUrl = (url?: string): string | undefined => {
+  if (!url) return undefined;
+  const match = url.match(/\/d\/([^/]+)/) || url.match(/[?&]id=([^&]+)/);
+  return match ? `https://drive.google.com/thumbnail?id=${match[1]}&sz=w200` : url;
+};
+
 export const Education: React.FC = () => {
   const { education } = useSiteData();
 
@@ -23,9 +30,30 @@ export const Education: React.FC = () => {
           </div>
 
           <div className="space-y-10">
-            {education.items.map((edu) => (
-              <div key={edu.degree} className="relative pl-6 border-l-2 border-[var(--border)]">
-                <div className="absolute left-[-6px] top-0 w-2.5 h-2.5 rounded-full bg-[var(--accent)]" />
+            {education.items.map((edu) => {
+              const logo = driveImageUrl(edu.institutionLogo);
+              return (
+              <div key={edu.degree} className="relative pl-16">
+                {logo ? (
+                  <>
+                    {/* Logo centered under the header icon (x≈26px) and against the degree+institution lines */}
+                    <div className="absolute left-2 top-2 w-9 h-9 flex items-center justify-center">
+                      <img
+                        src={logo}
+                        alt={`${edu.institution} logo`}
+                        loading="lazy"
+                        referrerPolicy="no-referrer"
+                        className="w-full h-full object-contain"
+                      />
+                    </div>
+                    <div className="absolute left-[25px] top-16 bottom-0 w-0.5 bg-[var(--border)]" />
+                  </>
+                ) : (
+                  <>
+                    <div className="absolute left-[25px] top-0 bottom-0 w-0.5 bg-[var(--border)]" />
+                    <div className="absolute left-[21px] top-1 w-2.5 h-2.5 rounded-full bg-[var(--accent)]" />
+                  </>
+                )}
                 <h3 className="text-xl font-serif font-bold mb-1">{edu.degree}</h3>
                 <p className="text-sm font-medium opacity-80 mb-2">{edu.institution}</p>
                 <div className="mb-4">
@@ -36,14 +64,16 @@ export const Education: React.FC = () => {
                 {edu.details && (
                   <ul className="space-y-2">
                     {edu.details.map((detail, i) => (
-                      <li key={i} className="text-sm opacity-60 font-light leading-relaxed">
-                        • {detail}
+                      <li key={i} className="flex gap-2 text-sm opacity-60 font-light leading-relaxed">
+                        <span className="select-none">•</span>
+                        <span>{detail}</span>
                       </li>
                     ))}
                   </ul>
                 )}
               </div>
-            ))}
+              );
+            })}
           </div>
         </motion.div>
 

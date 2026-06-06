@@ -139,6 +139,7 @@ function generateStaticHTML(data) {
 
   const educationHTML = education.items.map(edu => `
     <article>
+      ${edu.institutionLogo ? `<img src="${esc(driveImageUrl(edu.institutionLogo))}" alt="${esc(edu.institution)} logo" loading="lazy" referrerpolicy="no-referrer" />` : ''}
       <h3>${esc(edu.degree)}</h3>
       <p>${esc(edu.institution)} &mdash; ${esc(edu.location)}</p>
       <p>${esc(edu.period)}</p>
