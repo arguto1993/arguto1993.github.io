@@ -3,6 +3,13 @@ import { motion, AnimatePresence } from 'motion/react';
 import { useSiteData } from '../SiteDataContext';
 import { Briefcase, ChevronDown, ExternalLink } from 'lucide-react';
 
+/** Convert a Google Drive share link into a direct, embeddable thumbnail URL. */
+const driveImageUrl = (url?: string): string | undefined => {
+  if (!url) return undefined;
+  const match = url.match(/\/d\/([^/]+)/) || url.match(/[?&]id=([^&]+)/);
+  return match ? `https://drive.google.com/thumbnail?id=${match[1]}&sz=w200` : url;
+};
+
 export const Experience: React.FC = () => {
   const { experience } = useSiteData();
   const [expanded, setExpanded] = useState<Set<number>>(
@@ -32,9 +39,8 @@ export const Experience: React.FC = () => {
   };
 
   return (
-    <section id="experience" className="bg-[var(--section-alt)] scroll-mt-20">
-      <div className="section-container">
-        <div className="max-w-4xl mx-auto">
+    <section id="experience" className="section-container scroll-mt-20">
+      <div className="max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -60,6 +66,7 @@ export const Experience: React.FC = () => {
         <div className="space-y-12">
           {experience.items.map((exp, index) => {
             const isOpen = expanded.has(index);
+            const logo = driveImageUrl(exp.companyLogo);
             return (
               <motion.div
                 key={`${exp.company}-${index}`}
@@ -67,9 +74,28 @@ export const Experience: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="relative pl-8 border-l border-[var(--border)] group"
+                className="relative pl-12 group"
               >
-                <div className="absolute left-[-9px] top-0 w-4 h-4 rounded-full bg-[var(--bg)] border-2 border-[var(--accent)] group-hover:scale-125 transition-transform duration-300" />
+                {logo ? (
+                  <>
+                    {/* Logo node centered on the timeline; line resumes below it with a gap */}
+                    <div className="absolute left-[-20px] top-2 w-10 h-10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      <img
+                        src={logo}
+                        alt={`${exp.company} logo`}
+                        loading="lazy"
+                        referrerPolicy="no-referrer"
+                        className="w-full h-full object-contain"
+                      />
+                    </div>
+                    <div className="absolute left-0 top-16 bottom-0 w-px bg-[var(--border)]" />
+                  </>
+                ) : (
+                  <>
+                    <div className="absolute left-0 top-0 bottom-0 w-px bg-[var(--border)]" />
+                    <div className="absolute left-[-9px] top-0 w-4 h-4 rounded-full bg-[var(--bg)] border-2 border-[var(--accent)] group-hover:scale-125 transition-transform duration-300" />
+                  </>
+                )}
 
                 <div className="flex flex-wrap justify-between items-start gap-4 mb-4">
                   <div className="cursor-pointer" onClick={() => toggle(index)}>
@@ -136,7 +162,6 @@ export const Experience: React.FC = () => {
             );
           })}
           </div>
-        </div>
       </div>
     </section>
   );

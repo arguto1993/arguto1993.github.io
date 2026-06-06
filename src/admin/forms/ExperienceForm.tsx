@@ -32,7 +32,7 @@ export function ExperienceForm({ value, onChange }: SectionProps<'experience'>) 
       <ItemList<Experience>
         items={value.items}
         onChange={(items) => onChange({ ...value, items })}
-        emptyItem={() => ({ title: '', company: '', location: '', period: '', type: '', description: [''] })}
+        emptyItem={() => ({ title: '', company: '', companyUrl: '', companyLogo: '', location: '', period: '', type: '', description: [''] })}
         itemLabel={(e) => `${e.title || '(untitled)'} — ${e.company || ''}`}
         renderItem={(item, _update, set) => (
           <>
@@ -42,7 +42,11 @@ export function ExperienceForm({ value, onChange }: SectionProps<'experience'>) 
               <Field label="Location"><TextInput value={item.location} onChange={(v) => set('location', v)} /></Field>
               <Field label="Period"><TextInput value={item.period} onChange={(v) => set('period', v)} /></Field>
               <Field label="Type"><TextInput value={item.type} onChange={(v) => set('type', v)} /></Field>
+              <Field label="Company URL"><TextInput value={item.companyUrl ?? ''} onChange={(v) => set('companyUrl', v)} /></Field>
             </div>
+            <Field label="Company logo (Google Drive share link or image URL)">
+              <TextInput value={item.companyLogo ?? ''} onChange={(v) => set('companyLogo', v)} />
+            </Field>
             <Field label="Description (one bullet per line)">
               <StringList values={item.description} onChange={(v) => set('description', v)} />
             </Field>

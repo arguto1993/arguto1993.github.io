@@ -44,6 +44,7 @@ export interface ExperienceItem {
   title: string;
   company: string;
   companyUrl?: string;
+  companyLogo?: string;
   location: string;
   period: string;
   type: string;

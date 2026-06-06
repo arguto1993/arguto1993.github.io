@@ -90,6 +90,13 @@ function stripMarkdown(str = '') {
   return str.replace(/\*\*/g, '').replace(/__/g, '').replace(/\n/g, ' ');
 }
 
+/** Convert a Google Drive share link into a direct, embeddable thumbnail URL */
+function driveImageUrl(url = '') {
+  if (!url) return '';
+  const match = url.match(/\/d\/([^/]+)/) || url.match(/[?&]id=([^&]+)/);
+  return match ? `https://drive.google.com/thumbnail?id=${match[1]}&sz=w200` : url;
+}
+
 function generateStaticHTML(data) {
   const { hero, about, skills, experience, projects, dashboards, education, contact } = data;
 
@@ -101,6 +108,7 @@ function generateStaticHTML(data) {
     
   const experienceHTML = experience.items.map(exp => `
     <article>
+      ${exp.companyLogo ? `<img src="${esc(driveImageUrl(exp.companyLogo))}" alt="${esc(exp.company)} logo" loading="lazy" referrerpolicy="no-referrer" />` : ''}
       <h3>${esc(exp.title)}</h3>
       <p>${esc(exp.company)} &mdash; ${esc(exp.location)}</p>
       <p>${esc(exp.period)} | ${esc(exp.type)}</p>
