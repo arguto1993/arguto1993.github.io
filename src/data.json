@@ -46,12 +46,13 @@
       {
         "category": "Tech Stack",
         "skills": [
-          "Python (Pandas, Streamlit, Matplotlib, TensorFlow, Prophet, Django)",
+          "Python (Pandas, NumPy, Scikit-learn, Streamlit, Matplotlib, Seaborn, TensorFlow, NLTK, WordCloud, Prophet, Django)",
           "SQL (MySQL, PostgreSQL, SQLite)",
           "BigQuery",
           "ClickHouse",
           "Airbyte",
           "Power BI",
+          "DAX",
           "Tableau",
           "Metabase",
           "Looker Studio (Google Data Studio)",
@@ -65,7 +66,10 @@
           "Google Colab",
           "Claude Code",
           "Github",
-          "Codex"
+          "Codex",
+          "Simplescraper",
+          "XLMiner Analysis ToolPak",
+          "YouTube Data API"
         ]
       },
       {
@@ -73,16 +77,37 @@
         "skills": [
           "Data Storytelling",
           "Data Visualization",
+          "Business Intelligence",
+          "KPI Reporting",
           "Exploratory Data Analysis",
           "Descriptive Statistics",
+          "Statistics",
+          "Correlation",
+          "Hypothesis Testing",
+          "Predictive Modeling",
           "Machine Learning",
+          "Deep Learning",
+          "Natural Language Processing",
+          "Text Mining",
+          "Web Scraping",
           "Regression",
           "Classification",
           "Cohort Analysis",
           "Customer Segmentation",
+          "Customer Retention",
+          "Customer Lifetime Value",
           "K-Means Clustering",
-          "Sentiment Analysis",
           "RFM Scoring",
+          "Sentiment Analysis",
+          "Impact Analysis",
+          "Marketing Strategy",
+          "Root Cause Analysis",
+          "Issue Tree",
+          "Hypothesis Prioritization",
+          "Problem Framing",
+          "Metrics Recommendation",
+          "Data Science",
+          "Web Development",
           "Performance Marketing Analysis",
           "Vibe Coding",
           "Prompt Engineering"
@@ -262,12 +287,14 @@
           "Looker Studio"
         ],
         "relatedSkills": [
+          "Exploratory Data Analysis",
           "Machine Learning",
           "RFM Scoring",
           "K-Means Clustering",
           "Impact Analysis",
           "Business Intelligence",
           "Marketing Strategy",
+          "Data Storytelling",
           "Data Visualization"
         ],
         "image": "https://drive.google.com/thumbnail?id=1eNIp5JTNffirocRxyAHk4Y5IbwjhDy1e&sz=w1600",
@@ -301,11 +328,15 @@
           "Streamlit"
         ],
         "relatedSkills": [
+          "Exploratory Data Analysis",
           "Machine Learning",
           "Data Science",
           "Web Development",
           "Project Management",
-          "Data Visualization"
+          "Data Storytelling",
+          "Data Visualization",
+          "Teamwork",
+          "Leadership"
         ],
         "image": "https://drive.google.com/thumbnail?id=1B3UPn3WoT4eGc2hCoaWISTF0W1EyhlmU&sz=w1600",
         "dashboardLink": "",
@@ -341,11 +372,13 @@
           "YouTube Data API"
         ],
         "relatedSkills": [
+          "Exploratory Data Analysis",
           "Natural Language Processing",
           "Sentiment Analysis",
           "Machine Learning",
           "Deep Learning",
           "Data Science",
+          "Data Storytelling",
           "Data Visualization"
         ],
         "image": "https://drive.google.com/thumbnail?id=1XA43b-k8PfDET0q3iSR-lqlV8Gu0XQbK&sz=w1600",
@@ -380,11 +413,14 @@
           "Seaborn"
         ],
         "relatedSkills": [
+          "Exploratory Data Analysis",
           "Cohort Analysis",
-          "Customer Retention",
-          "Customer Lifetime Value",
           "Data Storytelling",
-          "Data Visualization"
+          "Data Visualization",
+          "Teamwork",
+          "Leadership",
+          "Project Management",
+          "Communication"
         ],
         "image": "https://drive.google.com/thumbnail?id=1yMXD5XA5YdGKUDM3DE4YG_cYXUBftgtI&sz=w1600",
         "dashboardLink": "",
@@ -423,7 +459,8 @@
           "Exploratory Data Analysis",
           "RFM Scoring",
           "Data Storytelling",
-          "Data Visualization"
+          "Data Visualization",
+          "Communication"
         ],
         "image": "https://drive.google.com/thumbnail?id=1O5yvy83fRB2nvat_JhUfGUrPQP-M1dyX&sz=w1600",
         "dashboardLink": "",
@@ -455,11 +492,13 @@
           "DAX"
         ],
         "relatedSkills": [
-          "Dashboard Design",
+          "Exploratory Data Analysis",
           "Data Visualization",
           "Business Intelligence",
           "KPI Reporting",
-          "Data Storytelling"
+          "Data Storytelling",
+          "Stakeholder Management",
+          "Communication"
         ],
         "image": "https://drive.google.com/thumbnail?id=1hNesHabWSCXzWeRF_iKcfow1TqrVto8C&sz=w1600",
         "dashboardLink": "",
@@ -491,9 +530,10 @@
           "Google Sheets"
         ],
         "relatedSkills": [
+          "Exploratory Data Analysis",
+          "Data Storytelling",
           "Data Visualization",
-          "Business Intelligence",
-          "Dashboard Design"
+          "Business Intelligence"
         ],
         "image": "https://drive.google.com/thumbnail?id=1SRwpyR5GNr59o9GoMUprX9mmdBh0myPq&sz=w1600",
         "dashboardLink": "https://datastudio.google.com/reporting/ea7d3be4-a585-4868-b632-c25db6dfa94d",
@@ -529,7 +569,11 @@
           "Issue Tree",
           "Business Intelligence",
           "Project Management",
-          "Data Visualization"
+          "Data Storytelling",
+          "Data Visualization",
+          "Leadership",
+          "Communication",
+          "Teamwork"
         ],
         "image": "https://drive.google.com/thumbnail?id=1-4sAH_0eG-idnR8dZ0CFuEZHg3QyTOWi&sz=w1600",
         "dashboardLink": "https://public.tableau.com/views/VideoGameSales2017Dashboard/DASHBOARD?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link",
@@ -565,11 +609,14 @@
           "NLTK"
         ],
         "relatedSkills": [
+          "Exploratory Data Analysis",
           "Natural Language Processing",
           "Text Mining",
           "Web Scraping",
+          "Data Storytelling",
           "Data Visualization",
-          "Data Storytelling"
+          "Consulting",
+          "Communication"
         ],
         "image": "https://drive.google.com/thumbnail?id=1ZKBzWc44qzHShlLqS3fJY1bwulgQgKDD&sz=w1600",
         "dashboardLink": "https://datastudio.google.com/reporting/e8eab359-809c-4a17-8e8b-07455bd7df58",
@@ -602,11 +649,11 @@
           "Google Sheets"
         ],
         "relatedSkills": [
+          "Exploratory Data Analysis",
+          "Data Storytelling",
           "Data Visualization",
-          "Dashboard Design",
           "Business Intelligence",
-          "KPI Reporting",
-          "Data Storytelling"
+          "KPI Reporting"
         ],
         "image": "https://drive.google.com/thumbnail?id=15mK7WBE7xmjVGS-AtgmmY3iJoFvuhrTt&sz=w1600",
         "dashboardLink": "https://datastudio.google.com/reporting/a76b1e88-2061-48bc-84c2-36b12fd63a0c",
@@ -680,11 +727,11 @@
           "Google Sheets"
         ],
         "relatedSkills": [
+          "Exploratory Data Analysis",
           "Cohort Analysis",
           "SQL",
-          "Customer Retention",
-          "Data Visualization",
-          "Data Storytelling"
+          "Data Storytelling",
+          "Data Visualization"
         ],
         "image": "https://drive.google.com/thumbnail?id=1CxmaRCzZFjb7zmyW4acNMm6IYWFtiXZn&sz=w1600",
         "dashboardLink": "",
@@ -716,6 +763,7 @@
           "XLMiner Analysis ToolPak"
         ],
         "relatedSkills": [
+          "Exploratory Data Analysis",
           "Correlation",
           "Regression",
           "Statistics",
@@ -788,11 +836,13 @@
           "Google Slides"
         ],
         "relatedSkills": [
+          "Exploratory Data Analysis",
           "Root Cause Analysis",
           "Issue Tree",
           "Hypothesis Prioritization",
           "Problem Framing",
-          "Metrics Recommendation"
+          "Metrics Recommendation",
+          "Data Storytelling"
         ],
         "image": "https://drive.google.com/thumbnail?id=1Lxlzfv8eIdeeaJyy8Vm3ZVgtX8JIrLAw&sz=w1600",
         "dashboardLink": "",
