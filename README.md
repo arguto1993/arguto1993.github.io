@@ -44,6 +44,7 @@ My professional portfolio website built with React and TypeScript.
 - Responsive portfolio website
 - Dark/light theme support
 - Sections for Home, About, Skills, Experience, Projects, Dashboards, Education, and Contact
+- Public Projects grid with client-side controls: full-text search, a sticky toolbar that pins below the navbar while scrolling the section, multi-select filters (industry, tech stack, skills, month, year) each with their own searchable input, paginated results with a configurable page size, and three view modes (grid / list with thumbnail / compact list). Filtering is purely client-side — the pre-rendered static HTML still contains every project for crawlers
 - Each content section can be shown or hidden via the `show` flag inside each section in `src/data.json`, or via the admin page
 - The Hero section is always shown; `hero.show` remains in `src/data.json` only for section schema consistency
 - All content managed in a single `src/data.json` — no code changes needed
