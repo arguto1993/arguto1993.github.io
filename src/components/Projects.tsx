@@ -28,6 +28,27 @@ const MONTH_NAMES: Record<string, string> = {
 };
 const PER_PAGE_OPTIONS = [6, 9, 12, 24];
 
+type SortId =
+  | 'date-desc'
+  | 'date-asc'
+  | 'title-asc'
+  | 'title-desc'
+  | 'industry-asc'
+  | 'industry-desc'
+  | 'org-asc'
+  | 'org-desc';
+
+const SORT_OPTIONS: { id: SortId; label: string }[] = [
+  { id: 'date-desc', label: 'Newest' },
+  { id: 'date-asc', label: 'Oldest' },
+  { id: 'title-asc', label: 'Title (A–Z)' },
+  { id: 'title-desc', label: 'Title (Z–A)' },
+  { id: 'industry-asc', label: 'Industry (A–Z)' },
+  { id: 'industry-desc', label: 'Industry (Z–A)' },
+  { id: 'org-asc', label: 'Organization (A–Z)' },
+  { id: 'org-desc', label: 'Organization (Z–A)' },
+];
+
 /** Parse a project date like "Dec 2025" or "2024" into { month, year }. */
 function parseDate(date: string): { month: string | null; year: string | null } {
   let month: string | null = null;
@@ -40,6 +61,36 @@ function parseDate(date: string): { month: string | null; year: string | null } 
     }
   }
   return { month, year };
+}
+
+/** Comparable numeric key for a date; bare-year entries sort as that year's start. */
+function dateSortKey(date: string): number {
+  const { month, year } = parseDate(date);
+  const y = year ? Number(year) : 0;
+  const m = month ? MONTHS.indexOf(month) + 1 : 0;
+  return y * 100 + m;
+}
+
+/** Stable comparator for a given sort id. */
+function compareProjects(a: Project, b: Project, sort: SortId): number {
+  switch (sort) {
+    case 'date-desc':
+      return dateSortKey(b.date) - dateSortKey(a.date);
+    case 'date-asc':
+      return dateSortKey(a.date) - dateSortKey(b.date);
+    case 'title-asc':
+      return a.title.localeCompare(b.title);
+    case 'title-desc':
+      return b.title.localeCompare(a.title);
+    case 'industry-asc':
+      return (a.domain ?? '').localeCompare(b.domain ?? '');
+    case 'industry-desc':
+      return (b.domain ?? '').localeCompare(a.domain ?? '');
+    case 'org-asc':
+      return a.organization.localeCompare(b.organization);
+    case 'org-desc':
+      return b.organization.localeCompare(a.organization);
+  }
 }
 
 /** A searchable haystack for a project. */
@@ -370,6 +421,7 @@ export const Projects: React.FC = () => {
   const [search, setSearch] = useState('');
   const [view, setView] = useState<ViewMode>('grid');
   const [perPage, setPerPage] = useState(9);
+  const [sort, setSort] = useState<SortId>('date-desc');
   const [page, setPage] = useState(1);
   const [selDomains, setSelDomains] = useState<string[]>([]);
   const [selTech, setSelTech] = useState<string[]>([]);
@@ -418,17 +470,25 @@ export const Projects: React.FC = () => {
     });
   }, [items, search, selDomains, selTech, selSkills, selMonths, selYears]);
 
-  // Reset to first page whenever the result set changes
+  // Apply sort (stable — ties keep their filtered order)
+  const sorted = useMemo(() => {
+    return filtered
+      .map((p, i) => [p, i] as const)
+      .sort((a, b) => compareProjects(a[0], b[0], sort) || a[1] - b[1])
+      .map(([p]) => p);
+  }, [filtered, sort]);
+
+  // Reset to first page whenever the result set or ordering changes
   useEffect(() => {
     setPage(1);
-  }, [search, selDomains, selTech, selSkills, selMonths, selYears, perPage, view]);
+  }, [search, selDomains, selTech, selSkills, selMonths, selYears, perPage, sort, view]);
 
   // perPage is Infinity when "All" is selected
-  const pageSize = Number.isFinite(perPage) ? perPage : Math.max(1, filtered.length);
-  const totalPages = Math.max(1, Math.ceil(filtered.length / pageSize));
+  const pageSize = Number.isFinite(perPage) ? perPage : Math.max(1, sorted.length);
+  const totalPages = Math.max(1, Math.ceil(sorted.length / pageSize));
   const currentPage = Math.min(page, totalPages);
   const start = (currentPage - 1) * pageSize;
-  const pageItems = filtered.slice(start, start + pageSize);
+  const pageItems = sorted.slice(start, start + pageSize);
 
   const hasFilters =
     !!search ||
@@ -538,6 +598,22 @@ export const Projects: React.FC = () => {
           )}
 
           <div className="flex items-center gap-2 ml-auto text-sm">
+            <span className="opacity-50">Sort</span>
+            <select
+              value={sort}
+              onChange={e => setSort(e.target.value as SortId)}
+              className="px-2 py-2 rounded-lg border text-sm outline-none focus:border-[var(--accent)] cursor-pointer"
+              style={{ backgroundColor: 'var(--card-bg)', borderColor: 'var(--border)' }}
+            >
+              {SORT_OPTIONS.map(o => (
+                <option key={o.id} value={o.id}>
+                  {o.label}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className="flex items-center gap-2 text-sm">
             <span className="opacity-50">Per page</span>
             <select
               value={Number.isFinite(perPage) ? String(perPage) : 'all'}
@@ -556,8 +632,8 @@ export const Projects: React.FC = () => {
         </div>
 
         <p className="text-xs opacity-40">
-          Showing {filtered.length === 0 ? 0 : start + 1}–{Math.min(start + pageSize, filtered.length)} of{' '}
-          {filtered.length} project{filtered.length === 1 ? '' : 's'}
+          Showing {sorted.length === 0 ? 0 : start + 1}–{Math.min(start + pageSize, sorted.length)} of{' '}
+          {sorted.length} project{sorted.length === 1 ? '' : 's'}
         </p>
       </div>
 
@@ -628,7 +704,7 @@ export const Projects: React.FC = () => {
       )}
 
       <ProjectModal
-        projects={filtered}
+        projects={sorted}
         index={selectedIndex}
         onClose={() => setSelectedIndex(null)}
         onNavigate={setSelectedIndex}
