@@ -175,6 +175,7 @@ The admin route is lazy-loaded, marked `noindex`, and the OAuth token is held in
         ├── Navbar.tsx
         ├── ProjectModal.tsx
         ├── Projects.tsx
+        ├── SkillBadge.tsx
         ├── Skills.tsx
         └── ThemeContext.tsx
 ```

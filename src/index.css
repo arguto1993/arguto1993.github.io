@@ -87,6 +87,25 @@
     color: var(--accent) !important;
   }
 
+  /* Squared outline badges for the Skills section. Ghost style: transparent
+     fill, crisp accent-tinted border, brightens to gold on hover. */
+  .skill-badge {
+    @apply inline-flex flex-col px-3 py-1.5 rounded-md text-xs font-medium leading-tight transition-all duration-200 cursor-default;
+    background-color: transparent;
+    border: 1px solid color-mix(in srgb, var(--accent) 24%, var(--border));
+    color: color-mix(in srgb, var(--text) 88%, transparent);
+  }
+
+  .skill-badge:hover {
+    border-color: var(--accent);
+    background-color: color-mix(in srgb, var(--accent) 9%, transparent);
+  }
+
+  .skill-badge-detail {
+    @apply text-[10px] font-normal mt-0.5;
+    color: color-mix(in srgb, var(--text) 50%, transparent);
+  }
+
   /* Link pills in the project modal — accent-tinted so they pop without
      matching the solid domain badge (.accent-badge-2). */
   .modal-link {

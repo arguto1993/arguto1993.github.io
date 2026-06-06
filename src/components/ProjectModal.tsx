@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { X, Github as GithubIcon, LayoutDashboard, FileText, Youtube, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Project } from '../types';
+import { SkillBadge } from './SkillBadge';
 
 interface Props {
   projects: Project[];
@@ -256,15 +257,9 @@ export const ProjectModal: React.FC<Props> = ({ projects, index, onClose, onNavi
                     <div>
                       <p className="text-xs font-bold uppercase tracking-widest mb-2.5"
                         style={{ color: 'var(--section-label)' }}>Tech Stack</p>
-                      <div className="flex flex-wrap gap-1.5">
+                      <div className="flex flex-wrap items-start gap-2">
                         {project.techStack.map(t => (
-                          <span
-                            key={t}
-                            className="px-2 py-0.5 rounded-full border border-[var(--border)] text-[9px] font-bold uppercase tracking-wider opacity-70 transition-colors hover:opacity-100 hover:border-[var(--accent)] hover:text-[var(--accent)]"
-                            style={{ backgroundColor: 'var(--bg)' }}
-                          >
-                            {t}
-                          </span>
+                          <SkillBadge key={t} skill={t} />
                         ))}
                       </div>
                     </div>
@@ -273,15 +268,9 @@ export const ProjectModal: React.FC<Props> = ({ projects, index, onClose, onNavi
                     <div>
                       <p className="text-xs font-bold uppercase tracking-widest mb-2.5"
                         style={{ color: 'var(--section-label)' }}>Skills</p>
-                      <div className="flex flex-wrap gap-1.5">
+                      <div className="flex flex-wrap items-start gap-2">
                         {project.relatedSkills.map(s => (
-                          <span
-                            key={s}
-                            className="px-2 py-0.5 rounded-full border border-[var(--border)] text-[9px] font-bold uppercase tracking-wider opacity-70 transition-colors hover:opacity-100 hover:border-[var(--accent)] hover:text-[var(--accent)]"
-                            style={{ backgroundColor: 'var(--bg)' }}
-                          >
-                            {s}
-                          </span>
+                          <SkillBadge key={s} skill={s} />
                         ))}
                       </div>
                     </div>

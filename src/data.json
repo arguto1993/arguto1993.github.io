@@ -55,8 +55,8 @@
           "DAX",
           "Tableau",
           "Metabase",
-          "Looker Studio (Google Data Studio)",
-          "Google Sheets",
+          "Google Data Studio (previously Looker Studio)",
+          "Google Sheets (XLMiner Analysis ToolPak, Pivot Table, Advanced Formula)",
           "Google Slides",
           "Google Apps Script",
           "Microsoft Excel",
@@ -68,7 +68,6 @@
           "Github",
           "Codex",
           "Simplescraper",
-          "XLMiner Analysis ToolPak",
           "YouTube Data API"
         ]
       },
@@ -259,7 +258,7 @@
   },
   "projects": {
     "show": true,
-    "title": "Featured Projects",
+    "title": "Public Projects",
     "subtitle": "Passion projects let me showcase how I solve problems for different business domains.",
     "items": [
       {
