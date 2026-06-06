@@ -21,13 +21,14 @@ export function DashboardsForm({ value, onChange }: SectionProps<'dashboards'>) 
       <ItemList<Dashboard>
         items={value.items}
         onChange={(items) => onChange({ ...value, items })}
-        emptyItem={() => ({ title: '', platform: '', description: '', image: '', link: '' })}
+        emptyItem={() => ({ title: '', platform: '', date: '', description: '', image: '', link: '' })}
         itemLabel={(d) => d.title || '(untitled dashboard)'}
         renderItem={(item, _update, set) => (
           <>
             <div className="grid gap-3">
               <Field label="Title"><TextInput value={item.title} onChange={(v) => set('title', v)} /></Field>
               <Field label="Platform"><TextInput value={item.platform} onChange={(v) => set('platform', v)} /></Field>
+              <Field label="Date (e.g. Nov 2025)"><TextInput value={item.date ?? ''} onChange={(v) => set('date', v)} /></Field>
               <Field label="Direct Image URL (Google Drive links will auto-converted)"><TextInput value={item.image} onChange={(v) => set('image', toDirectGoogleDriveImageUrl(v))} /></Field>
               <Field label="Link"><TextInput value={item.link ?? ''} onChange={(v) => set('link', v)} /></Field>
             </div>

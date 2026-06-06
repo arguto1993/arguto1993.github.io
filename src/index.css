@@ -113,8 +113,12 @@
   .modal-link {
     @apply flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold transition-colors;
     background-color: color-mix(in srgb, var(--accent) 16%, var(--card-bg));
-    color: var(--accent);
+    color: var(--text);
     border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent);
+  }
+
+  .dark .modal-link {
+    color: var(--accent);
   }
 
   .modal-link:hover {
@@ -139,4 +143,13 @@
 
 ::-webkit-scrollbar-thumb:hover {
   opacity: 0.8;
+}
+
+/* Hide scrollbar (e.g. horizontal filter tab strips) while keeping scroll */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }

@@ -873,6 +873,7 @@
       {
         "title": "Student Depression Characteristics",
         "platform": "Streamlit",
+        "date": "Nov 2025",
         "description": "",
         "image": "https://drive.google.com/thumbnail?id=15jdye-wzm9DXZLaCiOGyuxbBMzxtKyeM&sz=w1600",
         "link": "https://depression-risk-assessment.streamlit.app/"
@@ -880,6 +881,7 @@
       {
         "title": "Olist E-Commerce Performance",
         "platform": "Streamlit",
+        "date": "Dec 2024",
         "description": "",
         "image": "https://drive.google.com/thumbnail?id=1J0fxTTAnCpM0MXArIeo3mMgZoK4MpHkO&sz=w1600",
         "link": "https://olist-ecommerce-performance-dashboard.streamlit.app/"
@@ -887,6 +889,7 @@
       {
         "title": "B2B Commerce Sales Performance 2023",
         "platform": "Power BI",
+        "date": "Apr 2024",
         "description": "",
         "image": "https://drive.google.com/thumbnail?id=1hNesHabWSCXzWeRF_iKcfow1TqrVto8C&sz=w1600",
         "link": "https://docs.google.com/presentation/d/13T6KiZi6NX5FVsSbd1xmHICup-zOtvDbsWYj8M7Ir0Y/edit?usp=sharing"
@@ -894,20 +897,15 @@
       {
         "title": "Daily Supply Chain & Logistics Performance",
         "platform": "Looker Studio",
+        "date": "Mar 2024",
         "description": "",
         "image": "https://drive.google.com/thumbnail?id=1SRwpyR5GNr59o9GoMUprX9mmdBh0myPq&sz=w1600",
         "link": "https://datastudio.google.com/reporting/ea7d3be4-a585-4868-b632-c25db6dfa94d"
       },
       {
-        "title": "Video Game Sales Analytics (January 2017)",
-        "platform": "Tableau",
-        "description": "",
-        "image": "https://drive.google.com/thumbnail?id=1Cg_zS32Dm0mLh7ZCrZZ77fU0azxvuL3d&sz=w1600",
-        "link": "https://public.tableau.com/views/VideoGameSales2017Dashboard/DASHBOARD?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link"
-      },
-      {
         "title": "Something in Tasikmalaya by Kecamatan (Tableau)",
         "platform": "Tableau",
+        "date": "Feb 2024",
         "description": "",
         "image": "https://drive.google.com/thumbnail?id=1mm5gWwuCAjfhUE50sO5tbKyowKY3xIZP&sz=w1600",
         "link": "https://public.tableau.com/views/SomethinginTasikmalayabyKecamatan/Dashboard?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link"
@@ -915,13 +913,23 @@
       {
         "title": "Something in Tasikmalaya by Kecamatan (Looker Studio)",
         "platform": "Looker Studio",
+        "date": "Feb 2024",
         "description": "",
         "image": "https://drive.google.com/thumbnail?id=1y5-KprlKYTNgOShJ-Y3GJj1EtdLNGES6&sz=w1600",
         "link": "https://datastudio.google.com/reporting/d0b5f14c-be70-4a86-9162-f5fc43c4310c"
       },
       {
+        "title": "Video Game Sales Analytics (January 2017)",
+        "platform": "Tableau",
+        "date": "2024",
+        "description": "",
+        "image": "https://drive.google.com/thumbnail?id=1Cg_zS32Dm0mLh7ZCrZZ77fU0azxvuL3d&sz=w1600",
+        "link": "https://public.tableau.com/views/VideoGameSales2017Dashboard/DASHBOARD?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link"
+      },
+      {
         "title": "Realisasi Konten Media Sosial Pusdiklat BPS 2023",
         "platform": "Looker Studio",
+        "date": "Dec 2023",
         "description": "",
         "image": "https://drive.google.com/thumbnail?id=1QDiPqtnU_-kQhJiUpgM0pBrO4vkncLw_&sz=w1600",
         "link": "https://datastudio.google.com/reporting/e8eab359-809c-4a17-8e8b-07455bd7df58"
@@ -929,6 +937,7 @@
       {
         "title": "Samba Commerce Transactions 2021-2022",
         "platform": "Looker Studio",
+        "date": "Sep 2023",
         "description": "",
         "image": "https://drive.google.com/thumbnail?id=1ExZgKDYpr7C_cOxndIj4-gRhMyBUHwaY&sz=w1600",
         "link": "https://datastudio.google.com/reporting/a76b1e88-2061-48bc-84c2-36b12fd63a0c"

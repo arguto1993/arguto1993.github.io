@@ -87,6 +87,7 @@ export interface Projects {
 export interface Dashboard {
   title: string;
   platform: string;
+  date: string;
   description: string;
   image: string;
   link?: string;

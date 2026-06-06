@@ -125,6 +125,7 @@ function generateStaticHTML(data) {
     <article>
       <h3>${esc(dashboard.title)}</h3>
       <p>${esc(dashboard.platform)}</p>
+      <p>${esc(dashboard.date)}</p>
       <p>${esc(dashboard.description)}</p>
     </article>`).join('');
 

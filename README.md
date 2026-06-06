@@ -168,6 +168,7 @@ The admin route is lazy-loaded, marked `noindex`, and the OAuth token is held in
     └── components/
         ├── About.tsx
         ├── Contact.tsx
+        ├── DashboardModal.tsx
         ├── Dashboards.tsx
         ├── Education.tsx
         ├── Experience.tsx
