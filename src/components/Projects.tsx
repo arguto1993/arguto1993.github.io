@@ -102,7 +102,10 @@ export const Projects: React.FC = () => {
                 {[project.organization, project.date].filter(Boolean).join('  ·  ')}
               </p>
 
-              <h3 className="text-xl font-serif font-bold leading-tight mb-3 line-clamp-2">
+              <h3
+                className="text-xl font-serif font-bold leading-tight mb-3 line-clamp-2 cursor-pointer hover:text-[var(--accent)] transition-colors duration-200"
+                onClick={() => setSelectedIndex(index)}
+              >
                 {project.title}
               </h3>
 
@@ -115,7 +118,7 @@ export const Projects: React.FC = () => {
                   {project.techStack.slice(0, 4).map(t => (
                     <span
                       key={t}
-                      className="px-2 py-0.5 rounded-full border border-[var(--border)] text-[9px] font-bold uppercase tracking-wider opacity-70"
+                      className="px-2 py-0.5 rounded-full border border-[var(--border)] text-[9px] font-bold uppercase tracking-wider opacity-70 transition-colors hover:opacity-100 hover:border-[var(--accent)] hover:text-[var(--accent)]"
                       style={{ backgroundColor: 'var(--bg)' }}
                     >
                       {t}

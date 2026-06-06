@@ -161,7 +161,7 @@ export const ProjectModal: React.FC<Props> = ({ projects, index, onClose, onNavi
                 {project.description && project.description.length > 0 && (
                   <ul className="space-y-1.5">
                     {project.description.map((d, i) => (
-                      <li key={i} className="flex gap-2 text-xs leading-relaxed opacity-60">
+                      <li key={i} className="flex gap-2 text-xs leading-relaxed">
                         <span
                           className="w-1 h-1 rounded-full mt-1.5 shrink-0"
                           style={{ backgroundColor: 'var(--accent)' }}
@@ -233,24 +233,27 @@ export const ProjectModal: React.FC<Props> = ({ projects, index, onClose, onNavi
             <div className="flex-1 sm:min-h-0 sm:overflow-y-auto px-7 py-7 flex flex-col gap-6">
               {project.background && (
                 <div>
-                  <p className="text-xs font-bold uppercase tracking-widest opacity-50 mb-2">Background</p>
-                  <p className="text-sm leading-relaxed opacity-75">{project.background}</p>
+                  <p className="text-xs font-bold uppercase tracking-widest mb-2"
+                  style={{ color: 'var(--section-label)' }}>Background</p>
+                  <p className="text-sm leading-relaxed">{project.background}</p>
                 </div>
               )}
 
               {project.goal && (
                 <div>
-                  <p className="text-xs font-bold uppercase tracking-widest opacity-50 mb-2">Goal</p>
-                  <p className="text-sm leading-relaxed opacity-75">{project.goal}</p>
+                  <p className="text-xs font-bold uppercase tracking-widest mb-2"
+                  style={{ color: 'var(--section-label)' }}>Goal</p>
+                  <p className="text-sm leading-relaxed">{project.goal}</p>
                 </div>
               )}
 
               {project.keyInsights && project.keyInsights.length > 0 && (
                 <div>
-                  <p className="text-xs font-bold uppercase tracking-widest opacity-50 mb-2">Key Insights & Results</p>
+                  <p className="text-xs font-bold uppercase tracking-widest mb-2"
+                  style={{ color: 'var(--section-label)' }}>Key Insights & Results</p>
                   <ul className="space-y-2.5">
                     {project.keyInsights.map((k, i) => (
-                      <li key={i} className="flex gap-3 text-sm leading-relaxed opacity-75">
+                      <li key={i} className="flex gap-3 text-sm leading-relaxed">
                         <span
                           className="w-1.5 h-1.5 rounded-full mt-1.5 shrink-0"
                           style={{ backgroundColor: 'var(--accent)' }}
@@ -266,12 +269,13 @@ export const ProjectModal: React.FC<Props> = ({ projects, index, onClose, onNavi
                 <div className="flex flex-col gap-4">
                   {project.techStack && project.techStack.length > 0 && (
                     <div>
-                      <p className="text-xs font-bold uppercase tracking-widest opacity-50 mb-2.5">Tech Stack</p>
+                      <p className="text-xs font-bold uppercase tracking-widest mb-2.5"
+                        style={{ color: 'var(--section-label)' }}>Tech Stack</p>
                       <div className="flex flex-wrap gap-1.5">
                         {project.techStack.map(t => (
                           <span
                             key={t}
-                            className="px-3 py-1 rounded-full border border-[var(--border)] text-xs font-semibold"
+                            className="px-2 py-0.5 rounded-full border border-[var(--border)] text-[9px] font-bold uppercase tracking-wider opacity-70 transition-colors hover:opacity-100 hover:border-[var(--accent)] hover:text-[var(--accent)]"
                             style={{ backgroundColor: 'var(--bg)' }}
                           >
                             {t}
@@ -282,13 +286,14 @@ export const ProjectModal: React.FC<Props> = ({ projects, index, onClose, onNavi
                   )}
                   {project.relatedSkills && project.relatedSkills.length > 0 && (
                     <div>
-                      <p className="text-xs font-bold uppercase tracking-widest opacity-50 mb-2.5">Skills</p>
+                      <p className="text-xs font-bold uppercase tracking-widest mb-2.5"
+                        style={{ color: 'var(--section-label)' }}>Skills</p>
                       <div className="flex flex-wrap gap-1.5">
                         {project.relatedSkills.map(s => (
                           <span
                             key={s}
-                            className="px-3 py-1 rounded-full text-xs font-semibold opacity-70"
-                            style={{ border: '1px dashed var(--border)' }}
+                            className="px-2 py-0.5 rounded-full border border-[var(--border)] text-[9px] font-bold uppercase tracking-wider opacity-70 transition-colors hover:opacity-100 hover:border-[var(--accent)] hover:text-[var(--accent)]"
+                            style={{ backgroundColor: 'var(--bg)' }}
                           >
                             {s}
                           </span>

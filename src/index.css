@@ -16,6 +16,7 @@
     --accent: #D4AF37;
     --card-bg: #FFFFFF;
     --border: rgba(0, 0, 0, 0.1);
+    --section-label: #141414;
   }
 
   .dark {
@@ -24,6 +25,7 @@
     --accent: #D4AF37;
     --card-bg: #111111;
     --border: rgba(255, 255, 255, 0.1);
+    --section-label: #D4AF37;
   }
 
   body {
