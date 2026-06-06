@@ -430,16 +430,14 @@ export const Projects: React.FC = () => {
   const [selMonths, setSelMonths] = useState<string[]>([]);
   const [selYears, setSelYears] = useState<string[]>([]);
   const [filtersOpen, setFiltersOpen] = useState(false);
-  const [toolbarHidden, setToolbarHidden] = useState(false);
   const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' && window.innerWidth < 768);
-  const [countPinned, setCountPinned] = useState(false);
-  const sectionRef = useRef<HTMLElement>(null);
+  const [navHidden, setNavHidden] = useState(false);
 
   useEffect(() => {
     const update = () => {
       const nextIsMobile = window.innerWidth < 768;
       setIsMobile(nextIsMobile);
-      if (!nextIsMobile) setToolbarHidden(false);
+      if (!nextIsMobile) setNavHidden(false);
     };
     window.addEventListener('resize', update, { passive: true });
     return () => window.removeEventListener('resize', update);
@@ -448,30 +446,11 @@ export const Projects: React.FC = () => {
   useEffect(() => {
     const onNavVisibility = (event: Event) => {
       const hidden = !!(event as CustomEvent<{ hidden?: boolean }>).detail?.hidden;
-      setToolbarHidden(isMobile && hidden);
+      setNavHidden(isMobile && hidden);
       if (isMobile && hidden) setFiltersOpen(false);
     };
     window.addEventListener('portfolio:mobile-nav-visibility', onNavVisibility);
     return () => window.removeEventListener('portfolio:mobile-nav-visibility', onNavVisibility);
-  }, [isMobile]);
-
-  useEffect(() => {
-    const updatePinnedCount = () => {
-      if (!isMobile || !sectionRef.current) {
-        setCountPinned(false);
-        return;
-      }
-      const rect = sectionRef.current.getBoundingClientRect();
-      setCountPinned(rect.top <= 0 && rect.bottom > 48);
-    };
-
-    updatePinnedCount();
-    window.addEventListener('scroll', updatePinnedCount, { passive: true });
-    window.addEventListener('resize', updatePinnedCount, { passive: true });
-    return () => {
-      window.removeEventListener('scroll', updatePinnedCount);
-      window.removeEventListener('resize', updatePinnedCount);
-    };
   }, [isMobile]);
 
   // Derive filter option lists from the data
@@ -574,7 +553,7 @@ export const Projects: React.FC = () => {
   const effectiveView: ViewMode = isMobile && view === 'list' ? 'compact' : view;
 
   return (
-    <section ref={sectionRef} id="projects" className="section-container">
+    <section id="projects" className="section-container">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -587,9 +566,9 @@ export const Projects: React.FC = () => {
 
       {/* Toolbar */}
       <div
-        className={`sticky top-16 z-40 bg-[var(--bg)]/95 backdrop-blur-md border-b border-[var(--border)] transition-transform duration-300
-          ${toolbarHidden ? '-translate-y-full md:translate-y-0' : 'translate-y-0'}
-        `}
+        className={`sticky z-40 bg-[var(--bg)]/95 backdrop-blur-md border-b border-[var(--border)] transition-[top] duration-300 ${
+          navHidden ? 'top-0 md:top-16' : 'top-16'
+        }`}
       >
         <div>
           {/* Single row: search + view toggle + filter hamburger */}
@@ -737,20 +716,11 @@ export const Projects: React.FC = () => {
           </AnimatePresence>
         </div>
 
-        <p className={`text-xs pb-3 ${toolbarHidden ? 'opacity-0 md:opacity-40' : 'opacity-40'}`}>
+        <p className="text-xs opacity-40 pb-3">
           Showing {sorted.length === 0 ? 0 : start + 1}–{Math.min(start + pageSize, sorted.length)} of{' '}
           {sorted.length} project{sorted.length === 1 ? '' : 's'}
         </p>
       </div>
-
-      <p
-        className={`md:hidden fixed top-0 left-0 right-0 z-40 px-6 py-2 bg-[var(--bg)]/95 backdrop-blur-md border-b border-[var(--border)] text-xs opacity-40 transition-opacity duration-200
-          ${toolbarHidden && countPinned ? 'opacity-100' : 'opacity-0 pointer-events-none'}
-        `}
-      >
-        Showing {sorted.length === 0 ? 0 : start + 1}–{Math.min(start + pageSize, sorted.length)} of{' '}
-        {sorted.length} project{sorted.length === 1 ? '' : 's'}
-      </p>
 
       {/* Results */}
       {pageItems.length === 0 ? (
