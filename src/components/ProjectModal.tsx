@@ -127,16 +127,13 @@ export const ProjectModal: React.FC<Props> = ({ projects, index, onClose, onNavi
               </div>
 
               {/* Image */}
-              <div
-                className="w-full flex items-center justify-center px-6 pt-2 pb-1"
-                style={{ background: 'color-mix(in srgb, var(--accent) 6%, var(--bg))' }}
-              >
+              <div className="w-full flex items-center justify-center px-6 pt-2 pb-1">
                 {project.image ? (
                   <img
                     src={project.image}
                     alt={project.title}
                     className="w-full object-contain rounded-lg"
-                    style={{ maxHeight: '38vh' }}
+                    style={{ maxHeight: '38vh', border: '1px solid color-mix(in srgb, var(--accent) 30%, transparent)' }}
                     referrerPolicy="no-referrer"
                   />
                 ) : (
