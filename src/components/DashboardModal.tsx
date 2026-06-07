@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { X, Layout, ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react';
-import { Dashboard } from '../types';
+import type { Dashboard } from '../types';
 
 interface Props {
   dashboards: Dashboard[];
@@ -147,7 +147,7 @@ export const DashboardModal: React.FC<Props> = ({ dashboards, index, onClose, on
 
               {/* Floating title + external link over the image */}
               <div className="pointer-events-none absolute inset-x-4 bottom-4 sm:inset-x-6 sm:bottom-6 flex flex-col sm:flex-row sm:items-end justify-between gap-3">
-                <div className="min-w-0 max-w-2xl rounded-lg bg-black/55 backdrop-blur-sm px-4 py-2.5">
+                <div className="pointer-events-auto select-text min-w-0 max-w-2xl rounded-lg bg-black/55 backdrop-blur-sm px-4 py-2.5">
                   <h3 className="text-lg font-serif font-bold leading-tight text-white truncate">{dash.title}</h3>
                   {dash.description && (
                     <p className="text-sm text-white/70 font-light mt-0.5 line-clamp-2">{dash.description}</p>
