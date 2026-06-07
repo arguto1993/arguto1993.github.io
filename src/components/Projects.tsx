@@ -859,12 +859,12 @@ export const Projects: React.FC = () => {
                         <X size={14} /> Clear all
                       </button>
                     )}
-                    <div className="flex items-center gap-2 ml-auto text-sm">
-                      <ArrowUpDown size={14} className="opacity-50 shrink-0" />
+                    <div className="relative ml-auto text-sm">
+                      <ArrowUpDown size={14} className="absolute left-2.5 top-1/2 -translate-y-1/2 opacity-50 pointer-events-none" />
                       <select
                         value={sort}
                         onChange={e => setSort(e.target.value as SortId)}
-                        className="px-2 py-2 rounded-lg border text-sm outline-none focus:border-[var(--accent)] cursor-pointer"
+                        className="pl-7 pr-7 py-2 rounded-lg border text-sm outline-none focus:border-[var(--accent)] cursor-pointer appearance-none"
                         style={{ backgroundColor: 'var(--card-bg)', borderColor: 'var(--border)' }}
                       >
                         {SORT_OPTIONS.map(o => (
@@ -873,13 +873,14 @@ export const Projects: React.FC = () => {
                           </option>
                         ))}
                       </select>
+                      <ChevronDown size={14} className="absolute right-2.5 top-1/2 -translate-y-1/2 opacity-50 pointer-events-none" />
                     </div>
-                    <div className="flex items-center gap-2 text-sm">
-                      <Hash size={14} className="opacity-50 shrink-0" />
+                    <div className="relative text-sm">
+                      <Hash size={14} className="absolute left-2.5 top-1/2 -translate-y-1/2 opacity-50 pointer-events-none" />
                       <select
                         value={Number.isFinite(perPage) ? String(perPage) : 'all'}
                         onChange={e => setPerPage(e.target.value === 'all' ? Infinity : Number(e.target.value))}
-                        className="px-2 py-2 rounded-lg border text-sm outline-none focus:border-[var(--accent)] cursor-pointer"
+                        className="pl-7 pr-7 py-2 rounded-lg border text-sm outline-none focus:border-[var(--accent)] cursor-pointer appearance-none"
                         style={{ backgroundColor: 'var(--card-bg)', borderColor: 'var(--border)' }}
                       >
                         {PER_PAGE_OPTIONS.map(n => (
@@ -889,6 +890,7 @@ export const Projects: React.FC = () => {
                         ))}
                         <option value="all">All</option>
                       </select>
+                      <ChevronDown size={14} className="absolute right-2.5 top-1/2 -translate-y-1/2 opacity-50 pointer-events-none" />
                     </div>
                   </div>
                 </div>

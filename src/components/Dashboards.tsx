@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import { useSiteData } from '../SiteDataContext';
-import { Layout, Columns3, Search, SlidersHorizontal, X } from 'lucide-react';
+import { Layout, Columns3, Search, SlidersHorizontal, X, ArrowUpDown, ChevronDown } from 'lucide-react';
 import { DashboardModal } from './DashboardModal';
 
 const COL_OPTIONS = [2, 3, 4, 5];
@@ -184,7 +184,6 @@ export const Dashboards: React.FC = () => {
           {maxCols > 1 && (
             <div className="hidden md:flex items-center gap-2 text-sm shrink-0 self-start">
               <Columns3 size={15} className="opacity-50" />
-              <span className="opacity-50">Per row</span>
               <div
                 className="flex items-center rounded-lg border p-1"
                 style={{ backgroundColor: 'var(--card-bg)', borderColor: 'var(--border)' }}
@@ -243,13 +242,14 @@ export const Dashboards: React.FC = () => {
               transition={{ duration: 0.2 }}
               className="md:hidden overflow-hidden"
             >
-              <div className="grid gap-3 pt-3 pb-4 border-t border-[var(--border)]">
-                <label className="grid gap-1.5 text-sm">
-                  <span className="opacity-50">Platform</span>
+              <div className="flex flex-col gap-2 pt-3 pb-4 border-t border-[var(--border)]">
+                {/* Platform row */}
+                <div className="relative flex items-center">
+                  <Layout size={14} className="absolute left-3 top-1/2 -translate-y-1/2 opacity-50 pointer-events-none" />
                   <select
                     value={platform}
                     onChange={e => setPlatform(e.target.value)}
-                    className="w-full px-3 py-2.5 rounded-lg border text-sm outline-none focus:border-[var(--accent)] cursor-pointer"
+                    className="w-full pl-8 pr-8 py-2 rounded-lg border text-sm outline-none focus:border-[var(--accent)] cursor-pointer appearance-none"
                     style={{ backgroundColor: 'var(--card-bg)', borderColor: 'var(--border)' }}
                   >
                     {tabs.map(t => (
@@ -258,35 +258,37 @@ export const Dashboards: React.FC = () => {
                       </option>
                     ))}
                   </select>
-                </label>
+                  <ChevronDown size={14} className="absolute right-3 top-1/2 -translate-y-1/2 opacity-50 pointer-events-none" />
+                </div>
 
-                <label className="grid gap-1.5 text-sm">
-                  <span className="opacity-50">Sort</span>
-                  <select
-                    value={sort}
-                    onChange={e => setSort(e.target.value as SortId)}
-                    className="w-full px-3 py-2.5 rounded-lg border text-sm outline-none focus:border-[var(--accent)] cursor-pointer"
-                    style={{ backgroundColor: 'var(--card-bg)', borderColor: 'var(--border)' }}
-                  >
-                    {SORT_OPTIONS.map(o => (
-                      <option key={o.id} value={o.id}>
-                        {o.label}
-                      </option>
-                    ))}
-                  </select>
-                </label>
+                {/* Sort row */}
+                <div className="flex items-center gap-2">
+                  <div className="relative flex-1">
+                    <ArrowUpDown size={14} className="absolute left-3 top-1/2 -translate-y-1/2 opacity-50 pointer-events-none" />
+                    <select
+                      value={sort}
+                      onChange={e => setSort(e.target.value as SortId)}
+                      className="w-full pl-8 pr-8 py-2 rounded-lg border text-sm outline-none focus:border-[var(--accent)] cursor-pointer appearance-none"
+                      style={{ backgroundColor: 'var(--card-bg)', borderColor: 'var(--border)' }}
+                    >
+                      {SORT_OPTIONS.map(o => (
+                        <option key={o.id} value={o.id}>
+                          {o.label}
+                        </option>
+                      ))}
+                    </select>
+                    <ChevronDown size={14} className="absolute right-3 top-1/2 -translate-y-1/2 opacity-50 pointer-events-none" />
+                  </div>
 
-                {(platform !== ALL || sort !== 'newest') && (
-                  <button
-                    onClick={() => {
-                      setPlatform(ALL);
-                      setSort('newest');
-                    }}
-                    className="flex items-center gap-1.5 w-fit py-1 text-sm opacity-70 hover:opacity-100 hover:text-[var(--accent)] transition-colors cursor-pointer"
-                  >
-                    <X size={14} /> Clear filters
-                  </button>
-                )}
+                  {(platform !== ALL || sort !== 'newest') && (
+                    <button
+                      onClick={() => { setPlatform(ALL); setSort('newest'); }}
+                      className="flex items-center gap-1 py-1 text-sm opacity-70 hover:opacity-100 hover:text-[var(--accent)] transition-colors cursor-pointer shrink-0"
+                    >
+                      <X size={14} />
+                    </button>
+                  )}
+                </div>
               </div>
             </motion.div>
           )}
@@ -315,7 +317,7 @@ export const Dashboards: React.FC = () => {
           </div>
 
           <div className="flex items-center gap-2 text-sm shrink-0">
-            <span className="opacity-50">Sort</span>
+            <ArrowUpDown size={14} className="opacity-50 shrink-0" />
             <select
               value={sort}
               onChange={e => setSort(e.target.value as SortId)}

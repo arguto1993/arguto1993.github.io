@@ -1,1 +1,1 @@
-check staged diff and write conventional commit messages in a codeblock, body in list if needed
+check staged diff and write conventional commit messages, body in list if needed, in a code block
