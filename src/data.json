@@ -886,12 +886,28 @@
     "subtitle": "A collection of interactive visualizations I've built to enable faster & smarter decision-making.",
     "items": [
       {
-        "title": "Student Depression Characteristics",
+        "title": "Wine Retail Customer Analysis",
+        "platform": "Looker Studio",
+        "date": "Dec 2025",
+        "description": "",
+        "image": "https://drive.google.com/thumbnail?id=1xvINhMWUTZfO1c4w9goZ8BwQafvy5oWx&sz=w1600",
+        "link": "https://datastudio.google.com/reporting/29ff0f94-952b-4fb8-8a78-7bbfcb095737"
+      },
+      {
+        "title": "Student Depression Risk Factors",
         "platform": "Streamlit",
         "date": "Nov 2025",
-        "description": "",
+        "description": "Looker Studio dashboard rebuilt in Streamlit",
         "image": "https://drive.google.com/thumbnail?id=15jdye-wzm9DXZLaCiOGyuxbBMzxtKyeM&sz=w1600",
         "link": "https://depression-risk-assessment.streamlit.app/"
+      },
+      {
+        "title": "Student Depression Risk Factors",
+        "platform": "Looker Studio",
+        "date": "Feb 2025",
+        "description": "Dataset: https://www.kaggle.com/datasets/hopesb/student-depression-dataset",
+        "image": "https://drive.google.com/thumbnail?id=1hEg-PQ_R6WhJT_yw0TCqli_pmCCS72HX&sz=w1600",
+        "link": "https://datastudio.google.com/reporting/8fee9fb4-8d82-4460-9943-61726e9887ad"
       },
       {
         "title": "Olist E-Commerce Performance",
@@ -902,7 +918,7 @@
         "link": "https://olist-ecommerce-performance-dashboard.streamlit.app/"
       },
       {
-        "title": "B2B Commerce Sales Performance 2023",
+        "title": "B2B Commerce Sales Performance",
         "platform": "Power BI",
         "date": "Apr 2024",
         "description": "",
@@ -918,7 +934,7 @@
         "link": "https://datastudio.google.com/reporting/ea7d3be4-a585-4868-b632-c25db6dfa94d"
       },
       {
-        "title": "Something in Tasikmalaya by Kecamatan (Tableau)",
+        "title": "Something in Tasikmalaya by Kecamatan",
         "platform": "Tableau",
         "date": "Feb 2024",
         "description": "",
@@ -926,7 +942,7 @@
         "link": "https://public.tableau.com/views/SomethinginTasikmalayabyKecamatan/Dashboard?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link"
       },
       {
-        "title": "Something in Tasikmalaya by Kecamatan (Looker Studio)",
+        "title": "Something in Tasikmalaya by Kecamatan",
         "platform": "Looker Studio",
         "date": "Feb 2024",
         "description": "",
@@ -934,7 +950,7 @@
         "link": "https://datastudio.google.com/reporting/d0b5f14c-be70-4a86-9162-f5fc43c4310c"
       },
       {
-        "title": "Video Game Sales Analytics (January 2017)",
+        "title": "Video Game Sales Analytics",
         "platform": "Tableau",
         "date": "2024",
         "description": "",
