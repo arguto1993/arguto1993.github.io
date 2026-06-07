@@ -159,10 +159,10 @@ export const ProjectModal: React.FC<Props> = ({ projects, index, onClose, onNavi
                     {project.description.map((d, i) => (
                       <li key={i} className="flex gap-2 text-xs leading-relaxed">
                         <span
-                          className="w-1 h-1 rounded-full mt-1.5 shrink-0"
+                          className="w-1 h-1 rounded-full mt-2 shrink-0"
                           style={{ backgroundColor: 'var(--accent)' }}
                         />
-                        {d}
+                        <span className="flex-1 text-justify">{d}</span>
                       </li>
                     ))}
                   </ul>
@@ -206,12 +206,12 @@ export const ProjectModal: React.FC<Props> = ({ projects, index, onClose, onNavi
             </div>
 
             {/* Right: scrollable details */}
-            <div className="flex-1 sm:min-h-0 sm:overflow-y-auto px-7 py-7 flex flex-col gap-6">
+            <div className="flex-1 sm:min-h-0 sm:overflow-y-auto px-6 pt-8 pb-6 flex flex-col gap-6">
               {project.background && (
                 <div>
                   <p className="text-xs font-bold uppercase tracking-widest mb-2"
                   style={{ color: 'var(--section-label)' }}>Background</p>
-                  <p className="text-sm leading-relaxed">{project.background}</p>
+                  <p className="text-sm leading-relaxed text-justify">{project.background}</p>
                 </div>
               )}
 
@@ -219,7 +219,7 @@ export const ProjectModal: React.FC<Props> = ({ projects, index, onClose, onNavi
                 <div>
                   <p className="text-xs font-bold uppercase tracking-widest mb-2"
                   style={{ color: 'var(--section-label)' }}>Goal</p>
-                  <p className="text-sm leading-relaxed">{project.goal}</p>
+                  <p className="text-sm leading-relaxed text-justify">{project.goal}</p>
                 </div>
               )}
 
@@ -231,10 +231,10 @@ export const ProjectModal: React.FC<Props> = ({ projects, index, onClose, onNavi
                     {project.keyInsights.map((k, i) => (
                       <li key={i} className="flex gap-3 text-sm leading-relaxed">
                         <span
-                          className="w-1.5 h-1.5 rounded-full mt-1.5 shrink-0"
+                          className="w-1.5 h-1.5 rounded-full mt-2 shrink-0"
                           style={{ backgroundColor: 'var(--accent)' }}
                         />
-                        {k}
+                        <span className="flex-1 text-justify">{k}</span>
                       </li>
                     ))}
                   </ul>
