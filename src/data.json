@@ -170,7 +170,7 @@
         "companyUrl": "https://www.linkedin.com/company/revou-x-telkom-indonesia/",
         "companyLogo": "https://drive.google.com/file/d/1Cj4l5bRn1_wIhqDnLZ74c8ig58E4OWx6/view?usp=sharing",
         "location": "Jakarta, Indonesia",
-        "period": "Mar 2024 - May 2024",
+        "period": "Mar - May 2024",
         "type": "Internship, Remote",
         "description": [
           "Crafted 3 pages of sales performance dashboard for various stakeholders.",
@@ -257,6 +257,18 @@
           "Supervised 20+ partners for field data collecting, document batching, data entry, & data validation activities.",
           "Designed 10+ infographics and other data visualizations for official statistics publications.",
           "Updated over 100km² Statistical Master Area Map by defining administrative boundaries & updating map coordinates with GIS software."
+        ]
+      },
+      {
+        "title": "Full Stack Developer",
+        "company": "BPS-Statistics Indonesia",
+        "companyUrl": "https://www.bps.go.id/en",
+        "companyLogo": "https://drive.google.com/file/d/1px6AgKMV8Z0EufsULdLUgV1uA4KElIj4/view?usp=sharing",
+        "location": "Jakarta",
+        "period": "Jan 2017",
+        "type": "Internship",
+        "description": [
+          "Developed a website to streamline internal document management processes with Yii framework"
         ]
       }
     ]
@@ -998,14 +1010,14 @@
           "name": "Data Science Bootcamp",
           "type": "Ceritificate of Completion",
           "issuer": "Dicoding Academy",
-          "issuerLogo": "https://drive.google.com/file/d/1T_8ThHD6Xz4U4jnvj3vemlzjCaujMMhp/view?usp=sharing",
+          "issuerLogo": "https://drive.google.com/file/d/1LA0suQreT5cUyttP5S6VhVj2iPD1MRnF/view?usp=sharing",
           "date": "Feb 2025",
           "link": "https://drive.google.com/file/d/11OpjRYdDOgcxqRDAm8992dZVxGsM1U_Q/view"
         },
         {
           "name": "Storytelling: The Key to Effective Last Mile Delivery of Statistical Products",
           "type": "Certificate of Participation",
-          "issuer": "BPS - Statistics Indonesia",
+          "issuer": "BPS-Statistics Indonesia",
           "issuerLogo": "https://drive.google.com/file/d/1px6AgKMV8Z0EufsULdLUgV1uA4KElIj4/view?usp=sharing",
           "date": "Jul 2024",
           "link": "https://drive.google.com/file/d/1JnL_Td0Xi9y7jKzf2Sd3FzRhX5glrpkV/view?usp=sharing"
