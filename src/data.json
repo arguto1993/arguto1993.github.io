@@ -894,10 +894,10 @@
         "link": "https://datastudio.google.com/reporting/29ff0f94-952b-4fb8-8a78-7bbfcb095737"
       },
       {
-        "title": "Student Depression Risk Factors",
+        "title": "Student Depression Risk Factors (Rebuild)",
         "platform": "Streamlit",
         "date": "Nov 2025",
-        "description": "Looker Studio dashboard rebuilt in Streamlit",
+        "description": "Rebuilt from Tableau to Streamlit",
         "image": "https://drive.google.com/thumbnail?id=15jdye-wzm9DXZLaCiOGyuxbBMzxtKyeM&sz=w1600",
         "link": "https://depression-risk-assessment.streamlit.app/"
       },
@@ -934,20 +934,20 @@
         "link": "https://datastudio.google.com/reporting/ea7d3be4-a585-4868-b632-c25db6dfa94d"
       },
       {
+        "title": "Something in Tasikmalaya by Kecamatan (Rebuild)",
+        "platform": "Looker Studio",
+        "date": "Feb 2024",
+        "description": "Rebuilt from Tableau to Looker Studio",
+        "image": "https://drive.google.com/thumbnail?id=1y5-KprlKYTNgOShJ-Y3GJj1EtdLNGES6&sz=w1600",
+        "link": "https://datastudio.google.com/reporting/d0b5f14c-be70-4a86-9162-f5fc43c4310c"
+      },
+      {
         "title": "Something in Tasikmalaya by Kecamatan",
         "platform": "Tableau",
         "date": "Feb 2024",
         "description": "",
         "image": "https://drive.google.com/thumbnail?id=1mm5gWwuCAjfhUE50sO5tbKyowKY3xIZP&sz=w1600",
         "link": "https://public.tableau.com/views/SomethinginTasikmalayabyKecamatan/Dashboard?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link"
-      },
-      {
-        "title": "Something in Tasikmalaya by Kecamatan",
-        "platform": "Looker Studio",
-        "date": "Feb 2024",
-        "description": "",
-        "image": "https://drive.google.com/thumbnail?id=1y5-KprlKYTNgOShJ-Y3GJj1EtdLNGES6&sz=w1600",
-        "link": "https://datastudio.google.com/reporting/d0b5f14c-be70-4a86-9162-f5fc43c4310c"
       },
       {
         "title": "Video Game Sales Analytics",
