@@ -438,6 +438,7 @@ export const Projects: React.FC = () => {
   const [selMonths, setSelMonths] = useState<string[]>([]);
   const [selYears, setSelYears] = useState<string[]>([]);
   const [filtersOpen, setFiltersOpen] = useState(false);
+  const [filtersAnimating, setFiltersAnimating] = useState(false);
   const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' && window.innerWidth < 768);
   const [navHidden, setNavHidden] = useState(false);
 
@@ -548,6 +549,7 @@ export const Projects: React.FC = () => {
       window.dispatchEvent(new CustomEvent('portfolio:mobile-toolbar-toggle', { detail: { guardUntil } }));
     }
     setFiltersOpen(open => !open);
+    setFiltersAnimating(true);
   };
 
   const allViewButtons: { mode: ViewMode; Icon: typeof LayoutGrid; label: string }[] = [
@@ -661,7 +663,8 @@ export const Projects: React.FC = () => {
                 animate={{ height: 'auto', opacity: 1 }}
                 exit={{ height: 0, opacity: 0 }}
                 transition={{ duration: 0.2 }}
-                className="overflow-hidden"
+                style={{ overflow: filtersAnimating ? 'hidden' : 'visible' }}
+              onAnimationComplete={() => setFiltersAnimating(false)}
               >
                 <div className="flex flex-wrap items-center gap-3 pb-4 pt-3 border-t border-[var(--border)]">
                   <MultiSelect label="Industry" options={domainOptions} selected={selDomains} onChange={setSelDomains} />
