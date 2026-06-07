@@ -894,10 +894,10 @@
         "link": "https://datastudio.google.com/reporting/29ff0f94-952b-4fb8-8a78-7bbfcb095737"
       },
       {
-        "title": "Student Depression Risk Factors (Rebuild)",
+        "title": "Student Depression Risk Factors (Remake)",
         "platform": "Streamlit",
         "date": "Nov 2025",
-        "description": "Rebuilt from Tableau to Streamlit",
+        "description": "Remade in Streamlit from Tableau",
         "image": "https://drive.google.com/thumbnail?id=15jdye-wzm9DXZLaCiOGyuxbBMzxtKyeM&sz=w1600",
         "link": "https://depression-risk-assessment.streamlit.app/"
       },
@@ -934,10 +934,10 @@
         "link": "https://datastudio.google.com/reporting/ea7d3be4-a585-4868-b632-c25db6dfa94d"
       },
       {
-        "title": "Something in Tasikmalaya by Kecamatan (Rebuild)",
+        "title": "Something in Tasikmalaya by Kecamatan (Remake)",
         "platform": "Looker Studio",
         "date": "Feb 2024",
-        "description": "Rebuilt from Tableau to Looker Studio",
+        "description": "Remade in Looker Studio from Tableau",
         "image": "https://drive.google.com/thumbnail?id=1y5-KprlKYTNgOShJ-Y3GJj1EtdLNGES6&sz=w1600",
         "link": "https://datastudio.google.com/reporting/d0b5f14c-be70-4a86-9162-f5fc43c4310c"
       },
