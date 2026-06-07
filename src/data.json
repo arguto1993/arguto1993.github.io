@@ -897,7 +897,7 @@
         "title": "Student Depression Risk Factors (Remake)",
         "platform": "Streamlit",
         "date": "Nov 2025",
-        "description": "Remade in Streamlit from Tableau",
+        "description": "Remade in Streamlit from Looker Studio",
         "image": "https://drive.google.com/thumbnail?id=15jdye-wzm9DXZLaCiOGyuxbBMzxtKyeM&sz=w1600",
         "link": "https://depression-risk-assessment.streamlit.app/"
       },
