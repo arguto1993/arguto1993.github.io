@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, Github as GithubIcon, LayoutDashboard, FileText, Youtube, ChevronLeft, ChevronRight } from 'lucide-react';
+import { X, Github as GithubIcon, LayoutDashboard, FileText, Youtube, ChevronLeft, ChevronRight, Code, Table } from 'lucide-react';
 import { Project } from '../types';
 import { SkillBadge } from './SkillBadge';
 
@@ -46,7 +46,7 @@ export const ProjectModal: React.FC<Props> = ({ projects, index, onClose, onNavi
   }, [onClose, isOpen, index, count]);
 
   const modalLinks = project
-    ? [project.dashboardLink, project.githubLink, project.presentationLink, project.videoLink].filter(Boolean)
+    ? [project.dashboardLink, project.githubLink, project.googleColabLink, project.sheetLink, project.presentationLink, project.videoLink].filter(Boolean)
     : [];
   const hasLinks = modalLinks.length > 0;
 
@@ -171,42 +171,32 @@ export const ProjectModal: React.FC<Props> = ({ projects, index, onClose, onNavi
                 {hasLinks && (
                   <div className="flex flex-wrap gap-2 mt-auto pt-4">
                     {project.dashboardLink && (
-                      <a
-                        href={project.dashboardLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="modal-link"
-                      >
+                      <a href={project.dashboardLink} target="_blank" rel="noopener noreferrer" className="modal-link">
                         <LayoutDashboard size={14} /> Dashboard
                       </a>
                     )}
                     {project.githubLink && (
-                      <a
-                        href={project.githubLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="modal-link"
-                      >
+                      <a href={project.githubLink} target="_blank" rel="noopener noreferrer" className="modal-link">
                         <GithubIcon size={14} /> GitHub
                       </a>
                     )}
+                    {project.googleColabLink && (
+                      <a href={project.googleColabLink} target="_blank" rel="noopener noreferrer" className="modal-link">
+                        <Code size={14} /> Colab
+                      </a>
+                    )}
+                    {project.sheetLink && (
+                      <a href={project.sheetLink} target="_blank" rel="noopener noreferrer" className="modal-link">
+                        <Table size={14} /> Sheet
+                      </a>
+                    )}
                     {project.presentationLink && (
-                      <a
-                        href={project.presentationLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="modal-link"
-                      >
+                      <a href={project.presentationLink} target="_blank" rel="noopener noreferrer" className="modal-link">
                         <FileText size={14} /> Presentation
                       </a>
                     )}
                     {project.videoLink && (
-                      <a
-                        href={project.videoLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="modal-link"
-                      >
+                      <a href={project.videoLink} target="_blank" rel="noopener noreferrer" className="modal-link">
                         <Youtube size={14} /> Video
                       </a>
                     )}

@@ -74,8 +74,10 @@ export interface Project {
   image?: string;
   dashboardLink?: string;
   githubLink?: string;
+  sheetLink?: string;
   presentationLink?: string;
   videoLink?: string;
+  googleColabLink?: string;
 }
 
 export interface Projects {

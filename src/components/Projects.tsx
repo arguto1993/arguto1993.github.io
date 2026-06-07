@@ -6,6 +6,8 @@ import {
   FileText,
   LayoutDashboard,
   Youtube,
+  Code,
+  Table,
   ArrowRight,
   Search,
   LayoutGrid,
@@ -231,8 +233,10 @@ const MultiSelect: React.FC<MultiSelectProps> = ({ label, options, selected, onC
 // ── Link icon overlay (grid) / inline buttons (list) ─────────────────────────
 
 const linkDefs = [
-  { key: 'githubLink', Icon: Github, label: 'GitHub' },
   { key: 'dashboardLink', Icon: LayoutDashboard, label: 'Dashboard' },
+  { key: 'githubLink', Icon: Github, label: 'GitHub' },
+  { key: 'googleColabLink', Icon: Code, label: 'Colab' },
+  { key: 'sheetLink', Icon: Table, label: 'Sheet' },
   { key: 'presentationLink', Icon: FileText, label: 'Presentation' },
   { key: 'videoLink', Icon: Youtube, label: 'Video' },
 ] as const;
@@ -246,21 +250,25 @@ const ProjectLinkIcons: React.FC<{ project: Project; variant?: 'overlay' | 'inli
       const href = project[key];
       if (!href) return null;
       return (
-        <a
-          key={key}
-          href={href}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={label}
-          onClick={e => e.stopPropagation()}
-          className={
-            variant === 'overlay'
-              ? 'p-3 rounded-full bg-white text-black hover:bg-[var(--accent)] hover:text-white transition-colors'
-              : 'p-2 rounded-full border border-[var(--border)] opacity-70 hover:opacity-100 hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors'
-          }
-        >
-          <Icon size={variant === 'overlay' ? 20 : 16} />
-        </a>
+        <div key={key} className="relative group/tip">
+          <a
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={label}
+            onClick={e => e.stopPropagation()}
+            className={
+              variant === 'overlay'
+                ? 'p-3 rounded-full bg-white text-black hover:bg-[var(--accent)] hover:text-white transition-colors flex'
+                : 'p-2 rounded-full border border-[var(--border)] opacity-70 hover:opacity-100 hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors flex'
+            }
+          >
+            <Icon size={variant === 'overlay' ? 20 : 16} />
+          </a>
+          <span className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 whitespace-nowrap rounded px-2 py-1 text-[10px] font-semibold text-white bg-black/80 opacity-0 group-hover/tip:opacity-100 transition-opacity duration-150">
+            {label}
+          </span>
+        </div>
       );
     })}
   </>

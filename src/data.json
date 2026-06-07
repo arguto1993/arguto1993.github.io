@@ -606,7 +606,8 @@
         "image": "https://drive.google.com/thumbnail?id=1-4sAH_0eG-idnR8dZ0CFuEZHg3QyTOWi&sz=w1600",
         "dashboardLink": "https://public.tableau.com/views/VideoGameSales2017Dashboard/DASHBOARD?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link",
         "githubLink": "",
-        "presentationLink": "https://docs.google.com/presentation/d/19mP0bx_K0UXkc7V5PhYEcRWy8Y9IJkMTNHvg3IE8zD0/edit?usp=sharing"
+        "presentationLink": "https://docs.google.com/presentation/d/19mP0bx_K0UXkc7V5PhYEcRWy8Y9IJkMTNHvg3IE8zD0/edit?usp=sharing",
+        "sheetLink": "https://docs.google.com/spreadsheets/d/1Oko3c5Dgor_69A66XIaQvz-MHPzdUiST/edit?usp=sharing&ouid=101051388151123974532&rtpof=true&sd=true"
       },
       {
         "title": "Berita2600 Social Media Content Word Cloud Analysis",
@@ -646,8 +647,9 @@
         ],
         "image": "https://drive.google.com/thumbnail?id=1ZKBzWc44qzHShlLqS3fJY1bwulgQgKDD&sz=w1600",
         "dashboardLink": "https://datastudio.google.com/reporting/e8eab359-809c-4a17-8e8b-07455bd7df58",
-        "githubLink": "",
-        "presentationLink": "https://docs.google.com/presentation/d/1h-E5dHt6ZV-QrZE3D2jbWYKjRjUgBT1MAUFNKhDOsP4/edit?usp=sharing"
+        "githubLink": "https://github.com/arguto1993/wordcloud-berita-pusdiklat-bps-2023/tree/main",
+        "presentationLink": "https://docs.google.com/presentation/d/1h-E5dHt6ZV-QrZE3D2jbWYKjRjUgBT1MAUFNKhDOsP4/edit?usp=sharing",
+        "sheetLink": "https://docs.google.com/spreadsheets/d/13hsXm20S6RdAyK520rLLkbbUJEywRp5F/edit?usp=sharing&ouid=101051388151123974532&rtpof=true&sd=true"
       },
       {
         "title": "Samba Commerce Transaction Charts & Dashboard",
@@ -720,6 +722,7 @@
         "image": "https://drive.google.com/thumbnail?id=1CSlyboF5ycMyvHALf9hHKvM6Asr9E-7z&sz=w1600",
         "dashboardLink": "",
         "githubLink": "",
+        "googleColabLink": "https://colab.research.google.com/drive/1NHsAFEWpjh9tgtx-Wvbpy1811fL8wmYs?usp=sharing",
         "presentationLink": "https://docs.google.com/presentation/d/1p9z7WXMJ9OX58qSTZB16MWscS1-8IfxMYC7Nhfy1J40/edit?usp=sharing"
       },
       {
@@ -755,7 +758,8 @@
         "image": "https://drive.google.com/thumbnail?id=1CxmaRCzZFjb7zmyW4acNMm6IYWFtiXZn&sz=w1600",
         "dashboardLink": "",
         "githubLink": "",
-        "presentationLink": "https://docs.google.com/presentation/d/12bGs_xoJZtraK-XYnR6osySm4iPwRAZyAGws5vDVgU8/edit?usp=sharing"
+        "presentationLink": "https://docs.google.com/presentation/d/12bGs_xoJZtraK-XYnR6osySm4iPwRAZyAGws5vDVgU8/edit?usp=sharing",
+        "sheetLink": "https://docs.google.com/spreadsheets/d/1k-akUlyUMfkmByd3bDQOtSnKICRHo2_r2kdEf3RH3vU/edit?usp=sharing"
       },
       {
         "title": "Mr. Chu's Personal Insight: Correlation & Regression on Luxura",
@@ -790,7 +794,8 @@
         "image": "https://drive.google.com/thumbnail?id=10yAhJriGZSTWSdlM_Q9UWY70MPNEXqb3&sz=w1600",
         "dashboardLink": "",
         "githubLink": "",
-        "presentationLink": "https://docs.google.com/presentation/d/1as8UZBXgjx7bLJCpOGfo914R4Owvi3jHt8yOyXZfq5Y/edit?usp=sharing"
+        "presentationLink": "https://docs.google.com/presentation/d/1as8UZBXgjx7bLJCpOGfo914R4Owvi3jHt8yOyXZfq5Y/edit?usp=sharing",
+        "sheetLink": "https://docs.google.com/spreadsheets/d/1MgEg9sdwTC91mpmAJ8TDqDXS8lKmXxUYutxwnjXbAl8/edit?usp=sharing"
       },
       {
         "title": "Marketing Prioritization for Luxura eCommerce Top Brands",
@@ -824,7 +829,8 @@
         "image": "https://drive.google.com/thumbnail?id=1mL73ACgOC4gOfbjD0C1quO_LfY2UaoXV&sz=w1600",
         "dashboardLink": "",
         "githubLink": "",
-        "presentationLink": "https://docs.google.com/presentation/d/1gg5_-QyTbQ1-8c6lh2-UJPJiIpiJaKRqarCCo2KNkG8/edit?usp=sharing"
+        "presentationLink": "https://docs.google.com/presentation/d/1gg5_-QyTbQ1-8c6lh2-UJPJiIpiJaKRqarCCo2KNkG8/edit?usp=sharing",
+        "sheetLink": "https://docs.google.com/spreadsheets/d/10X2fpG3hQrzT8QPmG5C-KheZLpoYK8ng_IwjOrDGI34/edit?usp=sharing"
       },
       {
         "title": "Root Cause Analysis on XYZ Company's High Attrition Rate",
