@@ -13,7 +13,7 @@ export function CertificationsForm({ value, onChange }: { value: CertGroup; onCh
       <ItemList<Cert>
         items={value.items}
         onChange={(items) => onChange({ ...value, items })}
-        emptyItem={() => ({ name: '', type: '', issuer: '', date: '', link: '' })}
+        emptyItem={() => ({ name: '', type: '', issuer: '', issuerLogo: '', date: '', link: '' })}
         itemLabel={(c) => c.name || '(untitled certification)'}
         renderItem={(item, _update, set) => (
           <div className="grid gap-3">
@@ -23,6 +23,9 @@ export function CertificationsForm({ value, onChange }: { value: CertGroup; onCh
               <Field label="Issuer"><TextInput value={item.issuer} onChange={(v) => set('issuer', v)} /></Field>
               <Field label="Date"><TextInput value={item.date} onChange={(v) => set('date', v)} /></Field>
             </div>
+            <Field label="Issuer logo (Google Drive share link or image URL)">
+              <TextInput value={item.issuerLogo ?? ''} onChange={(v) => set('issuerLogo', v)} />
+            </Field>
             <Field label="Link"><TextInput value={item.link ?? ''} onChange={(v) => set('link', v)} /></Field>
           </div>
         )}

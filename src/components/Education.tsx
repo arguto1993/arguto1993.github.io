@@ -92,33 +92,51 @@ export const Education: React.FC = () => {
           </div>
 
           <div className="grid gap-4">
-            {education.certifications.items.map((cert) => (
-              <div
-                key={cert.name}
-                className="p-6 rounded-xl bg-[var(--card-bg)] border border-[var(--border)] hover:accent-border transition-all duration-300 group"
-              >
-                <h3 className="text-lg font-serif font-bold group-hover:accent-text transition-colors mb-1">
-                  {cert.name}
-                </h3>
-                <p className="text-xs font-medium accent-text mb-2">{cert.type}</p>
-                <div className="flex justify-between items-center gap-3 text-sm opacity-60">
-                  <span>{cert.issuer}</span>
-                  <span className="accent-badge !text-[9px] !px-1.5 !py-0.5 !rounded-md">
-                    {cert.date}
-                  </span>
+            {education.certifications.items.map((cert) => {
+              const logo = driveImageUrl(cert.issuerLogo);
+              return (
+                <div
+                  key={cert.name}
+                  className="p-6 rounded-xl bg-[var(--card-bg)] border border-[var(--border)] hover:accent-border transition-all duration-300 group"
+                >
+                  <div className="flex items-start gap-4">
+                    {logo && (
+                      <div className="mt-1 flex h-9 w-9 shrink-0 items-center justify-center">
+                        <img
+                          src={logo}
+                          alt={`${cert.issuer} logo`}
+                          loading="lazy"
+                          referrerPolicy="no-referrer"
+                          className="h-full w-full object-contain"
+                        />
+                      </div>
+                    )}
+                    <div className="min-w-0 flex-1">
+                      <h3 className="text-lg font-serif font-bold group-hover:accent-text transition-colors mb-1">
+                        {cert.name}
+                      </h3>
+                      <p className="text-xs font-medium accent-text mb-2">{cert.type}</p>
+                      <div className="flex flex-wrap justify-between items-center gap-3 text-sm opacity-60">
+                        <span>{cert.issuer}</span>
+                        <span className="accent-badge !text-xs !px-2 !py-0.5 !rounded-md">
+                          {cert.date}
+                        </span>
+                      </div>
+                      {cert.link && (
+                        <a
+                          href={cert.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1 text-xs opacity-70 mt-3 transition-colors duration-200 group-hover:text-[var(--accent)]"
+                        >
+                          View credential ↗
+                        </a>
+                      )}
+                    </div>
+                  </div>
                 </div>
-                {cert.link && (
-                  <a
-                    href={cert.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-xs opacity-70 mt-3 transition-colors duration-200 group-hover:text-[var(--accent)]"
-                  >
-                    View credential ↗
-                  </a>
-                )}
-              </div>
-            ))}
+              );
+            })}
           </div>
         </motion.div>
       </div>

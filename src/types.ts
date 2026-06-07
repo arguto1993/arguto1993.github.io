@@ -124,6 +124,7 @@ export interface Certification {
   name: string;
   type: string;
   issuer: string;
+  issuerLogo?: string;
   date: string;
   link?: string;
 }

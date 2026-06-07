@@ -26,6 +26,11 @@ function portfolioSeoPlugin(): Plugin {
         String(str).replace(/\*\*/g, '').replace(/__/g, '').replace(/\s+/g, ' ').trim();
       const escAttr = (str = '') =>
         String(str).replace(/&/g, '&amp;').replace(/"/g, '&quot;');
+      const driveImageUrl = (url = '') => {
+        if (!url) return '';
+        const match = String(url).match(/\/d\/([^/]+)/) || String(url).match(/[?&]id=([^&]+)/);
+        return match ? `https://drive.google.com/thumbnail?id=${match[1]}&sz=w200` : url;
+      };
 
       // Derived from data.json (about copy + location) so the description stays in
       // sync with content edits instead of being hardcoded here.
@@ -67,11 +72,15 @@ function portfolioSeoPlugin(): Plugin {
           })
         );
         personSchema.hasCredential = (education.certifications?.items ?? []).map(
-          (cert: { name: string; type: string; issuer: string; link?: string }) => ({
+          (cert: { name: string; type: string; issuer: string; issuerLogo?: string; link?: string }) => ({
             '@type': 'EducationalOccupationalCredential',
             name: cert.name,
             credentialCategory: cert.type,
-            recognizedBy: { '@type': 'Organization', name: cert.issuer },
+            recognizedBy: {
+              '@type': 'Organization',
+              name: cert.issuer,
+              ...(cert.issuerLogo ? { logo: driveImageUrl(cert.issuerLogo) } : {}),
+            },
             ...(cert.link ? { url: cert.link } : {}),
           })
         );

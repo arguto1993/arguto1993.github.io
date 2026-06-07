@@ -148,6 +148,7 @@ function generateStaticHTML(data) {
 
   const certsHTML = education.certifications.items.map(cert => `
     <article>
+      ${cert.issuerLogo ? `<img src="${esc(driveImageUrl(cert.issuerLogo))}" alt="${esc(cert.issuer)} logo" loading="lazy" referrerpolicy="no-referrer" />` : ''}
       <h3>${esc(cert.name)}</h3>
       <p>${esc(cert.type)}</p>
       <p>${esc(cert.issuer)} &mdash; ${esc(cert.date)}</p>
