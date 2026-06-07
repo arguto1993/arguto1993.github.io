@@ -18,6 +18,12 @@ import {
   ChevronRight,
   X,
   SlidersHorizontal,
+  Building2,
+  Layers,
+  Zap,
+  CalendarDays,
+  ArrowUpDown,
+  Hash,
 } from 'lucide-react';
 import type { Project } from '../types';
 import { ProjectModal } from './ProjectModal';
@@ -120,13 +126,15 @@ function searchableText(p: Project): string {
 // ── Multi-select filter dropdown ─────────────────────────────────────────────
 
 interface MultiSelectProps {
-  label: string;
+  icon: React.ReactNode;
+  allLabel: string;
   options: string[];
   selected: string[];
   onChange: (next: string[]) => void;
+  className?: string;
 }
 
-const MultiSelect: React.FC<MultiSelectProps> = ({ label, options, selected, onChange }) => {
+const MultiSelect: React.FC<MultiSelectProps> = ({ icon, allLabel, options, selected, onChange, className = '' }) => {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState('');
   const ref = useRef<HTMLDivElement>(null);
@@ -140,7 +148,6 @@ const MultiSelect: React.FC<MultiSelectProps> = ({ label, options, selected, onC
     return () => document.removeEventListener('mousedown', onClick);
   }, [open]);
 
-  // Reset the in-dropdown search each time it closes
   useEffect(() => {
     if (!open) setQuery('');
   }, [open]);
@@ -157,14 +164,17 @@ const MultiSelect: React.FC<MultiSelectProps> = ({ label, options, selected, onC
       <button
         type="button"
         onClick={() => setOpen(o => !o)}
-        className="flex items-center gap-2 px-3 py-2 rounded-lg border text-sm font-medium transition-colors cursor-pointer hover:border-[var(--accent)]"
+        className={`flex items-center gap-2 px-3 py-2 rounded-lg border text-sm font-medium transition-colors cursor-pointer hover:border-[var(--accent)] min-w-[140px] ${className}`}
         style={{
           backgroundColor: 'var(--card-bg)',
           borderColor: selected.length ? 'var(--accent)' : 'var(--border)',
         }}
       >
-        <span className={selected.length ? 'accent-text' : 'opacity-70'}>{label}</span>
-        {selected.length > 0 && (
+        <span className={selected.length ? 'accent-text' : 'opacity-60'}>{icon}</span>
+        <span className={selected.length ? 'accent-text' : 'opacity-70'}>
+          {selected.length === 0 ? allLabel : selected.length === 1 ? selected[0] : `${selected.length} selected`}
+        </span>
+        {selected.length > 1 && (
           <span
             className="flex items-center justify-center min-w-[18px] h-[18px] px-1 rounded-full text-[10px] font-bold"
             style={{ backgroundColor: 'var(--accent)', color: '#000' }}
@@ -172,7 +182,7 @@ const MultiSelect: React.FC<MultiSelectProps> = ({ label, options, selected, onC
             {selected.length}
           </span>
         )}
-        <ChevronDown size={14} className={`opacity-60 transition-transform ${open ? 'rotate-180' : ''}`} />
+        <ChevronDown size={14} className={`ml-auto opacity-60 transition-transform ${open ? 'rotate-180' : ''}`} />
       </button>
 
       {open && (
@@ -187,7 +197,7 @@ const MultiSelect: React.FC<MultiSelectProps> = ({ label, options, selected, onC
                 type="text"
                 value={query}
                 onChange={e => setQuery(e.target.value)}
-                placeholder={`Search ${label.toLowerCase()}…`}
+                placeholder={`Search ${allLabel.toLowerCase()}…`}
                 autoFocus
                 className="w-full pl-7 pr-2 py-1.5 rounded-md border text-xs outline-none focus:border-[var(--accent)] transition-colors"
                 style={{ backgroundColor: 'var(--bg)', borderColor: 'var(--border)' }}
@@ -420,6 +430,133 @@ const CompactRow: React.FC<{ project: Project; onOpen: () => void }> = ({ projec
   </div>
 );
 
+// ── Year + month picker ──────────────────────────────────────────────────────
+
+interface DatePickerProps {
+  yearOptions: string[];
+  selYear: string;
+  selMonth: string;
+  onYearChange: (v: string) => void;
+  onMonthChange: (v: string) => void;
+  className?: string;
+}
+
+const DatePicker: React.FC<DatePickerProps> = ({ yearOptions, selYear, selMonth, onYearChange, onMonthChange, className = '' }) => {
+  const [openPanel, setOpenPanel] = useState<'year' | 'month' | null>(null);
+  const ref = useRef<HTMLDivElement>(null);
+  const active = !!selYear || !!selMonth;
+
+  useEffect(() => {
+    if (!openPanel) return;
+    const onClick = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpenPanel(null);
+    };
+    document.addEventListener('mousedown', onClick);
+    return () => document.removeEventListener('mousedown', onClick);
+  }, [openPanel]);
+
+  const pickYear = (y: string) => { onYearChange(y); if (!y) onMonthChange(''); setOpenPanel(null); };
+  const pickMonth = (m: string) => { onMonthChange(m); setOpenPanel(null); };
+
+  return (
+    <div ref={ref} className={`flex items-center gap-1 ${className}`}>
+      {/* Year button */}
+      <div className="relative flex-1">
+        <button
+          type="button"
+          onClick={() => setOpenPanel(p => p === 'year' ? null : 'year')}
+          className="w-full flex items-center gap-2 px-3 py-2 rounded-lg border text-sm font-medium transition-colors cursor-pointer hover:border-[var(--accent)]"
+          style={{
+            backgroundColor: 'var(--card-bg)',
+            borderColor: selYear ? 'var(--accent)' : 'var(--border)',
+          }}
+        >
+          <CalendarDays size={14} className={selYear ? 'accent-text' : 'opacity-60'} />
+          <span className={selYear ? 'accent-text' : 'opacity-70'}>{selYear || 'All time'}</span>
+          <ChevronDown size={14} className={`ml-auto opacity-60 transition-transform ${openPanel === 'year' ? 'rotate-180' : ''}`} />
+        </button>
+        {openPanel === 'year' && (
+          <div
+            className="absolute z-30 mt-2 w-32 rounded-lg border shadow-xl overflow-hidden"
+            style={{ backgroundColor: 'var(--card-bg)', borderColor: 'var(--border)' }}
+          >
+            <button
+              type="button"
+              onClick={() => pickYear('')}
+              className={`w-full text-left px-3 py-2 text-sm hover:bg-[var(--border)]/40 cursor-pointer ${!selYear ? 'accent-text font-semibold' : 'opacity-70'}`}
+            >
+              All time
+            </button>
+            {yearOptions.map(y => (
+              <button
+                key={y}
+                type="button"
+                onClick={() => pickYear(y)}
+                className={`w-full text-left px-3 py-2 text-sm hover:bg-[var(--border)]/40 cursor-pointer ${selYear === y ? 'accent-text font-semibold' : 'opacity-70'}`}
+              >
+                {y}
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* Month button — only when a year is selected */}
+      {selYear && (
+        <div className="relative">
+          <button
+            type="button"
+            onClick={() => setOpenPanel(p => p === 'month' ? null : 'month')}
+            className="flex items-center gap-2 px-3 py-2 rounded-lg border text-sm font-medium transition-colors cursor-pointer hover:border-[var(--accent)]"
+            style={{
+              backgroundColor: 'var(--card-bg)',
+              borderColor: selMonth ? 'var(--accent)' : 'var(--border)',
+            }}
+          >
+            <span className={selMonth ? 'accent-text' : 'opacity-70'}>{selMonth ? MONTH_NAMES[selMonth] : 'All months'}</span>
+            <ChevronDown size={14} className={`ml-auto opacity-60 transition-transform ${openPanel === 'month' ? 'rotate-180' : ''}`} />
+          </button>
+          {openPanel === 'month' && (
+            <div
+              className="absolute z-30 mt-2 w-36 rounded-lg border shadow-xl overflow-hidden max-h-64 overflow-y-auto"
+              style={{ backgroundColor: 'var(--card-bg)', borderColor: 'var(--border)' }}
+            >
+              <button
+                type="button"
+                onClick={() => pickMonth('')}
+                className={`w-full text-left px-3 py-2 text-sm hover:bg-[var(--border)]/40 cursor-pointer ${!selMonth ? 'accent-text font-semibold' : 'opacity-70'}`}
+              >
+                All months
+              </button>
+              {MONTHS.map(m => (
+                <button
+                  key={m}
+                  type="button"
+                  onClick={() => pickMonth(m)}
+                  className={`w-full text-left px-3 py-2 text-sm hover:bg-[var(--border)]/40 cursor-pointer ${selMonth === m ? 'accent-text font-semibold' : 'opacity-70'}`}
+                >
+                  {MONTH_NAMES[m]}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+
+      {active && (
+        <button
+          type="button"
+          onClick={() => { onYearChange(''); onMonthChange(''); setOpenPanel(null); }}
+          className="p-1.5 opacity-50 hover:opacity-100 cursor-pointer"
+          aria-label="Clear date filter"
+        >
+          <X size={13} />
+        </button>
+      )}
+    </div>
+  );
+};
+
 // ── Main section ─────────────────────────────────────────────────────────────
 
 export const Projects: React.FC = () => {
@@ -435,8 +572,8 @@ export const Projects: React.FC = () => {
   const [selDomains, setSelDomains] = useState<string[]>([]);
   const [selTech, setSelTech] = useState<string[]>([]);
   const [selSkills, setSelSkills] = useState<string[]>([]);
-  const [selMonths, setSelMonths] = useState<string[]>([]);
-  const [selYears, setSelYears] = useState<string[]>([]);
+  const [selYear, setSelYear] = useState<string>('');
+  const [selMonth, setSelMonth] = useState<string>('');
   const [filtersOpen, setFiltersOpen] = useState(false);
   const [filtersAnimating, setFiltersAnimating] = useState(false);
   const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' && window.innerWidth < 768);
@@ -463,25 +600,22 @@ export const Projects: React.FC = () => {
   }, [isMobile]);
 
   // Derive filter option lists from the data
-  const { domainOptions, techOptions, skillOptions, monthOptions, yearOptions } = useMemo(() => {
+  const { domainOptions, techOptions, skillOptions, yearOptions } = useMemo(() => {
     const domains = new Set<string>();
     const tech = new Set<string>();
     const skills = new Set<string>();
-    const months = new Set<string>();
     const years = new Set<string>();
     for (const p of items) {
       if (p.domain) domains.add(p.domain);
       p.techStack?.forEach(t => tech.add(t));
       p.relatedSkills?.forEach(s => skills.add(s));
-      const { month, year } = parseDate(p.date);
-      if (month) months.add(month);
+      const { year } = parseDate(p.date);
       if (year) years.add(year);
     }
     return {
       domainOptions: [...domains].sort(),
       techOptions: [...tech].sort(),
       skillOptions: [...skills].sort(),
-      monthOptions: MONTHS.filter(m => months.has(m)),
       yearOptions: [...years].sort((a, b) => b.localeCompare(a)),
     };
   }, [items]);
@@ -494,14 +628,14 @@ export const Projects: React.FC = () => {
       if (selDomains.length && (!p.domain || !selDomains.includes(p.domain))) return false;
       if (selTech.length && !p.techStack?.some(t => selTech.includes(t))) return false;
       if (selSkills.length && !p.relatedSkills?.some(s => selSkills.includes(s))) return false;
-      if (selMonths.length || selYears.length) {
+      if (selYear || selMonth) {
         const { month, year } = parseDate(p.date);
-        if (selMonths.length && (!month || !selMonths.includes(month))) return false;
-        if (selYears.length && (!year || !selYears.includes(year))) return false;
+        if (selYear && year !== selYear) return false;
+        if (selMonth && month !== selMonth) return false;
       }
       return true;
     });
-  }, [items, search, selDomains, selTech, selSkills, selMonths, selYears]);
+  }, [items, search, selDomains, selTech, selSkills, selYear, selMonth]);
 
   // Apply sort (stable — ties keep their filtered order)
   const sorted = useMemo(() => {
@@ -514,7 +648,7 @@ export const Projects: React.FC = () => {
   // Reset to first page whenever the result set or ordering changes
   useEffect(() => {
     setPage(1);
-  }, [search, selDomains, selTech, selSkills, selMonths, selYears, perPage, sort, view]);
+  }, [search, selDomains, selTech, selSkills, selYear, selMonth, perPage, sort, view]);
 
   // perPage is Infinity when "All" is selected
   const pageSize = Number.isFinite(perPage) ? perPage : Math.max(1, sorted.length);
@@ -528,19 +662,19 @@ export const Projects: React.FC = () => {
     selDomains.length > 0 ||
     selTech.length > 0 ||
     selSkills.length > 0 ||
-    selMonths.length > 0 ||
-    selYears.length > 0;
+    !!selYear ||
+    !!selMonth;
 
   const activeFilterCount =
-    selDomains.length + selTech.length + selSkills.length + selMonths.length + selYears.length;
+    selDomains.length + selTech.length + selSkills.length + (selYear ? 1 : 0) + (selMonth ? 1 : 0);
 
   const clearAll = () => {
     setSearch('');
     setSelDomains([]);
     setSelTech([]);
     setSelSkills([]);
-    setSelMonths([]);
-    setSelYears([]);
+    setSelYear('');
+    setSelMonth('');
   };
 
   const toggleFilters = () => {
@@ -666,60 +800,96 @@ export const Projects: React.FC = () => {
                 style={{ overflow: filtersAnimating ? 'hidden' : 'visible' }}
               onAnimationComplete={() => setFiltersAnimating(false)}
               >
-                <div className="flex flex-wrap items-center gap-3 pb-4 pt-3 border-t border-[var(--border)]">
-                  <MultiSelect label="Industry" options={domainOptions} selected={selDomains} onChange={setSelDomains} />
-                  <MultiSelect label="Tech stack" options={techOptions} selected={selTech} onChange={setSelTech} />
-                  <MultiSelect label="Skills" options={skillOptions} selected={selSkills} onChange={setSelSkills} />
-                  <MultiSelect
-                    label="Month"
-                    options={monthOptions.map(m => MONTH_NAMES[m])}
-                    selected={selMonths.map(m => MONTH_NAMES[m])}
-                    onChange={names =>
-                      setSelMonths(names.map(n => MONTHS.find(m => MONTH_NAMES[m] === n)!).filter(Boolean))
-                    }
-                  />
-                  <MultiSelect label="Year" options={yearOptions} selected={selYears} onChange={setSelYears} />
-
-                  {hasFilters && (
-                    <button
-                      onClick={clearAll}
-                      className="flex items-center gap-1.5 px-3 py-2 text-sm opacity-70 hover:opacity-100 hover:text-[var(--accent)] transition-colors cursor-pointer"
-                    >
-                      <X size={14} /> Clear all
-                    </button>
-                  )}
-
-                  <div className="flex items-center gap-2 ml-auto text-sm">
-                    <span className="opacity-50">Sort</span>
-                    <select
-                      value={sort}
-                      onChange={e => setSort(e.target.value as SortId)}
-                      className="px-2 py-2 rounded-lg border text-sm outline-none focus:border-[var(--accent)] cursor-pointer"
-                      style={{ backgroundColor: 'var(--card-bg)', borderColor: 'var(--border)' }}
-                    >
-                      {SORT_OPTIONS.map(o => (
-                        <option key={o.id} value={o.id}>
-                          {o.label}
-                        </option>
-                      ))}
-                    </select>
+                <div className="flex flex-col md:flex-row md:flex-wrap md:items-center gap-2 pb-4 pt-3 border-t border-[var(--border)]">
+                  {/* Row 1 on mobile: Industries + TechStacks fill evenly */}
+                  <div className="flex gap-2 md:contents">
+                    <div className="flex-1 min-w-0">
+                      <MultiSelect
+                        icon={<Building2 size={14} />}
+                        allLabel="All Industries"
+                        options={domainOptions}
+                        selected={selDomains}
+                        onChange={setSelDomains}
+                        className="w-full"
+                      />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <MultiSelect
+                        icon={<Layers size={14} />}
+                        allLabel="All Tech Stacks"
+                        options={techOptions}
+                        selected={selTech}
+                        onChange={setSelTech}
+                        className="w-full"
+                      />
+                    </div>
                   </div>
 
-                  <div className="flex items-center gap-2 text-sm">
-                    <span className="opacity-50">Per page</span>
-                    <select
-                      value={Number.isFinite(perPage) ? String(perPage) : 'all'}
-                      onChange={e => setPerPage(e.target.value === 'all' ? Infinity : Number(e.target.value))}
-                      className="px-2 py-2 rounded-lg border text-sm outline-none focus:border-[var(--accent)] cursor-pointer"
-                      style={{ backgroundColor: 'var(--card-bg)', borderColor: 'var(--border)' }}
-                    >
-                      {PER_PAGE_OPTIONS.map(n => (
-                        <option key={n} value={n}>
-                          {n}
-                        </option>
-                      ))}
-                      <option value="all">All</option>
-                    </select>
+                  {/* Row 2 on mobile: Skills fills remaining space, DatePicker is natural width */}
+                  <div className="flex gap-2 md:contents">
+                    <div className="flex-1 min-w-0">
+                      <MultiSelect
+                        icon={<Zap size={14} />}
+                        allLabel="All Skills"
+                        options={skillOptions}
+                        selected={selSkills}
+                        onChange={setSelSkills}
+                        className="w-full"
+                      />
+                    </div>
+                    <div className={!selYear ? 'flex-1 min-w-0' : ''}>
+                      <DatePicker
+                        yearOptions={yearOptions}
+                        selYear={selYear}
+                        selMonth={selMonth}
+                        onYearChange={setSelYear}
+                        onMonthChange={setSelMonth}
+                        className={!selYear ? 'w-full' : ''}
+                      />
+                    </div>
+                  </div>
+
+                  {/* Controls: own flex row on mobile, flows inline on md+ */}
+                  <div className="flex items-center gap-2 md:contents">
+                    {hasFilters && (
+                      <button
+                        onClick={clearAll}
+                        className="flex items-center gap-1.5 px-3 py-2 text-sm opacity-70 hover:opacity-100 hover:text-[var(--accent)] transition-colors cursor-pointer"
+                      >
+                        <X size={14} /> Clear all
+                      </button>
+                    )}
+                    <div className="flex items-center gap-2 ml-auto text-sm">
+                      <ArrowUpDown size={14} className="opacity-50 shrink-0" />
+                      <select
+                        value={sort}
+                        onChange={e => setSort(e.target.value as SortId)}
+                        className="px-2 py-2 rounded-lg border text-sm outline-none focus:border-[var(--accent)] cursor-pointer"
+                        style={{ backgroundColor: 'var(--card-bg)', borderColor: 'var(--border)' }}
+                      >
+                        {SORT_OPTIONS.map(o => (
+                          <option key={o.id} value={o.id}>
+                            {o.label}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm">
+                      <Hash size={14} className="opacity-50 shrink-0" />
+                      <select
+                        value={Number.isFinite(perPage) ? String(perPage) : 'all'}
+                        onChange={e => setPerPage(e.target.value === 'all' ? Infinity : Number(e.target.value))}
+                        className="px-2 py-2 rounded-lg border text-sm outline-none focus:border-[var(--accent)] cursor-pointer"
+                        style={{ backgroundColor: 'var(--card-bg)', borderColor: 'var(--border)' }}
+                      >
+                        {PER_PAGE_OPTIONS.map(n => (
+                          <option key={n} value={n}>
+                            {n}
+                          </option>
+                        ))}
+                        <option value="all">All</option>
+                      </select>
+                    </div>
                   </div>
                 </div>
               </motion.div>
