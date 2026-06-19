@@ -74,7 +74,7 @@ export interface Project {
   image?: string;
   dashboardLink?: string;
   githubLink?: string;
-  sheetLink?: string;
+  sheetsLink?: string;
   presentationLink?: string;
   videoLink?: string;
   googleColabLink?: string;

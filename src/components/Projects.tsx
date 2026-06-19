@@ -246,7 +246,7 @@ const linkDefs = [
   { key: 'dashboardLink', Icon: LayoutDashboard, label: 'Dashboard' },
   { key: 'githubLink', Icon: Github, label: 'GitHub' },
   { key: 'googleColabLink', Icon: Code, label: 'Colab' },
-  { key: 'sheetLink', Icon: Table, label: 'Sheet' },
+  { key: 'sheetsLink', Icon: Table, label: 'Sheets' },
   { key: 'presentationLink', Icon: FileText, label: 'Presentation' },
   { key: 'videoLink', Icon: Youtube, label: 'Video' },
 ] as const;

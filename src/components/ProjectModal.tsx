@@ -46,7 +46,7 @@ export const ProjectModal: React.FC<Props> = ({ projects, index, onClose, onNavi
   }, [onClose, isOpen, index, count]);
 
   const modalLinks = project
-    ? [project.dashboardLink, project.githubLink, project.googleColabLink, project.sheetLink, project.presentationLink, project.videoLink].filter(Boolean)
+    ? [project.dashboardLink, project.githubLink, project.googleColabLink, project.sheetsLink, project.presentationLink, project.videoLink].filter(Boolean)
     : [];
   const hasLinks = modalLinks.length > 0;
 
@@ -182,9 +182,9 @@ export const ProjectModal: React.FC<Props> = ({ projects, index, onClose, onNavi
                         <Code size={14} /> Colab
                       </a>
                     )}
-                    {project.sheetLink && (
-                      <a href={project.sheetLink} target="_blank" rel="noopener noreferrer" className="modal-link">
-                        <Table size={14} /> Sheet
+                    {project.sheetsLink && (
+                      <a href={project.sheetsLink} target="_blank" rel="noopener noreferrer" className="modal-link">
+                        <Table size={14} /> Sheets
                       </a>
                     )}
                     {project.presentationLink && (
