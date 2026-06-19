@@ -126,7 +126,7 @@ export const ProjectModal: React.FC<Props> = ({ projects, index, onClose, onNavi
               </div>
 
               {/* Image */}
-              <div className="w-full flex items-center justify-center px-6 pt-2 pb-1">
+              <div className="w-full flex items-center justify-center px-6 pt-0 pb-1">
                 {project.image ? (
                   <img
                     src={project.image}
@@ -144,14 +144,11 @@ export const ProjectModal: React.FC<Props> = ({ projects, index, onClose, onNavi
               </div>
 
               {/* Meta + links */}
-              <div className="px-6 pt-4 pb-6 flex flex-col gap-2 flex-1">
+              <div className="px-6 pt-2 pb-6 flex flex-col gap-2 flex-1">
                 <div className="flex flex-col gap-0.5 pb-3 border-b border-[var(--border)]">
                   <p className="text-xs opacity-50 tracking-wide">
-                    {[project.organization, project.date].filter(Boolean).join('  ·  ')}
+                    {[project.organization, project.date, project.role].filter(Boolean).join('  ·  ')}
                   </p>
-                  {project.role && (
-                    <p className="text-xs opacity-40 tracking-wide italic">{project.role}</p>
-                  )}
                 </div>
 
                 {project.description && project.description.length > 0 && (

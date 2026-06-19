@@ -8,7 +8,7 @@
     "_homepageComment": "Used by vite.config.ts for SEO canonical, Open Graph, Twitter Card, and JSON-LD URLs, and by scripts/prerender.mjs for sitemap URLs.",
     "googleVerification": "mg6llNEPe6WyLmV1Y7R-1KAmYhlF5O63czUj3QeMry4",
     "repository": "https://github.com/arguto1993/arguto1993.github.io",
-    "lastUpdated": "June 7, 2026"
+    "lastUpdated": "June 19, 2026"
   },
   "hero": {
     "show": true,
@@ -396,6 +396,47 @@
         "dashboardLink": "",
         "githubLink": "https://github.com/arguto1993/jkt48-video-sentiment-analysis",
         "presentationLink": "https://www.canva.com/design/DAHLuDeM8lo/D0oAz9wLE2IE9j5AutB5NA/view?utm_content=DAHLuDeM8lo&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton"
+      },
+      {
+        "title": "Istanbul Shopping Mall Customer Segmentation & Behaviour Classification",
+        "organization": "Dicoding Academy",
+        "date": "Jan 2025",
+        "role": "Data Scientist",
+        "domain": "Retail",
+        "background": "Retailers hold rich transaction data but few ready-made labels. Using the Istanbul Customer Shopping dataset — 99,457 transactions across 10 shopping malls (2021–2023) — the challenge was to discover natural customer groups from purchasing behaviour, then build a model that could automatically assign any new transaction to a group.",
+        "goal": "Run a two-stage machine learning pipeline: first use unsupervised clustering to segment transactions into behavioural groups, then train supervised classifiers to predict the segment label of unseen transactions — clearing a silhouette score of ≥ 0.55 and ≥ 87% classification accuracy.",
+        "description": [
+          "Profiled and preprocessed 99,457 clean transactions — frequency/ordinal encoding, MinMax scaling with down-weighted gender (×0.2) and payment (×0.3), and engineered features like recency_days, month, and value (quantity × price).",
+          "Selected K-Means (chosen over DBSCAN and K-Prototypes) and ran a random feature search, landing on the price + category pair and k = 2 via the Elbow method to lift the silhouette score from 0.214 to 0.757.",
+          "Labeled the segmented dataset and trained Logistic Regression and Decision Tree classifiers on a 70/30 stratified split to predict each transaction's cluster."
+        ],
+        "keyInsights": [
+          "Two behavioural segments: non-clothing buyers (65K transactions, 65%, avg. ₺576.8, top category Cosmetics) and clothing buyers (34K transactions, 35%, avg. ₺901.1, top category Clothing).",
+          "Both classifiers hit a perfect 100% across accuracy, precision, recall, and F1 — but read honestly, this signals trivial labels: the clusters split almost entirely on the category feature, making the target effectively univariate.",
+          "Key lesson: silhouette assumes Euclidean geometry that suits numeric data, not mixed numeric/categorical features — for mixed data, K-Prototypes/Gower distance and validation beyond a single internal score are the right call."
+        ],
+        "techStack": [
+          "Python",
+          "Pandas",
+          "NumPy",
+          "Scikit-learn",
+          "Matplotlib",
+          "Seaborn"
+        ],
+        "relatedSkills": [
+          "Exploratory Data Analysis",
+          "Feature Engineering",
+          "Clustering",
+          "Classification",
+          "Machine Learning",
+          "Data Science",
+          "Data Storytelling",
+          "Data Visualization"
+        ],
+        "image": "https://drive.google.com/thumbnail?id=1Fmp6g9flStujeMyX0087uB2KTEyjN8bq&sz=w1600",
+        "dashboardLink": "",
+        "githubLink": "https://github.com/arguto1993/istanbul-retail-clustering-classification",
+        "presentationLink": "https://docs.google.com/presentation/d/125p2lUzZUsTA1p4ZOtgN6wg6g8uFb1Fv9gi9StufYGI/edit?usp=sharing"
       },
       {
         "title": "Olist E-Commerce Performance Analysis",
