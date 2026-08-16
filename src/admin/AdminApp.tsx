@@ -99,8 +99,14 @@ export default function AdminApp() {
             )}
             <button
               onClick={save}
-              disabled={!data || saving || loading || DEV_PREVIEW}
-              title={DEV_PREVIEW ? 'Save disabled in dev preview' : undefined}
+              disabled={!data || !isDirty || saving || loading || DEV_PREVIEW}
+              title={
+                DEV_PREVIEW
+                  ? 'Save disabled in dev preview'
+                  : !isDirty
+                    ? 'No changes to save'
+                    : undefined
+              }
               className="cursor-pointer px-4 py-1.5 text-sm rounded-md bg-[var(--accent)] text-white hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {saving ? 'Saving…' : 'Save'}
