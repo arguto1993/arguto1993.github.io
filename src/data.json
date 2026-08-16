@@ -8,7 +8,7 @@
     "_homepageComment": "Used by vite.config.ts for SEO canonical, Open Graph, Twitter Card, and JSON-LD URLs, and by scripts/prerender.mjs for sitemap URLs.",
     "googleVerification": "mg6llNEPe6WyLmV1Y7R-1KAmYhlF5O63czUj3QeMry4",
     "repository": "https://github.com/arguto1993/arguto1993.github.io",
-    "lastUpdated": "June 19, 2026"
+    "lastUpdated": "August 16, 2026"
   },
   "hero": {
     "show": true,
@@ -149,7 +149,8 @@
           "Provide data-driven consulting to marketing teams, applying techniques such as customer segmentation, RFM scoring, and persuadable prediction to improve acquisition and retention across up to 5 campaigns per month.",
           "Deliver scheduled weekly/monthly/quarterly reports and ad-hoc analysis for 10+ enterprise clients (e.g., Levi's Indonesia, Tim Hortons Singapore, Burger King, Kawan Lama Group) with a total of 15M+ customers.",
           "Optimize Django ORM queries—achieved 75%+ faster execution time (4x speed increase) for daily automated report generation (cron).",
-          "Design & implement scalable end-to-end data solution architecture with PostgreSQL, Airbyte, ClickHouse, BigQuery, & Looker Studio."
+          "Design & implement scalable end-to-end data solution architecture with PostgreSQL, Airbyte, ClickHouse, BigQuery, & Looker Studio.",
+          "Build and maintain internal commission & invoice tracker system for HR, Sales, & Finance teams."
         ]
       },
       {
