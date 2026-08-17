@@ -1,8 +1,5 @@
 {
-  // MD032: Lists should be surrounded by blank lines — disabled, CLAUDE.md uses tight lists intentionally
-  "MD032": false,
-  // MD041: First line should be a top-level heading — disabled, CLAUDE.md has no heading by design to reduce token usage
-  "MD041": false,
-  // MD013: Line length — relaxed to 120 (default 80 is too strict for instructional content)
+  "MD032": false,  // Lists should be surrounded by blank lines
+  "MD041": false,  // First line should be a top-level heading
   "MD013": { "line_length": 120 }
 }
