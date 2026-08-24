@@ -4,6 +4,13 @@ on:
   push:
     branches:
       - master
+    paths-ignore:
+      - "**/*.md"
+      - ".claude/**"
+      - ".vscode/**"
+      - ".markdownlint.jsonc"
+      - ".env.example"
+      - "worker/**"
   workflow_dispatch:
 
 concurrency:
