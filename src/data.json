@@ -8,7 +8,7 @@
     "_homepageComment": "Used by vite.config.ts for SEO canonical, Open Graph, Twitter Card, and JSON-LD URLs, and by scripts/prerender.mjs for sitemap URLs.",
     "googleVerification": "mg6llNEPe6WyLmV1Y7R-1KAmYhlF5O63czUj3QeMry4",
     "repository": "https://github.com/arguto1993/arguto1993.github.io",
-    "lastUpdated": "August 16, 2026"
+    "lastUpdated": "August 30, 2026"
   },
   "hero": {
     "show": true,
@@ -61,13 +61,6 @@
           "Google Apps Script",
           "Microsoft Excel",
           "Microsoft PowerPoint",
-          "Canva",
-          "Visual Studio Code",
-          "Google Colab",
-          "Github",
-          "Claude Code",
-          "Codex",
-          "Simplescraper",
           "YouTube Data API"
         ]
       },
@@ -104,7 +97,6 @@
           "Metrics Recommendation",
           "Web Development",
           "Performance Marketing Analysis",
-          "Vibe Coding",
           "Prompt Engineering"
         ]
       },
